@@ -41,11 +41,7 @@ const getInsights = inputData => {
       }
     })
   })
-  //.then(x => console.log(getTextSummary(x.result)))
   .catch(err => console.log(err));
 }
-
-// Call getInsight (log result to console)
-//getInsights(params)
 
 module.exports = { getInsights }
