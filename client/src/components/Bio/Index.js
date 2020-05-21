@@ -13,7 +13,7 @@ import useVisualMode from "../../hooks/useVisualMode";
     const USERBIO = "USERBIO";
     const INSIGHTS = "INSIGHTS";
     const LOADING = "LOADING";
-    const EDIT = "EDIT";
+    // const EDIT = "EDIT";
     const DENIED = "DENIED";
     const ERROR = "ERROR";
   

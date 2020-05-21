@@ -66,8 +66,8 @@ const useStyles = makeStyles({
   const classes = useStyles();
   return (
     
-    <Box alignItems="center">
-      <Container alignItems="center">
+    <Box alignitems="center">
+      <Container alignitems="center">
         <img src="images/indezone.png" alt="INDEZONE" />
       </Container>
       <Slide
@@ -109,7 +109,7 @@ const useStyles = makeStyles({
           label="Enter Email"
           variant="outlined"
           color="primary"
-          autoFocus="true"
+          autoFocus={true}
           placeholder="example@email.com"
           type="email"
           onChange={(e) => setLoginEmail(e.target.value)}
@@ -127,7 +127,7 @@ const useStyles = makeStyles({
           label="Enter Password"
           variant="outlined"
           color="primary"
-          autoFocus="true"
+          autoFocus={true}
           placeholder=""
           type="password"
           onChange={(e) => setLoginPassword(e.target.value)}

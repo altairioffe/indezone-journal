@@ -7,9 +7,6 @@ import Typography from '@material-ui/core/Typography';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import Form from "./Form"
 
-const rnd = () => { //generates random number for color wheel
-  return 175;
-};
 
 
 export default function SimpleExpansionPanel(props) {
