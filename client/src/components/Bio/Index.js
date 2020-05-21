@@ -22,7 +22,6 @@ import useVisualMode from "../../hooks/useVisualMode";
 
 
     const loadInsight = () => {
-      console.log("CLICKED: ", props.currentUserGoals )
         props.requestInsight(props.currentUserGoals)
         .then(()=> {
           transition(INSIGHTS)
@@ -60,7 +59,7 @@ import useVisualMode from "../../hooks/useVisualMode";
 
     {mode === DENIED && (
       <Error 
-        message={"Reach a score of 1000 to access your insights!"}
+        message={"Reach 600 points to access your insights! Your points grow as you increase the total word count from all your entries"}
         onCancel={back}
       />
     )}
