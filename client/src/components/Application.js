@@ -23,16 +23,11 @@ export default function Application() {
   console.log("------ state ------\n", state)
 
 
-
-//const questionsArr = state.goals.map((goal) => goal.question);
-
-
 const getBio = (biodatas, currentUser) => {
   let bio = biodatas.filter((biodata) => biodata.user_id === currentUser);
   console.log("BIO: ", bio)
   return bio[0].text
 }
-
 
 const questions = [...state.goals]
 let selectedQuestions = questions.slice(0, state.currentUserLevel); //second is level
@@ -44,8 +39,6 @@ let questionsArr = selectedQuestions.map( (goal) => {
   }
 }) 
   
-  //const bio = "Everybody has the power to remodel their behaviour, habits, and attitudes, but not everybody knows how. Our app will make it simple and rewarding for anybody to get the benefits of reflective journaling. Our app will bring people together through personal goals, challenges, and insights, so that we can realize our potential together."
-
   return (
     <Container className="layout">
       
