@@ -47,7 +47,7 @@ import useVisualMode from "../../hooks/useVisualMode";
       <UserBio 
         bio={props.bio}
         onClick={()=>  {
-          if (level > 9) {
+          if (level > 600) {
           transition(LOADING)
           loadInsight()
         } else {
@@ -60,7 +60,7 @@ import useVisualMode from "../../hooks/useVisualMode";
 
     {mode === DENIED && (
       <Error 
-        message={"Reach level 10 to access your insights!"}
+        message={"Reach a score of 1000 to access your insights!"}
         onCancel={back}
       />
     )}

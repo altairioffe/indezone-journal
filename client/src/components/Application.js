@@ -30,7 +30,7 @@ const getBio = (biodatas, currentUser) => {
 }
 
 const questions = [...state.goals]
-let selectedQuestions = questions.slice(0, state.currentUserLevel); //second is level
+let selectedQuestions = questions.slice(0, 10); //second is level
 let questionsArr = selectedQuestions.map( (goal) => {
   return {
     id:goal.id,
@@ -56,7 +56,7 @@ let questionsArr = selectedQuestions.map( (goal) => {
         <Bio 
           bio={getBio(state.biodatas, state.currentUser)}
           
-          level={state.currentUserLevel}
+          level={state.currentUserWordCount}
           requestInsight={requestInsight}
           currentUserGoals={state.currentUserGoals}
           userInsight={state.currentUserInsight}

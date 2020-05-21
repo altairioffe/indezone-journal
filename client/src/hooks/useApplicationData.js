@@ -12,7 +12,7 @@ export default function useApplicationData() {
     currentUser: null,
     answer: "",
     currentUserInsight: "",
-    currentUserLevel: 1
+    currentUserWordCount: 1
   });
 
   useEffect(() => {
@@ -46,23 +46,32 @@ export default function useApplicationData() {
 
 
 
-  const getUserLevel = (users, currentUser) => {
-    let user = users.filter((user) => user.id === currentUser);
-    return user[0].points
+  const getUserWordCount = (currentUserGoals) => {
+    let wordCount = 0
+    currentUserGoals.forEach(x => wordCount += x.answer.split(" ").length)
+    // let user = users.filter((user) => user.id === currentUser);
+    return wordCount
   }
+
+
+  //  console.log("total wordCount: ", wordCount)
+
+
+
+
 
   useEffect(() => {
     if (state.currentUser != null) {
 
-      //const setUserLevel = currentUserLevel => setState({ ...state, currentUserLevel});
+      //const setUserLevel = currentUserWordCount => setState({ ...state, currentUserWordCount});
 
       setState((state) => ({
         ...state,
-      currentUserLevel: getUserLevel(state.users, state.currentUser)
+      currentUserWordCount: getUserWordCount(state.currentUserGoals)
       }))
-      console.log("CURRENT USERLEVEL: ", state.currentUserLevel)
+      console.log("CURRENT USERLEVEL: ", state.currentUserWordCount)
       }
-    }, [state.currentUser, state.currentUserLevel])
+    }, [state.currentUser, state.currentUserWordCount])
 
 
   // set Answer
@@ -161,9 +170,7 @@ const setInsight = currentUserInsight => setState({ ...state, currentUserInsight
    }  
 
    state.currentUser ? console.log('----------current USER GOALS ---------------', state.currentUserGoals) : console.log('not yet loaded current user')
-   let wordCount = 0
-state.currentUserGoals.forEach(x => wordCount += x.answer.split(" ").length)
-   console.log("total wordCount: ", wordCount)
+
 
 
 return {
@@ -174,6 +181,6 @@ return {
     setAnswer,
     addUserGoal,
     requestInsight,
-    getUserLevel
+    getUserWordCount
   };
 }
