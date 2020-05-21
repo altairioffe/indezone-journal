@@ -39,9 +39,10 @@ export default function useApplicationData() {
       ...state,
       currentUserGoals: getCurrentUserGoals(state.userGoals, state.goals, state.currentUser)
     }))
-    console.log('currenyUserGoals', state.currentUserGoals);
+    
   }
-  }, [state.currentUser, state.userGoals]);
+}, [state.currentUser, state.userGoals])
+
 
 
 
@@ -159,6 +160,10 @@ const setInsight = currentUserInsight => setState({ ...state, currentUserInsight
      )
    }  
 
+   state.currentUser ? console.log('----------current USER GOALS ---------------', state.currentUserGoals) : console.log('not yet loaded current user')
+   let wordCount = 0
+state.currentUserGoals.forEach(x => wordCount += x.answer.split(" ").length)
+   console.log("total wordCount: ", wordCount)
 
 
 return {
