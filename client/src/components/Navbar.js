@@ -25,7 +25,7 @@ import CardBody from "./Card/CardBody.js";
 import CardHeader from "./Card/CardHeader.js";
 import CardFooter from "./Card/CardFooter.js";
 import CustomInput from "./CustomInput/CustomInput.js";
-
+import Register from "./Register.js"
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 //////
@@ -186,85 +186,9 @@ export default function Navbar(props) {
 
 {/* REGISTRATION */}
 
-
-      <div className={classes.container}>
-        <GridContainer justify="center">
-          <GridItem xs={12} sm={12} md={4}>
-            <Card>
-              <form className={classes.form}>
-                {/*  Start social login */}
-
-                <CardHeader color="primary" className={classes.cardHeader}>
-                  <h4>Register</h4>
-          
-                </CardHeader>
-
-                {/*  END SOCIAL LOGIN */}
-
-                <p className={classes.divider}></p>
-
-                <CardBody>
-                  <CustomInput
-                    labelText="First Name..."
-                    id="first"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "text",
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <People className={classes.inputIconsColor} />
-                        </InputAdornment>
-                      )
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Email..."
-                    id="email"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "email",
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Email className={classes.inputIconsColor} />
-                        </InputAdornment>
-                      )
-                    }}
-                  />
-                  <CustomInput
-                    labelText="Password"
-                    id="pass"
-                    formControlProps={{
-                      fullWidth: true
-                    }}
-                    inputProps={{
-                      type: "password",
-                      endAdornment: (
-                        <InputAdornment position="end">
-                          <Icon className={classes.inputIconsColor}>
-                            lock_outline
-                          </Icon>
-                        </InputAdornment>
-                      ),
-                      autoComplete: "off"
-                    }}
-                  />
-                </CardBody>
-                <CardFooter className={classes.cardFooter}>
-                  <Button simple color="primary" size="lg">
-                    Start Your Journey
-                  </Button>
-                </CardFooter>
-              </form>
-            </Card>
-          </GridItem>
-        </GridContainer>
-      </div>
-
-
+        <div>
+          <Register />
+          </div>
 
 
 {/* LOGOUT */}

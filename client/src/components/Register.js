@@ -17,23 +17,45 @@ import CardHeader from "./Card/CardHeader.js";
 import CardFooter from "./Card/CardFooter.js";
 import CustomInput from "./CustomInput/CustomInput.js";
 
+import {
+  Button,
+  TextField,
+  Grow,
+  Box,
+  Container,
+  Slide
+} from "@material-ui/core";
+
 {
   /* REGISTRATION */
 }
 
-export default function Registration(props) {
+export default function Register(props) {
+  // Define Styles
+
+  const useStyles = makeStyles({
+    root: {
+      background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+      border: "none !important",
+      borderRadius: 3,
+      boxShadow: "0 3px 5px 2px rgba(0, 240, 230, .3)",
+      color: "white",
+      height: 48,
+      padding: "0 30px",
+      margin: "0 10px"
+    }
+  });
+  const classes = useStyles();
+
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card>
             <form className={classes.form}>
-              {/*  Start social login */}
-
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>
-
 
               <p className={classes.divider}></p>
 
