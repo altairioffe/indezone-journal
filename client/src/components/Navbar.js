@@ -17,132 +17,22 @@ import Icon from "@material-ui/core/Icon";
 import Email from "@material-ui/icons/Email";
 import People from "@material-ui/icons/People";
 // core components
-import GridContainer from "components/Grid/GridContainer.js";
-import GridItem from "components/Grid/GridItem.js";
-// import Button from "components/CustomButtons/Button.js";
-import Card from "components/Card/Card.js";
-import CardBody from "components/Card/CardBody.js";
-import CardHeader from "components/Card/CardHeader.js";
-import CardFooter from "components/Card/CardFooter.js";
-import CustomInput from "components/CustomInput/CustomInput.js";
+import GridContainer from "./Grid/GridContainer.js";
+import GridItem from "./Grid/GridItem.js";
+// import Button from "./CustomButtons/Button.js";
+import Card from "./Card/Card.js";
+import CardBody from "./Card/CardBody.js";
+import CardHeader from "./Card/CardHeader.js";
+import CardFooter from "./Card/CardFooter.js";
+import CustomInput from "./CustomInput/CustomInput.js";
 
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
-
-
-<div className={classes.container}>
-<GridContainer justify="center">
-  <GridItem xs={12} sm={12} md={4}>
-    <Card >
-      <form className={classes.form}>
-
-        {/*  Start social login */}
-
-        <CardHeader color="primary" className={classes.cardHeader}>
-          <h4>Login</h4>
-          <div className={classes.socialLine}>
-            <Button
-              justIcon
-              href="#pablo"
-              target="_blank"
-              color="transparent"
-              onClick={e => e.preventDefault()}
-            >
-              <i className={"fab fa-twitter"} />
-            </Button>
-            <Button
-              justIcon
-              href="#pablo"
-              target="_blank"
-              color="transparent"
-              onClick={e => e.preventDefault()}
-            >
-              <i className={"fab fa-facebook"} />
-            </Button>
-            <Button
-              justIcon
-              href="#pablo"
-              target="_blank"
-              color="transparent"
-              onClick={e => e.preventDefault()}
-            >
-              <i className={"fab fa-google-plus-g"} />
-            </Button>
-          </div>
-        </CardHeader>
-
-        {/*  END SOCIAL LOGIN */}
-
-        <p className={classes.divider}>Or Be Classical</p>
-
-
-        <CardBody>
-          <CustomInput
-            labelText="First Name..."
-            id="first"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              type: "text",
-              endAdornment: (
-                <InputAdornment position="end">
-                  <People className={classes.inputIconsColor} />
-                </InputAdornment>
-              )
-            }}
-          />
-          <CustomInput
-            labelText="Email..."
-            id="email"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              type: "email",
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Email className={classes.inputIconsColor} />
-                </InputAdornment>
-              )
-            }}
-          />
-          <CustomInput
-            labelText="Password"
-            id="pass"
-            formControlProps={{
-              fullWidth: true
-            }}
-            inputProps={{
-              type: "password",
-              endAdornment: (
-                <InputAdornment position="end">
-                  <Icon className={classes.inputIconsColor}>
-                    lock_outline
-                  </Icon>
-                </InputAdornment>
-              ),
-              autoComplete: "off"
-            }}
-          />
-        </CardBody>
-        <CardFooter className={classes.cardFooter}>
-          <Button simple color="primary" size="lg">
-            Get started
-          </Button>
-        </CardFooter>
-      </form>
-    </Card>
-
-  </GridItem>
-</GridContainer>
-</div>
-
-
 
 //////
 
 export default function Navbar(props) {
   // Define Styles
+
   const useStyles = makeStyles({
     root: {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -155,6 +45,7 @@ export default function Navbar(props) {
       margin: "0 10px"
     }
   });
+  const classes = useStyles();
   // Here are the states to keep track of login process
   const [loginState, setLoginState] = useState(0);
   const [loginEmail, setLoginEmail] = useState(null);
@@ -171,7 +62,6 @@ export default function Navbar(props) {
 
   // Validate password or email and adjust state accordingly
   const login = formInput => {
-
     if (formInput && loginState === 0) {
       const validate = [...props.users].find(user => {
         return user.email === formInput.trim();
@@ -182,7 +72,6 @@ export default function Navbar(props) {
         setLoginState(1);
         return;
       } else return;
-
     } else {
       if (formInput && loginState === 1 && user.password === formInput.trim()) {
         console.log("Logged In User: ", user);
@@ -192,7 +81,7 @@ export default function Navbar(props) {
       } else if (loginState === 1 && !formInput) {
         return setLoginState(1);
       } else {
-        return setLoginState(0)
+        return setLoginState(0);
       }
     }
   };
@@ -202,7 +91,8 @@ export default function Navbar(props) {
     setLoginState(0);
     props.logoutUser();
   };
-  const classes = useStyles();
+
+
   return (
     <Box alignitems="center">
       <Container alignitems="center">
@@ -271,7 +161,6 @@ export default function Navbar(props) {
         </Button>
       </Grow>
 
-      
       <Slide direction="left" in={loginState === 0} timeout={500} unmountOnExit>
         <Button
           onClick={() => setLoginState(4)}
@@ -295,14 +184,115 @@ export default function Navbar(props) {
       </Slide>
 
 
+{/* REGISTRATION */}
+
+
+      <div className={classes.container}>
+        <GridContainer justify="center">
+          <GridItem xs={12} sm={12} md={4}>
+            <Card>
+              <form className={classes.form}>
+                {/*  Start social login */}
+
+                <CardHeader color="primary" className={classes.cardHeader}>
+                  <h4>Login</h4>
+                  <div className={classes.socialLine}>
+                    <Button
+                      justIcon
+                      href="#pablo"
+                      target="_blank"
+                      color="transparent"
+                      onClick={e => e.preventDefault()}>
+                      <i className={"fab fa-twitter"} />
+                    </Button>
+                    <Button
+                      justIcon
+                      href="#pablo"
+                      target="_blank"
+                      color="transparent"
+                      onClick={e => e.preventDefault()}>
+                      <i className={"fab fa-facebook"} />
+                    </Button>
+                    <Button
+                      justIcon
+                      href="#pablo"
+                      target="_blank"
+                      color="transparent"
+                      onClick={e => e.preventDefault()}>
+                      <i className={"fab fa-google-plus-g"} />
+                    </Button>
+                  </div>
+                </CardHeader>
+
+                {/*  END SOCIAL LOGIN */}
+
+                <p className={classes.divider}>Or Be Classical</p>
+
+                <CardBody>
+                  <CustomInput
+                    labelText="First Name..."
+                    id="first"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "text",
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <People className={classes.inputIconsColor} />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Email..."
+                    id="email"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "email",
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Email className={classes.inputIconsColor} />
+                        </InputAdornment>
+                      )
+                    }}
+                  />
+                  <CustomInput
+                    labelText="Password"
+                    id="pass"
+                    formControlProps={{
+                      fullWidth: true
+                    }}
+                    inputProps={{
+                      type: "password",
+                      endAdornment: (
+                        <InputAdornment position="end">
+                          <Icon className={classes.inputIconsColor}>
+                            lock_outline
+                          </Icon>
+                        </InputAdornment>
+                      ),
+                      autoComplete: "off"
+                    }}
+                  />
+                </CardBody>
+                <CardFooter className={classes.cardFooter}>
+                  <Button simple color="primary" size="lg">
+                    Get started
+                  </Button>
+                </CardFooter>
+              </form>
+            </Card>
+          </GridItem>
+        </GridContainer>
+      </div>
 
 
 
 
-
-
-
-
+{/* LOGOUT */}
 
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <Button
