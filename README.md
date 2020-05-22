@@ -1,4 +1,6 @@
-# indezone-app
+# Indezone Journal
+
+A performance journal using IBM's Watson to scan text entries and provide objective insight on who you are.
 
 ## Setup Express and React using the following link
 
@@ -17,4 +19,5 @@
 
 ## Design tools
 
-  1.ERD and wire frame -  <https://www.lucidchart.com/>
+  - ERD: Lucidchart
+  - Mockup & prototype: Figma
