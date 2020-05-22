@@ -84,6 +84,25 @@ export default function useApplicationData() {
     console.log("answer in state", state.answer);
   };
 
+  //Register New User
+  const registerUser = function(newUserEmail, newUserPassword) {
+
+    if (!state.users.includes(x => x.email.toLowerCase() === newUserEmail.toLowerCase())) {
+
+      if (newUserEmail && newUserPassword) {
+
+       // data = {}
+
+
+        // axios
+        // .post(`/api/users`)
+      }
+    }
+
+  }
+
+
+
 
   // Adding new goal 
   const addUserGoal = function (goal) {
