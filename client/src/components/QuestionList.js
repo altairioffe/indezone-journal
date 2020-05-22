@@ -2,7 +2,7 @@ import "./QuestionAnswer/styles.scss";
 
 import React, { useState } from "react"
 import { makeStyles } from '@material-ui/core/styles';
-import { Card, CardActions, CardContent, Typography, Button } from "@material-ui/core";
+import { Card, CardContent, Typography } from "@material-ui/core";
 import AnswerQuestionPanel from "./QuestionAnswer/AnswerQuestionPanel"
 
 import Slide from '@material-ui/core/Slide';

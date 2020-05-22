@@ -8,10 +8,6 @@ import "./LogoutPrompt.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import {
-  Button,
-  TextField,
-  Slide,
-  Divider,
   Container
 } from "@material-ui/core";
 

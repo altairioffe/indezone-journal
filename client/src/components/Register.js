@@ -18,17 +18,9 @@ import CardFooter from "./Card/CardFooter.js";
 import CustomInput from "./CustomInput/CustomInput.js";
 
 import {
-  Button,
-  TextField,
-  Grow,
-  Box,
-  Container,
-  Slide
+  Button
 } from "@material-ui/core";
 
-{
-  /* REGISTRATION */
-}
 
 export default function Register(props) {
   // Define Styles

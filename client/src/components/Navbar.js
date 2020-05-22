@@ -11,20 +11,6 @@ import {
 } from "@material-ui/core";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
-// @material-ui/icons
-import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
-// core components
-import GridContainer from "./Grid/GridContainer.js";
-import GridItem from "./Grid/GridItem.js";
-// import Button from "./CustomButtons/Button.js";
-import Card from "./Card/Card.js";
-import CardBody from "./Card/CardBody.js";
-import CardHeader from "./Card/CardHeader.js";
-import CardFooter from "./Card/CardFooter.js";
-import CustomInput from "./CustomInput/CustomInput.js";
 import Register from "./Register.js";
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
