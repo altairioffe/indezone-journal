@@ -25,7 +25,7 @@ import CardBody from "./Card/CardBody.js";
 import CardHeader from "./Card/CardHeader.js";
 import CardFooter from "./Card/CardFooter.js";
 import CustomInput from "./CustomInput/CustomInput.js";
-import Register from "./Register.js"
+import Register from "./Register.js";
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 //////
@@ -91,7 +91,6 @@ export default function Navbar(props) {
     setLoginState(0);
     props.logoutUser();
   };
-
 
   return (
     <Box alignitems="center">
@@ -172,26 +171,15 @@ export default function Navbar(props) {
         </Button>
       </Slide>
 
-      <Slide direction="left" in={loginState === 4} timeout={500} unmountOnExit>
-        <Button
-          onClick={() => setLoginState(4)}
-          variant="outlined"
-          color="primary"
-          size="large"
-          className={classes.root}>
-          Register
-        </Button>
-      </Slide>
+      {/* REGISTRATION */}
+      <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
+        <Register back={()=>setLoginState(0)}/>
+      </Grow>
 
 
-{/* REGISTRATION */}
+      <div></div>
 
-        <div>
-          <Register />
-          </div>
-
-
-{/* LOGOUT */}
+      {/* LOGOUT */}
 
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <Button

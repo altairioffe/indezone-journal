@@ -115,6 +115,9 @@ export default function Register(props) {
                 </Button>
               </CardFooter>
             </form>
+          <Button simple onClick={props.back} color="primary" size="sm" fontWeight="bold">
+            Return to Login
+          </Button>
           </Card>
         </GridItem>
       </GridContainer>
