@@ -8,9 +8,9 @@ import { makeStyles } from "@material-ui/core/styles";
 // @material-ui/icons
 
 // core components
-import cardBodyStyle from "assets/jss/material-kit-react/components/cardBodyStyle.js";
+import cardBodyStyles from "../../assets/jss/material-kit-react/components/cardBodyStyle.js";
 
-const useStyles = makeStyles(cardBodyStyle);
+const useStyles = makeStyles(cardBodyStyles);
 
 export default function CardBody(props) {
   const classes = useStyles();

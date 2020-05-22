@@ -195,38 +195,13 @@ export default function Navbar(props) {
                 {/*  Start social login */}
 
                 <CardHeader color="primary" className={classes.cardHeader}>
-                  <h4>Login</h4>
-                  <div className={classes.socialLine}>
-                    <Button
-                      justIcon
-                      href="#pablo"
-                      target="_blank"
-                      color="transparent"
-                      onClick={e => e.preventDefault()}>
-                      <i className={"fab fa-twitter"} />
-                    </Button>
-                    <Button
-                      justIcon
-                      href="#pablo"
-                      target="_blank"
-                      color="transparent"
-                      onClick={e => e.preventDefault()}>
-                      <i className={"fab fa-facebook"} />
-                    </Button>
-                    <Button
-                      justIcon
-                      href="#pablo"
-                      target="_blank"
-                      color="transparent"
-                      onClick={e => e.preventDefault()}>
-                      <i className={"fab fa-google-plus-g"} />
-                    </Button>
-                  </div>
+                  <h4>Register</h4>
+          
                 </CardHeader>
 
                 {/*  END SOCIAL LOGIN */}
 
-                <p className={classes.divider}>Or Be Classical</p>
+                <p className={classes.divider}></p>
 
                 <CardBody>
                   <CustomInput
@@ -280,7 +255,7 @@ export default function Navbar(props) {
                 </CardBody>
                 <CardFooter className={classes.cardFooter}>
                   <Button simple color="primary" size="lg">
-                    Get started
+                    Start Your Journey
                   </Button>
                 </CardFooter>
               </form>
