@@ -52,7 +52,7 @@ export default function Register(props) {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card>
-            <form className={classes.form}>
+            <form className={classes.form} onSubmit={()=>console.log("FROM REGISTER COMPONENT")} >
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>
@@ -110,12 +110,12 @@ export default function Register(props) {
                 />
               </CardBody>
               <CardFooter className={classes.cardFooter}>
-                <Button simple color="primary" size="lg">
+                <Button simple="true" color="primary" size="large">
                   Start Your Journey
                 </Button>
               </CardFooter>
             </form>
-          <Button simple onClick={props.back} color="primary" size="sm" fontWeight="bold">
+          <Button simple="true" onClick={props.back} color="primary" size="small" fontWeight="bold">
             Return to Login
           </Button>
           </Card>

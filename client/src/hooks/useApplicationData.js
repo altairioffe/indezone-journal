@@ -80,13 +80,13 @@ export default function useApplicationData() {
   };
 
   //Register New User
-  const registerUser = function(newUserEmail, newUserPassword) {
+  const registerUser = function(newUserName, newUserEmail, newUserPassword) {
     if (
       !state.users.includes(
         x => x.email.toLowerCase() === newUserEmail.toLowerCase()
       )
     ) {
-      if (newUserEmail && newUserPassword) {
+      if (newUserName && newUserEmail && newUserPassword) {
         // data = {}
         // axios
         // .post(`/api/users`)

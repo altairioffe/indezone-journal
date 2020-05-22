@@ -173,7 +173,7 @@ export default function Navbar(props) {
 
       {/* REGISTRATION */}
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
-        <Register back={()=>setLoginState(0)}/>
+        <Register submitRegistration={()=>console.log("CLICKED!!")} back={()=>setLoginState(0)}/>
       </Grow>
 
 
