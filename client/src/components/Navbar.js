@@ -41,24 +41,28 @@ export default function Navbar(props) {
 
   // Validate password or email and adjust state accordingly
   const login = formInput => {
-    if (loginState === 0) {
+
+    if (formInput && loginState === 0) {
       const validate = [...props.users].find(user => {
         return user.email === formInput.trim();
       });
 
       if (validate) {
         setUser(validate);
-        setLoginState(loginState + 1);
+        setLoginState(1);
         return;
       } else return;
+
     } else {
-      if (user.password === formInput.trim()) {
-        console.log(user);
+      if (formInput && loginState === 1 && user.password === formInput.trim()) {
+        console.log("Logged In User: ", user);
         props.logUser(user.id);
         setUser(user);
-        return setLoginState(loginState + 1);
+        return setLoginState(2);
+      } else if (loginState === 1 && !formInput) {
+        return setLoginState(1);
       } else {
-        return setLoginState(loginState);
+        return setLoginState(0)
       }
     }
   };
