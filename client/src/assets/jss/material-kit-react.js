@@ -46,7 +46,7 @@ const container = {
     maxWidth: "1140px"
   }
 };
-
+ 
 const boxShadow = {
   boxShadow:
     "0 10px 30px -12px rgba(0, 0, 0, 0.42), 0 4px 25px 0px rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(0, 0, 0, 0.2)"
@@ -69,7 +69,7 @@ const defaultFont = {
   lineHeight: "1.5em"
 };
 
-const primaryColor = "#9c27b0";
+const primaryColor = "#44C7C0";
 const warningColor = "#ff9800";
 const dangerColor = "#f44336";
 const successColor = "#4caf50";
@@ -124,12 +124,12 @@ const infoCardHeader = {
 };
 const primaryCardHeader = {
   color: "#fff",
-  background: "linear-gradient(60deg, #ab47bc, #8e24aa)",
+  background: "linear-gradient(#00a8e0, #00C7C0, #00a8e0)",
   ...primaryBoxShadow
 };
 const roseCardHeader = {
   color: "#fff",
-  background: "linear-gradient(60deg, #ec407a, #d81b60)",
+  background: "linear-gradient(60deg, #ec407a, #00a8e0",
   ...roseBoxShadow
 };
 const cardActions = {
