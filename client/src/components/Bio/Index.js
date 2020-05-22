@@ -13,7 +13,7 @@ import useVisualMode from "../../hooks/useVisualMode";
     const USERBIO = "USERBIO";
     const INSIGHTS = "INSIGHTS";
     const LOADING = "LOADING";
-    const EDIT = "EDIT";
+    // const EDIT = "EDIT";
     const DENIED = "DENIED";
     const ERROR = "ERROR";
   
@@ -22,7 +22,6 @@ import useVisualMode from "../../hooks/useVisualMode";
 
 
     const loadInsight = () => {
-      console.log("CLICKED: ", props.currentUserGoals )
         props.requestInsight(props.currentUserGoals)
         .then(()=> {
           transition(INSIGHTS)
@@ -47,7 +46,7 @@ import useVisualMode from "../../hooks/useVisualMode";
       <UserBio 
         bio={props.bio}
         onClick={()=>  {
-          if (level > 9) {
+          if (level > 600) {
           transition(LOADING)
           loadInsight()
         } else {
@@ -60,7 +59,7 @@ import useVisualMode from "../../hooks/useVisualMode";
 
     {mode === DENIED && (
       <Error 
-        message={"Reach level 10 to access your insights!"}
+        message={"Reach 600 points to access your insights! Your points grow as you increase the total word count from all your entries"}
         onCancel={back}
       />
     )}
