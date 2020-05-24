@@ -14,6 +14,52 @@ const doesEmailExist = function(email, users) {
 };
 
 
+// Returns user ID if and only if their email exists in database
+const findIdFromEmail = function(email, password, users) {
+  let foundId;
+  for (let key in users) {
+
+    if (users[key].email === email) {
+      foundId = key;
+    }
+  }
+  return foundId || false;
+};
+
+const authenticatePassword = function(validatedId, password, users) {
+
+  bcrypt.compare(password, users[validatedId].hashedPassword)
+    .then((result) => {
+      if (result) console.log('helper: ', result);
+    })
+    .catch((err) => console.log('authentication failed: ', err));
+};
+
+
+const findUrlsForUserId = function(userId, `urlDataBase`) {
+
+  let userLinks = {};
+
+  for (let link in urlDataBase) {
+    if (urlDataBase[link].userId === userId) {
+      userLinks[link] = urlDataBase[link].longURL;
+    }
+  }
+  return userLinks;
+};
+
+const validateUserLink = function(userId, shortlink, urlDataBase) {
+
+  const userLinks = findUrlsForUserId(userId, urlDataBase);
+
+  let usersMatch = false;
+
+  for (let key in userLinks) {
+    if (key === shortlink) {
+      return usersMatch = true;
+    }
+  }
+};
 
 
 
