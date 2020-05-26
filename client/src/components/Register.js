@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -17,14 +17,14 @@ import CardHeader from "./Card/CardHeader.js";
 import CardFooter from "./Card/CardFooter.js";
 import CustomInput from "./CustomInput/CustomInput.js";
 
-import {
-  Button
-} from "@material-ui/core";
+import { Button } from "@material-ui/core";
+import useApplicationData from "../hooks/useApplicationData";
+
 
 
 export default function Register(props) {
   // Define Styles
-
+  
   const useStyles = makeStyles({
     root: {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -38,13 +38,24 @@ export default function Register(props) {
     }
   });
   const classes = useStyles();
+  
+  const { setUserEmail } = useApplicationData();
+  const [loginEmail, setLoginEmail] = useState(null);
+  const [loginPassword, setLoginPassword] = useState(null);
+
+  const [credentials, setCredentials] = useState({email: "", password: ""});
+  const [userName, setUserName] = useState("");
+
+  const handleChange = (param) => {
+
+  }
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card>
-            <form className={classes.form} onSubmit={()=>console.log("FROM REGISTER COMPONENT")} >
+            <form className={classes.form} onSubmit={data =>console.log(data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>
@@ -53,12 +64,16 @@ export default function Register(props) {
 
               <CardBody>
                 <CustomInput
+                  disabled={false}
+                  required={true}
                   labelText="First Name..."
-                  id="first"
+                  id="handle"
                   formControlProps={{
                     fullWidth: true
                   }}
                   inputProps={{
+                    onChange: function(e) {setUserName(e.target.value)},
+                    value: userName,
                     type: "text",
                     endAdornment: (
                       <InputAdornment position="end">
@@ -74,7 +89,9 @@ export default function Register(props) {
                     fullWidth: true
                   }}
                   inputProps={{
+                    value: credentials.email,
                     type: "email",
+                    onChange: function(e){ setCredentials({email: e.target.value, password: credentials.password})},
                     endAdornment: (
                       <InputAdornment position="end">
                         <Email className={classes.inputIconsColor} />
@@ -84,12 +101,13 @@ export default function Register(props) {
                 />
                 <CustomInput
                   labelText="Password"
-                  id="pass"
+                  id="password"
                   formControlProps={{
                     fullWidth: true
                   }}
                   inputProps={{
                     type: "password",
+                    onChange: function(e) {setCredentials({email: credentials.email, password: e.target.value})},
                     endAdornment: (
                       <InputAdornment position="end">
                         <Icon className={classes.inputIconsColor}>
@@ -102,17 +120,31 @@ export default function Register(props) {
                 />
               </CardBody>
               <CardFooter className={classes.cardFooter}>
-                <Button simple="true" color="primary" size="large">
+                <Button
+                  onClick={()=> console.log("NAME: ", userName, "Email: ", credentials, "PASSWORD: ", credentials.password)}
+                  simple="true"
+                  color="primary"
+                  size="large">
                   Start Your Journey
                 </Button>
               </CardFooter>
             </form>
-          <Button simple="true" onClick={props.back} color="primary" size="small" fontWeight="bold">
-            Return to Login
-          </Button>
+            <Button
+              simple="true"
+              onClick={props.back}
+              color="primary"
+              size="small"
+              fontWeight="bold">
+              Return to Login
+            </Button>
           </Card>
         </GridItem>
       </GridContainer>
+      <div>
+        <form onSubmit={props.onSubmit}>
+          <button>TEST</button>
+        </form>
+      </div>
     </div>
   );
 }
