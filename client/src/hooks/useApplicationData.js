@@ -12,7 +12,7 @@ export default function useApplicationData() {
     currentUser: null,
     answer: "",
     currentUserInsight: "",
-    currentUserWordCount: 1
+    currentUserWordCount: 0,
   });
 
   useEffect(() => {
@@ -36,6 +36,8 @@ export default function useApplicationData() {
 
   // Set current user goals
   useEffect(() => {
+    console.log("-----------STATE--------------", state)
+
     if (state.currentUser != null && state.userGoals != null) {
       setState(state => ({
         ...state,
@@ -49,14 +51,13 @@ export default function useApplicationData() {
   }, [state.currentUser, state.userGoals]);
 
 
-
+//Set User SCORE
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
     currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
     // let user = users.filter((user) => user.id === currentUser);
     return wordCount;
   };
-
 
   useEffect(() => {
     if (state.currentUser != null) {
@@ -66,7 +67,6 @@ export default function useApplicationData() {
         ...state,
         currentUserWordCount: getUserWordCount(state.currentUserGoals)
       }));
-      console.log("CURRENT USERLEVEL: ", state.currentUserWordCount);
     }
   }, [state.currentUser, state.currentUserWordCount]);
 
@@ -76,23 +76,58 @@ export default function useApplicationData() {
       ...state,
       answer: ans
     }));
-    console.log("answer in state", state.answer);
   };
 
   //Register New User
-  const registerUser = function(newUserName, newUserEmail, newUserPassword) {
+  const setUserHandle = function(newUserHandle, newUserEmail, newUserPassword) {
+    setState(state => ({
+      ...state,
+      handle: newUserHandle,
+      email: newUserEmail,
+      password: newUserPassword
+    }))
+
     if (
       !state.users.includes(
         x => x.email.toLowerCase() === newUserEmail.toLowerCase()
       )
     ) {
-      if (newUserName && newUserEmail && newUserPassword) {
+      if (newUserHandle && newUserEmail && newUserPassword) {
         // data = {}
         // axios
         // .post(`/api/users`)
       }
     }
   };
+
+
+  useEffect(() => {
+    if (state.email != null) {
+      //const setUserLevel = currentUserWordCount => setState({ ...state, currentUserWordCount});
+
+      setState(state => ({
+        ...state,
+        currentUserWordCount: getUserWordCount(state.currentUserGoals)
+      }));
+    }
+  }, [state.currentUser, state.currentUserWordCount]);
+
+  const setUserEmail = function(newUserEmail) {
+    setState(state => ({
+      ...state,
+      email: newUserEmail,
+    }))
+    return state.newUserEmail
+  }
+
+  // const setUserPassword = function(newUserEmail) {
+  //   setState(state => ({
+  //     ...state,
+  //     handle: newUserHandle,
+  //     email: newUserEmail,
+  //     password: newUserPassword
+  //   }))
+  // }
 
   // Adding new goal
   const addUserGoal = function(goal) {
@@ -175,6 +210,9 @@ export default function useApplicationData() {
       )
     : console.log("not yet loaded current user");
 
+
+
+
   return {
     ansQuestion,
     state,
@@ -183,6 +221,6 @@ export default function useApplicationData() {
     setAnswer,
     addUserGoal,
     requestInsight,
-    getUserWordCount
+    getUserWordCount,
   };
 }

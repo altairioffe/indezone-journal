@@ -38,12 +38,12 @@ export default function Application() {
       suggestion: goal.suggestion
     };
   });
-
+console.log("STATE EMAIL: ", state.email)
   return (
     <Container className="layout">
       <Navbar
         users={state.users}
-        logUser={loggedInUser}
+        loggedInUser={loggedInUser}
         logoutUser={loggedOutUser}
         user={state.currentUser}
       />

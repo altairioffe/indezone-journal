@@ -61,7 +61,7 @@ export default function Navbar(props) {
     } else {
       if (formInput && loginState === 1 && user.password === formInput.trim()) {
         console.log("Logged In User: ", user);
-        props.logUser(user.id);
+        props.loggedInUser(user.id);
         setUser(user);
         return setLoginState(2);
       } else if (loginState === 1 && !formInput) {
@@ -77,6 +77,12 @@ export default function Navbar(props) {
     setLoginState(0);
     props.logoutUser();
   };
+
+  const submitHandler = event => {
+    event.preventDefault();
+    console.log("EVENT: ", event.target.value)
+  }
+
 
   return (
     <Box alignitems="center">
@@ -117,6 +123,7 @@ export default function Navbar(props) {
           autoFocus={true}
           placeholder="example@email.com"
           type="email"
+          loginEmail={props.loginEmail}
           onChange={e => setLoginEmail(e.target.value)}
         />
       </Grow>
@@ -159,7 +166,10 @@ export default function Navbar(props) {
 
       {/* REGISTRATION */}
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
-        <Register submitRegistration={()=>console.log("CLICKED!!")} back={()=>setLoginState(0)}/>
+        <Register 
+        loginEmail={props.loginEmail}
+        submitHandler={submitHandler} 
+        back={()=>setLoginState(0)}/>
       </Grow>
 
 
