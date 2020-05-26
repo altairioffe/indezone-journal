@@ -12,7 +12,7 @@ export default function useApplicationData() {
     currentUser: null,
     answer: "",
     currentUserInsight: "",
-    currentUserWordCount: 1
+    currentUserWordCount: 0
   });
 
   useEffect(() => {
@@ -36,6 +36,8 @@ export default function useApplicationData() {
 
   // Set current user goals
   useEffect(() => {
+    console.log("-----------STATE--------------", state);
+
     if (state.currentUser != null && state.userGoals != null) {
       setState(state => ({
         ...state,
@@ -48,8 +50,7 @@ export default function useApplicationData() {
     }
   }, [state.currentUser, state.userGoals]);
 
-
-
+  //Set User SCORE
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
     currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
@@ -57,16 +58,12 @@ export default function useApplicationData() {
     return wordCount;
   };
 
-
   useEffect(() => {
     if (state.currentUser != null) {
-      //const setUserLevel = currentUserWordCount => setState({ ...state, currentUserWordCount});
-
       setState(state => ({
         ...state,
         currentUserWordCount: getUserWordCount(state.currentUserGoals)
       }));
-      console.log("CURRENT USERLEVEL: ", state.currentUserWordCount);
     }
   }, [state.currentUser, state.currentUserWordCount]);
 
@@ -76,23 +73,11 @@ export default function useApplicationData() {
       ...state,
       answer: ans
     }));
-    console.log("answer in state", state.answer);
   };
 
   //Register New User
-  const registerUser = function(newUserEmail, newUserPassword) {
-    if (
-      !state.users.includes(
-        x => x.email.toLowerCase() === newUserEmail.toLowerCase()
-      )
-    ) {
-      if (newUserEmail && newUserPassword) {
-        // data = {}
-        // axios
-        // .post(`/api/users`)
-      }
-    }
-  };
+
+
 
   // Adding new goal
   const addUserGoal = function(goal) {
@@ -135,7 +120,7 @@ export default function useApplicationData() {
   };
 
   // set user state
-  const loggedInUser = user_id => {
+  const logInUser = user_id => {
     setState({
       ...state,
       currentUser: user_id
@@ -144,13 +129,16 @@ export default function useApplicationData() {
   };
 
   // reset user state
-  const loggedOutUser = () => {
+  const logOutUser = () => {
     setState({
       ...state,
       currentUser: null
     });
     return state.currentUser;
   };
+
+
+
 
   const setInsight = currentUserInsight =>
     setState({ ...state, currentUserInsight });
@@ -168,21 +156,36 @@ export default function useApplicationData() {
     );
   };
 
-  state.currentUser
-    ? console.log(
-        "----------current USER GOALS ---------------",
-        state.currentUserGoals
-      )
-    : console.log("not yet loaded current user");
+  const registrationHandler = (handle, email, password, loginCallback) => {
+    if (handle && email && password) {
+      let data = {
+        handle: handle,
+        email: email,
+        password: password,
+        points: 0
+      };
+
+      return Promise.resolve(
+        axios
+          .post("api/users", {
+            data
+          })
+          .then(response => loginCallback(response.data.id))
+          .catch(err => console.log(err))
+      );
+    }
+  };
+
 
   return {
     ansQuestion,
     state,
-    loggedInUser,
-    loggedOutUser,
+    logInUser,
+    logOutUser,
     setAnswer,
     addUserGoal,
     requestInsight,
-    getUserWordCount
+    getUserWordCount,
+    registrationHandler
   };
 }

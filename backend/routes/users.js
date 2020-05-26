@@ -26,7 +26,8 @@ router.get("/:id", (req, res) => {
 
 //Create  user
 router.post("/", (req, res) => {
-  db.user.create({handle:req.body.handle,email:req.body.email,password:req.body.password,points:req.body.points,journalNo:req.body.journalNo,
+  console.log("FROM BACKEND: ", req.body.data)
+  db.user.create({handle:req.body.data.handle,email:req.body.data.email,password:req.body.data.password,points:req.body.data.points,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
   })

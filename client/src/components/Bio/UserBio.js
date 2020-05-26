@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, TextField, Grow, Box, Container, Slide } from "@material-ui/core"
+import { Button} from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
 
 export default function UserBio(props) {
@@ -21,7 +21,7 @@ const classes = useStyles();
 
   return(
     <article className="">
-    <p>{props.bio}</p>
+    <p>{props.bio || ""}</p>
     <Button 
        className={classes.root}
        onClick={props.onClick}

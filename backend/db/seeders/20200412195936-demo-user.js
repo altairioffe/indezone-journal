@@ -12,7 +12,6 @@ module.exports = {
       email: 'john@gmail.com',
       password:'john',
       points: 1,
-      journalNo: 1001,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -22,7 +21,6 @@ module.exports = {
       email: 'ann@gmail.com',
       password:'ann',
       points: 10,
-      journalNo: 1002,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
 
@@ -33,7 +31,6 @@ module.exports = {
       email: 'george@gmail.com',
       password:'george',
       points: 1,
-      journalNo: 1003,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
 
@@ -44,7 +41,6 @@ module.exports = {
       email: 'kim@gmail.com',
       password:'kim',
       points: 1,
-      journalNo: 1004,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
 

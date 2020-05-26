@@ -11,12 +11,14 @@ import {
 } from "@material-ui/core";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-
+import Register from "./Register.js";
+// import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 //////
 
 export default function Navbar(props) {
   // Define Styles
+
   const useStyles = makeStyles({
     root: {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -29,6 +31,7 @@ export default function Navbar(props) {
       margin: "0 10px"
     }
   });
+  const classes = useStyles();
   // Here are the states to keep track of login process
   const [loginState, setLoginState] = useState(0);
   const [loginEmail, setLoginEmail] = useState(null);
@@ -45,7 +48,6 @@ export default function Navbar(props) {
 
   // Validate password or email and adjust state accordingly
   const login = formInput => {
-
     if (formInput && loginState === 0) {
       const validate = [...props.users].find(user => {
         return user.email === formInput.trim();
@@ -56,27 +58,36 @@ export default function Navbar(props) {
         setLoginState(1);
         return;
       } else return;
-
     } else {
       if (formInput && loginState === 1 && user.password === formInput.trim()) {
         console.log("Logged In User: ", user);
-        props.logUser(user.id);
+        props.logInUser(user.id);
         setUser(user);
         return setLoginState(2);
       } else if (loginState === 1 && !formInput) {
         return setLoginState(1);
       } else {
-        return setLoginState(0)
+        return setLoginState(0);
       }
     }
   };
+
+
+  const loginAfterRegister = id =>{
+    if (id) {
+       props.loginUser(id)
+    return setLoginState(2)
+    }
+  }
 
   const logout = () => {
     setUser(null);
     setLoginState(0);
     props.logoutUser();
   };
-  const classes = useStyles();
+
+
+
   return (
     <Box alignitems="center">
       <Container alignitems="center">
@@ -102,7 +113,7 @@ export default function Navbar(props) {
         <span>
           Welcome{" "}
           <strong>
-            {user && user.handle ? user.handle.slice(1) : "error"}
+            {user && user.handle ? user.handle : "error"}
           </strong>
         </span>
       </Grow>
@@ -116,6 +127,7 @@ export default function Navbar(props) {
           autoFocus={true}
           placeholder="example@email.com"
           type="email"
+          loginEmail={props.loginEmail}
           onChange={e => setLoginEmail(e.target.value)}
         />
       </Grow>
@@ -145,7 +157,6 @@ export default function Navbar(props) {
         </Button>
       </Grow>
 
-      
       <Slide direction="left" in={loginState === 0} timeout={500} unmountOnExit>
         <Button
           onClick={() => setLoginState(4)}
@@ -157,26 +168,21 @@ export default function Navbar(props) {
         </Button>
       </Slide>
 
-      <Slide direction="left" in={loginState === 4} timeout={500} unmountOnExit>
-        <Button
-          onClick={() => setLoginState(4)}
-          variant="outlined"
-          color="primary"
-          size="large"
-          className={classes.root}>
-          Register
-        </Button>
-      </Slide>
+      {/* REGISTRATION */}
+      {props.user === null && (
+      <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
+        <Register 
+        loginEmail={props.loginEmail}
+        registrationHandler={props.registrationHandler}
+        loginCallback={props.logInUser}
+        back={()=>setLoginState(0)}/>
+      </Grow>
+      )}
 
 
+      <div></div>
 
-
-
-
-
-
-
-
+      {/* LOGOUT */}
 
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <Button

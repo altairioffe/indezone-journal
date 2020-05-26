@@ -8,29 +8,28 @@ import "./LogoutPrompt.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import {
-  Button,
-  TextField,
-  Slide,
-  Divider,
   Container
 } from "@material-ui/core";
 
 export default function Application() {
   const {
-    loggedInUser,
-    loggedOutUser,
+    logInUser,
+    logOutUser,
     ansQuestion,
     state,
     requestInsight,
     addUserGoal,
-    setAnswer
+    setAnswer,
+    registrationHandler
   } = useApplicationData();
   console.log("------ state ------\n", state);
 
   const getBio = (biodatas, currentUser) => {
+    if (!biodatas === null) {
     let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
     console.log("BIO: ", bio);
     return bio[0].text;
+    }
   };
 
   const questions = [...state.goals];
@@ -42,14 +41,14 @@ export default function Application() {
       suggestion: goal.suggestion
     };
   });
-
   return (
     <Container className="layout">
       <Navbar
         users={state.users}
-        logUser={loggedInUser}
-        logoutUser={loggedOutUser}
+        logInUser={logInUser}
+        logoutUser={logOutUser}
         user={state.currentUser}
+        registrationHandler={registrationHandler}
       />
 
       {state.currentUser && (
