@@ -203,6 +203,26 @@ export default function useApplicationData() {
     );
   };
 
+  const registrationHandler = (handle, email, password) => {
+    let data = {
+      handle: handle,
+      email: email,
+      password: password,
+      points: 0
+  }
+
+    return Promise.resolve(
+      axios
+      .post("api/users", {
+        data
+      })
+      .then(response => console.log(response))
+      .catch(err => console.log(err))
+    )
+  }
+
+
+
   state.currentUser
     ? console.log(
         "----------current USER GOALS ---------------",
@@ -222,5 +242,6 @@ export default function useApplicationData() {
     addUserGoal,
     requestInsight,
     getUserWordCount,
+    registrationHandler
   };
 }
