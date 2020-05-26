@@ -79,26 +79,7 @@ export default function useApplicationData() {
   };
 
   //Register New User
-  const setUserHandle = function(newUserHandle, newUserEmail, newUserPassword) {
-    setState(state => ({
-      ...state,
-      handle: newUserHandle,
-      email: newUserEmail,
-      password: newUserPassword
-    }))
 
-    if (
-      !state.users.includes(
-        x => x.email.toLowerCase() === newUserEmail.toLowerCase()
-      )
-    ) {
-      if (newUserHandle && newUserEmail && newUserPassword) {
-        // data = {}
-        // axios
-        // .post(`/api/users`)
-      }
-    }
-  };
 
 
   useEffect(() => {
@@ -112,22 +93,8 @@ export default function useApplicationData() {
     }
   }, [state.currentUser, state.currentUserWordCount]);
 
-  const setUserEmail = function(newUserEmail) {
-    setState(state => ({
-      ...state,
-      email: newUserEmail,
-    }))
-    return state.newUserEmail
-  }
 
-  // const setUserPassword = function(newUserEmail) {
-  //   setState(state => ({
-  //     ...state,
-  //     handle: newUserHandle,
-  //     email: newUserEmail,
-  //     password: newUserPassword
-  //   }))
-  // }
+
 
   // Adding new goal
   const addUserGoal = function(goal) {
