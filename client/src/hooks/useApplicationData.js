@@ -12,7 +12,7 @@ export default function useApplicationData() {
     currentUser: null,
     answer: "",
     currentUserInsight: "",
-    currentUserWordCount: 0,
+    currentUserWordCount: 0
   });
 
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function useApplicationData() {
 
   // Set current user goals
   useEffect(() => {
-    console.log("-----------STATE--------------", state)
+    console.log("-----------STATE--------------", state);
 
     if (state.currentUser != null && state.userGoals != null) {
       setState(state => ({
@@ -50,8 +50,7 @@ export default function useApplicationData() {
     }
   }, [state.currentUser, state.userGoals]);
 
-
-//Set User SCORE
+  //Set User SCORE
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
     currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
@@ -61,8 +60,6 @@ export default function useApplicationData() {
 
   useEffect(() => {
     if (state.currentUser != null) {
-      //const setUserLevel = currentUserWordCount => setState({ ...state, currentUserWordCount});
-
       setState(state => ({
         ...state,
         currentUserWordCount: getUserWordCount(state.currentUserGoals)
@@ -79,20 +76,6 @@ export default function useApplicationData() {
   };
 
   //Register New User
-
-
-
-  useEffect(() => {
-    if (state.email != null) {
-      //const setUserLevel = currentUserWordCount => setState({ ...state, currentUserWordCount});
-
-      setState(state => ({
-        ...state,
-        currentUserWordCount: getUserWordCount(state.currentUserGoals)
-      }));
-    }
-  }, [state.currentUser, state.currentUserWordCount]);
-
 
 
 
@@ -154,6 +137,9 @@ export default function useApplicationData() {
     return state.currentUser;
   };
 
+
+
+
   const setInsight = currentUserInsight =>
     setState({ ...state, currentUserInsight });
 
@@ -171,33 +157,24 @@ export default function useApplicationData() {
   };
 
   const registrationHandler = (handle, email, password) => {
-    let data = {
-      handle: handle,
-      email: email,
-      password: password,
-      points: 0
-  }
+    if (handle && email && password) {
+      let data = {
+        handle: handle,
+        email: email,
+        password: password,
+        points: 0
+      };
 
-    return Promise.resolve(
-      axios
-      .post("api/users", {
-        data
-      })
-      .then(response => console.log(response))
-      .catch(err => console.log(err))
-    )
-  }
-
-
-
-  state.currentUser
-    ? console.log(
-        "----------current USER GOALS ---------------",
-        state.currentUserGoals
-      )
-    : console.log("not yet loaded current user");
-
-
+      return Promise.resolve(
+        axios
+          .post("api/users", {
+            data
+          })
+          .then(response => console.log(response))
+          .catch(err => console.log(err))
+      );
+    }
+  };
 
 
   return {
