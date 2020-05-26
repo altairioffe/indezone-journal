@@ -168,7 +168,7 @@ export default function Navbar(props) {
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
         <Register 
         loginEmail={props.loginEmail}
-        submitHandler={submitHandler} 
+        registrationHandler={props.registrationHandler} 
         back={()=>setLoginState(0)}/>
       </Grow>
 

@@ -39,16 +39,10 @@ export default function Register(props) {
   });
   const classes = useStyles();
   
-  const { setUserEmail } = useApplicationData();
-  const [loginEmail, setLoginEmail] = useState(null);
-  const [loginPassword, setLoginPassword] = useState(null);
 
   const [credentials, setCredentials] = useState({email: "", password: ""});
   const [userName, setUserName] = useState("");
 
-  const handleChange = (param) => {
-
-  }
 
   return (
     <div className={classes.container}>
@@ -121,7 +115,7 @@ export default function Register(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={()=> console.log("NAME: ", userName, "Email: ", credentials, "PASSWORD: ", credentials.password)}
+                  onClick={()=> props.registrationHandler(userName, credentials.email, credentials.password)}
                   simple="true"
                   color="primary"
                   size="large">

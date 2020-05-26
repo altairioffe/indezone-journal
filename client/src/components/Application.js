@@ -19,7 +19,8 @@ export default function Application() {
     state,
     requestInsight,
     addUserGoal,
-    setAnswer
+    setAnswer,
+    registrationHandler
   } = useApplicationData();
   console.log("------ state ------\n", state);
 
@@ -46,6 +47,7 @@ console.log("STATE EMAIL: ", state.email)
         loggedInUser={loggedInUser}
         logoutUser={loggedOutUser}
         user={state.currentUser}
+        registrationHandler={registrationHandler}
       />
 
       {state.currentUser && (
