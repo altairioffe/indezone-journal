@@ -1,5 +1,5 @@
 import React from "react";
-import "./LogoutPrompt.scss"
+import "./HeroImage.scss"
 
 export default function logoutPrompt(props){
   
