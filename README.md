@@ -2,9 +2,17 @@
 
 A performance journal using IBM's Watson to scan text entries and provide objective insight on who you are.
 
-## Setup Express and React using the following link
+Overhaul of indezone-app repository (a team project), to implement major bug fixes and missing features.
 
-  <https://daveceddia.com/create-react-app-express-backend/>
+## Bug Fixes
+- crash after several login attempts with empty input
+- redundant database tables & columns interfering with Postgres Inserts
+
+## New Features Implemented
+- create new account
+- replace user level with points system based on total word count
+- replace handle with userName
+
 
 ## Dependencies
 
