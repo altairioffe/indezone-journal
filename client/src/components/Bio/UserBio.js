@@ -21,7 +21,7 @@ const classes = useStyles();
 
   return(
     <article className="">
-    <p>{props.bio}</p>
+    <p>{props.bio || ""}</p>
     <Button 
        className={classes.root}
        onClick={props.onClick}

@@ -25,9 +25,11 @@ export default function Application() {
   console.log("------ state ------\n", state);
 
   const getBio = (biodatas, currentUser) => {
+    if (!biodatas === null) {
     let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
     console.log("BIO: ", bio);
     return bio[0].text;
+    }
   };
 
   const questions = [...state.goals];
@@ -39,7 +41,6 @@ export default function Application() {
       suggestion: goal.suggestion
     };
   });
-console.log("STATE EMAIL: ", state.email)
   return (
     <Container className="layout">
       <Navbar
