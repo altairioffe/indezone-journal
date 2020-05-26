@@ -13,8 +13,8 @@ import {
 
 export default function Application() {
   const {
-    loggedInUser,
-    loggedOutUser,
+    logInUser,
+    logOutUser,
     ansQuestion,
     state,
     requestInsight,
@@ -45,8 +45,8 @@ export default function Application() {
     <Container className="layout">
       <Navbar
         users={state.users}
-        loggedInUser={loggedInUser}
-        logoutUser={loggedOutUser}
+        logInUser={logInUser}
+        logoutUser={logOutUser}
         user={state.currentUser}
         registrationHandler={registrationHandler}
       />

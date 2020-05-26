@@ -61,7 +61,7 @@ export default function Navbar(props) {
     } else {
       if (formInput && loginState === 1 && user.password === formInput.trim()) {
         console.log("Logged In User: ", user);
-        props.loggedInUser(user.id);
+        props.logInUser(user.id);
         setUser(user);
         return setLoginState(2);
       } else if (loginState === 1 && !formInput) {
@@ -72,16 +72,20 @@ export default function Navbar(props) {
     }
   };
 
+
+  const loginAfterRegister = id =>{
+    if (id) {
+       props.loginUser(id)
+    return setLoginState(2)
+    }
+  }
+
   const logout = () => {
     setUser(null);
     setLoginState(0);
     props.logoutUser();
   };
 
-  const submitHandler = event => {
-    event.preventDefault();
-    console.log("EVENT: ", event.target.value)
-  }
 
 
   return (
@@ -109,7 +113,7 @@ export default function Navbar(props) {
         <span>
           Welcome{" "}
           <strong>
-            {user && user.handle ? user.handle.slice(1) : "error"}
+            {user && user.handle ? user.handle : "error"}
           </strong>
         </span>
       </Grow>
@@ -165,12 +169,15 @@ export default function Navbar(props) {
       </Slide>
 
       {/* REGISTRATION */}
+      {props.user === null && (
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
         <Register 
         loginEmail={props.loginEmail}
-        registrationHandler={props.registrationHandler} 
+        registrationHandler={props.registrationHandler}
+        loginCallback={props.logInUser}
         back={()=>setLoginState(0)}/>
       </Grow>
+      )}
 
 
       <div></div>

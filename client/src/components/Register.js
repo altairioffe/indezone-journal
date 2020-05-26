@@ -115,7 +115,7 @@ export default function Register(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={()=> props.registrationHandler(userName, credentials.email, credentials.password)}
+                  onClick={()=> props.registrationHandler(userName, credentials.email, credentials.password, props.loginCallback)}
                   simple="true"
                   color="primary"
                   size="large">

@@ -120,7 +120,7 @@ export default function useApplicationData() {
   };
 
   // set user state
-  const loggedInUser = user_id => {
+  const logInUser = user_id => {
     setState({
       ...state,
       currentUser: user_id
@@ -129,7 +129,7 @@ export default function useApplicationData() {
   };
 
   // reset user state
-  const loggedOutUser = () => {
+  const logOutUser = () => {
     setState({
       ...state,
       currentUser: null
@@ -156,7 +156,7 @@ export default function useApplicationData() {
     );
   };
 
-  const registrationHandler = (handle, email, password) => {
+  const registrationHandler = (handle, email, password, loginCallback) => {
     if (handle && email && password) {
       let data = {
         handle: handle,
@@ -170,7 +170,7 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(response => console.log(response))
+          .then(response => loginCallback(response.data.id))
           .catch(err => console.log(err))
       );
     }
@@ -180,8 +180,8 @@ export default function useApplicationData() {
   return {
     ansQuestion,
     state,
-    loggedInUser,
-    loggedOutUser,
+    logInUser,
+    logOutUser,
     setAnswer,
     addUserGoal,
     requestInsight,
