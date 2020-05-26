@@ -176,6 +176,13 @@ export default function useApplicationData() {
     }
   };
 
+  const getBio = (biodatas, currentUser) => {
+    if (!biodatas === null) {
+    let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
+    console.log("BIO: ", bio);
+    return bio[0].text;
+    }
+  };
 
   return {
     ansQuestion,
@@ -186,6 +193,7 @@ export default function useApplicationData() {
     addUserGoal,
     requestInsight,
     getUserWordCount,
-    registrationHandler
+    registrationHandler,
+    getBio
   };
 }

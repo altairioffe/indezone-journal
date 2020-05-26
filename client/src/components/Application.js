@@ -20,17 +20,10 @@ export default function Application() {
     requestInsight,
     addUserGoal,
     setAnswer,
-    registrationHandler
+    registrationHandler,
+    getBio
   } = useApplicationData();
   console.log("------ state ------\n", state);
-
-  const getBio = (biodatas, currentUser) => {
-    if (!biodatas === null) {
-    let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
-    console.log("BIO: ", bio);
-    return bio[0].text;
-    }
-  };
 
   const questions = [...state.goals];
   let selectedQuestions = questions.slice(0, 10); //second is level
@@ -41,6 +34,7 @@ export default function Application() {
       suggestion: goal.suggestion
     };
   });
+  
   return (
     <Container className="layout">
       <Navbar
