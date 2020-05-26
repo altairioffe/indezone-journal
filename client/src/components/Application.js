@@ -1,10 +1,10 @@
 import React from "react";
 import Wall from "./Wall";
 import Bio from "./Bio/Index";
-import LogoutPrompt from "./LogoutPrompt";
+import HeroImage from "./HeroImage";
 import Navbar from "./Navbar";
 import QuestionList from "./QuestionList";
-import "./LogoutPrompt.scss";
+import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import {
@@ -75,7 +75,7 @@ export default function Application() {
       )}
       {state.currentUser === null && (
         <div>
-          <LogoutPrompt />
+          <HeroImage />
         </div>
       )}
     </Container>
