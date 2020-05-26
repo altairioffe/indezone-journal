@@ -1,10 +1,10 @@
 import React from "react";
 import Wall from "./Wall";
 import Bio from "./Bio/Index";
-import LogoutPrompt from "./LogoutPrompt";
+import HeroImage from "./HeroImage";
 import Navbar from "./Navbar";
 import QuestionList from "./QuestionList";
-import "./LogoutPrompt.scss";
+import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import {
@@ -20,17 +20,10 @@ export default function Application() {
     requestInsight,
     addUserGoal,
     setAnswer,
-    registrationHandler
+    registrationHandler,
+    getBio
   } = useApplicationData();
   console.log("------ state ------\n", state);
-
-  const getBio = (biodatas, currentUser) => {
-    if (!biodatas === null) {
-    let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
-    console.log("BIO: ", bio);
-    return bio[0].text;
-    }
-  };
 
   const questions = [...state.goals];
   let selectedQuestions = questions.slice(0, 10); //second is level
@@ -41,6 +34,7 @@ export default function Application() {
       suggestion: goal.suggestion
     };
   });
+  
   return (
     <Container className="layout">
       <Navbar
@@ -81,7 +75,7 @@ export default function Application() {
       )}
       {state.currentUser === null && (
         <div>
-          <LogoutPrompt />
+          <HeroImage />
         </div>
       )}
     </Container>
