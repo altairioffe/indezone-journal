@@ -140,11 +140,6 @@ export default function Register(props) {
           </Card>
         </GridItem>
       </GridContainer>
-      <div>
-        <form onSubmit={props.onSubmit}>
-          <button>TEST</button>
-        </form>
-      </div>
     </div>
   );
 }
