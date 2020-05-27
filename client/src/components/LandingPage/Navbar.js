@@ -1,4 +1,4 @@
-import "./ComponentStyles/Navbar.scss";
+import "../../ComponentStyles/Navbar.scss";
 
 import React, { useState } from "react";
 import {

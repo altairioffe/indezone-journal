@@ -2,7 +2,7 @@ import React from "react";
 import Wall from "./Wall";
 import Bio from "./Bio/Index";
 import HeroImage from "./HeroImage";
-import Navbar from "./Navbar";
+import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList";
 import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
