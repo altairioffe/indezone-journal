@@ -175,6 +175,24 @@ export default function useApplicationData() {
       );
     }
   };
+  
+  const loginHandler = (email, password, loginCallback) => {
+    if (email && password) {
+      let data = {
+        email: email,
+        password: password,
+      };
+
+      return Promise.resolve(
+        axios
+          .post("api/login", {
+            data
+          })
+          .then(response => loginCallback(response.data.id))
+          .catch(err => console.log(err))
+      );
+    }
+  };
 
   const getBio = (biodatas, currentUser) => {
     if (!biodatas === null) {
@@ -194,6 +212,7 @@ export default function useApplicationData() {
     requestInsight,
     getUserWordCount,
     registrationHandler,
+    loginHandler,
     getBio
   };
 }
