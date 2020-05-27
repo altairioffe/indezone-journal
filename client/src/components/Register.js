@@ -43,12 +43,15 @@ export default function Register(props) {
   const [credentials, setCredentials] = useState({email: "", password: ""});
   const [userName, setUserName] = useState("");
 
+  let styledImage = {
+  //  backgroundImage: `url(${'images/logout-image2.png'})`
+  }
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
-          <Card>
+          <Card className={classes.card} style={styledImage}>
             <form className={classes.form} onSubmit={data =>console.log(data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
