@@ -1,42 +1,54 @@
-import React from 'react';
+import React, { useState } from 'react';
+// @material-ui/core components
+import { makeStyles } from "@material-ui/core/styles";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import Icon from "@material-ui/core/Icon";
+// @material-ui/icons
+import Email from "@material-ui/icons/Email";
+import People from "@material-ui/icons/People";
+// core components
+import GridContainer from "../Grid/GridContainer.js";
+import GridItem from "../Grid/GridItem.js";
+// import Button from "./CustomButtons/Button.js";
+import Card from "../Card/Card.js";
+import CardBody from "../Card/CardBody.js";
+import CardHeader from "../Card/CardHeader.js";
+import CardFooter from "../Card/CardFooter.js";
+import CustomInput from "../CustomInput/CustomInput.js";
 
+import { Button } from "@material-ui/core";
 
 export default function Login(props) {
 
-  return(
-    
-    
+  const [credentials, setCredentials] = useState({email: "", password: ""});
+
+  const useStyles = makeStyles({
+    root: {
+      background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
+      border: "none !important",
+      borderRadius: 3,
+      boxShadow: "0 3px 5px 2px rgba(0, 240, 230, .3)",
+      color: "white",
+      height: 48,
+      padding: "0 30px",
+      margin: "0 10px"
+    }
+  });
+  const classes = useStyles();
+
+  return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
-          <Card className={classes.card} style={styledImage}>
+          <Card className={classes.card} >
             <form className={classes.form} onSubmit={data =>console.log(data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
-                <h4>Register</h4>
+                <h4>Log In</h4>
               </CardHeader>
 
               <p className={classes.divider}></p>
 
               <CardBody>
-                <CustomInput
-                  disabled={false}
-                  required={true}
-                  labelText="First Name..."
-                  id="handle"
-                  formControlProps={{
-                    fullWidth: true
-                  }}
-                  inputProps={{
-                    onChange: function(e) {setUserName(e.target.value)},
-                    value: userName,
-                    type: "text",
-                    endAdornment: (
-                      <InputAdornment position="end">
-                        <People className={classes.inputIconsColor} />
-                      </InputAdornment>
-                    )
-                  }}
-                />
                 <CustomInput
                   labelText="Email..."
                   id="email"
@@ -76,11 +88,11 @@ export default function Login(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={()=> props.registrationHandler(userName, credentials.email, credentials.password, props.loginCallback)}
+                  onClick={()=> props.loginHandler(credentials.email, credentials.password, props.loginCallback)}
                   simple="true"
                   color="primary"
                   size="large">
-                  Start Your Journey
+                  Continue Your Journey
                 </Button>
               </CardFooter>
             </form>
@@ -90,7 +102,7 @@ export default function Login(props) {
               color="primary"
               size="small"
               fontWeight="bold">
-              Already have an account? Login
+              Dont have an account yet? Create one!
             </Button>
           </Card>
         </GridItem>

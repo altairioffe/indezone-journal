@@ -12,6 +12,7 @@ import {
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Register from "./Register.js";
+import Login from "./Login.js";
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 //////
@@ -33,7 +34,7 @@ export default function Navbar(props) {
   });
   const classes = useStyles();
   // Here are the states to keep track of login process
-  const [loginState, setLoginState] = useState(0);
+  const [loginState, setLoginState] = useState(4);
   const [loginEmail, setLoginEmail] = useState(null);
   const [loginPassword, setLoginPassword] = useState(null);
   const [user, setUser] = useState(props.user);
@@ -174,6 +175,17 @@ export default function Navbar(props) {
         <Register 
         loginEmail={props.loginEmail}
         registrationHandler={props.registrationHandler}
+        loginCallback={props.logInUser}
+        back={()=>setLoginState(0)}/>
+      </Grow>
+      )}
+
+      {/* LOGIN */}
+      {props.user === null && (
+      <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
+        <Login 
+        loginEmail={props.loginEmail}
+        loginHandler={props.loginHandler}
         loginCallback={props.logInUser}
         back={()=>setLoginState(0)}/>
       </Grow>
