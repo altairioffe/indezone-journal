@@ -10,10 +10,11 @@ const doesEmailExist = function(email, users) {
       return foundEmail = true;
     }
   }
+  console.log("EMAIL HELPER: ", foundEmail)
   return foundEmail || false;
 };
 
-
+ 
 // Returns user ID if and only if their email exists in database
 const findIdFromEmail = function(email, password, users) {
   let foundId;
@@ -36,7 +37,7 @@ const authenticatePassword = function(validatedId, password, users) {
 };
 
 
-const findUrlsForUserId = function(userId, `urlDataBase`) {
+const findUrlsForUserId = function(userId, urlDataBase) {
 
   let userLinks = {};
 
