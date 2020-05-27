@@ -177,6 +177,7 @@ export default function useApplicationData() {
   };
   
   const loginHandler = (email, password, loginCallback) => {
+    console.log("EMAIL: ", email, "Password: ", password)
     if (email && password) {
       let data = {
         email: email,
@@ -188,7 +189,7 @@ export default function useApplicationData() {
           .post("api/login", {
             data
           })
-          .then(response => loginCallback(response.data.id))
+          .then(response => console.log("LOGIN RESPONSE: ", response))
           .catch(err => console.log(err))
       );
     }

@@ -173,7 +173,6 @@ export default function Navbar(props) {
       {props.user === null && (
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
         <Register 
-        loginEmail={props.loginEmail}
         registrationHandler={props.registrationHandler}
         loginCallback={props.logInUser}
         back={()=>setLoginState(0)}/>
@@ -184,9 +183,8 @@ export default function Navbar(props) {
       {props.user === null && (
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
         <Login 
-        loginEmail={props.loginEmail}
         loginHandler={props.loginHandler}
-        loginCallback={props.logInUser}
+        loginCallback={x => console.log(x)}
         back={()=>setLoginState(0)}/>
       </Grow>
       )}
