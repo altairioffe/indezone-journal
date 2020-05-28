@@ -4,15 +4,20 @@ const bcrypt = require("bcrypt");
 
 const doesEmailExist = function(email, users) {
   let foundEmail;
+  //console.log("HELPER USERS: ", users)
   users.forEach(user => {
+   // console.log("TARGET EMAIL: ", email)
+    //console.log("USER EMAIL: ", user.email)
     if (user.email === email) {
-      console.log("EMAIL HELPER: TRUE")
+     // console.log("EMAIL HELPER: TRUE")
       return (foundEmail = true);
     }
   });
   console.log("EMAIL HELPER: ", foundEmail);
   return foundEmail || false;
 };
+
+
 
 // Returns user ID if and only if their email exists in database
 const findIdFromEmail = function(email, password, users) {
@@ -25,9 +30,9 @@ const findIdFromEmail = function(email, password, users) {
   return foundId || false;
 };
 
-const authenticatePassword = function(validatedId, password, users) {
+const authenticatePassword = function(validatedEmail, password, users) {
   bcrypt
-    .compare(password, users[validatedId].hashedPassword)
+    .compare(password, users[validatedEmail].hashedPassword)
     .then(result => {
       if (result) console.log("helper: ", result);
     })

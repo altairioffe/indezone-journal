@@ -26,9 +26,9 @@ const { doesEmailExist } = require("./routeHelpers/userHelpers");
       .then(users => {
         let retrievedUsers = users.map(user => user.dataValues)
         //res.send(users)
-        doesEmailExist(email, users);
+        doesEmailExist(email, retrievedUsers);
       })
-      .then(x => res.send(x))
+      .then(x => res.send("Login response: ", x))
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
