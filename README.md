@@ -5,13 +5,14 @@ A performance journal using IBM's Watson to scan text entries and provide object
 Overhaul of indezone-app repository (a team project), to implement major bug fixes and missing features.
 
 ## Bug Fixes
-- crash after several login attempts with empty input
-- redundant database tables & columns interfering with Postgres Inserts
+- fix crash on multiple login attempts with empty input
+- remove redundant database tables & columns interfering with Postgres Inserts
 
 ## New Features Implemented
-- create new account
+- registration form and account creation for new users
+- move user validation from client to server side
 - replace user level with points system based on total word count
-- replace handle with userName
+- replace @handle with user's name
 
 
 ## Dependencies
