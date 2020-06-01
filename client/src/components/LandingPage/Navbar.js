@@ -74,12 +74,8 @@ export default function Navbar(props) {
   };
 
 
-  const loginAfterRegister = id =>{
-    if (id) {
-       props.loginUser(id)
-    return setLoginState(2)
-    }
-  }
+  const renderUserDashboard = () => setLoginState(2)
+
 
   const logout = () => {
     setUser(null);
@@ -114,7 +110,7 @@ export default function Navbar(props) {
         <span>
           Welcome{" "}
           <strong>
-            {user && user.handle ? user.handle : "error"}
+            {props.user ? props.user.handle : "error"}
           </strong>
         </span>
       </Grow>
@@ -174,7 +170,7 @@ export default function Navbar(props) {
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
         <Register 
         registrationHandler={props.registrationHandler}
-        loginCallback={props.logInUser}
+        loginCallback={renderUserDashboard}
         back={()=>setLoginState(0)}/>
       </Grow>
       )}
@@ -184,7 +180,7 @@ export default function Navbar(props) {
       <Grow direction="left" in={loginState === 4} timeout={500} unmountOnExit>
         <Login 
         loginHandler={props.loginHandler}
-        loginCallback={x => console.log(x)}
+        loginCallback={renderUserDashboard}
         back={()=>setLoginState(0)}/>
       </Grow>
       )}

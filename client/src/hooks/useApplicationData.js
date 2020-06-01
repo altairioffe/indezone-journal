@@ -120,12 +120,9 @@ export default function useApplicationData() {
   };
 
   // set user state
-  const logInUser = user_id => {
-    setState({
-      ...state,
-      currentUser: user_id
-    });
-    return state.currentUser;
+  const setCurrentUser = user_data => {
+    setState({ ...state, currentUser: user_data })
+    // console.log("SETTING STATE USER: ", user_data)
   };
 
   // reset user state
@@ -171,7 +168,13 @@ export default function useApplicationData() {
           .post("api/login", {
             data
           })
-          .then(response => console.log("LOGIN RESPONSE: ", response))
+          .then(response => {
+            console.log("LOGIN RESPONSE: ", response)
+            return setCurrentUser(response.data)
+          })
+          .then(x => console.log("-----------------NEXT STATE------------------ ", state))
+          .then(loggedInUser => console.log("loggedInUser: ", state.currentUser))
+          .then(()=> loginCallback())
           .catch(err => console.log(err))
       );
     }
@@ -193,6 +196,7 @@ export default function useApplicationData() {
             data
           })
           .then(response => response ? loginHandler(email, password, x => console.log(x)) : console.log("REGISTRATION LOGIN RESPONSE: ", response))
+          .then(()=> loginCallback())
           .catch(err => console.log(err))
       );
     }
@@ -210,7 +214,7 @@ export default function useApplicationData() {
   return {
     ansQuestion,
     state,
-    logInUser,
+    setCurrentUser,
     logOutUser,
     setAnswer,
     addUserGoal,
