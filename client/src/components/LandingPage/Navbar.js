@@ -7,7 +7,8 @@ import {
   Grow,
   Box,
   Container,
-  Slide
+  Slide,
+  Collapse
 } from "@material-ui/core";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -69,7 +70,7 @@ export default function Navbar(props) {
       
       {/* REGISTRATION */}
       {props.user === null && (
-        <Grow
+        <Collapse
           direction="left"
           in={loginState === 0}
           timeout={500}
@@ -79,12 +80,12 @@ export default function Navbar(props) {
             loginCallback={renderUserDashboard}
             back={() => setLoginState(1)}
           />
-        </Grow>
+        </Collapse>
       )}
 
       {/* LOGIN */}
       {props.user === null && (
-        <Grow
+        <Collapse
           direction="left"
           in={loginState === 1}
           timeout={500}
@@ -94,7 +95,7 @@ export default function Navbar(props) {
             loginCallback={renderUserDashboard}
             back={() => setLoginState(0)}
           />
-        </Grow>
+        </Collapse>
       )}
 
       <div></div>
