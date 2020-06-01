@@ -26,9 +26,13 @@ console.log("EMAIL: ", email)
       .then(users => {
         let retrievedUsers = users.map(user => user.dataValues)
         //res.send(users)
-        doesEmailExist(email, retrievedUsers);
+       return doesEmailExist(email, retrievedUsers);
       })
-      .then(x => x === true ? res.status(200) : res.status(500))
+      .then(result => {
+        console.log("RESULT: ", result)
+        return result
+      })
+      .then(x => x === true ? res.status(200).send(true) : res.status(500))
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
