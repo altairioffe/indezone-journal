@@ -177,7 +177,7 @@ export default function useApplicationData() {
   };
   
   const loginHandler = (email, password, loginCallback) => {
-    console.log("EMAIL: ", email, "Password: ", password)
+   // console.log("EMAIL: ", email, "Password: ", password)
     if (email && password) {
       let data = {
         email: email,
