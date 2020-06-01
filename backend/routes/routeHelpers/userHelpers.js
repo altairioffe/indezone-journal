@@ -3,18 +3,18 @@ const bcrypt = require("bcrypt");
 //Check if user email exists
 
 const doesEmailExist = function(email, users) {
-  let foundEmail;
+  let foundUser;
   //console.log("HELPER USERS: ", users)
   users.forEach(user => {
    // console.log("TARGET EMAIL: ", email)
     //console.log("USER EMAIL: ", user.email)
     if (user.email === email) {
      // console.log("EMAIL HELPER: TRUE")
-      return (foundEmail = true);
+      return (foundUser = user);
     }
   });
-  console.log("EMAIL HELPER: ", foundEmail);
-  return foundEmail || false;
+ // console.log("EMAIL HELPER: ", foundUser);
+  return foundUser || false;
 };
 
 

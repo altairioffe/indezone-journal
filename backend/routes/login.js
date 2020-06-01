@@ -26,13 +26,13 @@ console.log("EMAIL: ", email)
       .then(users => {
         let retrievedUsers = users.map(user => user.dataValues)
         //res.send(users)
-       return doesEmailExist(email, retrievedUsers);
+       return doesEmailExist(email, retrievedUsers); //AUTHENTICATE EMAIL
       })
-      .then(result => {
-        console.log("RESULT: ", result)
-        return result
+      .then(foundUser => {
+        console.log("foundUser: ", foundUser)
+        return foundUser
       })
-      .then(x => x === true ? res.status(200).send(true) : res.status(500))
+      .then(foundUser => foundUser.password === password ? res.status(200).send(true) : res.status(500).send(false))
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
