@@ -15,7 +15,8 @@ const cardStyle = {
     minWidth: "0",
     wordWrap: "break-word",
     fontSize: ".875rem",
-    transition: "all 300ms linear"
+    transition: "all 300ms linear",
+    backgroundSize: "cover"
   },
   cardPlain: {
     background: "transparent",
@@ -23,6 +24,9 @@ const cardStyle = {
   },
   cardCarousel: {
     overflow: "hidden"
+  },
+  cardRegister: {
+    backgroundImage: `url(${'images/logout-image2.png'})`
   }
 };
 

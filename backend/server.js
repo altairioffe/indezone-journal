@@ -10,6 +10,7 @@ var goalsRouter = require('./routes/goals');
 var biodatasRouter = require('./routes/biodatas');
 var userGoalsRouter = require('./routes/userGoals');
 var userInsightRouter = require('./routes/userInsight');
+var login = require('./routes/login');
 
 var app = express();
 
@@ -28,6 +29,7 @@ app.use('/api/goals', goalsRouter);
 app.use('/api/biodatas', biodatasRouter);
 app.use('/api/userGoals', userGoalsRouter);
 app.use('/api/userInsight', userInsightRouter);
+app.use('/api/login', login);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

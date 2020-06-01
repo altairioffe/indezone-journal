@@ -2,7 +2,7 @@ import React from "react";
 import Wall from "./Wall";
 import Bio from "./Bio/Index";
 import HeroImage from "./HeroImage";
-import Navbar from "./Navbar";
+import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList";
 import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
@@ -21,6 +21,7 @@ export default function Application() {
     addUserGoal,
     setAnswer,
     registrationHandler,
+    loginHandler,
     getBio
   } = useApplicationData();
   console.log("------ state ------\n", state);
@@ -39,10 +40,11 @@ export default function Application() {
     <Container className="layout">
       <Navbar
         users={state.users}
-        logInUser={logInUser}
+        logInUser={data => console.log(data)}
         logoutUser={logOutUser}
         user={state.currentUser}
         registrationHandler={registrationHandler}
+        loginHandler={loginHandler}
       />
 
       {state.currentUser && (

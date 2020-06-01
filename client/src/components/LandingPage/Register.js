@@ -8,17 +8,17 @@ import Icon from "@material-ui/core/Icon";
 import Email from "@material-ui/icons/Email";
 import People from "@material-ui/icons/People";
 // core components
-import GridContainer from "./Grid/GridContainer.js";
-import GridItem from "./Grid/GridItem.js";
+import GridContainer from "../Grid/GridContainer.js";
+import GridItem from "../Grid/GridItem.js";
 // import Button from "./CustomButtons/Button.js";
-import Card from "./Card/Card.js";
-import CardBody from "./Card/CardBody.js";
-import CardHeader from "./Card/CardHeader.js";
-import CardFooter from "./Card/CardFooter.js";
-import CustomInput from "./CustomInput/CustomInput.js";
+import Card from "../Card/Card.js";
+import CardBody from "../Card/CardBody.js";
+import CardHeader from "../Card/CardHeader.js";
+import CardFooter from "../Card/CardFooter.js";
+import CustomInput from "../CustomInput/CustomInput.js";
 
 import { Button } from "@material-ui/core";
-import useApplicationData from "../hooks/useApplicationData";
+import useApplicationData from "../../hooks/useApplicationData";
 
 
 
@@ -43,12 +43,15 @@ export default function Register(props) {
   const [credentials, setCredentials] = useState({email: "", password: ""});
   const [userName, setUserName] = useState("");
 
+  let styledImage = {
+  //  backgroundImage: `url(${'images/logout-image2.png'})`
+  }
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
-          <Card>
+          <Card className={classes.card} style={styledImage}>
             <form className={classes.form} onSubmit={data =>console.log(data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
@@ -129,7 +132,7 @@ export default function Register(props) {
               color="primary"
               size="small"
               fontWeight="bold">
-              Return to Login
+              Already have an account? Login
             </Button>
           </Card>
         </GridItem>
