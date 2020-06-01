@@ -11,12 +11,12 @@ const { doesEmailExist } = require("./routeHelpers/userHelpers");
   //get all users
   router.post("/", (req, res) => {
    console.log("REQ: ", req.body);
-   console.log("REQ: ", req.body.email);
-   console.log("HIT POST ROUTE LOGIN: ", req.body.email);
+   console.log("REQ: ", req.body.data.email);
+  // console.log("HIT POST ROUTE LOGIN: ", req.body,data.email);
 
-    const email = req.body.email;
-    const password = req.body.password;
-
+    const email = req.body.data.email;
+    const password = req.body.data.password;
+console.log("EMAIL: ", email)
 
     //res.send(email)
 
@@ -28,7 +28,7 @@ const { doesEmailExist } = require("./routeHelpers/userHelpers");
         //res.send(users)
         doesEmailExist(email, retrievedUsers);
       })
-      .then(x => res.send("Login response: ", x))
+      .then(x => x === true ? res.status(200) : res.status(500))
       .catch(err => {
         res.status(500).json({ error: err.message });
       });
