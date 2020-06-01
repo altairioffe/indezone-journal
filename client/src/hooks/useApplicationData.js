@@ -156,25 +156,7 @@ export default function useApplicationData() {
     );
   };
 
-  const registrationHandler = (handle, email, password, loginCallback) => {
-    if (handle && email && password) {
-      let data = {
-        handle: handle,
-        email: email,
-        password: password,
-        points: 0
-      };
 
-      return Promise.resolve(
-        axios
-          .post("api/users", {
-            data
-          })
-          .then(response => loginCallback(response.data.id))
-          .catch(err => console.log(err))
-      );
-    }
-  };
   
   const loginHandler = (email, password, loginCallback) => {
    // console.log("EMAIL: ", email, "Password: ", password)
@@ -195,6 +177,28 @@ export default function useApplicationData() {
     }
   };
 
+
+  const registrationHandler = (handle, email, password, loginCallback) => {
+    if (handle && email && password) {
+      let data = {
+        handle: handle,
+        email: email,
+        password: password,
+        points: 0
+      };
+
+      return Promise.resolve(
+        axios
+          .post("api/users", {
+            data
+          })
+          .then(response => response ? loginHandler(email, password, x => console.log(x)) : console.log("REGISTRATION LOGIN RESPONSE: ", response))
+          .catch(err => console.log(err))
+      );
+    }
+  };
+
+  
   const getBio = (biodatas, currentUser) => {
     if (!biodatas === null) {
     let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
