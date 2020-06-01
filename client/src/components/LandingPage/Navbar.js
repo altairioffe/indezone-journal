@@ -108,7 +108,7 @@ export default function Navbar(props) {
       </Slide>
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <span>
-          Welcome{" "}
+          Welcome, {" "}
           <strong>
             {props.user ? props.user.handle : "error"}
           </strong>
