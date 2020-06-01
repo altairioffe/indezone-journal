@@ -20,11 +20,9 @@ import CustomInput from "../CustomInput/CustomInput.js";
 import { Button } from "@material-ui/core";
 import useApplicationData from "../../hooks/useApplicationData";
 
-
-
 export default function Register(props) {
   // Define Styles
-  
+
   const useStyles = makeStyles({
     root: {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -38,21 +36,20 @@ export default function Register(props) {
     }
   });
   const classes = useStyles();
-  
 
-  const [credentials, setCredentials] = useState({email: "", password: ""});
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [userName, setUserName] = useState("");
 
   let styledImage = {
-  //  backgroundImage: `url(${'images/logout-image2.png'})`
-  }
+    //  backgroundImage: `url(${'images/logout-image2.png'})`
+  };
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card} style={styledImage}>
-            <form className={classes.form} onSubmit={data =>console.log(data)}>
+            <form className={classes.form} onSubmit={data => console.log(data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>
@@ -69,7 +66,9 @@ export default function Register(props) {
                     fullWidth: true
                   }}
                   inputProps={{
-                    onChange: function(e) {setUserName(e.target.value)},
+                    onChange: function(e) {
+                      setUserName(e.target.value);
+                    },
                     value: userName,
                     type: "text",
                     endAdornment: (
@@ -88,7 +87,12 @@ export default function Register(props) {
                   inputProps={{
                     value: credentials.email,
                     type: "email",
-                    onChange: function(e){ setCredentials({email: e.target.value, password: credentials.password})},
+                    onChange: function(e) {
+                      setCredentials({
+                        email: e.target.value,
+                        password: credentials.password
+                      });
+                    },
                     endAdornment: (
                       <InputAdornment position="end">
                         <Email className={classes.inputIconsColor} />
@@ -104,7 +108,12 @@ export default function Register(props) {
                   }}
                   inputProps={{
                     type: "password",
-                    onChange: function(e) {setCredentials({email: credentials.email, password: e.target.value})},
+                    onChange: function(e) {
+                      setCredentials({
+                        email: credentials.email,
+                        password: e.target.value
+                      });
+                    },
                     endAdornment: (
                       <InputAdornment position="end">
                         <Icon className={classes.inputIconsColor}>
@@ -118,7 +127,14 @@ export default function Register(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={()=> props.registrationHandler(userName, credentials.email, credentials.password, props.loginCallback)}
+                  onClick={() =>
+                    props.registrationHandler(
+                      userName,
+                      credentials.email,
+                      credentials.password,
+                      props.loginCallback
+                    )
+                  }
                   simple="true"
                   color="primary"
                   size="large">
@@ -130,8 +146,7 @@ export default function Register(props) {
               simple="true"
               onClick={props.back}
               color="primary"
-              size="small"
-              fontWeight="bold">
+              size="small">
               Already have an account? Login
             </Button>
           </Card>
