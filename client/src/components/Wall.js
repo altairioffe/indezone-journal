@@ -4,10 +4,18 @@ import { Timeline } from 'react-event-timeline'
 import  {styles}  from './WallStyles';
 import '../styles/Wall.scss';
 export default function Wall(props) {
-  const userGoals = props.userGoals;
-  const userGoalsView = userGoals.map(userGoal => {
+  let userGoals = [];
+
+
+  userGoals.push(props.userGoals)
+  
+  userGoals.forEach(x => console.log(x))
+
+  let questions = props.goals
+  const userGoalsView = userGoals[0].map(userGoal => {
+    let linkedQuestion = questions.filter(question => question.id === userGoal.goal_id)
     return (
-      <WallItem key={userGoal.id} createdAt={userGoal.createdAt} question={userGoal.question} answer={userGoal.answer} />
+      <WallItem key={userGoal.id} createdAt={userGoal.createdAt} question={linkedQuestion[0].question} answer={userGoal.answer} />
     );
   }
   );
