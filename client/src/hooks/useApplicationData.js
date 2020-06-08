@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { getCurrentUserGoals } from "../helpers/goalHelper";
+//import { getCurrentUserGoals } from "../helpers/goalHelper";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -35,7 +35,7 @@ export default function useApplicationData() {
   }, []);
 
 
- // Set current user goals
+ //Set current user goals
   useEffect(() => {
     console.log("-----------STATE--------------", state);
 
@@ -45,11 +45,23 @@ export default function useApplicationData() {
       .then(userGoals => {
         setState(state => ({...state, currentUserGoals: userGoals.data}))
       })
-      .then(x => console.log("FINAL CURRENT USER GOALS ", state.currentUserGoals))
       .catch(err => console.log("USERGOALS ERROR: ", err))
     }
   }, [state.currentUser]);
 
+
+
+// const setCurrentUserGoals = () => {
+//       if (state.currentUser != null) {
+
+//       axios.get(`/api/userGoals/${state.currentUser.id}`)
+//       .then(userGoals => {
+//         return setState(state => ({...state, currentUserGoals: userGoals.data}))
+//       })
+//       .then(x => console.log("FINAL CURRENT USER GOALS ", state.currentUserGoals))
+//       .catch(err => console.log("USERGOALS ERROR: ", err))
+//     }
+// }
 
 
   //Set User SCORE
@@ -184,6 +196,9 @@ export default function useApplicationData() {
             console.log("LOGIN RESPONSE: ", response);
             return setCurrentUser(response.data);
           })
+
+      //    .then(() =>  setCurrentUserGoals())
+
           .then(() => loginCallback())
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
