@@ -59,7 +59,7 @@ export default function Application() {
           />
           <br />
           <QuestionList
-            giveAnswer={ansQuestion}
+            ansQuestion={ansQuestion}
             questions={questionsArr}
             setAnswer={setAnswer}
             addUserGoal={addUserGoal}
