@@ -12,7 +12,7 @@ router.get("/", (req, res) => {
     });
 });
 
-//Get specific user goal
+//Get specific user's goals
 router.get("/:id", (req, res) => {
   db.user_goal.findOne({
     where: { user_id: req.params.id }
