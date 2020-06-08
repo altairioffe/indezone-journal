@@ -15,7 +15,7 @@ router.get("/", (req, res) => {
 //Get specific user's goals
 router.get("/:id", (req, res) => {
   console.log("HIT SPECIFIC USER ROUTE: ", req.params.id)
-  db.user_goal.findOne({
+  db.user_goal.findAll({
     where: { user_id: req.params.id }
   }).then(userGoals => {
     res.json(userGoals);
