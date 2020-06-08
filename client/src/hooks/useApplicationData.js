@@ -93,7 +93,7 @@ export default function useApplicationData() {
 
   // Adding new goal
   const addUserGoal = function(goal) {
-    goal.user_id = state.currentUser;
+    goal.user_id = state.currentUser.id;
     goal.answer = state.answer;
     const goalId = goal.id;
     axios
@@ -134,7 +134,6 @@ export default function useApplicationData() {
   // set user state
   const setCurrentUser = user_data => {
     setState({ ...state, currentUser: user_data });
-    // console.log("SETTING STATE USER: ", user_data)
   };
 
   // reset user state
@@ -163,7 +162,6 @@ export default function useApplicationData() {
   };
 
   const getUserGoals = userId => {
-    console.log("CALLED GET USERGOALS")
     return Promise.resolve(
       axios
         .get(`api/userGoals/${userId}`)
@@ -180,7 +178,6 @@ export default function useApplicationData() {
   };
 
   const loginHandler = (email, password, loginCallback) => {
-    // console.log("EMAIL: ", email, "Password: ", password)
     if (email && password) {
       let data = {
         email: email,
@@ -203,7 +200,6 @@ export default function useApplicationData() {
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
           )
-          .then(x => console.log("X: ", x))
           .catch(err => console.log(err))
       );
     }
