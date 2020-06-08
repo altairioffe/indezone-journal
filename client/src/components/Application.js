@@ -70,7 +70,8 @@ export default function Application() {
           <div>
             <Wall
               userGoals={state.currentUserGoals}
-              userId={state.currentUser}
+              goals={state.goals}
+
             />
           </div>
         </section>
