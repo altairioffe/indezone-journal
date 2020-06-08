@@ -34,21 +34,23 @@ export default function useApplicationData() {
       .catch(err => err.message);
   }, []);
 
-  // Set current user goals
+
+ // Set current user goals
   useEffect(() => {
     console.log("-----------STATE--------------", state);
 
-    if (state.currentUser != null && state.userGoals != null) {
-      setState(state => ({
-        ...state,
-        currentUserGoals: getCurrentUserGoals(
-          state.userGoals,
-          state.goals,
-          state.currentUser
-        )
-      }));
+    if (state.currentUser != null) {
+
+      axios.get(`/api/userGoals/${state.currentUser.id}`)
+      .then(userGoals => {
+        setState(state => ({...state, currentUserGoals: userGoals.data}))
+      })
+      .then(x => console.log("FINAL CURRENT USER GOALS ", state.currentUserGoals))
+      .catch(err => console.log("USERGOALS ERROR: ", err))
     }
-  }, [state.currentUser, state.userGoals]);
+  }, [state.currentUser]);
+
+
 
   //Set User SCORE
   const getUserWordCount = currentUserGoals => {
@@ -59,7 +61,7 @@ export default function useApplicationData() {
   };
 
   useEffect(() => {
-    if (state.currentUser != null) {
+    if (state.currentUser != null && state.currentUserGoals != null) {
       setState(state => ({
         ...state,
         currentUserWordCount: getUserWordCount(state.currentUserGoals)
@@ -76,8 +78,6 @@ export default function useApplicationData() {
   };
 
   //Register New User
-
-
 
   // Adding new goal
   const addUserGoal = function(goal) {
@@ -121,7 +121,7 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    setState({ ...state, currentUser: user_data })
+    setState({ ...state, currentUser: user_data });
     // console.log("SETTING STATE USER: ", user_data)
   };
 
@@ -133,9 +133,6 @@ export default function useApplicationData() {
     });
     return state.currentUser;
   };
-
-
-
 
   const setInsight = currentUserInsight =>
     setState({ ...state, currentUserInsight });
@@ -153,14 +150,29 @@ export default function useApplicationData() {
     );
   };
 
+  const getUserGoals = userId => {
+    console.log("CALLED GET USERGOALS")
+    return Promise.resolve(
+      axios
+        .get(`api/userGoals/${userId}`)
+        .then(userGoals => {
+          setState({
+            ...state,
+            currentUserGoals: [{ ...userGoals }, ...state.currentUserGoals]
+          });
+          return state.currentUserGoals;
+        })
+        .then(userGoals => console.log("RETURNED USER GOALS: ", userGoals))
+        .catch(err => console.log(err))
+    );
+  };
 
-  
   const loginHandler = (email, password, loginCallback) => {
-   // console.log("EMAIL: ", email, "Password: ", password)
+    // console.log("EMAIL: ", email, "Password: ", password)
     if (email && password) {
       let data = {
         email: email,
-        password: password,
+        password: password
       };
 
       return Promise.resolve(
@@ -169,17 +181,18 @@ export default function useApplicationData() {
             data
           })
           .then(response => {
-            console.log("LOGIN RESPONSE: ", response)
-            return setCurrentUser(response.data)
+            console.log("LOGIN RESPONSE: ", response);
+            return setCurrentUser(response.data);
           })
-          .then(x => console.log("-----------------NEXT STATE------------------ ", state))
-          .then(loggedInUser => console.log("loggedInUser: ", state.currentUser))
-          .then(()=> loginCallback())
+          .then(() => loginCallback())
+          .then(x =>
+            console.log("-----------------NEXT STATE------------------ ", state)
+          )
+          .then(x => console.log("X: ", x))
           .catch(err => console.log(err))
       );
     }
   };
-
 
   const registrationHandler = (handle, email, password, loginCallback) => {
     if (handle && email && password) {
@@ -195,19 +208,22 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(response => response ? loginHandler(email, password, x => console.log(x)) : console.log("REGISTRATION LOGIN RESPONSE: ", response))
-          .then(()=> loginCallback())
+          .then(response =>
+            response
+              ? loginHandler(email, password, x => console.log(x))
+              : console.log("REGISTRATION LOGIN RESPONSE: ", response)
+          )
+          .then(() => loginCallback())
           .catch(err => console.log(err))
       );
     }
   };
 
-  
   const getBio = (biodatas, currentUser) => {
     if (!biodatas === null) {
-    let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
-    console.log("BIO: ", bio);
-    return bio[0].text;
+      let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
+      console.log("BIO: ", bio);
+      return bio[0].text;
     }
   };
 
