@@ -92,10 +92,12 @@ export default function useApplicationData() {
   //Register New User
 
   // Adding new goal
-  const addUserGoal = function(goal) {
+  const addUserGoal = function(goalId) {
+    const goal = {}
     goal.user_id = state.currentUser.id;
     goal.answer = state.answer;
-    const goalId = goal.id;
+    goal.goal_id = goalId.goal_id;
+    console.log("Axios Post ", goal)
     axios
       .post(`/api/userGoals`, goal)
       .then(result => {
