@@ -33,6 +33,7 @@ export default function QuestionFeed(props) {
               suggestion={goal.suggestion}
               ansQuestion={props.ansQuestion}
               setAnswer = {props.setAnswer}
+              answer={props.answer}
               goal_id = {goal.id}
               addUserGoal = {props.addUserGoal}
               currentUserId={props.currentUserId}
