@@ -44,6 +44,7 @@ export default function useApplicationData() {
       axios.get(`/api/userGoals/${state.currentUser.id}`)
       .then(userGoals => {
         setState(state => ({...state, currentUserGoals: userGoals.data}))
+        setState(state => ({...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
       })
       .catch(err => console.log("USERGOALS ERROR: ", err))
     }
@@ -54,20 +55,21 @@ export default function useApplicationData() {
   //GET User SCORE
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
-    currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
+    currentUserGoals.forEach(x => wordCount += x.answer.split(" ").length);
     // let user = users.filter((user) => user.id === currentUser);
     return wordCount;
   };
 
 //Set User SCORE
-  useEffect(() => {
-    if (state.currentUser != null && state.currentUserGoals != null) {
+    
+    const setUserWordCount = () => {
+      console.log("CURRENTUSERGOALS: ", state.currentUserGoals)
       setState(state => ({
         ...state,
         currentUserWordCount: getUserWordCount(state.currentUserGoals)
       }));
     }
-  }, [state.currentUser, state.currentUserWordCount]);
+
 
   // set Answer
   const setAnswer = function(ans) {
@@ -93,7 +95,8 @@ export default function useApplicationData() {
 
         setState(state => ({
           ...state,
-          currentUserGoals: newUserGoals
+          currentUserGoals: newUserGoals,
+          currentUserWordCount: getUserWordCount(newUserGoals)
         }));
       })
       .catch(err => console.log("error: ", err));
@@ -111,7 +114,7 @@ export default function useApplicationData() {
       .then(() => {
         setState({
           ...state,
-          userGoals: [{ ...data }, ...state.userGoals]
+          currentUserGoals: [{ ...data }, ...state.currentUserGoals]
         });
         return goal_id;
       })
@@ -123,7 +126,7 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    setState({ ...state, currentUser: user_data });
+    setState({ ...state, currentUser: user_data })
   };
 
   // reset user state
@@ -184,9 +187,11 @@ export default function useApplicationData() {
             return setCurrentUser(response.data);
           })
 
+
       //    .then(() =>  setCurrentUserGoals())
 
           .then(() => loginCallback())
+        //  .then(() => setState({ ...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
           )
@@ -239,6 +244,7 @@ export default function useApplicationData() {
     getUserWordCount,
     registrationHandler,
     loginHandler,
-    getBio
+    getBio,
+    setUserWordCount
   };
 }

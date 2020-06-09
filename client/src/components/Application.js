@@ -22,9 +22,11 @@ export default function Application() {
     setAnswer,
     registrationHandler,
     loginHandler,
-    getBio
+    getBio,
+    setUserWordCount
   } = useApplicationData();
   console.log("------ state ------\n", state);
+
 
   const questions = [...state.goals];
   let selectedQuestions = questions.slice(0, 10); //second is level
