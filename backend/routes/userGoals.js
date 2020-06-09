@@ -27,10 +27,8 @@ router.get("/:id", (req, res) => {
 
 // Post specific goal
 router.post("/", (req, res) => {
-  db.user_goal.create({
-    goal_id: req.body.goal_id,
-    user_id: req.body.user_id,
-    answer: req.body.answer,
+  console.log("BACKEND POST REQ: ", req.body)
+  db.user_goal.create({goal_id:req.body.goal_id,user_id:req.body.user_id,answer:req.body.answer,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
   })
@@ -38,7 +36,7 @@ router.post("/", (req, res) => {
       res.json(userGoal);
     })
     .catch(err => {
-      res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err });
     });
 });
 
