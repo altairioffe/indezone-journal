@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    userGoals: [],
+    // userGoals: [],
     goals: [],
     biodatas: [],
     users: [],
@@ -17,7 +17,7 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/api/userGoals"),
+      // axios.get("/api/userGoals"),
       axios.get("/api/goals"),
       axios.get("/api/biodatas"),
       axios.get("/api/users")
@@ -25,10 +25,10 @@ export default function useApplicationData() {
       .then(all => {
         setState(state => ({
           ...state,
-          userGoals: all[0].data,
-          goals: all[1].data,
-          biodatas: all[2].data,
-          users: all[3].data
+          // userGoals: all[0].data,
+          goals: all[0].data,
+          biodatas: all[1].data,
+          users: all[2].data
         }));
       })
       .catch(err => err.message);
@@ -51,20 +51,7 @@ export default function useApplicationData() {
 
 
 
-// const setCurrentUserGoals = () => {
-//       if (state.currentUser != null) {
-
-//       axios.get(`/api/userGoals/${state.currentUser.id}`)
-//       .then(userGoals => {
-//         return setState(state => ({...state, currentUserGoals: userGoals.data}))
-//       })
-//       .then(x => console.log("FINAL CURRENT USER GOALS ", state.currentUserGoals))
-//       .catch(err => console.log("USERGOALS ERROR: ", err))
-//     }
-// }
-
-
-  //Set User SCORE
+  //GET User SCORE
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
     currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
@@ -72,6 +59,7 @@ export default function useApplicationData() {
     return wordCount;
   };
 
+//Set User SCORE
   useEffect(() => {
     if (state.currentUser != null && state.currentUserGoals != null) {
       setState(state => ({
@@ -89,7 +77,6 @@ export default function useApplicationData() {
     }));
   };
 
-  //Register New User
 
   // Adding new goal
   const addUserGoal = function(goalId) {
@@ -101,14 +88,15 @@ export default function useApplicationData() {
     axios
       .post(`/api/userGoals`, goal)
       .then(result => {
-        const newUserGoals = [...state.userGoals, result.data];
+        console.log("RESULT: ", result)
+        const newUserGoals = [...state.currentUserGoals, result.data];
 
         setState(state => ({
           ...state,
-          userGoals: newUserGoals
+          currentUserGoals: newUserGoals
         }));
       })
-      .catch(err => console.log("error"));
+      .catch(err => console.log("error: ", err));
   };
 
   const ansQuestion = (answer, goal_id, user_id) => {

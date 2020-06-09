@@ -65,7 +65,7 @@ export default function Application() {
             addUserGoal={addUserGoal}
             goals={state.goals}
             currentUserId={state.currentUser}
-            answeredGoals={answeredGoals(state.userGoals, state.currentUser)}
+            answeredGoals={answeredGoals(state.currentUserGoals, state.currentUser)}
           />
           <div>
             <Wall
