@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-//import { getCurrentUserGoals } from "../helpers/goalHelper";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    // userGoals: [],
     goals: [],
     biodatas: [],
-    users: [],
     currentUserGoals: [],
     currentUser: null,
     answer: "",
@@ -17,7 +14,6 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      // axios.get("/api/userGoals"),
       axios.get("/api/goals"),
       axios.get("/api/biodatas"),
       axios.get("/api/users")
@@ -25,10 +21,8 @@ export default function useApplicationData() {
       .then(all => {
         setState(state => ({
           ...state,
-          // userGoals: all[0].data,
           goals: all[0].data,
           biodatas: all[1].data,
-          users: all[2].data
         }));
       })
       .catch(err => err.message);
@@ -56,14 +50,12 @@ export default function useApplicationData() {
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
     currentUserGoals.forEach(x => wordCount += x.answer.split(" ").length);
-    // let user = users.filter((user) => user.id === currentUser);
     return wordCount;
   };
 
 //Set User SCORE
     
     const setUserWordCount = () => {
-      console.log("CURRENTUSERGOALS: ", state.currentUserGoals)
       setState(state => ({
         ...state,
         currentUserWordCount: getUserWordCount(state.currentUserGoals)
@@ -86,11 +78,9 @@ export default function useApplicationData() {
     goal.user_id = state.currentUser.id;
     goal.answer = state.answer;
     goal.goal_id = goalId.goal_id;
-    console.log("Axios Post ", goal)
     axios
       .post(`/api/userGoals`, goal)
       .then(result => {
-        console.log("RESULT: ", result)
         const newUserGoals = [...state.currentUserGoals, result.data];
 
         setState(state => ({
@@ -165,7 +155,6 @@ export default function useApplicationData() {
           });
           return state.currentUserGoals;
         })
-        .then(userGoals => console.log("RETURNED USER GOALS: ", userGoals))
         .catch(err => console.log(err))
     );
   };
@@ -183,15 +172,9 @@ export default function useApplicationData() {
             data
           })
           .then(response => {
-            console.log("LOGIN RESPONSE: ", response);
             return setCurrentUser(response.data);
           })
-
-
-      //    .then(() =>  setCurrentUserGoals())
-
           .then(() => loginCallback())
-        //  .then(() => setState({ ...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
           )
