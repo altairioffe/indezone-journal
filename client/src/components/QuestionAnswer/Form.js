@@ -5,7 +5,9 @@ import TextField from '@material-ui/core/TextField';
 
 export default function Form(props){
   
-  const [ans, setAns] = useState();
+  const [ans, setAns] = useState("");
+    
+
   const useStyles = makeStyles({
   root: {
     background: 'linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)',
@@ -21,22 +23,33 @@ export default function Form(props){
   const classes = useStyles();
   return (
     <main >
-      <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
+      <form autoComplete="off" onSubmit={(event) => {
+        event.preventDefault()}}>
         <TextField
           id="filled-textarea"
           label={"Write your Entry Here"}
           placeholder={props.suggestion}
+          autoFocus="true"
           multiline
           fullWidth
           variant="filled"
-          onChange={(e) => props.setAnswer(e.target.value)}
+
+                            inputProps={{
+                    value: ans,
+                    type: "email",
+                    onChange: function(e){ setAns(e.target.value)},
+                  }}
         />
       <Button
         // className={classes.root}
         variant="outlined"
         color="primary"
         size="large"
-        onClick={() => props.addUserGoal({goal_id:props.goal_id})}
+        onClick={() => { 
+          props.setAnswer(ans)
+         .then(() => props.addUserGoal({goal_id:props.goal_id}, ans))
+         .then(() => setAns(""))
+          }}
       >
       Answer
       </Button>
