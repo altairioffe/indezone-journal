@@ -27,18 +27,18 @@ export default function Form(props){
         event.preventDefault()}}>
         <TextField
           id="filled-textarea"
-          label={"Write your Entry Here"}
+          label={"Write a few lines..."}
           placeholder={props.suggestion}
           autoFocus="true"
           multiline
           fullWidth
           variant="filled"
 
-                            inputProps={{
-                    value: ans,
-                    type: "email",
-                    onChange: function(e){ setAns(e.target.value)},
-                  }}
+          inputProps={{
+            value: ans,
+            type: "email",
+            onChange: function(e){ setAns(e.target.value)},
+          }}
         />
       <Button
         // className={classes.root}
