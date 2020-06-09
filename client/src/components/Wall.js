@@ -12,7 +12,7 @@ export default function Wall(props) {
  // userGoals.forEach(x => console.log(x))
 
   let questions = props.goals
-  let userGoalsView = userGoals[0].map(userGoal => {
+  let userGoalsView = userGoals[0].reverse().map(userGoal => {
     let linkedQuestion = questions.filter(question => question.id === userGoal.goal_id)
     return (
       <WallItem key={userGoal.id} createdAt={userGoal.createdAt} question={linkedQuestion[0].question} answer={userGoal.answer} />
