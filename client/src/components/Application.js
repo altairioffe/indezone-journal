@@ -64,6 +64,7 @@ export default function Application() {
             ansQuestion={ansQuestion}
             questions={questionsArr}
             setAnswer={setAnswer}
+            answer={state.answer}
             addUserGoal={addUserGoal}
             goals={state.goals}
             currentUserId={state.currentUser}
