@@ -65,18 +65,20 @@ export default function useApplicationData() {
 
   // set Answer
   const setAnswer = function(ans) {
-    setState(state => ({
+    return Promise.resolve(
+      setState(state => ({
       ...state,
       answer: ans
-    }));
+    }))
+    )
   };
 
 
   // Adding new goal
-  const addUserGoal = function(goalId) {
+  const addUserGoal = function(goalId, answer) {
     const goal = {}
     goal.user_id = state.currentUser.id;
-    goal.answer = state.answer;
+    goal.answer = answer;
     goal.goal_id = goalId.goal_id;
     axios
       .post(`/api/userGoals`, goal)
@@ -86,7 +88,8 @@ export default function useApplicationData() {
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
-          currentUserWordCount: getUserWordCount(newUserGoals)
+          currentUserWordCount: getUserWordCount(newUserGoals),
+          answer: ""
         }));
       })
       .catch(err => console.log("error: ", err));
