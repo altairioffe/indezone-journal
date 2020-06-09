@@ -1,13 +1,10 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-//import { getCurrentUserGoals } from "../helpers/goalHelper";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    userGoals: [],
     goals: [],
     biodatas: [],
-    users: [],
     currentUserGoals: [],
     currentUser: null,
     answer: "",
@@ -17,7 +14,6 @@ export default function useApplicationData() {
 
   useEffect(() => {
     Promise.all([
-      axios.get("/api/userGoals"),
       axios.get("/api/goals"),
       axios.get("/api/biodatas"),
       axios.get("/api/users")
@@ -25,10 +21,8 @@ export default function useApplicationData() {
       .then(all => {
         setState(state => ({
           ...state,
-          userGoals: all[0].data,
-          goals: all[1].data,
-          biodatas: all[2].data,
-          users: all[3].data
+          goals: all[0].data,
+          biodatas: all[1].data,
         }));
       })
       .catch(err => err.message);
@@ -44,6 +38,7 @@ export default function useApplicationData() {
       axios.get(`/api/userGoals/${state.currentUser.id}`)
       .then(userGoals => {
         setState(state => ({...state, currentUserGoals: userGoals.data}))
+        setState(state => ({...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
       })
       .catch(err => console.log("USERGOALS ERROR: ", err))
     }
@@ -51,62 +46,53 @@ export default function useApplicationData() {
 
 
 
-// const setCurrentUserGoals = () => {
-//       if (state.currentUser != null) {
-
-//       axios.get(`/api/userGoals/${state.currentUser.id}`)
-//       .then(userGoals => {
-//         return setState(state => ({...state, currentUserGoals: userGoals.data}))
-//       })
-//       .then(x => console.log("FINAL CURRENT USER GOALS ", state.currentUserGoals))
-//       .catch(err => console.log("USERGOALS ERROR: ", err))
-//     }
-// }
-
-
-  //Set User SCORE
+  //GET User SCORE
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
-    currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
-    // let user = users.filter((user) => user.id === currentUser);
+    currentUserGoals.forEach(x => wordCount += x.answer.split(" ").length);
     return wordCount;
   };
 
-  useEffect(() => {
-    if (state.currentUser != null && state.currentUserGoals != null) {
+//Set User SCORE
+    
+    const setUserWordCount = () => {
       setState(state => ({
         ...state,
         currentUserWordCount: getUserWordCount(state.currentUserGoals)
       }));
     }
-  }, [state.currentUser, state.currentUserWordCount]);
+
 
   // set Answer
   const setAnswer = function(ans) {
-    setState(state => ({
+    return Promise.resolve(
+      setState(state => ({
       ...state,
       answer: ans
-    }));
+    }))
+    )
   };
 
-  //Register New User
 
   // Adding new goal
-  const addUserGoal = function(goal) {
-    goal.user_id = state.currentUser;
-    goal.answer = state.answer;
-    const goalId = goal.id;
+  const addUserGoal = function(goalId, answer) {
+    const goal = {}
+    goal.user_id = state.currentUser.id;
+    goal.answer = answer;
+    goal.goal_id = goalId.goal_id;
     axios
       .post(`/api/userGoals`, goal)
       .then(result => {
-        const newUserGoals = [...state.userGoals, result.data];
+        const newUserGoals = [...state.currentUserGoals, result.data];
 
         setState(state => ({
           ...state,
-          userGoals: newUserGoals
+          currentUserGoals: newUserGoals,
+          currentUserWordCount: getUserWordCount(newUserGoals),
+          answer: ""
         }));
       })
-      .catch(err => console.log("error"));
+      .catch(err => console.log("error: ", err));
   };
 
   const ansQuestion = (answer, goal_id, user_id) => {
@@ -121,7 +107,7 @@ export default function useApplicationData() {
       .then(() => {
         setState({
           ...state,
-          userGoals: [{ ...data }, ...state.userGoals]
+          currentUserGoals: [{ ...data }, ...state.currentUserGoals]
         });
         return goal_id;
       })
@@ -133,8 +119,7 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    setState({ ...state, currentUser: user_data });
-    // console.log("SETTING STATE USER: ", user_data)
+    setState({ ...state, currentUser: user_data })
   };
 
   // reset user state
@@ -163,7 +148,6 @@ export default function useApplicationData() {
   };
 
   const getUserGoals = userId => {
-    console.log("CALLED GET USERGOALS")
     return Promise.resolve(
       axios
         .get(`api/userGoals/${userId}`)
@@ -174,13 +158,11 @@ export default function useApplicationData() {
           });
           return state.currentUserGoals;
         })
-        .then(userGoals => console.log("RETURNED USER GOALS: ", userGoals))
         .catch(err => console.log(err))
     );
   };
 
   const loginHandler = (email, password, loginCallback) => {
-    // console.log("EMAIL: ", email, "Password: ", password)
     if (email && password) {
       let data = {
         email: email,
@@ -193,17 +175,12 @@ export default function useApplicationData() {
             data
           })
           .then(response => {
-            console.log("LOGIN RESPONSE: ", response);
             return setCurrentUser(response.data);
           })
-
-      //    .then(() =>  setCurrentUserGoals())
-
           .then(() => loginCallback())
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
           )
-          .then(x => console.log("X: ", x))
           .catch(err => console.log(err))
       );
     }
@@ -253,6 +230,7 @@ export default function useApplicationData() {
     getUserWordCount,
     registrationHandler,
     loginHandler,
-    getBio
+    getBio,
+    setUserWordCount
   };
 }

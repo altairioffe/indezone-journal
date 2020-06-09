@@ -42,9 +42,10 @@ export default function SimpleExpansionPanel(props) {
           <Form 
             className={classes.heading, classes.root}
             setAnswer = {props.setAnswer}
+            answer={props.answer}
             goal_id = {props.goal_id}
             addUserGoal = {props.addUserGoal}
-            giveAnswer={props.giveAnswer}
+            ansQuestion={props.ansQuestion}
             suggestion={props.suggestion}
             currentUserId={props.currentUserId}
             goalId={props.goalId}

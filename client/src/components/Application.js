@@ -22,9 +22,11 @@ export default function Application() {
     setAnswer,
     registrationHandler,
     loginHandler,
-    getBio
+    getBio,
+    setUserWordCount
   } = useApplicationData();
   console.log("------ state ------\n", state);
+
 
   const questions = [...state.goals];
   let selectedQuestions = questions.slice(0, 10); //second is level
@@ -59,13 +61,14 @@ export default function Application() {
           />
           <br />
           <QuestionList
-            giveAnswer={ansQuestion}
+            ansQuestion={ansQuestion}
             questions={questionsArr}
             setAnswer={setAnswer}
+            answer={state.answer}
             addUserGoal={addUserGoal}
             goals={state.goals}
             currentUserId={state.currentUser}
-            answeredGoals={answeredGoals(state.userGoals, state.currentUser)}
+            answeredGoals={answeredGoals(state.currentUserGoals, state.currentUser)}
           />
           <div>
             <Wall
