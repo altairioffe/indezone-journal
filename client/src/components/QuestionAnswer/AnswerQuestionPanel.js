@@ -29,7 +29,7 @@ export default function SimpleExpansionPanel(props) {
   const classes = useStyles();
 
   return (
-    <ExpansionPanel smUp="hide" className={classes.root}>
+    <ExpansionPanel smUp="hide" className={classes.root} TransitionProps={{ unmountOnExit: true}}>
       <ExpansionPanelSummary
         expandIcon={<ExpandMoreIcon />}
         aria-controls="panel1a-content"
