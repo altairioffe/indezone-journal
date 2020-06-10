@@ -20,8 +20,9 @@ export default function SimpleExpansionPanel(props) {
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightBold,
-      textAlign:'left',
+      fontWeight: theme.typography.fontWeightLight,
+      flexGrow: 1,
+      align:'center',
       backgroundColor:'inherit',
       color:'white'
     },
