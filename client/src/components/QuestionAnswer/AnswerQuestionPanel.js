@@ -13,7 +13,7 @@ export default function SimpleExpansionPanel(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      backgroundColor: `rgb(64,196,255)`,
+      backgroundColor: `rgb(240,240,240)`,
       '& div': {
         backgroundColor: 'inherit'
       }
@@ -24,7 +24,7 @@ export default function SimpleExpansionPanel(props) {
       flexGrow: 1,
       align:'center',
       backgroundColor:'inherit',
-      color:'white'
+      color:'gray'
     },
   }));
   const classes = useStyles();
