@@ -50,7 +50,7 @@ export default function Form(props){
           props.setAnswer(ans)
          .then(() => props.addUserGoal({goal_id:props.goal_id}, ans))
          .then(() => setAns(""))
-         .then(() => setLabelText("Saved!"))
+         .then(() => setLabelText("Saved! Scroll down to see your entries"))
           }}
       >
       Answer
