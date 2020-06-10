@@ -34,7 +34,9 @@ export default function Form(props){
           multiline
           fullWidth
           variant="filled"
-
+          InputLabelProps={{
+            style: { color: '#00A8E0' },
+          }}
           inputProps={{
             value: ans,
             type: "email",
@@ -45,6 +47,7 @@ export default function Form(props){
         // className={classes.root}
         variant="outlined"
         color="primary"
+        style={{ color: "#00A8E0" }}
         size="large"
         onClick={() => { 
           props.setAnswer(ans)
