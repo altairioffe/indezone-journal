@@ -6,6 +6,7 @@ import TextField from '@material-ui/core/TextField';
 export default function Form(props){
   
   const [ans, setAns] = useState("");
+  const [labelText, setLabelText] = useState("Write a few lines...");
     
 
   const useStyles = makeStyles({
@@ -27,9 +28,9 @@ export default function Form(props){
         event.preventDefault()}}>
         <TextField
           id="filled-textarea"
-          label={"Write a few lines..."}
+          label={labelText}
           placeholder={props.suggestion}
-          autoFocus="true"
+          autoFocus
           multiline
           fullWidth
           variant="filled"
@@ -49,6 +50,7 @@ export default function Form(props){
           props.setAnswer(ans)
          .then(() => props.addUserGoal({goal_id:props.goal_id}, ans))
          .then(() => setAns(""))
+         .then(() => setLabelText("Saved!"))
           }}
       >
       Answer
