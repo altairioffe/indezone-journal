@@ -11,7 +11,10 @@ import Slide from '@material-ui/core/Slide';
 export default function QuestionFeed(props) {
    const useStyles = makeStyles((theme) => ({
     root: {
-      textAlign:'left',
+      textAlign:'center',
+      fontWeight: '300',
+      flexGrow: 1,
+      align:'center',
       fontSize: '1.5em', 
       "& small": {
         color:"skyblue"
@@ -44,7 +47,7 @@ export default function QuestionFeed(props) {
     })
   return  (
     <section>
-      <h1 className={classes.root}>Daily Question Feed <small>Write Entries Here</small></h1>
+      <h2 className={classes.root}>Take A Moment To Start Your Day With Purpose</h2>
       <br/>
       {questionsFilteredList}
       {!questionsFilteredList.length === 0 && (

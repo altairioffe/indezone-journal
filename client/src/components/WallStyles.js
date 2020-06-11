@@ -1,6 +1,11 @@
 export const  styles = {
-  contentStyle:{backgroundColor:"#b3d9ff"},
-  bubbleStyle:{border:"2px solid #002266"},
+  contentStyle:{
+    backgroundColor:"#FAFAFA"
+    },
+  bubbleStyle:{
+    border:"2px solid #FAFAFA",
+    backgroundColor:"#FAFAFA"
+    },
   lineColor:"#00008B",
-  lineStyle:{ background: '#004d99', width: 5 }
+  lineStyle:{ background: '#FAFAFA', width: 5 }
 };

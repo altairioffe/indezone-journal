@@ -6,7 +6,7 @@ import TextField from '@material-ui/core/TextField';
 export default function Form(props){
   
   const [ans, setAns] = useState("");
-  const [labelText, setLabelText] = useState("Write a few lines...");
+  const [labelText, setLabelText] = useState(["Write a few lines...", {style: { color: '#00A8E0' }}]);
     
 
   const useStyles = makeStyles({
@@ -28,13 +28,13 @@ export default function Form(props){
         event.preventDefault()}}>
         <TextField
           id="filled-textarea"
-          label={labelText}
+          label={labelText[0]}
           placeholder={props.suggestion}
           autoFocus
           multiline
           fullWidth
           variant="filled"
-
+          InputLabelProps={labelText[1]}
           inputProps={{
             value: ans,
             type: "email",
@@ -45,12 +45,17 @@ export default function Form(props){
         // className={classes.root}
         variant="outlined"
         color="primary"
+        style={{ color: "#00A8E0" }}
         size="large"
         onClick={() => { 
+          if (ans) {
           props.setAnswer(ans)
          .then(() => props.addUserGoal({goal_id:props.goal_id}, ans))
          .then(() => setAns(""))
-         .then(() => setLabelText("Saved!"))
+         .then(() => setLabelText(["Saved! Scroll down to see your entries", {style: { color: '#00A8E0' }}]))
+          } else {
+            setLabelText(["Write something!", {style: { color: 'orange' }}])
+          }
           }}
       >
       Answer

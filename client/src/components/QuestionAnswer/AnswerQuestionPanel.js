@@ -13,25 +13,26 @@ export default function SimpleExpansionPanel(props) {
   const useStyles = makeStyles((theme) => ({
     root: {
       width: '100%',
-      backgroundColor: `rgb(64,196,255)`,
+      backgroundColor: `rgb(240,240,240)`,
       '& div': {
         backgroundColor: 'inherit'
       }
     },
     heading: {
       fontSize: theme.typography.pxToRem(15),
-      fontWeight: theme.typography.fontWeightBold,
-      textAlign:'left',
+      fontWeight: theme.typography.fontWeightLight,
+      flexGrow: 1,
+      align:'center',
       backgroundColor:'inherit',
-      color:'white'
+      color:'gray'
     },
   }));
   const classes = useStyles();
 
   return (
-    <ExpansionPanel smUp="hide" className={classes.root} TransitionProps={{ unmountOnExit: true}}>
+    <ExpansionPanel smUp="hide" className={classes.root} TransitionProps={{ unmountOnExit: true}} iconButtonProps={{ color: "#00A8E0" }}>
       <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon />}
+        expandIcon={<ExpandMoreIcon style={{ color: "#00A8E0" }}/>}
         aria-controls="panel1a-content"
         id="panel1a-header"
       >

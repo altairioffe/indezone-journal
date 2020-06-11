@@ -71,11 +71,13 @@ export default function Application() {
             answeredGoals={answeredGoals(state.currentUserGoals, state.currentUser)}
           />
           <div>
+          {state.currentUserGoals.length >= 1 && (
             <Wall
               userGoals={state.currentUserGoals}
               goals={state.goals}
 
             />
+          )}
           </div>
         </section>
       )}

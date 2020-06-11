@@ -40,10 +40,8 @@ export default function Navbar(props) {
   const [loginPassword, setLoginPassword] = useState(null);
   const [user, setUser] = useState(props.user);
   /* 
-    State 0: Initial Login
-      Login, Register, Email Field 
-    State 1: Enter Password for Login
-      Login, Back, Password Field
+    State 0: Logged out, prompt to register
+    State 1: Logged out, prompt to log in
     State 2: Welcome Logged in User
       Logout, Welcome User
   */
