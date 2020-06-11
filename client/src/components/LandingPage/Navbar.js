@@ -8,7 +8,8 @@ import {
   Box,
   Container,
   Slide,
-  Collapse
+  Collapse,
+  Grid
 } from "@material-ui/core";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -26,6 +27,7 @@ export default function Navbar(props) {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
       border: "none !important",
       borderRadius: 3,
+      flexGrow: 1,
       boxShadow: "0 3px 5px 2px rgba(0, 240, 230, .3)",
       color: "white",
       height: 48,
@@ -55,16 +57,37 @@ export default function Navbar(props) {
   };
 
   return (
-    <Box alignitems="center">
-      <Container alignitems="center">
+    <Box >
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+      >
+      <Grid item xs >
         <img src="images/indezone.png" alt="INDEZONE" />
-      </Container>
-      
+      </Grid>
+       {props.user && (<Grid item xs >
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <span>
           Welcome, <strong>{props.user ? props.user.handle : "error"}</strong>
         </span>
       </Grow>
+            <Grow in={loginState === 2} timeout={500} unmountOnExit>
+        <Button
+          onClick={() => logout()}
+          size="medium"
+          style={{textTransform: "none"}}
+        >
+          | Logout
+        </Button>
+      </Grow>
+      </Grid>
+      )}
+              {/* LOGOUT */}
+
+      
+      
+    </Grid>
       
       {/* REGISTRATION */}
       {props.user === null && (
@@ -98,18 +121,7 @@ export default function Navbar(props) {
 
       <div></div>
 
-      {/* LOGOUT */}
 
-      <Grow in={loginState === 2} timeout={500} unmountOnExit>
-        <Button
-          onClick={() => logout()}
-          variant="outlined"
-          color="primary"
-          size="large"
-          className={classes.root}>
-          Logout
-        </Button>
-      </Grow>
     </Box>
   );
 }
