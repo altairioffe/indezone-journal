@@ -60,6 +60,7 @@ import { makeStyles } from '@material-ui/core/styles';
     {mode === USERBIO && (
       <UserBio 
         bio={props.bio}
+        level={level}
         onClick={()=>  {
           if (level > 600) {
           transition(LOADING)

@@ -2,6 +2,8 @@ import React from 'react';
 import { Button} from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
 import PollIcon from '@material-ui/icons/Poll';
+import LockIcon from '@material-ui/icons/Lock';
+import InfoIcon from '@material-ui/icons/Info';
 
 export default function UserBio(props) {
   // Define Styles
@@ -20,6 +22,10 @@ const useStyles = makeStyles({
   button: {
     background: "#00A8E0",
     color: "white",
+    '&:hover': {
+            backgroundColor: 'skyBlue',
+            color: '#FFF'
+        },
     fontWeight: 300,
     fontSize: "1em",
     padding: "0.8em 1.2em"
@@ -34,7 +40,7 @@ const classes = useStyles();
        className={classes.button}
        onClick={props.onClick}
        disabled={props.disabled}
-       endIcon={<PollIcon/>}
+       endIcon={ props.level >= 600 && <PollIcon/> || <InfoIcon/>}
        >
       GET INSIGHTS
     </Button>
