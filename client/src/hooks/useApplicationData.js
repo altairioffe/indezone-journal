@@ -6,7 +6,7 @@ export default function useApplicationData() {
     goals: [],
     biodatas: [],
     currentUserGoals: [],
-    currentUser: null,
+    currentUser: 2,
     answer: "",
     currentUserInsight: "",
     currentUserWordCount: 0

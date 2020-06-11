@@ -47,7 +47,6 @@ export default function QuestionFeed(props) {
     })
   return  (
     <section>
-      <h2 className={classes.root}>Take A Moment To Start Your Day With Purpose</h2>
       <br/>
       {questionsFilteredList}
       {!questionsFilteredList.length === 0 && (

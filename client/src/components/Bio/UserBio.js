@@ -22,7 +22,7 @@ const useStyles = makeStyles({
     color: "white",
     fontWeight: 300,
     fontSize: "1em",
-    padding: "0.8em"
+    padding: "0.8em 1.2em"
   }
 });
 const classes = useStyles();

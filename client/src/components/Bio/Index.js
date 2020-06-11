@@ -6,6 +6,8 @@ import Error from './Error';
 import Insights from './Insights';
 import Status from './Loading';
 import useVisualMode from "../../hooks/useVisualMode";
+import { makeStyles } from '@material-ui/core/styles';
+
 
 
   export default function Bio(props) {
@@ -30,12 +32,27 @@ import useVisualMode from "../../hooks/useVisualMode";
 
     }
 
+       const useStyles = makeStyles((theme) => ({
+    root: {
+      textAlign:'center',
+      fontWeight: '300',
+      flexGrow: 1,
+      align:'center',
+      fontSize: '1.5em', 
+      "& small": {
+        color:"skyblue"
+      }
+    }
+  }));
+  const classes = useStyles();
+
     
     return(
 
     <main>
     <section>
-
+      <h2 className={classes.root}>Take A Moment To Start Your Day With Purpose</h2>
+      <br/>
     </section>
 
     <section>
