@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button} from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
+import PollIcon from '@material-ui/icons/Poll';
 
 export default function UserBio(props) {
   // Define Styles
@@ -16,6 +17,13 @@ const useStyles = makeStyles({
     margin: "0 10px",
     textAlign:"center"
   },
+  button: {
+    background: "#00A8E0",
+    color: "white",
+    fontWeight: 300,
+    fontSize: "1em",
+    padding: "0.8em"
+  }
 });
 const classes = useStyles();
 
@@ -23,9 +31,11 @@ const classes = useStyles();
     <article className="">
     <p>{props.bio || ""}</p>
     <Button 
-       className={classes.root}
+       className={classes.button}
        onClick={props.onClick}
-       disabled={props.disabled}>
+       disabled={props.disabled}
+       endIcon={<PollIcon/>}
+       >
       GET INSIGHTS
     </Button>
     </article>

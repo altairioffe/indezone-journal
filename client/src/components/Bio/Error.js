@@ -16,6 +16,13 @@ export default function Error(props) {
       margin: "0 10px",
       textAlign:"center"
     },
+    button: {
+      background: "#00A8E0",
+      color: "white",
+      fontWeight: 300,
+      fontSize: "1em",
+      padding: "0.5em 2em"
+  }
   });
   const classes = useStyles();
 
@@ -28,7 +35,7 @@ export default function Error(props) {
       />
       <h4 className="">{props.message}</h4>
       <Button 
-       className={classes.root}
+       className={classes.button}
        onClick={props.onCancel}>
          BACK
      </Button>
