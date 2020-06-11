@@ -9,7 +9,9 @@ import {
   Container,
   Slide,
   Collapse,
-  Grid
+  Grid,
+  Card,
+  CardMedia
 } from "@material-ui/core";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
@@ -64,10 +66,16 @@ export default function Navbar(props) {
         direction="row"
         justify="space-between"
       >
-      <Grid item xs >
-        <img src="images/indezone.png" alt="INDEZONE" />
+      <Grid item  >
+        <Card style={{padding: 10, boxShadow: 'none'}}>
+        <CardMedia
+          style={{height: 15, width: 100, objectFit: 'cover'}}
+          image="images/indezone.png" 
+          title="INDEZONE"
+          />
+        </Card>
       </Grid>
-       {props.user && (<Grid item xs >
+       {props.user && (<Grid item >
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <span>
           Welcome, <strong>{props.user ? props.user.handle : "error"}. </strong> Your score:  <strong style={{color: "#00A8E0"}}>{props.level}</strong>
