@@ -1,15 +1,4 @@
 import moment from 'moment';
-// Find last user entry before today
-
-const findLastEntryBeforeToday = (userGoals) => {
-
-  if (userGoals.includes(x => moment(x.createdAt).isBetween(moment().subtract(24, 'hours'), moment().startOf('day')) ) ){
-    return true
-  } else {
-    return false
-  }
-} 
-
 
 export function checkCompliance(userGoals) {
   // check if most recent entry before today was within 24 hours
