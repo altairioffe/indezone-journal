@@ -3,7 +3,7 @@ import { Button} from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
 import PollIcon from '@material-ui/icons/Poll';
 import LockIcon from '@material-ui/icons/Lock';
-import InfoIcon from '@material-ui/icons/Info';
+import InfoOutlinedIcon from '@material-ui/icons/InfoOutlined';
 
 export default function UserBio(props) {
   // Define Styles
@@ -40,7 +40,7 @@ const classes = useStyles();
        className={classes.button}
        onClick={props.onClick}
        disabled={props.disabled}
-       endIcon={ props.level >= 600 && <PollIcon/> || <InfoIcon/>}
+       endIcon={ props.level >= 600 && <PollIcon/> || <InfoOutlinedIcon/>}
        >
       GET INSIGHTS
     </Button>
