@@ -25,7 +25,12 @@ export default function QuestionFeed(props) {
   
   console.log('questions for user',props.questions)
   console.log('questions answered today', props.answeredGoals)
-  const questionsFilteredList = props.questions
+
+  const randomizedQuestions = props.questions.slice(1).sort(x => .5 - Math.random())
+  randomizedQuestions.unshift(props.questions[0])
+  console.log("RANDOM QUESTIONS: ", randomizedQuestions)
+
+  const questionsFilteredList = randomizedQuestions
     .map( (goal, i) => {
       return(
         <div>
