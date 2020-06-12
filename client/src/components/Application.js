@@ -29,14 +29,7 @@ export default function Application() {
 
 
   const questions = [...state.goals];
-  let selectedQuestions = questions.slice(0, 10); //second is level
-  let questionsArr = selectedQuestions.map(goal => {
-    return {
-      id: goal.id,
-      question: goal.question,
-      suggestion: goal.suggestion
-    };
-  });
+ 
   
   return (
     <Container className="layout">
@@ -63,7 +56,8 @@ export default function Application() {
           <br />
           <QuestionList
             ansQuestion={ansQuestion}
-            questions={questionsArr}
+            level={state.level}
+            questions={questions}
             currentUserGoals={state.currentUserGoals}
             setAnswer={setAnswer}
             answer={state.answer}

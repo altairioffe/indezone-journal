@@ -28,7 +28,17 @@ export default function QuestionFeed(props) {
   const randomizedQuestions = props.questions.slice(1).sort(x => .5 - Math.random())
   randomizedQuestions.unshift(props.questions[0])
 
-  const questionsFilteredList = randomizedQuestions
+
+  let selectedQuestions = randomizedQuestions.slice(0, props.level); 
+  let questionsArr = selectedQuestions.map(goal => {
+    return {
+      id: goal.id,
+      question: goal.question,
+      suggestion: goal.suggestion
+    };
+  });
+
+  const questionsFilteredList = questionsArr
     .map( (goal, i) => {
       return(
         <div>
