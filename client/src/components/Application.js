@@ -64,6 +64,7 @@ export default function Application() {
           <QuestionList
             ansQuestion={ansQuestion}
             questions={questionsArr}
+            currentUserGoals={state.currentUserGoals}
             setAnswer={setAnswer}
             answer={state.answer}
             addUserGoal={addUserGoal}

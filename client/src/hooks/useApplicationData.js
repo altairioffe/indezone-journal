@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { checkCompliance } from "../helpers/goalHelper"
+
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -9,7 +11,8 @@ export default function useApplicationData() {
     currentUser: null,
     answer: "",
     currentUserInsight: "",
-    currentUserWordCount: 0
+    currentUserWordCount: 0,
+    compliance: true
   });
 
   useEffect(() => {
@@ -39,6 +42,7 @@ export default function useApplicationData() {
       .then(userGoals => {
         setState(state => ({...state, currentUserGoals: userGoals.data}))
         setState(state => ({...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
+        setState(state => ({...state, compliance: checkCompliance(state.currentUserGoals)}))
       })
       .catch(err => console.log("USERGOALS ERROR: ", err))
     }
