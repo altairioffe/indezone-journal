@@ -18,6 +18,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Register from "./Register.js";
 import Login from "./Login.js";
 
+
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 //////
@@ -74,14 +75,14 @@ export default function Navbar(props) {
         container
         direction="column"
         >
-        <Grid item  >
+        <Grid item  justify="flex-end">
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <span>
           Welcome, <strong>{props.user ? props.user.handle : "error"}.</strong> Your score:  <strong style={{color: "#00A8E0"}}>{props.level}</strong>
         </span>
       </Grow>
       </Grid>
-      <Grid item justify="flex-end" >
+      <Grid item justify="flex-end" mr="0">
             <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <Button
           onClick={() => logout()}
