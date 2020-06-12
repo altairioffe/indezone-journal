@@ -12,7 +12,7 @@ export default function useApplicationData() {
     answer: "",
     currentUserInsight: "",
     currentUserWordCount: 0,
-    compliance: true
+    level: 1
   });
 
   useEffect(() => {
@@ -32,6 +32,15 @@ export default function useApplicationData() {
   }, []);
 
 
+//get user Level
+const getUserLevel = (userGoals) => {
+if (state.level >1 && !checkCompliance(userGoals)){
+  return -1;
+} else if (state.level <10 && checkCompliance(userGoals)) {
+  return 1
+}
+}
+
  //Set current user goals
   useEffect(() => {
     console.log("-----------STATE--------------", state);
@@ -42,7 +51,7 @@ export default function useApplicationData() {
       .then(userGoals => {
         setState(state => ({...state, currentUserGoals: userGoals.data}))
         setState(state => ({...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
-        setState(state => ({...state, compliance: checkCompliance(state.currentUserGoals)}))
+        setState(state => ({...state, level: state.level += checkCompliance(state.currentUserGoals)}))
       })
       .catch(err => console.log("USERGOALS ERROR: ", err))
     }
