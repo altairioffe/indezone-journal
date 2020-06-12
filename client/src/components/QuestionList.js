@@ -23,12 +23,10 @@ export default function QuestionFeed(props) {
   }));
   const classes = useStyles();
   
-  console.log('questions for user',props.questions)
-  console.log('questions answered today', props.answeredGoals)
+  // console.log('questions answered today', props.answeredGoals)
 
   const randomizedQuestions = props.questions.slice(1).sort(x => .5 - Math.random())
   randomizedQuestions.unshift(props.questions[0])
-  console.log("RANDOM QUESTIONS: ", randomizedQuestions)
 
   const questionsFilteredList = randomizedQuestions
     .map( (goal, i) => {

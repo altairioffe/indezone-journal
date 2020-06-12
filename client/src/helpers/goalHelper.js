@@ -1,5 +1,8 @@
 import moment from 'moment';
-// Finds current user Goals 
+// Find last user entry before today
+
+
+
 export function checkCompliance(userGoals) {
   console.log("FROM GOAL HELPER: ", moment().subtract(24, 'hours'))
   if (moment(userGoals[0].createdAt).isBefore(moment().subtract(24, 'hours'))) {
