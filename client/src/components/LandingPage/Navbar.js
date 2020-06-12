@@ -55,7 +55,7 @@ export default function Navbar(props) {
 
   const logout = () => {
     setUser(null);
-    setLoginState(0);
+    setLoginState(1);
     props.logoutUser();
   };
 
