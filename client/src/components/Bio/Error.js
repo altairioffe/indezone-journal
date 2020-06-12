@@ -1,6 +1,7 @@
 import React from "react";
 import { Button } from "@material-ui/core"
 import { makeStyles } from '@material-ui/core/styles';
+import LockIcon from '@material-ui/icons/Lock';
 
 export default function Error(props) {
   // Define Styles
@@ -16,19 +17,32 @@ export default function Error(props) {
       margin: "0 10px",
       textAlign:"center"
     },
+    heading: {
+      fontWeight: '300'
+          },
+    paragraph: {
+      fontWeight: '300'
+    },
+    button: {
+      background: "#00A8E0",
+      color: "white",
+          '&:hover': {
+            backgroundColor: 'skyBlue',
+            color: '#FFF'
+        },
+      fontWeight: 300,
+      fontSize: "1em",
+      padding: "0.5em 2em"
+  }
   });
   const classes = useStyles();
 
   return (
-    <main className="">
-      <img
-        className=""
-        src="images/status.png"
-        alt="Keep it up!"
-      />
-      <h4 className="">{props.message}</h4>
+    <main className="heading">
+      <LockIcon style={{color: "#00A8E0"}}/>
+      <h4 className={classes.heading}>{props.message}</h4>
       <Button 
-       className={classes.root}
+       className={classes.button}
        onClick={props.onCancel}>
          BACK
      </Button>

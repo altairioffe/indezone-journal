@@ -45,6 +45,7 @@ export default function Application() {
         logInUser={data => console.log(data)}
         logoutUser={logOutUser}
         user={state.currentUser}
+        level={state.currentUserWordCount}
         registrationHandler={registrationHandler}
         loginHandler={loginHandler}
       />

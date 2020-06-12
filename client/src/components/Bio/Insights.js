@@ -16,6 +16,17 @@ export default function Insights(props) {
       margin: "0 10px",
       textAlign:"center"
     },
+        button: {
+      background: "#00A8E0",
+      color: "white",
+          '&:hover': {
+            backgroundColor: 'skyBlue',
+            color: '#FFF'
+        },
+      fontWeight: 300,
+      fontSize: "1em",
+      padding: "0.5em 2em"
+  }
   });
   const classes = useStyles();
 
@@ -24,7 +35,7 @@ export default function Insights(props) {
       <h2> Here is an analysis of your entries: </h2>
       <p style={{fontWeight:"bold"}}>{props.insights}</p>
       <Button
-       className={classes.root}
+       className={classes.button}
        onClick={props.onCancel}
        disabled={props.disabled}>
          BACK

@@ -8,12 +8,17 @@ import {
   Box,
   Container,
   Slide,
-  Collapse
+  Collapse,
+  Grid,
+  Card,
+  CardMedia
 } from "@material-ui/core";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Register from "./Register.js";
 import Login from "./Login.js";
+
+
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
 //////
@@ -26,6 +31,7 @@ export default function Navbar(props) {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
       border: "none !important",
       borderRadius: 3,
+      flexGrow: 1,
       boxShadow: "0 3px 5px 2px rgba(0, 240, 230, .3)",
       color: "white",
       height: 48,
@@ -50,21 +56,51 @@ export default function Navbar(props) {
 
   const logout = () => {
     setUser(null);
-    setLoginState(0);
+    setLoginState(1);
     props.logoutUser();
   };
 
   return (
-    <Box alignitems="center">
-      <Container alignitems="center">
-        <img src="images/indezone.png" alt="INDEZONE" />
-      </Container>
-      
+    <Box >
+      <Grid
+        container
+        direction="row"
+        justify="space-between"
+      >
+      <Grid item  >
+       <img src="images/indezone.png" max-height="2vh" height="20vh"/>
+      </Grid>
+       {props.user && (<Grid item xs={4}>
+             <Grid
+        container
+        direction="column"
+        >
+        <Grid item  justify="flex-end">
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <span>
-          Welcome, <strong>{props.user ? props.user.handle : "error"}</strong>
+          Welcome, <strong>{props.user ? props.user.handle : "error"}.</strong> Your score:  <strong style={{color: "#00A8E0"}}>{props.level}</strong>
         </span>
       </Grow>
+      </Grid>
+      <Grid item justify="flex-end" mr="0">
+            <Grow in={loginState === 2} timeout={500} unmountOnExit>
+        <Button
+          onClick={() => logout()}
+          size="medium"
+          style={{textTransform: "none"}}
+        >
+          | Logout |
+        </Button>
+      </Grow>
+      </Grid>
+      </Grid>
+      </Grid>
+      )}
+              {/* LOGOUT */}
+
+      
+      
+    </Grid>
       
       {/* REGISTRATION */}
       {props.user === null && (
@@ -98,18 +134,7 @@ export default function Navbar(props) {
 
       <div></div>
 
-      {/* LOGOUT */}
 
-      <Grow in={loginState === 2} timeout={500} unmountOnExit>
-        <Button
-          onClick={() => logout()}
-          variant="outlined"
-          color="primary"
-          size="large"
-          className={classes.root}>
-          Logout
-        </Button>
-      </Grow>
     </Box>
   );
 }
