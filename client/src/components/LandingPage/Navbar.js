@@ -67,30 +67,32 @@ export default function Navbar(props) {
         justify="space-between"
       >
       <Grid item  >
-        <Card style={{padding: 10, boxShadow: 'none'}}>
-        <CardMedia
-          style={{height: 15, width: 100, objectFit: 'cover'}}
-          image="images/indezone.png" 
-          title="INDEZONE"
-          />
-        </Card>
+       <img src="images/indezone.png" max-height="2vh" height="20vh"/>
       </Grid>
-       {props.user && (<Grid item >
+       {props.user && (<Grid item xs={4}>
+             <Grid
+        container
+        direction="column"
+        >
+        <Grid item  >
       <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <span>
-          Welcome, <strong>{props.user ? props.user.handle : "error"}. </strong> Your score:  <strong style={{color: "#00A8E0"}}>{props.level}</strong>
+          Welcome, <strong>{props.user ? props.user.handle : "error"}.</strong> Your score:  <strong style={{color: "#00A8E0"}}>{props.level}</strong>
         </span>
-
       </Grow>
+      </Grid>
+      <Grid item justify="flex-end" >
             <Grow in={loginState === 2} timeout={500} unmountOnExit>
         <Button
           onClick={() => logout()}
           size="medium"
           style={{textTransform: "none"}}
         >
-          | Logout
+          | Logout |
         </Button>
       </Grow>
+      </Grid>
+      </Grid>
       </Grid>
       )}
               {/* LOGOUT */}
