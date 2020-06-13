@@ -39,4 +39,17 @@ router.post("/", (req, res) => {
     });
 });
 
+//Update user level
+router.put("/:id", (req, res) => {
+  db.user.update(
+    { points: req.body.points },
+    { where:{id:req.params.id} }) 
+    .then(res => {
+    res.json(res);
+  })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;
