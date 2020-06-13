@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { checkCompliance } from "../helpers/goalHelper"
+import { checkCompliance, checkIfFirstPostToday } from "../helpers/goalHelper"
 
 
 export default function useApplicationData() {
@@ -33,11 +33,31 @@ export default function useApplicationData() {
 
 
 //get user Level
-const getUserLevel = (userGoals) => {
+const updateUserLevelOnLogin = (userGoals) => {
 if (state.level >1 && !checkCompliance(userGoals)){
-  return -1;
-} else if (state.level <10 && checkCompliance(userGoals)) {
-  return 1
+  return state.level - 1;
+} else {
+  return state.level
+}
+// else if (state.level <10 && checkCompliance(userGoals)) {
+//   return state.level += 1
+// }
+}
+
+
+/*
+  - on load: if no post yesterday & no post today, reduce level
+  - if first post of the day, increase level, update level in db & state
+
+*/
+
+const updateUserLevelOnEntry = (userGoals) => {
+
+    console.log("CHECK FURST POST: ", checkIfFirstPostToday(userGoals))
+  if (checkIfFirstPostToday(userGoals)) {
+    return state.level + 1
+  } else {
+  return state.level
 }
 }
 
@@ -51,7 +71,7 @@ if (state.level >1 && !checkCompliance(userGoals)){
       .then(userGoals => {
         setState(state => ({...state, currentUserGoals: userGoals.data}))
         setState(state => ({...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
-        setState(state => ({...state, level: state.level += checkCompliance(state.currentUserGoals)}))
+        setState(state => ({...state, level: updateUserLevelOnLogin(state.currentUserGoals)}))
       })
       .catch(err => console.log("USERGOALS ERROR: ", err))
     }
@@ -97,11 +117,12 @@ if (state.level >1 && !checkCompliance(userGoals)){
       .post(`/api/userGoals`, goal)
       .then(result => {
         const newUserGoals = [...state.currentUserGoals, result.data];
-
+  console.log("NEWUSERGOALS: ", newUserGoals)
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
           currentUserWordCount: getUserWordCount(newUserGoals),
+          level: updateUserLevelOnEntry(newUserGoals),
           answer: ""
         }));
       })
