@@ -41,11 +41,12 @@ router.post("/", (req, res) => {
 
 //Update user level
 router.put("/:id", (req, res) => {
+  console.log("HIT PUT ROUTE params: ", req.params, "HIT PUT ROUTE body: ",  req.body)
   db.user.update(
     { points: req.body.points },
     { where:{id:req.params.id} }) 
     .then(res => {
-    res.json(res);
+    res.send(res);
   })
     .catch(err => {
       res.status(500).json({ error: err.message });
