@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { checkCompliance, checkIfFirstPostToday } from "../helpers/goalHelper";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -9,7 +10,8 @@ export default function useApplicationData() {
     currentUser: null,
     answer: "",
     currentUserInsight: "",
-    currentUserWordCount: 0
+    currentUserWordCount: 0,
+    level: 1
   });
 
   useEffect(() => {
@@ -22,61 +24,91 @@ export default function useApplicationData() {
         setState(state => ({
           ...state,
           goals: all[0].data,
-          biodatas: all[1].data,
+          biodatas: all[1].data
         }));
       })
       .catch(err => err.message);
   }, []);
 
+  //reduce userLevel on login if not compliant
+  const updateUserLevelOnLogin = userGoals => {
+    if (state.level > 1 && !checkCompliance(userGoals)) {
+      return state.level - 1;
+    } else {
+      return state.level;
+    }
+    // else if (state.level <10 && checkCompliance(userGoals)) {
+    //   return state.level += 1
+    // }
+  };
 
- //Set current user goals
+  /*
+  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
+  - on login: if no post yesterday BUT post has already been made previously today, no change to level
+  - on submit: if first post of the day, increase level, update level in db & state
+  - on submit: if NOT first post of the day, no change to level
+*/
+
+  const updateUserLevelOnEntry = userGoals => {
+    console.log("CHECK FURST POST: ", checkIfFirstPostToday(userGoals));
+    if (checkIfFirstPostToday(userGoals)) {
+      return state.level + 1;
+    } else {
+      return state.level;
+    }
+  };
+
+  //Set current user goals
   useEffect(() => {
     console.log("-----------STATE--------------", state);
 
     if (state.currentUser != null) {
-
-      axios.get(`/api/userGoals/${state.currentUser.id}`)
-      .then(userGoals => {
-        setState(state => ({...state, currentUserGoals: userGoals.data}))
-        setState(state => ({...state, currentUserWordCount: getUserWordCount(state.currentUserGoals)}))
-      })
-      .catch(err => console.log("USERGOALS ERROR: ", err))
+      axios
+        .get(`/api/userGoals/${state.currentUser.id}`)
+        .then(userGoals => {
+          setState(state => ({ ...state, currentUserGoals: userGoals.data }));
+          setState(state => ({
+            ...state,
+            currentUserWordCount: getUserWordCount(state.currentUserGoals)
+          }));
+          setState(state => ({
+            ...state,
+            level: updateUserLevelOnLogin(state.currentUserGoals)
+          }));
+        })
+        .catch(err => console.log("USERGOALS ERROR: ", err));
     }
   }, [state.currentUser]);
-
-
 
   //GET User SCORE
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
-    currentUserGoals.forEach(x => wordCount += x.answer.split(" ").length);
+    currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
     return wordCount;
   };
 
-//Set User SCORE
-    
-    const setUserWordCount = () => {
-      setState(state => ({
-        ...state,
-        currentUserWordCount: getUserWordCount(state.currentUserGoals)
-      }));
-    }
+  //Set User SCORE
 
+  const setUserWordCount = () => {
+    setState(state => ({
+      ...state,
+      currentUserWordCount: getUserWordCount(state.currentUserGoals)
+    }));
+  };
 
   // set Answer
   const setAnswer = function(ans) {
     return Promise.resolve(
       setState(state => ({
-      ...state,
-      answer: ans
-    }))
-    )
+        ...state,
+        answer: ans
+      }))
+    );
   };
-
 
   // Adding new goal
   const addUserGoal = function(goalId, answer) {
-    const goal = {}
+    const goal = {};
     goal.user_id = state.currentUser.id;
     goal.answer = answer;
     goal.goal_id = goalId.goal_id;
@@ -84,11 +116,12 @@ export default function useApplicationData() {
       .post(`/api/userGoals`, goal)
       .then(result => {
         const newUserGoals = [...state.currentUserGoals, result.data];
-
+        console.log("NEWUSERGOALS: ", newUserGoals);
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
           currentUserWordCount: getUserWordCount(newUserGoals),
+          level: updateUserLevelOnEntry(newUserGoals),
           answer: ""
         }));
       })
@@ -119,7 +152,7 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    setState({ ...state, currentUser: user_data })
+    setState({ ...state, currentUser: user_data });
   };
 
   // reset user state
@@ -210,6 +243,8 @@ export default function useApplicationData() {
       );
     }
   };
+
+
 
   const getBio = (biodatas, currentUser) => {
     if (!biodatas === null) {
