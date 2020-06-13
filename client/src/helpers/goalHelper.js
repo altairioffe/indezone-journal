@@ -15,6 +15,25 @@ export function checkCompliance(userGoals) {
 
 }
 
+export function confirmNoPostsToday(userGoals) {
+
+  if (moment(userGoals[0].createdAt).isAfter(moment().startOf('day'))) {
+    return false
+  } else return true
+
+}
+
+//Return true on submitting new entry if this is the first post of the day,
+
+export function checkIfFirstPostToday(userGoals) {
+  if (moment(userGoals[1].createdAt).isBefore(moment().startOf('day'))) {
+  console.log("FROM HELPER CHECKER: ", userGoals[1].createdAt)
+    return true
+  } else return false
+}
+
+
+
 
 // function getCurrentUserGoals(userGoals, goals, userId) {
 //     return [...userGoals]
