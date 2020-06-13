@@ -7,9 +7,7 @@ import QuestionList from "./QuestionList";
 import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
-import {
-  Container
-} from "@material-ui/core";
+import { Container } from "@material-ui/core";
 
 export default function Application() {
   const {
@@ -27,10 +25,8 @@ export default function Application() {
   } = useApplicationData();
   console.log("------ state ------\n", state);
 
-
   const questions = [...state.goals];
- 
-  
+
   return (
     <Container className="layout">
       <Navbar
@@ -64,16 +60,15 @@ export default function Application() {
             addUserGoal={addUserGoal}
             goals={state.goals}
             currentUserId={state.currentUser}
-            answeredGoals={answeredGoals(state.currentUserGoals, state.currentUser)}
+            answeredGoals={answeredGoals(
+              state.currentUserGoals,
+              state.currentUser
+            )}
           />
           <div>
-          {state.currentUserGoals.length >= 1 && (
-            <Wall
-              userGoals={state.currentUserGoals}
-              goals={state.goals}
-
-            />
-          )}
+            {state.currentUserGoals.length >= 1 && (
+              <Wall userGoals={state.currentUserGoals} goals={state.goals} />
+            )}
           </div>
         </section>
       )}

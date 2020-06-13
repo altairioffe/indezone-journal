@@ -1,4 +1,4 @@
- /* 
+/* 
   props:
    username:String
    Level:Integer
@@ -6,12 +6,12 @@
 */
 
 import React from "react";
-import "./Profile.scss"
+import "./Profile.scss";
 
-export default function UserBio(props){
-
-
+export default function UserBio(props) {
   return (
-    <h4 className="">Score: <strong style={{color:"red"}}>{props.level}</strong></h4>
+    <h4 className="">
+      Score: <strong style={{ color: "red" }}>{props.level}</strong>
+    </h4>
   );
 }

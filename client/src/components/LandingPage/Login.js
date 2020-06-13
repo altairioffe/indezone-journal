@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -19,8 +19,7 @@ import CustomInput from "../CustomInput/CustomInput.js";
 import { Button } from "@material-ui/core";
 
 export default function Login(props) {
-
-  const [credentials, setCredentials] = useState({email: "", password: ""});
+  const [credentials, setCredentials] = useState({ email: "", password: "" });
 
   const useStyles = makeStyles({
     root: {
@@ -40,8 +39,8 @@ export default function Login(props) {
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
-          <Card className={classes.card} >
-            <form className={classes.form} onSubmit={data =>console.log(data)}>
+          <Card className={classes.card}>
+            <form className={classes.form} onSubmit={data => console.log(data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Log In</h4>
               </CardHeader>
@@ -58,7 +57,12 @@ export default function Login(props) {
                   inputProps={{
                     value: credentials.email,
                     type: "email",
-                    onChange: function(e){ setCredentials({email: e.target.value, password: credentials.password})},
+                    onChange: function(e) {
+                      setCredentials({
+                        email: e.target.value,
+                        password: credentials.password
+                      });
+                    },
                     endAdornment: (
                       <InputAdornment position="end">
                         <Email className={classes.inputIconsColor} />
@@ -74,7 +78,12 @@ export default function Login(props) {
                   }}
                   inputProps={{
                     type: "password",
-                    onChange: function(e) {setCredentials({email: credentials.email, password: e.target.value})},
+                    onChange: function(e) {
+                      setCredentials({
+                        email: credentials.email,
+                        password: e.target.value
+                      });
+                    },
                     endAdornment: (
                       <InputAdornment position="end">
                         <Icon className={classes.inputIconsColor}>
@@ -88,7 +97,13 @@ export default function Login(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={()=> props.loginHandler(credentials.email, credentials.password, props.loginCallback)}
+                  onClick={() =>
+                    props.loginHandler(
+                      credentials.email,
+                      credentials.password,
+                      props.loginCallback
+                    )
+                  }
                   simple="true"
                   color="primary"
                   size="large">

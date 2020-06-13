@@ -1,39 +1,46 @@
-import moment from 'moment';
+import moment from "moment";
 
 export function checkCompliance(userGoals) {
   // check if most recent entry before today was within 24 hours
 
-  console.log("STAET OF TODAY: ", moment(moment().subtract(24, 'minutes')).isBetween(moment().subtract(24, 'hours'), moment().startOf('minute')))
+  console.log(
+    "STAET OF TODAY: ",
+    moment(moment().subtract(24, "minutes")).isBetween(
+      moment().subtract(24, "hours"),
+      moment().startOf("minute")
+    )
+  );
 
-  let compliant = false
+  let compliant = false;
   userGoals.forEach(x => {
-    if (moment(x.createdAt).isBetween(moment().startOf('day').subtract(24, 'hours'), moment().startOf('day')) ){
-      return compliant = true
-  }} )
-  return compliant
- 
-
+    if (
+      moment(x.createdAt).isBetween(
+        moment()
+          .startOf("day")
+          .subtract(24, "hours"),
+        moment().startOf("day")
+      )
+    ) {
+      return (compliant = true);
+    }
+  });
+  return compliant;
 }
 
 export function confirmNoPostsToday(userGoals) {
-
-  if (moment(userGoals[0].createdAt).isAfter(moment().startOf('day'))) {
-    return false
-  } else return true
-
+  if (moment(userGoals[0].createdAt).isAfter(moment().startOf("day"))) {
+    return false;
+  } else return true;
 }
 
 //Return true on submitting new entry if this is the first post of the day,
 
 export function checkIfFirstPostToday(userGoals) {
-  if (moment(userGoals[1].createdAt).isBefore(moment().startOf('day'))) {
-  console.log("FROM HELPER CHECKER: ", userGoals[1].createdAt)
-    return true
-  } else return false
+  if (moment(userGoals[1].createdAt).isBefore(moment().startOf("day"))) {
+    console.log("FROM HELPER CHECKER: ", userGoals[1].createdAt);
+    return true;
+  } else return false;
 }
-
-
-
 
 // function getCurrentUserGoals(userGoals, goals, userId) {
 //     return [...userGoals]
@@ -45,7 +52,7 @@ export function checkIfFirstPostToday(userGoals) {
 //         id: userGoal.id,
 //         question: question,
 //         answer: userGoal.answer,
-//         createdAt: moment(userGoal.createdAt).format('LLLL'),  // Formatted date 
+//         createdAt: moment(userGoal.createdAt).format('LLLL'),  // Formatted date
 //       }
 //     });
 // };
