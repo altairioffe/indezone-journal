@@ -30,7 +30,7 @@ export default function useApplicationData() {
       .catch(err => err.message);
   }, []);
 
-  //get user Level
+  //reduce userLevel on login if not compliant
   const updateUserLevelOnLogin = userGoals => {
     if (state.level > 1 && !checkCompliance(userGoals)) {
       return state.level - 1;
@@ -43,9 +43,10 @@ export default function useApplicationData() {
   };
 
   /*
-  - on load: if no post yesterday & no post today, reduce level
-  - if first post of the day, increase level, update level in db & state
-
+  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
+  - on login: if no post yesterday BUT post has already been made previously today, no change to level
+  - on submit: if first post of the day, increase level, update level in db & state
+  - on submit: if NOT first post of the day, no change to level
 */
 
   const updateUserLevelOnEntry = userGoals => {
@@ -242,6 +243,8 @@ export default function useApplicationData() {
       );
     }
   };
+
+
 
   const getBio = (biodatas, currentUser) => {
     if (!biodatas === null) {
