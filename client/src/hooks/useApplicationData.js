@@ -30,8 +30,6 @@ export default function useApplicationData() {
       .catch(err => err.message);
   }, []);
 
-
-
   /*
   - on login: if no post yesterday & no post today, reduce level by 1, update state & db
   - on login: if no post yesterday BUT post has already been made previously today, no change to level
@@ -39,11 +37,10 @@ export default function useApplicationData() {
   - on submit: if NOT first post of the day, no change to level
 */
 
-// Axios PUT to update db Level
-const levelHandler = (userId, newUserLevel) => {
-
-  return Promise.resolve(
-    axios
+  // Axios PUT to update db Level
+  const levelHandler = (userId, newUserLevel) => {
+    return Promise.resolve(
+     axios
       .put(`api/users/${userId}`, {
         points: newUserLevel
       })
@@ -54,16 +51,15 @@ const levelHandler = (userId, newUserLevel) => {
       )
       .then(() => console.log("LEVEL UPDATE COMPLETE."))
       .catch(err => console.log(err))
-  );
-};
-
+    )
+  };
 
   //reduce userLevel on login if not compliant
   const updateUserLevelOnLogin = userGoals => {
-    let currentLevel = state.level
+    let currentLevel = state.level;
 
     if (currentLevel > 1 && !checkCompliance(userGoals)) {
-      return levelHandler(currentUser.id, currentLevel - 1);
+       levelHandler(state.currentUser.id, currentLevel - 1);
     } else {
       return currentLevel;
     }
@@ -72,23 +68,20 @@ const levelHandler = (userId, newUserLevel) => {
     // }
   };
 
-
   const updateUserLevelOnEntry = userGoals => {
     console.log("CHECK FURST POST: ", checkIfFirstPostToday(userGoals));
 
-    let currentLevel = state.level
+    let currentLevel = state.level;
     if (checkIfFirstPostToday(userGoals)) {
-      return levelHandler(currentUser.id, currentLevel + 1);
+       levelHandler(state.currentUser.id, currentLevel + 1);
     } else {
       return currentLevel;
     }
   };
 
-
-
   //Set current user goals
   useEffect(() => {
-    console.log("-----------STATE--------------", state);
+    console.log("--------USEEFFECT---STATE--------------", state);
 
     if (state.currentUser != null) {
       axios
@@ -144,15 +137,16 @@ const levelHandler = (userId, newUserLevel) => {
       .post(`/api/userGoals`, goal)
       .then(result => {
         const newUserGoals = [...state.currentUserGoals, result.data];
-        console.log("NEWUSERGOALS: ", newUserGoals);
+        console.log("NEWUSERGOALS: ", updateUserLevelOnEntry(newUserGoals));
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
           currentUserWordCount: getUserWordCount(newUserGoals),
-          level: updateUserLevelOnEntry(newUserGoals),
-          answer: ""
+          level: updateUserLevelOnEntry(newUserGoals)
         }));
       })
+      .then(() => console.log("STATE AFTER LEVEL UPDATE: ", state))
+
       .catch(err => console.log("error: ", err));
   };
 
@@ -239,6 +233,7 @@ const levelHandler = (userId, newUserLevel) => {
             return setCurrentUser(response.data);
           })
           .then(() => loginCallback())
+          .then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
           )
@@ -271,9 +266,6 @@ const levelHandler = (userId, newUserLevel) => {
       );
     }
   };
-
-
-  
 
   const getBio = (biodatas, currentUser) => {
     if (!biodatas === null) {
