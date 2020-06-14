@@ -30,33 +30,61 @@ export default function useApplicationData() {
       .catch(err => err.message);
   }, []);
 
+
+
+  /*
+  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
+  - on login: if no post yesterday BUT post has already been made previously today, no change to level
+  - on submit: if first post of the day, increase level in db then in state
+  - on submit: if NOT first post of the day, no change to level
+*/
+
+// Axios PUT to update db Level
+const levelHandler = (userId, newUserLevel) => {
+
+  return Promise.resolve(
+    axios
+      .put(`api/users/${userId}`, {
+        points: newUserLevel
+      })
+      .then(response =>
+        response
+          ? console.log("LEVEL UP RESPONSE: ", response)
+          : console.log("LEVEL UPDATE RESPONSE ERROR: ", response)
+      )
+      .then(() => console.log("LEVEL UPDATE COMPLETE."))
+      .catch(err => console.log(err))
+  );
+};
+
+
   //reduce userLevel on login if not compliant
   const updateUserLevelOnLogin = userGoals => {
-    if (state.level > 1 && !checkCompliance(userGoals)) {
-      return state.level - 1;
+    let currentLevel = state.level
+
+    if (currentLevel > 1 && !checkCompliance(userGoals)) {
+      return levelHandler(currentUser.id, currentLevel - 1);
     } else {
-      return state.level;
+      return currentLevel;
     }
     // else if (state.level <10 && checkCompliance(userGoals)) {
     //   return state.level += 1
     // }
   };
 
-  /*
-  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
-  - on login: if no post yesterday BUT post has already been made previously today, no change to level
-  - on submit: if first post of the day, increase level, update level in db & state
-  - on submit: if NOT first post of the day, no change to level
-*/
 
   const updateUserLevelOnEntry = userGoals => {
     console.log("CHECK FURST POST: ", checkIfFirstPostToday(userGoals));
+
+    let currentLevel = state.level
     if (checkIfFirstPostToday(userGoals)) {
-      return state.level + 1;
+      return levelHandler(currentUser.id, currentLevel + 1);
     } else {
-      return state.level;
+      return currentLevel;
     }
   };
+
+
 
   //Set current user goals
   useEffect(() => {
@@ -245,6 +273,7 @@ export default function useApplicationData() {
   };
 
 
+  
 
   const getBio = (biodatas, currentUser) => {
     if (!biodatas === null) {
