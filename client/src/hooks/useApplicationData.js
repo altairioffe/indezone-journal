@@ -44,10 +44,10 @@ export default function useApplicationData() {
     )
       .then(response => {
         console.log("LEVEL UP RESPONSE: ", response);
-        return response.data.points;
+        //return response.data.points;
       })
       //Set State using response from DB
-      .then(() => console.log("DB LEVEL UPDATE COMPLETE."))
+    //  .then(() => console.log("DB LEVEL UPDATE COMPLETE."))
       .then(() => {
         setState(state => ({
           ...state,
@@ -63,7 +63,7 @@ export default function useApplicationData() {
     let currentLevel = state.level;
 
     if (currentLevel > 1 && !checkCompliance(userGoals)) {
-      levelHandler(state.currentUser.id, currentLevel - 1);
+      return levelHandler(state.currentUser.id, currentLevel - 1);
     } else {
       return currentLevel;
     }
@@ -97,12 +97,12 @@ export default function useApplicationData() {
             ...state,
             currentUserWordCount: getUserWordCount(state.currentUserGoals)
           }));
-          setState(state => ({
-            ...state,
-            level: updateUserLevelOnLogin(state.currentUserGoals)
-          }));
         })
         .catch(err => console.log("USERGOALS ERROR: ", err));
+        // setState(state => ({
+        //   ...state,
+        //   level: updateUserLevelOnLogin(state.currentUserGoals)
+        // }));
     }
   }, [state.currentUser]);
 
@@ -213,7 +213,7 @@ export default function useApplicationData() {
             return setCurrentUser(response.data);
           })
           .then(() => loginCallback())
-          //.then(() => updateUserLevelOnLogin(state.currentUserGoals))
+          .then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
           )
