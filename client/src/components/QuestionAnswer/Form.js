@@ -39,6 +39,11 @@ export default function Form(props) {
           fullWidth
           variant="filled"
           InputLabelProps={labelText[1]}
+          onFocus={() => {setLabelText([
+            "Write a few lines...",
+            { style: { color: "#00A8E0" } }
+          ])
+        }}
           inputProps={{
             value: ans,
             type: "email",
