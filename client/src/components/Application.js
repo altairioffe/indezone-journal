@@ -34,7 +34,7 @@ export default function Application() {
         logInUser={data => console.log(data)}
         logoutUser={logOutUser}
         user={state.currentUser}
-        level={state.currentUserWordCount}
+        level={state.level}
         registrationHandler={registrationHandler}
         loginHandler={loginHandler}
       />
@@ -44,7 +44,7 @@ export default function Application() {
           <br />
           <Bio
             bio={getBio(state.biodatas, state.currentUser)}
-            level={state.currentUserWordCount}
+            level={state.level}
             requestInsight={requestInsight}
             currentUserGoals={state.currentUserGoals}
             userInsight={state.currentUserInsight}
