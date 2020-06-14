@@ -28,7 +28,7 @@ export default function Wall(props) {
   });
 
   return (
-    <div class="timeline">
+    <div className="timeline">
       <Timeline lineStyle={styles.lineStyle}>{userGoalsView}</Timeline>
     </div>
   );
