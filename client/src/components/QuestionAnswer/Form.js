@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 export default function Form(props) {
   const [ans, setAns] = useState("");
@@ -52,6 +54,7 @@ export default function Form(props) {
             }
           }}
         />
+         <Tooltip title={ans.length > 0 && ans.length < 100 ? "You'll get more out of this with a longer, thoughful entry. Reflect on why your answer is important to you and write it down!" : ""} arrow>
         <Button
           // className={classes.root}
           variant="outlined"
@@ -79,6 +82,7 @@ export default function Form(props) {
           }}>
           Answer
         </Button>
+        </Tooltip>
       </form>
     </main>
   );
