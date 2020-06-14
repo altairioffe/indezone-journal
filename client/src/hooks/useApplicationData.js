@@ -14,12 +14,9 @@ export default function useApplicationData() {
     level: 1
   });
 
+  
   useEffect(() => {
-    Promise.all([
-      axios.get("/api/goals"),
-      axios.get("/api/biodatas"),
-      axios.get("/api/users")
-    ])
+    Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         setState(state => ({
           ...state,
@@ -39,19 +36,26 @@ export default function useApplicationData() {
 
   // Axios PUT to update db Level
   const levelHandler = (userId, newUserLevel) => {
+    //Set DB
     return Promise.resolve(
-     axios
-      .put(`api/users/${userId}`, {
+      axios.put(`api/users/${userId}`, {
         points: newUserLevel
       })
-      .then(response =>
-        response
-          ? console.log("LEVEL UP RESPONSE: ", response)
-          : console.log("LEVEL UPDATE RESPONSE ERROR: ", response)
-      )
-      .then(() => console.log("LEVEL UPDATE COMPLETE."))
-      .catch(err => console.log(err))
     )
+      .then(response => {
+        console.log("LEVEL UP RESPONSE: ", response);
+        return response.data.points;
+      })
+      //Set State using response from DB
+      .then(() => console.log("DB LEVEL UPDATE COMPLETE."))
+      .then(() => {
+        setState(state => ({
+          ...state,
+          level: newUserLevel
+        }));
+      })
+      .then(() => console.log("STATE LEVEL UPDATE COMPLETE: ", state.level))
+      .catch(err => console.log(err));
   };
 
   //reduce userLevel on login if not compliant
@@ -59,7 +63,7 @@ export default function useApplicationData() {
     let currentLevel = state.level;
 
     if (currentLevel > 1 && !checkCompliance(userGoals)) {
-       levelHandler(state.currentUser.id, currentLevel - 1);
+      levelHandler(state.currentUser.id, currentLevel - 1);
     } else {
       return currentLevel;
     }
@@ -73,13 +77,14 @@ export default function useApplicationData() {
 
     let currentLevel = state.level;
     if (checkIfFirstPostToday(userGoals)) {
-       levelHandler(state.currentUser.id, currentLevel + 1);
+      console.log(levelHandler(state.currentUser.id, currentLevel + 1));
+      return levelHandler(state.currentUser.id, currentLevel + 1);
     } else {
       return currentLevel;
     }
   };
 
-  //Set current user goals
+  //Set current user goals on login
   useEffect(() => {
     console.log("--------USEEFFECT---STATE--------------", state);
 
@@ -101,14 +106,14 @@ export default function useApplicationData() {
     }
   }, [state.currentUser]);
 
-  //GET User SCORE
+  //GET User wordcount
   const getUserWordCount = currentUserGoals => {
     let wordCount = 0;
     currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
     return wordCount;
   };
 
-  //Set User SCORE
+  //Set User wordcount
 
   const setUserWordCount = () => {
     setState(state => ({
@@ -137,17 +142,16 @@ export default function useApplicationData() {
       .post(`/api/userGoals`, goal)
       .then(result => {
         const newUserGoals = [...state.currentUserGoals, result.data];
-        console.log("NEWUSERGOALS: ", updateUserLevelOnEntry(newUserGoals));
+       // console.log("NEWUSERGOALS: ", updateUserLevelOnEntry(newUserGoals));
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
-          currentUserWordCount: getUserWordCount(newUserGoals),
-          level: updateUserLevelOnEntry(newUserGoals)
-        }));
+          currentUserWordCount: getUserWordCount(newUserGoals)
+        }))
+        updateUserLevelOnEntry(newUserGoals)
       })
-      .then(() => console.log("STATE AFTER LEVEL UPDATE: ", state))
-
       .catch(err => console.log("error: ", err));
+      console.log("STATE AFTER LEVEL UPDATE: ", state)
   };
 
   const ansQuestion = (answer, goal_id, user_id) => {
@@ -174,33 +178,9 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    setState({ ...state, currentUser: user_data });
+    setState({ ...state, currentUser: user_data, level: user_data.points || 1 });
   };
 
-  // reset user state
-  const logOutUser = () => {
-    setState({
-      ...state,
-      currentUser: null
-    });
-    return state.currentUser;
-  };
-
-  const setInsight = currentUserInsight =>
-    setState({ ...state, currentUserInsight });
-
-  const requestInsight = currentUserGoals => {
-    return Promise.resolve(
-      axios
-        .post("/api/userInsight", {
-          body: currentUserGoals
-        })
-        .then(response => {
-          setInsight(response.data);
-        })
-        .catch(err => console.log(err))
-    );
-  };
 
   const getUserGoals = userId => {
     return Promise.resolve(
@@ -233,7 +213,7 @@ export default function useApplicationData() {
             return setCurrentUser(response.data);
           })
           .then(() => loginCallback())
-          .then(() => updateUserLevelOnLogin(state.currentUserGoals))
+          //.then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
             console.log("-----------------NEXT STATE------------------ ", state)
           )
@@ -273,6 +253,31 @@ export default function useApplicationData() {
       console.log("BIO: ", bio);
       return bio[0].text;
     }
+  };
+  
+  // log out & reset user state
+  const logOutUser = () => {
+    setState({
+      ...state,
+      currentUser: null
+    });
+    return state.currentUser;
+  };
+
+  const setInsight = currentUserInsight =>
+    setState({ ...state, currentUserInsight });
+
+  const requestInsight = currentUserGoals => {
+    return Promise.resolve(
+      axios
+        .post("/api/userInsight", {
+          body: currentUserGoals
+        })
+        .then(response => {
+          setInsight(response.data);
+        })
+        .catch(err => console.log(err))
+    );
   };
 
   return {

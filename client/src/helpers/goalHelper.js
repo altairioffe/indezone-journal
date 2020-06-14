@@ -3,27 +3,29 @@ import moment from "moment";
 export function checkCompliance(userGoals) {
   // check if most recent entry before today was within 24 hours
 
-  console.log(
-    "STAET OF TODAY: ",
-    moment(moment().subtract(24, "minutes")).isBetween(
-      moment().subtract(24, "hours"),
-      moment().startOf("minute")
-    )
-  );
+  // console.log(
+  //   "STAET OF TODAY: ",
+  //   moment(moment().subtract(24, "minutes")).isBetween(
+  //     moment().subtract(24, "hours"),
+  //     moment().startOf("minute")
+  //   )
+  // );
 
   let compliant = false;
-  userGoals.forEach(x => {
-    if (
-      moment(x.createdAt).isBetween(
-        moment()
-          .startOf("day")
-          .subtract(24, "hours"),
-        moment().startOf("day")
-      )
-    ) {
-      return (compliant = true);
-    }
-  });
+  if (userGoals.length >= 1) {
+    userGoals.forEach(x => {
+      if (
+        moment(x.createdAt).isBetween(
+          moment()
+            .startOf("day")
+            .subtract(24, "hours"),
+          moment().startOf("day")
+        )
+      ) {
+        return (compliant = true);
+      }
+    });
+  }
   return compliant;
 }
 
@@ -36,11 +38,14 @@ export function confirmNoPostsToday(userGoals) {
 //Return true on submitting new entry if this is the first post of the day,
 
 export function checkIfFirstPostToday(userGoals) {
-  if (userGoals[1] && moment(userGoals[1].createdAt).isBefore(moment().startOf("day"))) {
+  if (
+    userGoals.length > 1 &&
+    moment(userGoals[1].createdAt).isBefore(moment().startOf("day"))
+  ) {
     console.log("FROM HELPER CHECKER: ", userGoals[1].createdAt);
     return true;
-  } else if ( userGoals.length <= 1 ) {
-    return true
+  } else if (userGoals.length <= 1) {
+    return true;
   } else return false;
 }
 
