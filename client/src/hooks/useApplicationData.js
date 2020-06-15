@@ -1,6 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { checkCompliance, checkIfFirstPostToday, randomizeQuestions } from "../helpers/userHelper";
+import {
+  checkCompliance,
+  checkIfFirstPostToday,
+  randomizeQuestions,
+  getBio,
+  getUserWordCount
+} from "../helpers/userHelper";
+
+/*
+  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
+  - on login: if no post yesterday BUT post has already been made previously today, no change to level
+  - on submit: if first post of the day, increase level in db then in state
+  - on submit: if NOT first post of the day, no change to level
+*/
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -14,11 +27,8 @@ export default function useApplicationData() {
     level: 1
   });
 
-
   useEffect(() => {
-    console.log(
-      "USEEFFECT RUNNING"
-    )
+    console.log("USEEFFECT RUNNING");
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         setState(state => ({
@@ -30,15 +40,6 @@ export default function useApplicationData() {
       .catch(err => err.message);
   }, []);
 
-
-
-  /*
-  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
-  - on login: if no post yesterday BUT post has already been made previously today, no change to level
-  - on submit: if first post of the day, increase level in db then in state
-  - on submit: if NOT first post of the day, no change to level
-*/
-
   // Axios PUT to update db Level
   const levelHandler = (userId, newUserLevel) => {
     //Set DB
@@ -48,10 +49,6 @@ export default function useApplicationData() {
           points: newUserLevel
         })
       )
-        .then(response => {
-          console.log("LEVEL UP RESPONSE: ", response);
-          //return response.data.points;
-        })
         //Set State using response from DB
         .then(() => {
           setState(state => ({
@@ -104,13 +101,6 @@ export default function useApplicationData() {
     }
   }, [state.currentUser]);
 
-  //GET User wordcount
-  const getUserWordCount = currentUserGoals => {
-    let wordCount = 0;
-    currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
-    return wordCount;
-  };
-
   //Set User wordcount
   const setUserWordCount = () => {
     setState(state => ({
@@ -139,7 +129,6 @@ export default function useApplicationData() {
       .post(`/api/userGoals`, goal)
       .then(result => {
         const newUserGoals = [...state.currentUserGoals, result.data];
-        // console.log("NEWUSERGOALS: ", updateUserLevelOnEntry(newUserGoals));
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
@@ -182,21 +171,6 @@ export default function useApplicationData() {
     });
   };
 
-  const getUserGoals = userId => {
-    return Promise.resolve(
-      axios
-        .get(`api/userGoals/${userId}`)
-        .then(userGoals => {
-          setState({
-            ...state,
-            currentUserGoals: [{ ...userGoals }, ...state.currentUserGoals]
-          });
-          return state.currentUserGoals;
-        })
-        .catch(err => console.log(err))
-    );
-  };
-
   const loginHandler = (email, password, loginCallback) => {
     if (email && password) {
       let data = {
@@ -214,7 +188,10 @@ export default function useApplicationData() {
           .then(() => loginCallback())
           .then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
-            console.log("----------------JUST LOGGED IN STATE------------------ ", state)
+            console.log(
+              "----------------JUST LOGGED IN STATE------------------ ",
+              state
+            )
           )
           .catch(err => console.log(err))
       );
@@ -229,7 +206,7 @@ export default function useApplicationData() {
         password: password,
         points: 0
       };
-      
+
       return Promise.resolve(
         axios
           .post("api/users", {
@@ -243,14 +220,6 @@ export default function useApplicationData() {
           .then(() => loginCallback())
           .catch(err => console.log(err))
       );
-    }
-  };
-
-  const getBio = (biodatas, currentUser) => {
-    if (!biodatas === null) {
-      let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
-      console.log("BIO: ", bio);
-      return bio[0].text;
     }
   };
 

@@ -60,6 +60,25 @@ export function randomizeQuestions(goals) {
 };
 
 
+  //GET User wordcount
+  export function getUserWordCount(currentUserGoals) {
+    let wordCount = 0;
+    currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
+    return wordCount;
+  };
+
+
+
+
+export function getBio(bioData, currentUser){
+  if (!bioData === null) {
+    let bio = bioData.filter(biodata => biodata.user_id === currentUser);
+    console.log("BIO: ", bio);
+    return bio[0].text;
+  }
+};
+
+
 // function getCurrentUserGoals(userGoals, goals, userId) {
 //     return [...userGoals]
 //     .filter(userGoal => userGoal.user_id === userId)
