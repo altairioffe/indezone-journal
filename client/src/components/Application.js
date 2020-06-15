@@ -23,7 +23,7 @@ export default function Application() {
     getBio,
     setUserWordCount
   } = useApplicationData();
-  console.log("------ state ------\n", state);
+  console.log("------APPLICATION.JS state ------\n", state);
 
   return (
     <Container className="layout">

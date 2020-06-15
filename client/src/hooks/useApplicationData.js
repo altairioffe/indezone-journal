@@ -14,22 +14,25 @@ export default function useApplicationData() {
     level: 1
   });
 
-  const randomizedQuestions = goals => {
+  const randomizeQuestions = goals => {
     const questions = [...goals];
 
-    const randomizedQuestions = questions
+    const randomizeQuestions = questions
       .slice(1)
       .sort(x => 0.5 - Math.random());
-    randomizedQuestions.unshift(goals[0]);
-    return randomizedQuestions;
+    randomizeQuestions.unshift(goals[0]);
+    return randomizeQuestions;
   };
 
   useEffect(() => {
+    console.log(
+      "USEEFFECT RUNNING"
+    )
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         setState(state => ({
           ...state,
-          goals: randomizedQuestions(all[0].data),
+          goals: randomizeQuestions(all[0].data),
           biodatas: all[1].data
         }));
       })
@@ -175,8 +178,8 @@ export default function useApplicationData() {
         }));
         updateUserLevelOnEntry(newUserGoals);
       })
+      .then(() => console.log("STATE AFTER LEVEL UPDATE: ", state))
       .catch(err => console.log("error: ", err));
-    console.log("STATE AFTER LEVEL UPDATE: ", state);
   };
 
   const ansQuestion = (answer, goal_id, user_id) => {
@@ -243,7 +246,7 @@ export default function useApplicationData() {
           .then(() => loginCallback())
           .then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
-            console.log("-----------------NEXT STATE------------------ ", state)
+            console.log("----------------JUST LOGGED IN STATE------------------ ", state)
           )
           .catch(err => console.log(err))
       );
