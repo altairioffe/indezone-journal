@@ -49,6 +49,36 @@ export function checkIfFirstPostToday(userGoals) {
   } else return false;
 }
 
+export function randomizeQuestions(goals) {
+  const questions = [...goals];
+
+  const randomizeQuestions = questions
+    .slice(1)
+    .sort(x => 0.5 - Math.random());
+  randomizeQuestions.unshift(goals[0]);
+  return randomizeQuestions;
+};
+
+
+  //GET User wordcount
+  export function getUserWordCount(currentUserGoals) {
+    let wordCount = 0;
+    currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
+    return wordCount;
+  };
+
+
+
+
+export function getBio(bioData, currentUser){
+  if (!bioData === null) {
+    let bio = bioData.filter(biodata => biodata.user_id === currentUser);
+    console.log("BIO: ", bio);
+    return bio[0].text;
+  }
+};
+
+
 // function getCurrentUserGoals(userGoals, goals, userId) {
 //     return [...userGoals]
 //     .filter(userGoal => userGoal.user_id === userId)

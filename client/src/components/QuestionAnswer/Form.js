@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
+import Tooltip from '@material-ui/core/Tooltip';
+
 
 export default function Form(props) {
   const [ans, setAns] = useState("");
@@ -39,6 +41,11 @@ export default function Form(props) {
           fullWidth
           variant="filled"
           InputLabelProps={labelText[1]}
+          onFocus={() => {setLabelText([
+            "Write a few lines...",
+            { style: { color: "#00A8E0" } }
+          ])
+        }}
           inputProps={{
             value: ans,
             type: "email",
@@ -47,6 +54,7 @@ export default function Form(props) {
             }
           }}
         />
+         <Tooltip title={ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on a detailed answer to get better results" : ""} arrow>
         <Button
           // className={classes.root}
           variant="outlined"
@@ -74,6 +82,7 @@ export default function Form(props) {
           }}>
           Answer
         </Button>
+        </Tooltip>
       </form>
     </main>
   );

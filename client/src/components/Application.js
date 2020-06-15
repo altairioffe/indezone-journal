@@ -23,9 +23,7 @@ export default function Application() {
     getBio,
     setUserWordCount
   } = useApplicationData();
-  console.log("------ state ------\n", state);
-
-  const questions = [...state.goals];
+  console.log("------APPLICATION.JS state ------\n", state);
 
   return (
     <Container className="layout">
@@ -53,13 +51,14 @@ export default function Application() {
           <QuestionList
             ansQuestion={ansQuestion}
             level={state.level}
-            questions={questions}
+            questions={state.goals}
             currentUserGoals={state.currentUserGoals}
             setAnswer={setAnswer}
             answer={state.answer}
             addUserGoal={addUserGoal}
             goals={state.goals}
             currentUserId={state.currentUser}
+            randomizedQuestions={state.goals}
             answeredGoals={answeredGoals(
               state.currentUserGoals,
               state.currentUser

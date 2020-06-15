@@ -1,6 +1,19 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { checkCompliance, checkIfFirstPostToday } from "../helpers/goalHelper";
+import {
+  checkCompliance,
+  checkIfFirstPostToday,
+  randomizeQuestions,
+  getBio,
+  getUserWordCount
+} from "../helpers/userHelper";
+
+/*
+  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
+  - on login: if no post yesterday BUT post has already been made previously today, no change to level
+  - on submit: if first post of the day, increase level in db then in state
+  - on submit: if NOT first post of the day, no change to level
+*/
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -14,48 +27,37 @@ export default function useApplicationData() {
     level: 1
   });
 
-  
   useEffect(() => {
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         setState(state => ({
           ...state,
-          goals: all[0].data,
+          goals: randomizeQuestions(all[0].data),
           biodatas: all[1].data
         }));
       })
       .catch(err => err.message);
   }, []);
 
-  /*
-  - on login: if no post yesterday & no post today, reduce level by 1, update state & db
-  - on login: if no post yesterday BUT post has already been made previously today, no change to level
-  - on submit: if first post of the day, increase level in db then in state
-  - on submit: if NOT first post of the day, no change to level
-*/
-
   // Axios PUT to update db Level
   const levelHandler = (userId, newUserLevel) => {
     //Set DB
-    return Promise.resolve(
-      axios.put(`api/users/${userId}`, {
-        points: newUserLevel
-      })
-    )
-      .then(response => {
-        console.log("LEVEL UP RESPONSE: ", response);
-        //return response.data.points;
-      })
-      //Set State using response from DB
-    //  .then(() => console.log("DB LEVEL UPDATE COMPLETE."))
-      .then(() => {
-        setState(state => ({
-          ...state,
-          level: newUserLevel
-        }));
-      })
-      .then(() => console.log("STATE LEVEL UPDATE COMPLETE: ", state.level))
-      .catch(err => console.log(err));
+    return (
+      Promise.resolve(
+        axios.put(`api/users/${userId}`, {
+          points: newUserLevel
+        })
+      )
+        //Set State using response from DB
+        .then(() => {
+          setState(state => ({
+            ...state,
+            level: newUserLevel
+          }));
+        })
+        .then(() => console.log("STATE LEVEL UPDATE COMPLETE: ", state.level))
+        .catch(err => console.log(err))
+    );
   };
 
   //reduce userLevel on login if not compliant
@@ -67,17 +69,14 @@ export default function useApplicationData() {
     } else {
       return currentLevel;
     }
-    // else if (state.level <10 && checkCompliance(userGoals)) {
-    //   return state.level += 1
-    // }
   };
 
+  // increase user Level when submitting first post of the day
   const updateUserLevelOnEntry = userGoals => {
-    console.log("CHECK FURST POST: ", checkIfFirstPostToday(userGoals));
+    console.log("FIRST POST?: ", checkIfFirstPostToday(userGoals));
 
     let currentLevel = state.level;
-    if (checkIfFirstPostToday(userGoals)) {
-      console.log(levelHandler(state.currentUser.id, currentLevel + 1));
+    if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
       return levelHandler(state.currentUser.id, currentLevel + 1);
     } else {
       return currentLevel;
@@ -99,22 +98,10 @@ export default function useApplicationData() {
           }));
         })
         .catch(err => console.log("USERGOALS ERROR: ", err));
-        // setState(state => ({
-        //   ...state,
-        //   level: updateUserLevelOnLogin(state.currentUserGoals)
-        // }));
     }
   }, [state.currentUser]);
 
-  //GET User wordcount
-  const getUserWordCount = currentUserGoals => {
-    let wordCount = 0;
-    currentUserGoals.forEach(x => (wordCount += x.answer.split(" ").length));
-    return wordCount;
-  };
-
   //Set User wordcount
-
   const setUserWordCount = () => {
     setState(state => ({
       ...state,
@@ -132,7 +119,7 @@ export default function useApplicationData() {
     );
   };
 
-  // Adding new goal
+  // Add new entry
   const addUserGoal = function(goalId, answer) {
     const goal = {};
     goal.user_id = state.currentUser.id;
@@ -142,16 +129,15 @@ export default function useApplicationData() {
       .post(`/api/userGoals`, goal)
       .then(result => {
         const newUserGoals = [...state.currentUserGoals, result.data];
-       // console.log("NEWUSERGOALS: ", updateUserLevelOnEntry(newUserGoals));
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
           currentUserWordCount: getUserWordCount(newUserGoals)
-        }))
-        updateUserLevelOnEntry(newUserGoals)
+        }));
+        updateUserLevelOnEntry(newUserGoals);
       })
+      .then(() => console.log("STATE AFTER LEVEL UPDATE: ", state))
       .catch(err => console.log("error: ", err));
-      console.log("STATE AFTER LEVEL UPDATE: ", state)
   };
 
   const ansQuestion = (answer, goal_id, user_id) => {
@@ -178,23 +164,11 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    setState({ ...state, currentUser: user_data, level: user_data.points || 1 });
-  };
-
-
-  const getUserGoals = userId => {
-    return Promise.resolve(
-      axios
-        .get(`api/userGoals/${userId}`)
-        .then(userGoals => {
-          setState({
-            ...state,
-            currentUserGoals: [{ ...userGoals }, ...state.currentUserGoals]
-          });
-          return state.currentUserGoals;
-        })
-        .catch(err => console.log(err))
-    );
+    setState({
+      ...state,
+      currentUser: user_data,
+      level: user_data.points || 1
+    });
   };
 
   const loginHandler = (email, password, loginCallback) => {
@@ -203,7 +177,6 @@ export default function useApplicationData() {
         email: email,
         password: password
       };
-
       return Promise.resolve(
         axios
           .post("api/login", {
@@ -215,7 +188,10 @@ export default function useApplicationData() {
           .then(() => loginCallback())
           .then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
-            console.log("-----------------NEXT STATE------------------ ", state)
+            console.log(
+              "----------------JUST LOGGED IN STATE------------------ ",
+              state
+            )
           )
           .catch(err => console.log(err))
       );
@@ -236,25 +212,13 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(response =>
-            response
-              ? loginHandler(email, password, x => console.log(x))
-              : console.log("REGISTRATION LOGIN RESPONSE: ", response)
-          )
+          .then(() => loginHandler(email, password, x => console.log(x)))
           .then(() => loginCallback())
           .catch(err => console.log(err))
       );
     }
   };
 
-  const getBio = (biodatas, currentUser) => {
-    if (!biodatas === null) {
-      let bio = biodatas.filter(biodata => biodata.user_id === currentUser);
-      console.log("BIO: ", bio);
-      return bio[0].text;
-    }
-  };
-  
   // log out & reset user state
   const logOutUser = () => {
     setState({
