@@ -15,15 +15,13 @@ export default function useApplicationData() {
   });
 
   const randomizedQuestions = goals => {
+    const questions = [...goals];
 
-  const questions = [...goals];
-
-  const randomizedQuestions = questions
-  .slice(1)
-  .sort(x => 0.5 - Math.random());
-  randomizedQuestions.unshift(goals[0]);
-  return randomizedQuestions;
-
+    const randomizedQuestions = questions
+      .slice(1)
+      .sort(x => 0.5 - Math.random());
+    randomizedQuestions.unshift(goals[0]);
+    return randomizedQuestions;
   };
 
   useEffect(() => {

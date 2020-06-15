@@ -25,15 +25,6 @@ export default function Application() {
   } = useApplicationData();
   console.log("------ state ------\n", state);
 
-//   const questions = [...state.goals];
-
-//   const randomizedQuestions = questions
-//   .slice(1)
-//   .sort(x => 0.5 - Math.random());
-// randomizedQuestions.unshift(questions[0]);
-
-
-console.log("STATEOGGOALS: ", state.goals)
   return (
     <Container className="layout">
       <Navbar

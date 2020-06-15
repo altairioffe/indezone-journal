@@ -24,11 +24,7 @@ export default function QuestionFeed(props) {
 
   // console.log('questions answered today', props.answeredGoals)
 
-  const questions = props.questions
-  console.log("QUEESTIONS: ", questions)
-
-  let selectedQuestions = questions.slice(0, props.level);
-  
+  let selectedQuestions = props.questions.slice(0, props.level);
   let questionsArr = selectedQuestions.map(goal => {
     return {
       id: goal.id,
