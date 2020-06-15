@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { checkCompliance, checkIfFirstPostToday } from "../helpers/goalHelper";
+import { checkCompliance, checkIfFirstPostToday, randomizeQuestions } from "../helpers/userHelper";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -14,15 +14,6 @@ export default function useApplicationData() {
     level: 1
   });
 
-  const randomizeQuestions = goals => {
-    const questions = [...goals];
-
-    const randomizeQuestions = questions
-      .slice(1)
-      .sort(x => 0.5 - Math.random());
-    randomizeQuestions.unshift(goals[0]);
-    return randomizeQuestions;
-  };
 
   useEffect(() => {
     console.log(
@@ -39,19 +30,7 @@ export default function useApplicationData() {
       .catch(err => err.message);
   }, []);
 
-  // const setQuestions = () => {
 
-  //     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
-  //       .then(all => {
-  //         setState(state => ({
-  //           ...state,
-  //           goals: all[0].data,
-  //           biodatas: all[1].data
-  //         }));
-  //       })
-  //       .catch(err => err.message);
-
-  // }
 
   /*
   - on login: if no post yesterday & no post today, reduce level by 1, update state & db
@@ -104,7 +83,7 @@ export default function useApplicationData() {
     console.log("CHECK FURST POST: ", checkIfFirstPostToday(userGoals));
 
     let currentLevel = state.level;
-    if (checkIfFirstPostToday(userGoals)) {
+    if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
       console.log(levelHandler(state.currentUser.id, currentLevel + 1));
       return levelHandler(state.currentUser.id, currentLevel + 1);
     } else {

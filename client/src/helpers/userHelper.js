@@ -49,6 +49,17 @@ export function checkIfFirstPostToday(userGoals) {
   } else return false;
 }
 
+export function randomizeQuestions(goals) {
+  const questions = [...goals];
+
+  const randomizeQuestions = questions
+    .slice(1)
+    .sort(x => 0.5 - Math.random());
+  randomizeQuestions.unshift(goals[0]);
+  return randomizeQuestions;
+};
+
+
 // function getCurrentUserGoals(userGoals, goals, userId) {
 //     return [...userGoals]
 //     .filter(userGoal => userGoal.user_id === userId)
