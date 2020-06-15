@@ -28,7 +28,6 @@ export default function useApplicationData() {
   });
 
   useEffect(() => {
-    console.log("USEEFFECT RUNNING");
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         setState(state => ({
@@ -72,8 +71,9 @@ export default function useApplicationData() {
     }
   };
 
+  // increase user Level when submitting first post of the day
   const updateUserLevelOnEntry = userGoals => {
-    console.log("CHECK FURST POST: ", checkIfFirstPostToday(userGoals));
+    console.log("FIRST POST?: ", checkIfFirstPostToday(userGoals));
 
     let currentLevel = state.level;
     if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
@@ -119,7 +119,7 @@ export default function useApplicationData() {
     );
   };
 
-  // Adding new goal
+  // Add new entry
   const addUserGoal = function(goalId, answer) {
     const goal = {};
     goal.user_id = state.currentUser.id;
@@ -212,11 +212,7 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(response =>
-            response
-              ? loginHandler(email, password, x => console.log(x))
-              : console.log("REGISTRATION LOGIN RESPONSE: ", response)
-          )
+          .then(() => loginHandler(email, password, x => console.log(x)))
           .then(() => loginCallback())
           .catch(err => console.log(err))
       );
