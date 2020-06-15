@@ -25,8 +25,15 @@ export default function Application() {
   } = useApplicationData();
   console.log("------ state ------\n", state);
 
-  const questions = [...state.goals];
+//   const questions = [...state.goals];
 
+//   const randomizedQuestions = questions
+//   .slice(1)
+//   .sort(x => 0.5 - Math.random());
+// randomizedQuestions.unshift(questions[0]);
+
+
+console.log("STATEOGGOALS: ", state.goals)
   return (
     <Container className="layout">
       <Navbar
@@ -53,13 +60,14 @@ export default function Application() {
           <QuestionList
             ansQuestion={ansQuestion}
             level={state.level}
-            questions={questions}
+            questions={state.goals}
             currentUserGoals={state.currentUserGoals}
             setAnswer={setAnswer}
             answer={state.answer}
             addUserGoal={addUserGoal}
             goals={state.goals}
             currentUserId={state.currentUser}
+            randomizedQuestions={state.goals}
             answeredGoals={answeredGoals(
               state.currentUserGoals,
               state.currentUser

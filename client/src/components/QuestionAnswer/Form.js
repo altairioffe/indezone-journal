@@ -54,7 +54,7 @@ export default function Form(props) {
             }
           }}
         />
-         <Tooltip title={ans.length > 0 && ans.length < 100 ? "You'll get more out of this with a longer, thoughful entry. Reflect on why your answer is important to you and write it down!" : ""} arrow>
+         <Tooltip title={ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on a detailed answer to get better results" : ""} arrow>
         <Button
           // className={classes.root}
           variant="outlined"

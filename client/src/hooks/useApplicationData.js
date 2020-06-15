@@ -14,18 +14,43 @@ export default function useApplicationData() {
     level: 1
   });
 
-  
+  const randomizedQuestions = goals => {
+
+  const questions = [...goals];
+
+  const randomizedQuestions = questions
+  .slice(1)
+  .sort(x => 0.5 - Math.random());
+  randomizedQuestions.unshift(goals[0]);
+  return randomizedQuestions;
+
+  };
+
   useEffect(() => {
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         setState(state => ({
           ...state,
-          goals: all[0].data,
+          goals: randomizedQuestions(all[0].data),
           biodatas: all[1].data
         }));
       })
       .catch(err => err.message);
   }, []);
+
+  // const setQuestions = () => {
+
+  //     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
+  //       .then(all => {
+  //         setState(state => ({
+  //           ...state,
+  //           goals: all[0].data,
+  //           biodatas: all[1].data
+  //         }));
+  //       })
+  //       .catch(err => err.message);
+
+  // }
 
   /*
   - on login: if no post yesterday & no post today, reduce level by 1, update state & db
@@ -37,25 +62,27 @@ export default function useApplicationData() {
   // Axios PUT to update db Level
   const levelHandler = (userId, newUserLevel) => {
     //Set DB
-    return Promise.resolve(
-      axios.put(`api/users/${userId}`, {
-        points: newUserLevel
-      })
-    )
-      .then(response => {
-        console.log("LEVEL UP RESPONSE: ", response);
-        //return response.data.points;
-      })
-      //Set State using response from DB
-    //  .then(() => console.log("DB LEVEL UPDATE COMPLETE."))
-      .then(() => {
-        setState(state => ({
-          ...state,
-          level: newUserLevel
-        }));
-      })
-      .then(() => console.log("STATE LEVEL UPDATE COMPLETE: ", state.level))
-      .catch(err => console.log(err));
+    return (
+      Promise.resolve(
+        axios.put(`api/users/${userId}`, {
+          points: newUserLevel
+        })
+      )
+        .then(response => {
+          console.log("LEVEL UP RESPONSE: ", response);
+          //return response.data.points;
+        })
+        //Set State using response from DB
+        //  .then(() => console.log("DB LEVEL UPDATE COMPLETE."))
+        .then(() => {
+          setState(state => ({
+            ...state,
+            level: newUserLevel
+          }));
+        })
+        .then(() => console.log("STATE LEVEL UPDATE COMPLETE: ", state.level))
+        .catch(err => console.log(err))
+    );
   };
 
   //reduce userLevel on login if not compliant
@@ -99,10 +126,10 @@ export default function useApplicationData() {
           }));
         })
         .catch(err => console.log("USERGOALS ERROR: ", err));
-        // setState(state => ({
-        //   ...state,
-        //   level: updateUserLevelOnLogin(state.currentUserGoals)
-        // }));
+      // setState(state => ({
+      //   ...state,
+      //   level: updateUserLevelOnLogin(state.currentUserGoals)
+      // }));
     }
   }, [state.currentUser]);
 
@@ -142,16 +169,16 @@ export default function useApplicationData() {
       .post(`/api/userGoals`, goal)
       .then(result => {
         const newUserGoals = [...state.currentUserGoals, result.data];
-       // console.log("NEWUSERGOALS: ", updateUserLevelOnEntry(newUserGoals));
+        // console.log("NEWUSERGOALS: ", updateUserLevelOnEntry(newUserGoals));
         setState(state => ({
           ...state,
           currentUserGoals: newUserGoals,
           currentUserWordCount: getUserWordCount(newUserGoals)
-        }))
-        updateUserLevelOnEntry(newUserGoals)
+        }));
+        updateUserLevelOnEntry(newUserGoals);
       })
       .catch(err => console.log("error: ", err));
-      console.log("STATE AFTER LEVEL UPDATE: ", state)
+    console.log("STATE AFTER LEVEL UPDATE: ", state);
   };
 
   const ansQuestion = (answer, goal_id, user_id) => {
@@ -178,9 +205,12 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    setState({ ...state, currentUser: user_data, level: user_data.points || 1 });
+    setState({
+      ...state,
+      currentUser: user_data,
+      level: user_data.points || 1
+    });
   };
-
 
   const getUserGoals = userId => {
     return Promise.resolve(
@@ -254,7 +284,7 @@ export default function useApplicationData() {
       return bio[0].text;
     }
   };
-  
+
   // log out & reset user state
   const logOutUser = () => {
     setState({

@@ -24,12 +24,11 @@ export default function QuestionFeed(props) {
 
   // console.log('questions answered today', props.answeredGoals)
 
-  const randomizedQuestions = props.questions
-    .slice(1)
-    .sort(x => 0.5 - Math.random());
-  randomizedQuestions.unshift(props.questions[0]);
+  const questions = props.questions
+  console.log("QUEESTIONS: ", questions)
 
-  let selectedQuestions = randomizedQuestions.slice(0, props.level);
+  let selectedQuestions = questions.slice(0, props.level);
+  
   let questionsArr = selectedQuestions.map(goal => {
     return {
       id: goal.id,
