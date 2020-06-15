@@ -53,7 +53,6 @@ export default function useApplicationData() {
           //return response.data.points;
         })
         //Set State using response from DB
-        //  .then(() => console.log("DB LEVEL UPDATE COMPLETE."))
         .then(() => {
           setState(state => ({
             ...state,
@@ -74,9 +73,6 @@ export default function useApplicationData() {
     } else {
       return currentLevel;
     }
-    // else if (state.level <10 && checkCompliance(userGoals)) {
-    //   return state.level += 1
-    // }
   };
 
   const updateUserLevelOnEntry = userGoals => {
@@ -84,7 +80,6 @@ export default function useApplicationData() {
 
     let currentLevel = state.level;
     if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
-      console.log(levelHandler(state.currentUser.id, currentLevel + 1));
       return levelHandler(state.currentUser.id, currentLevel + 1);
     } else {
       return currentLevel;
@@ -106,10 +101,6 @@ export default function useApplicationData() {
           }));
         })
         .catch(err => console.log("USERGOALS ERROR: ", err));
-      // setState(state => ({
-      //   ...state,
-      //   level: updateUserLevelOnLogin(state.currentUserGoals)
-      // }));
     }
   }, [state.currentUser]);
 
@@ -121,7 +112,6 @@ export default function useApplicationData() {
   };
 
   //Set User wordcount
-
   const setUserWordCount = () => {
     setState(state => ({
       ...state,
@@ -213,7 +203,6 @@ export default function useApplicationData() {
         email: email,
         password: password
       };
-
       return Promise.resolve(
         axios
           .post("api/login", {
@@ -240,7 +229,7 @@ export default function useApplicationData() {
         password: password,
         points: 0
       };
-
+      
       return Promise.resolve(
         axios
           .post("api/users", {
