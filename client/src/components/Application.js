@@ -26,7 +26,7 @@ export default function Application() {
   console.log("------APPLICATION.JS state ------\n", state);
 
   return (
-    <Container className="layout">
+    <Container className="">
       <Navbar
         users={state.users}
         logInUser={data => console.log(data)}

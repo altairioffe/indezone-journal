@@ -36,16 +36,17 @@ export default function Navbar(props) {
       boxShadow: "0 3px 5px 2px rgba(0, 240, 230, .3)",
       color: "white",
       height: 48,
-      padding: "0 30px",
-      margin: "0 10px"
+      padding: "0",
+      margin: "0"
     },
     navBar: {
-      // height: "40vh",
-      // display: "flex",
-      // width: "200%",
-      // flexDirection: "row"
+      height: "40vh",
+      display: "flex",
+      width: "200%",
+      flexDirection: "row",
     },
     title: {
+      color: "gray",
       fontSize: "1em",
       flexDirection: "row",
       justify: "flex-end"
@@ -75,23 +76,24 @@ export default function Navbar(props) {
   return (
     <div>
       <AppBar
-        display="flex"
         className="navBar"
         position="sticky"
-        flexWrap="nowrap">
+        color="transparent"
+        elevation={0}
 
+       >
         <Grid
           container
           direction="row"
           justify="space-between"
-          alignItems="center"
+          alignItems="flex-start"
           flexGrow={1}>
           <Grid item xs={6}>
             <Box
-              p={1}
+              pt={0}
               m={0}
               flexGrow={1}
-              bgcolor="grey.300"
+              bgcolor="none"
               style={{ height: "100%", width: "100%", maxWidth: "20vh" }}>
               <img src="images/indezone.png" height="100%" width="100%" />
             </Box>
@@ -100,44 +102,48 @@ export default function Navbar(props) {
           <Grid item xs={6}>
             {props.user && (
               <Grid item>
-                <Container bgcolor="yellow">
-                <Grid item justify="flex-end" mr="0">
-
-                  <Grow in={loginState === 2} timeout={500} unmountOnExit>
-                    <Typography variant="h6" className={classes.title} align="right">
-                      Welcome,{" "}
-                      <strong>
-                        {props.user ? props.user.handle : "error"}.
-                      </strong>{" "}
-                      Your score:{" "}
-                      <strong style={{ color: "#00A8E0" }}>
-                        {props.level}
-                      </strong>
-                    </Typography>
-                  </Grow>
-                  </Grid>
+                <Container bgcolor="yellow" p={0} m={0} style={{ padding: "0", margin: "0" }}>
                   <Grid item justify="flex-end" mr="0">
                     <Box
                       display="flex"
                       p={0}
                       m={0}
-                      bgcolor="grey.300"
+                      bgcolor="none"
                       justifyContent="flex-end">
                       <Grow in={loginState === 2} timeout={500} unmountOnExit>
                         <Button
                           onClick={() => logout()}
                           size="medium"
-                          style={{ textTransform: "none" }}>
+                          style={{ textTransform: "none", padding: "0" }}>
                           Logout
                         </Button>
                       </Grow>
                     </Box>
                   </Grid>
+
+                  <Grid item justify="flex-end" mr="0">
+                    <Grow in={loginState === 2} timeout={500} unmountOnExit>
+                      <Typography
+                        variant="body2"
+                        style={{color: "gray"}}
+                        className={classes.title}
+                        align="right">
+                        Welcome,{" "}
+                        <strong>
+                          {props.user ? props.user.handle : "error"}. 
+                        </strong>{" "}
+                         Score:{" "}
+                        <strong style={{ color: "#00A8E0" }}>
+                          {props.level}
+                        </strong>
+                      </Typography>
+                    </Grow>
+                  </Grid>
                 </Container>
               </Grid>
             )}
+
           </Grid>
-          {/* LOGOUT */}
         </Grid>
       </AppBar>
       <Box>
