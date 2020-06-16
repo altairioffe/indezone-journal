@@ -25,6 +25,17 @@ export default function Form(props) {
     }
   });
   const classes = useStyles();
+
+
+  //if props.level <3, provide writing tips
+
+  const writingTips1 = ["invest 1-2 minutes on a detailed answer", "use full sentences", "why is this important to you?"]
+
+
+  //more meaning // pattern interrupts to challenge negative behaviour
+  const writingTips2 = ["why is this important to you?", ]
+
+
   return (
     <main>
       <form
@@ -51,10 +62,14 @@ export default function Form(props) {
             type: "email",
             onChange: function(e) {
               setAns(e.target.value);
+              setLabelText([
+                ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on detailed answers for best results" : "Write a few lines...",
+                { style: { color: "#00A8E0" } }
+              ])
             }
           }}
         />
-         <Tooltip title={ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on a detailed answer to get better results" : ""} arrow>
+         <Tooltip title={ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on detailed answers for best results" : ""} arrow>
         <Button
           // className={classes.root}
           variant="outlined"

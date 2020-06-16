@@ -43,7 +43,7 @@ export default function Navbar(props) {
       height: "40vh",
       display: "flex",
       width: "200%",
-      flexDirection: "row",
+      flexDirection: "row"
     },
     title: {
       color: "gray",
@@ -79,9 +79,7 @@ export default function Navbar(props) {
         className="navBar"
         position="sticky"
         color="transparent"
-        elevation={0}
-
-       >
+        elevation={0}>
         <Grid
           container
           direction="row"
@@ -102,7 +100,11 @@ export default function Navbar(props) {
           <Grid item xs={6}>
             {props.user && (
               <Grid item>
-                <Container bgcolor="yellow" p={0} m={0} style={{ padding: "0", margin: "0" }}>
+                <Container
+                  bgcolor="yellow"
+                  p={0}
+                  m={0}
+                  style={{ padding: "0", margin: "0" }}>
                   <Grid item justify="flex-end" mr="0">
                     <Box
                       display="flex"
@@ -125,14 +127,14 @@ export default function Navbar(props) {
                     <Grow in={loginState === 2} timeout={500} unmountOnExit>
                       <Typography
                         variant="body2"
-                        style={{color: "gray"}}
+                        style={{ color: "gray" }}
                         className={classes.title}
                         align="right">
                         Welcome,{" "}
                         <strong>
-                          {props.user ? props.user.handle : "error"}. 
+                          {props.user ? props.user.handle : "error"}.
                         </strong>{" "}
-                         Score:{" "}
+                        Score:{" "}
                         <strong style={{ color: "#00A8E0" }}>
                           {props.level}
                         </strong>
@@ -142,7 +144,6 @@ export default function Navbar(props) {
                 </Container>
               </Grid>
             )}
-
           </Grid>
         </Grid>
       </AppBar>
