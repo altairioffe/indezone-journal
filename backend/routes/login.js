@@ -1,7 +1,7 @@
 const express = require("express");
 let router = express.Router();
 let db = require("../db/models/index");
-import bcrypt from 'bcryptjs';
+let bcrypt = require ('bcryptjs');
 
 const { doesEmailExist } = require("./routeHelpers/userHelpers");
 
@@ -17,11 +17,11 @@ router.post("/", (req, res) => {
   const password = req.body.data.password;
   console.log("EMAIL: ", email);
 
-  //res.send(email)
 
   db.user
     .findAll()
     .then(users => {
+      console.log("FROM DB.User")
       let retrievedUsers = users.map(user => user.dataValues);
       //res.send(users)
       return doesEmailExist(email, retrievedUsers); //AUTHENTICATE EMAIL
@@ -31,7 +31,8 @@ router.post("/", (req, res) => {
       return foundUser;
     })
     .then(foundUser => {
-      if (foundUser.password === password) {
+      if (bcrypt.compareSync(password, foundUser.password)) {
+        console.log( bcrypt.compareSync(password, foundUser.password) )
         let userData = foundUser;
 
         res.status(200).send(userData);

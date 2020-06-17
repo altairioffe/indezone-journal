@@ -1,13 +1,12 @@
 let express = require("express");
 let router = express.Router();
 let db = require("../db/models/index");
-import bcrypt from 'bcryptjs';
+let bcrypt = require ('bcryptjs');
 
-//hash password
-
-bcrypt.hash(password, salt, (err, hash) => {
-  // Store hash password in DB
-});
+// //hash password
+// bcrypt.hash(password, salt, (err, hash) => {
+//   // Store hash password in DB
+// });
 
 
 
@@ -41,16 +40,20 @@ router.get("/:id", (req, res) => {
 //Create  user
 router.post("/", (req, res) => {
   console.log("FROM BACKEND: ", req.body.data);
+  let hashedPass = bcrypt.hashSync(req.body.data.password, 12)
+  console.log("hashedPass: ", hashedPass);
+
   db.user
     .create({
       handle: req.body.data.handle,
       email: req.body.data.email,
-      password: req.body.data.password,
+      password: hashedPass,
       points: req.body.data.points,
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     })
     .then(users => {
+      console.log("RESPONSE: USERS: ", users)
       res.json(users);
     })
     .catch(err => {
