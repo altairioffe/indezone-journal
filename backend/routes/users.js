@@ -1,6 +1,16 @@
 let express = require("express");
 let router = express.Router();
 let db = require("../db/models/index");
+import bcrypt from 'bcryptjs';
+
+//hash password
+
+bcrypt.hash(password, salt, (err, hash) => {
+  // Store hash password in DB
+});
+
+
+
 
 //Get users
 router.get("/", (req, res) => {

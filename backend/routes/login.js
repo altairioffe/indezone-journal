@@ -1,6 +1,7 @@
 const express = require("express");
 let router = express.Router();
 let db = require("../db/models/index");
+import bcrypt from 'bcryptjs';
 
 const { doesEmailExist } = require("./routeHelpers/userHelpers");
 
