@@ -32,11 +32,12 @@ router.post("/", (req, res) => {
     })
     .then(foundUser => {
       if (bcrypt.compareSync(password, foundUser.password)) {
-        console.log( bcrypt.compareSync(password, foundUser.password) )
+        console.log( "Found USER SFTER BCRYPT COMPARE: ", bcrypt.compareSync(password, foundUser.password) )
         let userData = foundUser;
 
         res.status(200).send(userData);
       } else {
+        console.log( "NOT FOUND USER AFTER BCRYPT COMPARE" )
         res.status(500).send(false);
       }
     })
