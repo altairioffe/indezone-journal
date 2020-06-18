@@ -20,6 +20,11 @@ import { Button } from "@material-ui/core";
 
 export default function Login(props) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [labelText, setLabelText] = useState([
+    "Email",
+    { style: { color: "#00A8E0" } }
+  ]);
+
 
   const useStyles = makeStyles({
     root: {
@@ -112,7 +117,7 @@ export default function Login(props) {
                       props.loginCallback
                     )
                     :
-                    
+
                   }
                   }
                   simple="true"
