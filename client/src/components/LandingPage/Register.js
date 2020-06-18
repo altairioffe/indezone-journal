@@ -37,7 +37,7 @@ export default function Register(props) {
   });
   const classes = useStyles();
 
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [credentials, setCredentials] = useState({ handle: "", email: "", password: "" });
   const [userName, setUserName] = useState("");
   const [errorMessage, setErrorMessage] = useState({ handle: false, email: false, password: false });
   const [labelText, setLabelText] = useState([
@@ -51,25 +51,32 @@ export default function Register(props) {
 
   const validateEmail = (email) => email.includes("@")
   
-  const validateAndSubmitForm = (email, password) => {
+  const validateAndSubmitForm = (handle, email, password) => {
+    console.log("HIT validator", handle, email, password)
+   // let [ handle, email, password ] = handle, email, password
 
-    if (!email && !password) {
-      setErrorMessage({email: true, password: true})
-      console.log("ERROR MESSAGE: ", errorMessage)
-    } else if (!email || !validateEmail(email))  {
-      console.log("cred: ", email, "Validator: ", validateEmail(email))
-      setErrorMessage({email: true})
-    } else if (!password) {
-      setErrorMessage({password: true})
-    }
-    if ( validateEmail(email) ) {
-    props.registrationHandler(
-       userName,
-       credentials.email,
-       credentials.password,
-       props.loginCallback
-     )
+      let invalidatedParams = {
+        handle: false,
+        email: false,
+        password: false
+      }
+
+    if (!handle || !email || !validateEmail(email) || !password) {
+      if (!handle) {
+        console.log("not handle")
+        invalidatedParams.handle = true
+      }
+      if (!email || !validateEmail(email)) {
+        invalidatedParams.email = true
+      }
+  
+      if (!password) {
+        invalidatedParams.password = true
+      }
     } 
+    console.log("VALIDATION: ", invalidatedParams)
+    console.log("err message: ", errorMessage)
+     return setErrorMessage(invalidatedParams)
   }
 
   return (
@@ -86,7 +93,6 @@ export default function Register(props) {
 
               <CardBody>
                 <CustomInput
-                  disabled={false}
                   required
                   labelText="First Name..."
                   id="handle"
@@ -95,11 +101,16 @@ export default function Register(props) {
                     fullWidth: true
                   }}
                   inputProps={{
-                    onChange: function(e) {
-                      setUserName(e.target.value);
-                    },
-                    value: userName,
+                    value: credentials.handle,
                     type: "text",
+                    onChange: function(e) {
+                      setCredentials({
+                        handle: e.target.value,
+                        email: credentials.email,
+                        password: credentials.password
+                      });
+                    },
+                    
                     endAdornment: (
                       <InputAdornment position="end">
                         <People className={classes.inputIconsColor} />
@@ -120,6 +131,7 @@ export default function Register(props) {
                     type: "email",
                     onChange: function(e) {
                       setCredentials({
+                        handle: credentials.handle,
                         email: e.target.value,
                         password: credentials.password
                       });
@@ -135,7 +147,7 @@ export default function Register(props) {
                   labelText="Password"
                   id="password"
                   required
-                  error={errorMessage.email}
+                  error={errorMessage.password}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -143,6 +155,7 @@ export default function Register(props) {
                     type: "password",
                     onChange: function(e) {
                       setCredentials({
+                        handle: credentials.handle,
                         email: credentials.email,
                         password: e.target.value
                       });
@@ -161,7 +174,7 @@ export default function Register(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() =>
-                    validateAndSubmitForm(credentials.email, credentials.password)
+                    validateAndSubmitForm(credentials.handle || false, credentials.email || false, credentials.password || false)
                   }
                   simple="true"
                   color="primary"
