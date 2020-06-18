@@ -204,7 +204,7 @@ export default function useApplicationData() {
         handle: handle,
         email: email,
         password: password,
-        points: 0
+        points: 1
       };
 
       return Promise.resolve(
@@ -212,9 +212,9 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(() => loginHandler(email, password, x => console.log(x)))
+          .then(() => loginHandler(email, password, x => console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)))
           .then(() => loginCallback())
-          .catch(err => console.log(err))
+          .catch(err => console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err))
       );
     }
   };

@@ -35,6 +35,12 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
+  const validateEmail = (email) => {
+    email.includes(x => x=== "@") ? true : false
+
+  }
+
+
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
@@ -97,12 +103,17 @@ export default function Login(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={() =>
+                  onClick={() => {
+                    console.log(validateEmail(credentials.email))
+                    validateEmail(credentials.email) ?
                     props.loginHandler(
                       credentials.email,
                       credentials.password,
                       props.loginCallback
                     )
+                    :
+                    
+                  }
                   }
                   simple="true"
                   color="primary"
