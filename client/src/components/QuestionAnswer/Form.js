@@ -11,7 +11,7 @@ export default function Form(props) {
     "Write a few lines...",
     { style: { color: "#00A8E0" } }
   ]);
-
+ 
   const useStyles = makeStyles({
     root: {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",

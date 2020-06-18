@@ -20,9 +20,10 @@ import { Button } from "@material-ui/core";
 
 export default function Login(props) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState({ email: false, password: false });
   const [labelText, setLabelText] = useState([
     "Email",
-    { style: { color: "#00A8E0" } }
+    "Password" 
   ]);
 
 
@@ -41,7 +42,8 @@ export default function Login(props) {
   const classes = useStyles();
 
   const validateEmail = (email) => {
-    email.includes(x => x=== "@") ? true : false
+console.log("VALIDEMAIL>", email)
+    return email.includes("@")
 
   }
 
@@ -60,9 +62,12 @@ export default function Login(props) {
 
               <CardBody>
                 <CustomInput
-                  labelText="Email..."
+                  labelText={labelText[0]}
                   id="email"
+                  required
+                  error={errorMessage.email}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
@@ -82,8 +87,11 @@ export default function Login(props) {
                   }}
                 />
                 <CustomInput
-                  labelText="Password"
+                  labelText={labelText[1]}
                   id="password"
+                  required
+                  error={errorMessage.password}
+
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -109,14 +117,40 @@ export default function Login(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() => {
-                    console.log(validateEmail(credentials.email))
-                    validateEmail(credentials.email) ?
+                    if (!credentials.email && !credentials.password) {
+                      setErrorMessage({email: true, password: true})
+                      console.log("ERROR MESSAGE: ", errorMessage)
+                    } else if (!credentials.email || !validateEmail(credentials.email))  {
+                      console.log("cred: ", credentials.email, "Validator: ", validateEmail(credentials.email))
+                      setErrorMessage({email: true})
+                    } else if (!credentials.password) {
+                      setErrorMessage({password: true})
+                    }
+                    if ( validateEmail(credentials.email) ) {
                     props.loginHandler(
                       credentials.email,
                       credentials.password,
                       props.loginCallback
                     )
-                    :
+                    } 
+
+                    // else {
+                    //   console.log("EMAIL: ", credentials.email, "PASS: ", credentials.password)
+                    //   if (!credentials.email && !credentials.password) {
+                    //     setLabelText(["email cannot be blank", "password cannot be blank"])
+                    //   }
+
+                    //   if (!credentials.email) {
+                    //     setLabelText(["email cannot be blank", labelText[1]])
+                    //   }
+                    //  if ( !validateEmail(credentials.email) ) {
+                    //   setLabelText(['email must contain "@"', labelText[1]])
+                    // console.log("LOGIN ERRRRRR")
+                    // }
+                    //  if (!credentials.password) {
+                    //   setLabelText([labelText[0], "please enter your password"])
+                    // }
+                    // }
 
                   }
                   }
