@@ -46,37 +46,37 @@ export default function Register(props) {
   ]);
 
   let styledImage = {
-    //  backgroundImage: `url(${'images/logout-image2.png'})`
   };
 
   const validateEmail = (email) => email.includes("@")
-  
-  const validateAndSubmitForm = (handle, email, password) => {
-    console.log("HIT validator", handle, email, password)
-   // let [ handle, email, password ] = handle, email, password
 
+  const validateAndSubmitForm = (handle, email, password) => {
       let invalidatedParams = {
         handle: false,
         email: false,
         password: false
       }
-
     if (!handle || !email || !validateEmail(email) || !password) {
       if (!handle) {
-        console.log("not handle")
         invalidatedParams.handle = true
       }
       if (!email || !validateEmail(email)) {
         invalidatedParams.email = true
       }
-  
       if (!password) {
         invalidatedParams.password = true
       }
+      setErrorMessage(invalidatedParams)
+      return false
     } 
-    console.log("VALIDATION: ", invalidatedParams)
-    console.log("err message: ", errorMessage)
-     return setErrorMessage(invalidatedParams)
+    else {
+        props.registrationHandler(
+      handle,
+      email,
+      password,
+      props.loginCallback
+    )
+    }
   }
 
   return (
@@ -84,7 +84,7 @@ export default function Register(props) {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card} style={styledImage}>
-            <form className={classes.form} onSubmit={data => console.log(data)}>
+            <form className={classes.form} onSubmit={data => console.log("Form onsubmit useless?: ", data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>

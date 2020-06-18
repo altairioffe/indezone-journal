@@ -43,14 +43,10 @@ export default function Login(props) {
 
   const validateEmail = (email) => email.includes("@")
   
-
   const validateAndSubmitForm = (email, password) => {
-
     if (!email && !password) {
       setErrorMessage({email: true, password: true})
-      console.log("ERROR MESSAGE: ", errorMessage)
     } else if (!email || !validateEmail(email))  {
-      console.log("cred: ", email, "Validator: ", validateEmail(email))
       setErrorMessage({email: true})
     } else if (!password) {
       setErrorMessage({password: true})
@@ -70,7 +66,7 @@ export default function Login(props) {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card}>
-            <form className={classes.form} onSubmit={data => console.log(data)}>
+            <form className={classes.form} onSubmit={data => console.log("useless data from login form?", data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Log In</h4>
               </CardHeader>
