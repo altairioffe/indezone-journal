@@ -47,6 +47,29 @@ console.log("VALIDEMAIL>", email)
 
   }
 
+  const validateAndSubmitForm = (email, password) => {
+
+    if (!email && !password) {
+      setErrorMessage({email: true, password: true})
+      console.log("ERROR MESSAGE: ", errorMessage)
+    } else if (!email || !validateEmail(email))  {
+      console.log("cred: ", email, "Validator: ", validateEmail(email))
+      setErrorMessage({email: true})
+    } else if (!password) {
+      setErrorMessage({password: true})
+    }
+    if ( validateEmail(email) ) {
+    props.loginHandler(
+      email,
+      password,
+      props.loginCallback
+    )
+    } 
+
+
+
+  }
+
 
   return (
     <div className={classes.container}>
@@ -117,40 +140,7 @@ console.log("VALIDEMAIL>", email)
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() => {
-                    if (!credentials.email && !credentials.password) {
-                      setErrorMessage({email: true, password: true})
-                      console.log("ERROR MESSAGE: ", errorMessage)
-                    } else if (!credentials.email || !validateEmail(credentials.email))  {
-                      console.log("cred: ", credentials.email, "Validator: ", validateEmail(credentials.email))
-                      setErrorMessage({email: true})
-                    } else if (!credentials.password) {
-                      setErrorMessage({password: true})
-                    }
-                    if ( validateEmail(credentials.email) ) {
-                    props.loginHandler(
-                      credentials.email,
-                      credentials.password,
-                      props.loginCallback
-                    )
-                    } 
-
-                    // else {
-                    //   console.log("EMAIL: ", credentials.email, "PASS: ", credentials.password)
-                    //   if (!credentials.email && !credentials.password) {
-                    //     setLabelText(["email cannot be blank", "password cannot be blank"])
-                    //   }
-
-                    //   if (!credentials.email) {
-                    //     setLabelText(["email cannot be blank", labelText[1]])
-                    //   }
-                    //  if ( !validateEmail(credentials.email) ) {
-                    //   setLabelText(['email must contain "@"', labelText[1]])
-                    // console.log("LOGIN ERRRRRR")
-                    // }
-                    //  if (!credentials.password) {
-                    //   setLabelText([labelText[0], "please enter your password"])
-                    // }
-                    // }
+                    validateAndSubmitForm(credentials.email, credentials.password)
 
                   }
                   }
