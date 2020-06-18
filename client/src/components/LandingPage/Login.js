@@ -41,11 +41,8 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const validateEmail = (email) => {
-console.log("VALIDEMAIL>", email)
-    return email.includes("@")
-
-  }
+  const validateEmail = (email) => email.includes("@")
+  
 
   const validateAndSubmitForm = (email, password) => {
 
@@ -65,9 +62,6 @@ console.log("VALIDEMAIL>", email)
       props.loginCallback
     )
     } 
-
-
-
   }
 
 
@@ -141,8 +135,7 @@ console.log("VALIDEMAIL>", email)
                 <Button
                   onClick={() => {
                     validateAndSubmitForm(credentials.email, credentials.password)
-
-                  }
+                    }
                   }
                   simple="true"
                   color="primary"

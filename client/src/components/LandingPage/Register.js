@@ -39,10 +39,38 @@ export default function Register(props) {
 
   const [credentials, setCredentials] = useState({ email: "", password: "" });
   const [userName, setUserName] = useState("");
+  const [errorMessage, setErrorMessage] = useState({ handle: false, email: false, password: false });
+  const [labelText, setLabelText] = useState([
+    "Email",
+    "Password" 
+  ]);
 
   let styledImage = {
     //  backgroundImage: `url(${'images/logout-image2.png'})`
   };
+
+  const validateEmail = (email) => email.includes("@")
+  
+  const validateAndSubmitForm = (email, password) => {
+
+    if (!email && !password) {
+      setErrorMessage({email: true, password: true})
+      console.log("ERROR MESSAGE: ", errorMessage)
+    } else if (!email || !validateEmail(email))  {
+      console.log("cred: ", email, "Validator: ", validateEmail(email))
+      setErrorMessage({email: true})
+    } else if (!password) {
+      setErrorMessage({password: true})
+    }
+    if ( validateEmail(email) ) {
+    props.registrationHandler(
+       userName,
+       credentials.email,
+       credentials.password,
+       props.loginCallback
+     )
+    } 
+  }
 
   return (
     <div className={classes.container}>
@@ -59,9 +87,10 @@ export default function Register(props) {
               <CardBody>
                 <CustomInput
                   disabled={false}
-                  required={true}
+                  required
                   labelText="First Name..."
                   id="handle"
+                  error={errorMessage.handle}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -81,6 +110,8 @@ export default function Register(props) {
                 <CustomInput
                   labelText="Email..."
                   id="email"
+                  required
+                  error={errorMessage.email}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -103,6 +134,8 @@ export default function Register(props) {
                 <CustomInput
                   labelText="Password"
                   id="password"
+                  required
+                  error={errorMessage.email}
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -128,12 +161,7 @@ export default function Register(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() =>
-                    props.registrationHandler(
-                      userName,
-                      credentials.email,
-                      credentials.password,
-                      props.loginCallback
-                    )
+                    validateAndSubmitForm(credentials.email, credentials.password)
                   }
                   simple="true"
                   color="primary"
