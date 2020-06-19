@@ -28,7 +28,7 @@ router.post("/", (req, res) => {
     })
     .then(foundUser => {
       console.log("foundUser: ", foundUser);
-      return foundUser;
+      return foundUser;1
     })
     .then(foundUser => {
       if (bcrypt.compareSync(password, foundUser.password)) {
