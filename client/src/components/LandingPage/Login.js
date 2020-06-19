@@ -54,7 +54,7 @@ export default function Login(props) {
 
   const handleClick = event => {
     validateAndSubmitForm(credentials.email, credentials.password);
-    setAnchorEl(event.currentTarget);
+    if (credentials.email && validateEmail(credentials.email) && credentials.password) setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
@@ -71,7 +71,7 @@ export default function Login(props) {
     if (!email && !password) {
       setErrorMessage({ email: true, password: true });
     } else if (!email || !validateEmail(email)) {
-      setErrorMessage({ email: true });
+      setErrorMessage({ email: true, password: errorMessage.password });
       if (email && !validateEmail(email)) {
         setLabelText({
           email: 'Must include "@"',
@@ -79,7 +79,7 @@ export default function Login(props) {
         });
       }
     } else if (!password) {
-      setErrorMessage({ password: true });
+      setErrorMessage({ email: errorMessage.email, password: true });
     }
     if (validateEmail(email) && password) {
       props.loginHandler(email, password, props.loginCallback).then(() => {
