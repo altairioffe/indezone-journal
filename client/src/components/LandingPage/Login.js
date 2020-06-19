@@ -24,7 +24,7 @@ export default function Login(props) {
     email: false,
     password: false
   });
-  const [labelText, setLabelText] = useState(["Email", "Password"]);
+  const [labelText, setLabelText] = useState({ email: "Email", password: "Password"});
 
   const useStyles = makeStyles({
     root: {
@@ -40,13 +40,16 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const validateEmail = email => email.includes("@");
+  const validateEmail = email => email ? email.includes("@") : false;
 
   const validateAndSubmitForm = (email, password) => {
-    if (!email && !password) {
+    if (!(email || password)) {
       setErrorMessage({ email: true, password: true });
     } else if (!email || !validateEmail(email)) {
       setErrorMessage({ email: true });
+      if (!validateEmail(email)) {
+        setLabelText( { email: 'Must include "@"', password: labelText.password })
+      }
     } else if (!password) {
       setErrorMessage({ password: true });
     }
@@ -73,7 +76,7 @@ export default function Login(props) {
 
               <CardBody>
                 <CustomInput
-                  labelText={labelText[0]}
+                  labelText={labelText.email}
                   id="email"
                   required
                   error={errorMessage.email}
@@ -98,7 +101,7 @@ export default function Login(props) {
                   }}
                 />
                 <CustomInput
-                  labelText={labelText[1]}
+                  labelText={labelText.password}
                   id="password"
                   required
                   error={errorMessage.password}

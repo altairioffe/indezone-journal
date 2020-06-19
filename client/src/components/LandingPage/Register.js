@@ -37,54 +37,55 @@ export default function Register(props) {
   });
   const classes = useStyles();
 
-  const [credentials, setCredentials] = useState({
-    handle: "",
-    email: "",
-    password: ""
-  });
+  const [credentials, setCredentials] = useState({ handle: "", email: "", password: "" });
   const [userName, setUserName] = useState("");
-  const [errorMessage, setErrorMessage] = useState({
-    handle: false,
-    email: false,
-    password: false
-  });
-  const [labelText, setLabelText] = useState(["Email", "Password"]);
+  const [errorMessage, setErrorMessage] = useState({ handle: false, email: false, password: false });
+  const [labelText, setLabelText] = useState({ handle: "First Name", email: "Email", password: "Password"});
 
-  let styledImage = {};
 
-  const validateEmail = email => email.includes("@");
+  let styledImage = {
+  };
+
+  const validateEmail = (email) => email ? email.includes("@") : false;
 
   const validateAndSubmitForm = (handle, email, password) => {
-    let invalidatedParams = {
-      handle: false,
-      email: false,
-      password: false
-    };
-    if (!(handle || email || validateEmail(email) || password)) {
+      let invalidatedParams = {
+        handle: false,
+        email: false,
+        password: false
+      }
+    if (!handle || !email || !validateEmail(email) || !password) {
       if (!handle) {
-        invalidatedParams.handle = true;
+        invalidatedParams.handle = true
       }
       if (!email || !validateEmail(email)) {
-        invalidatedParams.email = true;
+        invalidatedParams.email = true
+        if (!validateEmail(email)) {
+          setLabelText( { ...labelText, email: 'Must include "@"'})
+        }
       }
       if (!password) {
-        invalidatedParams.password = true;
+        invalidatedParams.password = true
       }
-      setErrorMessage(invalidatedParams);
-      return false;
-    } else {
-      props.registrationHandler(handle, email, password, props.loginCallback);
+      setErrorMessage(invalidatedParams)
+      return false
+    } 
+    else {
+        props.registrationHandler(
+      handle,
+      email,
+      password,
+      props.loginCallback
+    )
     }
-  };
+  }
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card} style={styledImage}>
-            <form
-              className={classes.form}
-              onSubmit={data => console.log("Form onsubmit useless?: ", data)}>
+            <form className={classes.form} onSubmit={data => console.log("Form onsubmit useless?: ", data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>
@@ -94,7 +95,7 @@ export default function Register(props) {
               <CardBody>
                 <CustomInput
                   required
-                  labelText="First Name..."
+                  labelText={labelText.handle}
                   id="handle"
                   error={errorMessage.handle}
                   formControlProps={{
@@ -110,7 +111,7 @@ export default function Register(props) {
                         password: credentials.password
                       });
                     },
-
+                    
                     endAdornment: (
                       <InputAdornment position="end">
                         <People className={classes.inputIconsColor} />
@@ -119,7 +120,7 @@ export default function Register(props) {
                   }}
                 />
                 <CustomInput
-                  labelText="Email..."
+                  labelText={labelText.email}
                   id="email"
                   required
                   error={errorMessage.email}
@@ -144,7 +145,7 @@ export default function Register(props) {
                   }}
                 />
                 <CustomInput
-                  labelText="Password"
+                  labelText={labelText.password}
                   id="password"
                   required
                   error={errorMessage.password}
@@ -174,11 +175,7 @@ export default function Register(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() =>
-                    validateAndSubmitForm(
-                      credentials.handle || false,
-                      credentials.email || false,
-                      credentials.password || false
-                    )
+                    validateAndSubmitForm(credentials.handle || false, credentials.email || false, credentials.password || false)
                   }
                   simple="true"
                   color="primary"
