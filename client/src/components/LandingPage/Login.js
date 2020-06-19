@@ -43,11 +43,11 @@ export default function Login(props) {
   const validateEmail = email => email ? email.includes("@") : false;
 
   const validateAndSubmitForm = (email, password) => {
-    if (!(email || password)) {
+    if ((!email && !password)) {
       setErrorMessage({ email: true, password: true });
     } else if (!email || !validateEmail(email)) {
       setErrorMessage({ email: true });
-      if (!validateEmail(email)) {
+      if (email && !validateEmail(email)) {
         setLabelText( { email: 'Must include "@"', password: labelText.password })
       }
     } else if (!password) {
@@ -106,6 +106,7 @@ export default function Login(props) {
                   required
                   error={errorMessage.password}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{

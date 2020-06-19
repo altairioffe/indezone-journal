@@ -60,7 +60,7 @@ export default function Register(props) {
       }
       if (!email || !validateEmail(email)) {
         invalidatedParams.email = true
-        if (!validateEmail(email)) {
+        if (email && !validateEmail(email)) {
           setLabelText( { ...labelText, email: 'Must include "@"'})
         }
       }
@@ -99,6 +99,7 @@ export default function Register(props) {
                   id="handle"
                   error={errorMessage.handle}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
@@ -125,6 +126,7 @@ export default function Register(props) {
                   required
                   error={errorMessage.email}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
@@ -150,6 +152,7 @@ export default function Register(props) {
                   required
                   error={errorMessage.password}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
