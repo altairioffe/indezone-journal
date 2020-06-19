@@ -44,17 +44,21 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(props.loginError);
+  const [authenticationError, setAuthenticationError] = React.useState(
+    props.loginError
+  );
 
   const handleClick = event => {
-    setAnchorEl(event.currentTarget)
+    validateAndSubmitForm(credentials.email, credentials.password);
+    setAnchorEl(event.currentTarget);
   };
 
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  const open = Boolean(props.loginError);
+  const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
 
   const validateEmail = email => (email ? email.includes("@") : false);
@@ -74,7 +78,15 @@ export default function Login(props) {
       setErrorMessage({ password: true });
     }
     if (validateEmail(email)) {
-      props.loginHandler(email, password, props.loginCallback);
+      props.loginHandler(email, password, props.loginCallback)
+      .then(() => {
+
+        setTimeout( () => {
+        if (!props.user) {
+          setAuthenticationError(true)
+        }
+      }, 1000)
+      });
     }
   };
 
@@ -150,12 +162,7 @@ export default function Login(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={() => {
-                    validateAndSubmitForm(
-                      credentials.email,
-                      credentials.password
-                    )
-                  }}
+                  onClick={handleClick}
                   simple="true"
                   color="primary"
                   size="large">
@@ -167,7 +174,7 @@ export default function Login(props) {
                   anchorEl={anchorEl}
                   onClose={handleClose}
                   anchorOrigin={{
-                    vertical: "bottom",
+                    vertical: "top",
                     horizontal: "center"
                   }}
                   transformOrigin={{
@@ -175,7 +182,9 @@ export default function Login(props) {
                     horizontal: "center"
                   }}>
                   <Typography className={classes.typography}>
-                    The content of the Popover.
+                    {props.loginError
+                      ? "invalid email or password."
+                      : "logging in..."}
                   </Typography>
                 </Popover>
               </CardFooter>
