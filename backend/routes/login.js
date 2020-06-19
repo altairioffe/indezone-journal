@@ -24,12 +24,17 @@ router.post("/", (req, res) => {
       console.log("FROM DB.User")
       let retrievedUsers = users.map(user => user.dataValues);
       //res.send(users)
-      return doesEmailExist(email, retrievedUsers); //AUTHENTICATE EMAIL
+      if (!doesEmailExist(email, retrievedUsers)) {
+        console.log("email does not exist")
+        res.status(400).send({error: "email does not exist"})
+      } else {
+        return doesEmailExist(email, retrievedUsers); //AUTHENTICATE EMAIL
+      }
     })
-    .then(foundUser => {
-      console.log("foundUser: ", foundUser);
-      return foundUser;1
-    })
+    // .then(foundUser => {
+    //   console.log("foundUser: ", foundUser);
+    //   return foundUser;1
+    // })
     .then(foundUser => {
       if (bcrypt.compareSync(password, foundUser.password)) {
         console.log( "Found USER SFTER BCRYPT COMPARE: ", bcrypt.compareSync(password, foundUser.password) )
@@ -38,7 +43,7 @@ router.post("/", (req, res) => {
         res.status(200).send(userData);
       } else {
         console.log( "NOT FOUND USER AFTER BCRYPT COMPARE" )
-        res.status(500).send(false);
+        res.status(400).send({error: "email does not exist"})
       }
     })
     .catch(err => {

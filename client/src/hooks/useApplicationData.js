@@ -24,7 +24,8 @@ export default function useApplicationData() {
     answer: "",
     currentUserInsight: "",
     currentUserWordCount: 0,
-    level: 1
+    level: 1,
+    loginError: false 
   });
 
   useEffect(() => {
@@ -193,7 +194,13 @@ export default function useApplicationData() {
               state
             )
           )
-          .catch(err => console.log(err))
+          .catch(err => {
+             setState(state => ({
+              ...state,
+              loginError: true
+            }))
+          }
+        )
       );
     }
   };
@@ -220,6 +227,7 @@ export default function useApplicationData() {
           .then(() => loginCallback())
           .catch(err =>
             console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err)
+          
           )
       );
     }

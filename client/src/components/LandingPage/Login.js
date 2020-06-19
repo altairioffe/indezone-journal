@@ -5,7 +5,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
 // core components
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
@@ -15,6 +14,8 @@ import CardBody from "../Card/CardBody.js";
 import CardHeader from "../Card/CardHeader.js";
 import CardFooter from "../Card/CardFooter.js";
 import CustomInput from "../CustomInput/CustomInput.js";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
 
 import { Button } from "@material-ui/core";
 
@@ -24,7 +25,10 @@ export default function Login(props) {
     email: false,
     password: false
   });
-  const [labelText, setLabelText] = useState({ email: "Email", password: "Password"});
+  const [labelText, setLabelText] = useState({
+    email: "Email",
+    password: "Password"
+  });
 
   const useStyles = makeStyles({
     root: {
@@ -40,15 +44,31 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const validateEmail = email => email ? email.includes("@") : false;
+  const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const handleClick = event => {
+    setAnchorEl(event.currentTarget)
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  const open = Boolean(props.loginError);
+  const id = open ? "simple-popover" : undefined;
+
+  const validateEmail = email => (email ? email.includes("@") : false);
 
   const validateAndSubmitForm = (email, password) => {
-    if ((!email && !password)) {
+    if (!email && !password) {
       setErrorMessage({ email: true, password: true });
     } else if (!email || !validateEmail(email)) {
       setErrorMessage({ email: true });
       if (email && !validateEmail(email)) {
-        setLabelText( { email: 'Must include "@"', password: labelText.password })
+        setLabelText({
+          email: 'Must include "@"',
+          password: labelText.password
+        });
       }
     } else if (!password) {
       setErrorMessage({ password: true });
@@ -134,13 +154,30 @@ export default function Login(props) {
                     validateAndSubmitForm(
                       credentials.email,
                       credentials.password
-                    );
+                    )
                   }}
                   simple="true"
                   color="primary"
                   size="large">
                   Continue Your Journey
                 </Button>
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "bottom",
+                    horizontal: "center"
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center"
+                  }}>
+                  <Typography className={classes.typography}>
+                    The content of the Popover.
+                  </Typography>
+                </Popover>
               </CardFooter>
             </form>
             <Button
