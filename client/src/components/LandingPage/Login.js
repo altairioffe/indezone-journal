@@ -40,11 +40,14 @@ export default function Login(props) {
       height: 48,
       padding: "0 30px",
       margin: "0 10px"
-    }
+    },
+    typography: {
+      padding: "1em",
+    },
   });
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(props.loginError);
+  const [anchorEl, setAnchorEl] = React.useState(null);
   const [authenticationError, setAuthenticationError] = React.useState(
     props.loginError
   );
@@ -56,6 +59,7 @@ export default function Login(props) {
 
   const handleClose = () => {
     setAnchorEl(null);
+    setAuthenticationError(false)
   };
 
   const open = Boolean(anchorEl);
@@ -77,15 +81,13 @@ export default function Login(props) {
     } else if (!password) {
       setErrorMessage({ password: true });
     }
-    if (validateEmail(email)) {
-      props.loginHandler(email, password, props.loginCallback)
-      .then(() => {
-
-        setTimeout( () => {
-        if (!props.user) {
-          setAuthenticationError(true)
-        }
-      }, 1000)
+    if (validateEmail(email) && password) {
+      props.loginHandler(email, password, props.loginCallback).then(() => {
+        setTimeout(() => {
+          if (!props.user) {
+            setAuthenticationError(true);
+          }
+        }, 1000);
       });
     }
   };
@@ -182,7 +184,7 @@ export default function Login(props) {
                     horizontal: "center"
                   }}>
                   <Typography className={classes.typography}>
-                    {props.loginError
+                    {authenticationError
                       ? "invalid email or password."
                       : "logging in..."}
                   </Typography>
