@@ -212,9 +212,15 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(() => loginHandler(email, password, x => console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)))
+          .then(() =>
+            loginHandler(email, password, x =>
+              console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
+            )
+          )
           .then(() => loginCallback())
-          .catch(err => console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err))
+          .catch(err =>
+            console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err)
+          )
       );
     }
   };

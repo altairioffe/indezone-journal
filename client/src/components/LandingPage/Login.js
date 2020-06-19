@@ -20,12 +20,11 @@ import { Button } from "@material-ui/core";
 
 export default function Login(props) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const [errorMessage, setErrorMessage] = useState({ email: false, password: false });
-  const [labelText, setLabelText] = useState([
-    "Email",
-    "Password" 
-  ]);
-
+  const [errorMessage, setErrorMessage] = useState({
+    email: false,
+    password: false
+  });
+  const [labelText, setLabelText] = useState(["Email", "Password"]);
 
   const useStyles = makeStyles({
     root: {
@@ -41,32 +40,31 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const validateEmail = (email) => email.includes("@")
-  
+  const validateEmail = email => email.includes("@");
+
   const validateAndSubmitForm = (email, password) => {
     if (!email && !password) {
-      setErrorMessage({email: true, password: true})
-    } else if (!email || !validateEmail(email))  {
-      setErrorMessage({email: true})
+      setErrorMessage({ email: true, password: true });
+    } else if (!email || !validateEmail(email)) {
+      setErrorMessage({ email: true });
     } else if (!password) {
-      setErrorMessage({password: true})
+      setErrorMessage({ password: true });
     }
-    if ( validateEmail(email) ) {
-    props.loginHandler(
-      email,
-      password,
-      props.loginCallback
-    )
-    } 
-  }
-
+    if (validateEmail(email)) {
+      props.loginHandler(email, password, props.loginCallback);
+    }
+  };
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card}>
-            <form className={classes.form} onSubmit={data => console.log("useless data from login form?", data)}>
+            <form
+              className={classes.form}
+              onSubmit={data =>
+                console.log("useless data from login form?", data)
+              }>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Log In</h4>
               </CardHeader>
@@ -104,7 +102,6 @@ export default function Login(props) {
                   id="password"
                   required
                   error={errorMessage.password}
-
                   formControlProps={{
                     fullWidth: true
                   }}
@@ -130,9 +127,11 @@ export default function Login(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() => {
-                    validateAndSubmitForm(credentials.email, credentials.password)
-                    }
-                  }
+                    validateAndSubmitForm(
+                      credentials.email,
+                      credentials.password
+                    );
+                  }}
                   simple="true"
                   color="primary"
                   size="large">
