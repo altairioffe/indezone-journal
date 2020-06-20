@@ -42,7 +42,6 @@ export default function Register(props) {
   const [errorMessage, setErrorMessage] = useState({ handle: false, email: false, password: false });
   const [labelText, setLabelText] = useState({ handle: "First Name", email: "Email", password: "Password"});
 
-
   let styledImage = {
   };
 

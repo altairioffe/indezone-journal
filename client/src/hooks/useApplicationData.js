@@ -219,6 +219,7 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
+          .then(res => console.log("RESPONSE FROM HANDLER: ", res))
           .then(() =>
             loginHandler(email, password, x =>
               console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)

@@ -29,6 +29,10 @@ export default function Login(props) {
     email: "Email",
     password: "Password"
   });
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [authenticationError, setAuthenticationError] = React.useState(
+    props.loginError
+  );
 
   const useStyles = makeStyles({
     root: {
@@ -47,10 +51,7 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
-  const [authenticationError, setAuthenticationError] = React.useState(
-    props.loginError
-  );
+  const validateEmail = email => (email ? email.includes("@") : false);
 
   const handleClick = event => {
     validateAndSubmitForm(credentials.email, credentials.password);
@@ -64,8 +65,6 @@ export default function Login(props) {
 
   const open = Boolean(anchorEl);
   const id = open ? "simple-popover" : undefined;
-
-  const validateEmail = email => (email ? email.includes("@") : false);
 
   const validateAndSubmitForm = (email, password) => {
     if (!email && !password) {
