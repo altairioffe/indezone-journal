@@ -24,7 +24,8 @@ export default function useApplicationData() {
     answer: "",
     currentUserInsight: "",
     currentUserWordCount: 0,
-    level: 1
+    level: 1,
+    loginError: false
   });
 
   useEffect(() => {
@@ -193,18 +194,25 @@ export default function useApplicationData() {
               state
             )
           )
-          .catch(err => console.log(err))
+          .catch(err => {
+            console.log("LOGINNN ERROR: ", err);
+            setState(state => ({
+              ...state,
+              loginError: true
+            }));
+          })
       );
     }
   };
 
   const registrationHandler = (handle, email, password, loginCallback) => {
+    console.log("R> ", handle, email, password, loginCallback)
     if (handle && email && password) {
       let data = {
         handle: handle,
         email: email,
         password: password,
-        points: 0
+        points: 1
       };
 
       return Promise.resolve(
@@ -212,9 +220,24 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(() => loginHandler(email, password, x => console.log(x)))
-          .then(() => loginCallback())
-          .catch(err => console.log(err))
+          .then(res => {
+            console.log("RESPONSE FROM HANDLER: ", res.data.error);
+            if (res.data.error) {
+              console.log("ERROR RESPONSE: ", res.data.error);
+              return setState(state => ({
+                ...state,
+                loginError: res.data.error
+              }));
+            } else {
+              console.log("HIT LOGIN HANDLER")
+              loginHandler(email, password, x =>
+                console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
+              ).then(() => loginCallback());
+            }
+          })
+          .catch(err =>
+            console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err)
+          )
       );
     }
   };
@@ -223,7 +246,14 @@ export default function useApplicationData() {
   const logOutUser = () => {
     setState({
       ...state,
-      currentUser: null
+      currentUser: null,
+      level: null,
+      answer: null,
+      currentUserGoals: null,
+      currentUserWordCount: 0,
+      currentUserInsight: "",
+      level: 1,
+      loginError: false
     });
     return state.currentUser;
   };

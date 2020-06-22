@@ -5,7 +5,6 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 import Email from "@material-ui/icons/Email";
-import People from "@material-ui/icons/People";
 // core components
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
@@ -15,11 +14,25 @@ import CardBody from "../Card/CardBody.js";
 import CardHeader from "../Card/CardHeader.js";
 import CardFooter from "../Card/CardFooter.js";
 import CustomInput from "../CustomInput/CustomInput.js";
+import Popover from "@material-ui/core/Popover";
+import Typography from "@material-ui/core/Typography";
 
 import { Button } from "@material-ui/core";
 
 export default function Login(props) {
   const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [errorMessage, setErrorMessage] = useState({
+    email: false,
+    password: false
+  });
+  const [labelText, setLabelText] = useState({
+    email: "Email",
+    password: "Password"
+  });
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [authenticationError, setAuthenticationError] = React.useState(
+    props.loginError
+  );
 
   const useStyles = makeStyles({
     root: {
@@ -31,16 +44,63 @@ export default function Login(props) {
       height: 48,
       padding: "0 30px",
       margin: "0 10px"
-    }
+    },
+    typography: {
+      padding: "1em",
+    },
   });
   const classes = useStyles();
+
+  const validateEmail = email => (email ? email.includes("@") : false);
+
+  const handleClick = event => {
+    validateAndSubmitForm(credentials.email, credentials.password);
+    if (credentials.email && validateEmail(credentials.email) && credentials.password) setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+    setAuthenticationError(false)
+  };
+
+  const open = Boolean(anchorEl);
+  const id = open ? "simple-popover" : undefined;
+
+  const validateAndSubmitForm = (email, password) => {
+    if (!email && !password) {
+      setErrorMessage({ email: true, password: true });
+    } else if (!email || !validateEmail(email)) {
+      setErrorMessage({ email: true, password: errorMessage.password });
+      if (email && !validateEmail(email)) {
+        setLabelText({
+          email: 'Must include "@"',
+          password: labelText.password
+        });
+      }
+    } else if (!password) {
+      setErrorMessage({ email: errorMessage.email, password: true });
+    }
+    if (validateEmail(email) && password) {
+      props.loginHandler(email, password, props.loginCallback).then(() => {
+        setTimeout(() => {
+          if (!props.user) {
+            setAuthenticationError(true);
+          }
+        }, 1000);
+      });
+    }
+  };
 
   return (
     <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card}>
-            <form className={classes.form} onSubmit={data => console.log(data)}>
+            <form
+              className={classes.form}
+              onSubmit={data =>
+                console.log("useless data from login form?", data)
+              }>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Log In</h4>
               </CardHeader>
@@ -49,9 +109,12 @@ export default function Login(props) {
 
               <CardBody>
                 <CustomInput
-                  labelText="Email..."
+                  labelText={labelText.email}
                   id="email"
+                  required
+                  error={errorMessage.email}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
@@ -71,9 +134,12 @@ export default function Login(props) {
                   }}
                 />
                 <CustomInput
-                  labelText="Password"
+                  labelText={labelText.password}
                   id="password"
+                  required
+                  error={errorMessage.password}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
@@ -97,18 +163,31 @@ export default function Login(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={() =>
-                    props.loginHandler(
-                      credentials.email,
-                      credentials.password,
-                      props.loginCallback
-                    )
-                  }
+                  onClick={handleClick}
                   simple="true"
                   color="primary"
                   size="large">
                   Continue Your Journey
                 </Button>
+                <Popover
+                  id={id}
+                  open={open}
+                  anchorEl={anchorEl}
+                  onClose={handleClose}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "center"
+                  }}
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "center"
+                  }}>
+                  <Typography className={classes.typography}>
+                    {authenticationError
+                      ? "invalid email or password."
+                      : "logging in..."}
+                  </Typography>
+                </Popover>
               </CardFooter>
             </form>
             <Button

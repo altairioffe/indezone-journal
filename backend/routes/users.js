@@ -1,6 +1,8 @@
 let express = require("express");
 let router = express.Router();
 let db = require("../db/models/index");
+let bcrypt = require("bcryptjs");
+const { doesEmailExist } = require("./routeHelpers/userHelpers");
 
 //Get users
 router.get("/", (req, res) => {
@@ -30,21 +32,34 @@ router.get("/:id", (req, res) => {
 
 //Create  user
 router.post("/", (req, res) => {
-  console.log("FROM BACKEND: ", req.body.data);
+//confirm email is not already in database
   db.user
-    .create({
-      handle: req.body.data.handle,
-      email: req.body.data.email,
-      password: req.body.data.password,
-      points: req.body.data.points,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString()
-    })
+    .findAll()
     .then(users => {
-      res.json(users);
+      console.log("FROM DB.User");
+      let retrievedUsers = users.map(user => user.dataValues);
+      //res.send(users)
+      if (doesEmailExist(req.body.data.email, retrievedUsers)) {
+        console.log("email already exists");
+        return res.send({ error: "email already exists" });
+      } else {
+        console.log("FROM BACKEND: ", req.body.data);
+        let hashedPass = bcrypt.hashSync(req.body.data.password, 12);
+        console.log("hashedPass: ", hashedPass);
+
+        db.user.create({
+          handle: req.body.data.handle,
+          email: req.body.data.email,
+          password: hashedPass,
+          points: req.body.data.points,
+          createdAt: new Date().toISOString(),
+          updatedAt: new Date().toISOString()
+        });
+      }
     })
+    .then(response => res.send(response))
     .catch(err => {
-      res.status(500).json({ error: err.message });
+      res.status(500).json({ error: err });
     });
 });
 

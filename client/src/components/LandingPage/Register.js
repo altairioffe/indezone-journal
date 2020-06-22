@@ -37,11 +37,50 @@ export default function Register(props) {
   });
   const classes = useStyles();
 
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
-  const [userName, setUserName] = useState("");
+  const [credentials, setCredentials] = useState({
+    firstName: "",
+    email: "",
+    password: ""
+  });
+  const [errorMessage, setErrorMessage] = useState({
+    firstName: false,
+    email: false,
+    password: false
+  });
+  const [labelText, setLabelText] = useState({
+    firstName: "First Name",
+    email: "Email",
+    password: "Password"
+  });
 
-  let styledImage = {
-    //  backgroundImage: `url(${'images/logout-image2.png'})`
+  let styledImage = {};
+
+  const validateEmail = email => (email ? email.includes("@") : false);
+
+  const validateAndSubmitForm = (firstName, email, password) => {
+    let fieldErrors = {
+      firstName: false,
+      email: false,
+      password: false
+    };
+    if (!firstName || !email || !validateEmail(email) || !password) {
+      if (!firstName) {
+        fieldErrors.firstName = true;
+      }
+      if (!email || !validateEmail(email)) {
+        fieldErrors.email = true;
+        if (email && !validateEmail(email)) {
+          setLabelText({ ...labelText, email: 'Must include "@"' });
+        }
+      }
+      if (!password) {
+        fieldErrors.password = true;
+      }
+      setErrorMessage(fieldErrors);
+      return false;
+    } else {
+      props.registrationHandler(firstName, email, password, props.loginCallback);
+    }
   };
 
   return (
@@ -49,7 +88,9 @@ export default function Register(props) {
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card} style={styledImage}>
-            <form className={classes.form} onSubmit={data => console.log(data)}>
+            <form
+              className={classes.form}
+              onSubmit={data => console.log("Form onsubmit useless?: ", data)}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>
@@ -58,19 +99,25 @@ export default function Register(props) {
 
               <CardBody>
                 <CustomInput
-                  disabled={false}
-                  required={true}
-                  labelText="First Name..."
-                  id="handle"
+                  required
+                  labelText={labelText.firstName}
+                  id="firstName"
+                  error={errorMessage.firstName}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
-                    onChange: function(e) {
-                      setUserName(e.target.value);
-                    },
-                    value: userName,
+                    value: credentials.firstName,
                     type: "text",
+                    onChange: function(e) {
+                      setCredentials({
+                        firstName: e.target.value,
+                        email: credentials.email,
+                        password: credentials.password
+                      });
+                    },
+
                     endAdornment: (
                       <InputAdornment position="end">
                         <People className={classes.inputIconsColor} />
@@ -79,9 +126,12 @@ export default function Register(props) {
                   }}
                 />
                 <CustomInput
-                  labelText="Email..."
+                  labelText={props.loginError || labelText.email}
                   id="email"
+                  required
+                  error={props.loginError || errorMessage.email}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
@@ -89,6 +139,7 @@ export default function Register(props) {
                     type: "email",
                     onChange: function(e) {
                       setCredentials({
+                        firstName: credentials.firstName,
                         email: e.target.value,
                         password: credentials.password
                       });
@@ -101,15 +152,19 @@ export default function Register(props) {
                   }}
                 />
                 <CustomInput
-                  labelText="Password"
+                  labelText={labelText.password}
                   id="password"
+                  required
+                  error={errorMessage.password}
                   formControlProps={{
+                    required: true,
                     fullWidth: true
                   }}
                   inputProps={{
                     type: "password",
                     onChange: function(e) {
                       setCredentials({
+                        firstName: credentials.firstName,
                         email: credentials.email,
                         password: e.target.value
                       });
@@ -128,12 +183,11 @@ export default function Register(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() =>
-                    props.registrationHandler(
-                      userName,
-                      credentials.email,
-                      credentials.password,
-                      props.loginCallback
-                    )
+                      validateAndSubmitForm(
+                        credentials.firstName || false,
+                        credentials.email || false,
+                        credentials.password || false
+                      )
                   }
                   simple="true"
                   color="primary"

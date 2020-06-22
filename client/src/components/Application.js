@@ -35,6 +35,7 @@ export default function Application() {
         level={state.level}
         registrationHandler={registrationHandler}
         loginHandler={loginHandler}
+        loginError={state.loginError}
       />
 
       {state.currentUser && (

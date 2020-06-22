@@ -1,6 +1,7 @@
 const express = require("express");
 let router = express.Router();
 let db = require("../db/models/index");
+let bcrypt = require ('bcryptjs');
 
 const { doesEmailExist } = require("./routeHelpers/userHelpers");
 
@@ -16,26 +17,33 @@ router.post("/", (req, res) => {
   const password = req.body.data.password;
   console.log("EMAIL: ", email);
 
-  //res.send(email)
 
   db.user
     .findAll()
     .then(users => {
+      console.log("FROM DB.User")
       let retrievedUsers = users.map(user => user.dataValues);
       //res.send(users)
-      return doesEmailExist(email, retrievedUsers); //AUTHENTICATE EMAIL
+      if (!doesEmailExist(email, retrievedUsers)) {
+        console.log("email does not exist")
+        res.status(400).send({error: "email does not exist"})
+      } else {
+        return doesEmailExist(email, retrievedUsers); //AUTHENTICATE EMAIL
+      }
     })
+    // .then(foundUser => {
+    //   console.log("foundUser: ", foundUser);
+    //   return foundUser;1
+    // })
     .then(foundUser => {
-      console.log("foundUser: ", foundUser);
-      return foundUser;
-    })
-    .then(foundUser => {
-      if (foundUser.password === password) {
+      if (bcrypt.compareSync(password, foundUser.password)) {
+        console.log( "Found USER SFTER BCRYPT COMPARE: ", bcrypt.compareSync(password, foundUser.password) )
         let userData = foundUser;
 
         res.status(200).send(userData);
       } else {
-        res.status(500).send(false);
+        console.log( "NOT FOUND USER AFTER BCRYPT COMPARE" )
+        res.status(400).send({error: "email does not exist"})
       }
     })
     .catch(err => {
