@@ -242,6 +242,13 @@ export default function useApplicationData() {
     }
   };
 
+  const resetLoginError = () => {
+    setState(state => ({
+      ...state,
+      loginError: false
+    }));
+  }
+
   // log out & reset user state
   const logOutUser = () => {
     setState({
@@ -286,6 +293,7 @@ export default function useApplicationData() {
     registrationHandler,
     loginHandler,
     getBio,
-    setUserWordCount
+    setUserWordCount,
+    resetLoginError
   };
 }

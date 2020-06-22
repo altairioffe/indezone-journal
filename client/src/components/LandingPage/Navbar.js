@@ -176,6 +176,7 @@ export default function Navbar(props) {
               loginCallback={renderUserDashboard}
               back={() => setLoginState(0)}
               loginError={props.loginError}
+              resetLoginError={props.resetLoginError}
             />
           </Collapse>
         )}
