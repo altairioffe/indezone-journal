@@ -10,17 +10,21 @@ const filterByToday = userGoals => {
     );
   };
 
+  if (userGoals !== null) {
   return userGoals.filter(userGoal => {
     const date = new Date(userGoal.createdAt);
     return isToday(date);
   });
+}
 };
 
 // returns array of goals that are answered
 export const answeredGoals = (userGoals, currentUser) => {
+  if (userGoals) {
   return filterByToday(userGoals)
     .filter(userGoal => (currentUser === userGoal.user_id ? true : false))
     .map(userGoal => {
       return userGoal.goal_id;
     });
+  }
 };

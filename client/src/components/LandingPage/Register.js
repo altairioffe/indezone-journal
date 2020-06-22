@@ -55,7 +55,7 @@ export default function Register(props) {
 
   let styledImage = {};
 
-  const validateEmail = email => (email ? email.includes("@" && ".") : false);
+  const validateEmail = email => (email ? email.includes("@") && email.includes(".") : false);
 
   const validateAndSubmitForm = (firstName, email, password) => {
     let fieldErrors = {
@@ -63,22 +63,29 @@ export default function Register(props) {
       email: false,
       password: false
     };
+    console.log("OKAY... ", validateEmail(email))
     if (!firstName || !email || !validateEmail(email) || !password) {
       if (!firstName) {
+        console.log(1)
         fieldErrors.firstName = true;
       }
       if (!email || !validateEmail(email)) {
+        console.log(2)
         fieldErrors.email = true;
         if (email && !validateEmail(email)) {
+          console.log(3)
           setLabelText({ ...labelText, email: 'Must use format "email@example.com"' });
         }
       }
       if (!password) {
+        console.log(4)
         fieldErrors.password = true;
       }
       setErrorColour(fieldErrors);
+      console.log("FIELD ERRORS: ", fieldErrors)
       return false;
     } else {
+      console.log("DOESNT EVEN MATTER")
       props.registrationHandler(firstName, email, password, props.loginCallback);
     }
   };

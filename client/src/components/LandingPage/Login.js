@@ -51,7 +51,7 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const validateEmail = email => (email ? email.includes("@" && ".") : false);
+  const validateEmail = email => (email ? email.includes("@") && email.includes(".") : false);
 
   const handleClick = event => {
     validateAndSubmitForm(credentials.email, credentials.password);
