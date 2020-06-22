@@ -55,7 +55,7 @@ export default function Register(props) {
 
   let styledImage = {};
 
-  const validateEmail = email => (email ? email.includes("@") : false);
+  const validateEmail = email => (email ? email.includes("@" && ".") : false);
 
   const validateAndSubmitForm = (firstName, email, password) => {
     let fieldErrors = {
@@ -70,7 +70,7 @@ export default function Register(props) {
       if (!email || !validateEmail(email)) {
         fieldErrors.email = true;
         if (email && !validateEmail(email)) {
-          setLabelText({ ...labelText, email: 'Must include "@"' });
+          setLabelText({ ...labelText, email: 'Must use format "email@example.com"' });
         }
       }
       if (!password) {
