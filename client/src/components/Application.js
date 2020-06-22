@@ -54,14 +54,14 @@ export default function Application() {
           <QuestionList
             ansQuestion={ansQuestion}
             level={state.level}
-            questions={state.goals}
+            questions={state.randomizedQuestions}
             currentUserGoals={state.currentUserGoals}
             setAnswer={setAnswer}
             answer={state.answer}
             addUserGoal={addUserGoal}
-            goals={state.goals}
+            goals={state.randomizedQuestions}
             currentUserId={state.currentUser}
-            randomizedQuestions={state.goals}
+            randomizedQuestions={state.randomizedQuestions}
             answeredGoals={answeredGoals(
               state.currentUserGoals,
               state.currentUser
@@ -69,7 +69,7 @@ export default function Application() {
           />
           <div>
             {state.currentUserGoals.length >= 1 && (
-              <Wall userGoals={state.currentUserGoals} goals={state.goals} />
+              <Wall userGoals={state.currentUserGoals} goals={state.randomizedQuestions} />
             )}
           </div>
         </section>
