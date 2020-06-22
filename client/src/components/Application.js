@@ -68,7 +68,7 @@ export default function Application() {
             )}
           />
           <div>
-            {state.currentUserGoals.length >= 1 && (
+            {state.currentUserGoals && state.currentUserGoals.length >= 1 && (
               <Wall userGoals={state.currentUserGoals} goals={state.randomizedQuestions} />
             )}
           </div>
