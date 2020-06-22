@@ -83,13 +83,6 @@ export default function Login(props) {
     }
     if (validateEmail(email) && password) {
       props.loginHandler(email, password, props.loginCallback)
-      // .then(() => {
-      //   setTimeout(() => {
-      //     if (!props.user) {
-      //       setAuthenticationError(true);
-      //     }
-      //   }, 1000);
-      // });
     }
   };
 
