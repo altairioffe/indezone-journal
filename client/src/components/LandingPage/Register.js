@@ -38,18 +38,17 @@ export default function Register(props) {
   const classes = useStyles();
 
   const [credentials, setCredentials] = useState({
-    handle: "",
+    firstName: "",
     email: "",
     password: ""
   });
-  const [userName, setUserName] = useState("");
   const [errorMessage, setErrorMessage] = useState({
-    handle: false,
+    firstName: false,
     email: false,
     password: false
   });
   const [labelText, setLabelText] = useState({
-    handle: "First Name",
+    firstName: "First Name",
     email: "Email",
     password: "Password"
   });
@@ -58,29 +57,29 @@ export default function Register(props) {
 
   const validateEmail = email => (email ? email.includes("@") : false);
 
-  const validateAndSubmitForm = (handle, email, password) => {
-    let invalidatedParams = {
-      handle: false,
+  const validateAndSubmitForm = (firstName, email, password) => {
+    let fieldErrors = {
+      firstName: false,
       email: false,
       password: false
     };
-    if (!handle || !email || !validateEmail(email) || !password) {
-      if (!handle) {
-        invalidatedParams.handle = true;
+    if (!firstName || !email || !validateEmail(email) || !password) {
+      if (!firstName) {
+        fieldErrors.firstName = true;
       }
       if (!email || !validateEmail(email)) {
-        invalidatedParams.email = true;
+        fieldErrors.email = true;
         if (email && !validateEmail(email)) {
           setLabelText({ ...labelText, email: 'Must include "@"' });
         }
       }
       if (!password) {
-        invalidatedParams.password = true;
+        fieldErrors.password = true;
       }
-      setErrorMessage(invalidatedParams);
+      setErrorMessage(fieldErrors);
       return false;
     } else {
-      props.registrationHandler(handle, email, password, props.loginCallback);
+      props.registrationHandler(firstName, email, password, props.loginCallback);
     }
   };
 
@@ -101,19 +100,19 @@ export default function Register(props) {
               <CardBody>
                 <CustomInput
                   required
-                  labelText={labelText.handle}
-                  id="handle"
-                  error={errorMessage.handle}
+                  labelText={labelText.firstName}
+                  id="firstName"
+                  error={errorMessage.firstName}
                   formControlProps={{
                     required: true,
                     fullWidth: true
                   }}
                   inputProps={{
-                    value: credentials.handle,
+                    value: credentials.firstName,
                     type: "text",
                     onChange: function(e) {
                       setCredentials({
-                        handle: e.target.value,
+                        firstName: e.target.value,
                         email: credentials.email,
                         password: credentials.password
                       });
@@ -140,7 +139,7 @@ export default function Register(props) {
                     type: "email",
                     onChange: function(e) {
                       setCredentials({
-                        handle: credentials.handle,
+                        firstName: credentials.firstName,
                         email: e.target.value,
                         password: credentials.password
                       });
@@ -165,7 +164,7 @@ export default function Register(props) {
                     type: "password",
                     onChange: function(e) {
                       setCredentials({
-                        handle: credentials.handle,
+                        firstName: credentials.firstName,
                         email: credentials.email,
                         password: e.target.value
                       });
@@ -184,19 +183,11 @@ export default function Register(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() =>
-                    Promise.resolve(
                       validateAndSubmitForm(
-                        credentials.handle || false,
+                        credentials.firstName || false,
                         credentials.email || false,
                         credentials.password || false
                       )
-                    )
-                      .then(() =>
-                        props.loginError
-                          ? console.log("THEN LoginError: ".props.loginError)
-                          : console.log("apparently no error..")
-                      )
-                      .catch(err => console.log(err))
                   }
                   simple="true"
                   color="primary"

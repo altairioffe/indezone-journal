@@ -25,7 +25,7 @@ export default function useApplicationData() {
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
-    loginError: false 
+    loginError: false
   });
 
   useEffect(() => {
@@ -99,7 +99,7 @@ export default function useApplicationData() {
           }));
         })
         .catch(err => console.log("USERGOALS ERROR: ", err));
-    } 
+    }
   }, [state.currentUser]);
 
   //Set User wordcount
@@ -195,18 +195,18 @@ export default function useApplicationData() {
             )
           )
           .catch(err => {
-            console.log("LOGINNN ERROR: ", err)
-             setState(state => ({
+            console.log("LOGINNN ERROR: ", err);
+            setState(state => ({
               ...state,
               loginError: true
-            }))
-          }
-        )
+            }));
+          })
       );
     }
   };
 
   const registrationHandler = (handle, email, password, loginCallback) => {
+    console.log("R> ", handle, email, password, loginCallback)
     if (handle && email && password) {
       let data = {
         handle: handle,
@@ -221,28 +221,22 @@ export default function useApplicationData() {
             data
           })
           .then(res => {
-            
-            console.log("RESPONSE FROM HANDLER: ", res.data.error)
+            console.log("RESPONSE FROM HANDLER: ", res.data.error);
             if (res.data.error) {
+              console.log("ERROR RESPONSE: ", res.data.error);
               return setState(state => ({
                 ...state,
                 loginError: res.data.error
-              }))
-            }
-
-            else {
-
+              }));
+            } else {
+              console.log("HIT LOGIN HANDLER")
               loginHandler(email, password, x =>
                 console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
-              )
-              .then(() => loginCallback())
+              ).then(() => loginCallback());
             }
-          
           })
-          
           .catch(err =>
             console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err)
-          
           )
       );
     }
@@ -252,14 +246,14 @@ export default function useApplicationData() {
   const logOutUser = () => {
     setState({
       ...state,
-         currentUser: null,
-        level: null,
-        answer: null,
-        currentUserGoals: null,
-        currentUserWordCount: 0,
-        currentUserInsight: "",
-        level: 1,
-        loginError: false 
+      currentUser: null,
+      level: null,
+      answer: null,
+      currentUserGoals: null,
+      currentUserWordCount: 0,
+      currentUserInsight: "",
+      level: 1,
+      loginError: false
     });
     return state.currentUser;
   };

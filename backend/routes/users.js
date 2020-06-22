@@ -57,6 +57,7 @@ router.post("/", (req, res) => {
         });
       }
     })
+    .then(response => res.send(response))
     .catch(err => {
       res.status(500).json({ error: err });
     });
