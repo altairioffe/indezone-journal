@@ -55,7 +55,9 @@ export default function Login(props) {
 
   const handleClick = event => {
     validateAndSubmitForm(credentials.email, credentials.password);
-    if (credentials.email && validateEmail(credentials.email) && credentials.password) setAnchorEl(event.currentTarget);
+    if (credentials.email && validateEmail(credentials.email) && credentials.password) {
+      setAnchorEl(event.currentTarget);
+    }
   };
 
   const handleClose = () => {
