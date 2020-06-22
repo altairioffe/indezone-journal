@@ -49,14 +49,27 @@ export function checkIfFirstPostToday(userGoals) {
   } else return false;
 }
 
-export function randomizeQuestions(goals) {
-  const questions = [...goals];
+function shuffleArray(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+  }
+}
 
-  const randomizeQuestions = questions
-    .slice(1)
-    .sort(x => 0.5 - Math.random());
-  randomizeQuestions.unshift(goals[0]);
-  return randomizeQuestions;
+
+export function randomizeQuestions(questions) {
+  const mainGoal = questions[0]
+  console.log("RAW: ", questions)
+  //const questionsArray = [...questions];
+  //let shufflingQuestions = questionsArray
+  let shufflingQuestions = questions.slice(1)
+  console.log("preshuff Qs: ", shufflingQuestions)
+  shuffleArray(shufflingQuestions)
+  console.log("Post shuffle Qs: ", shufflingQuestions)
+
+  shufflingQuestions.unshift(mainGoal);
+  console.log("RANDOMIZED LIST: ", shufflingQuestions)
+  return shufflingQuestions;
 };
 
 
