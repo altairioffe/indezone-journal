@@ -21,7 +21,8 @@ export default function Application() {
     registrationHandler,
     loginHandler,
     getBio,
-    setUserWordCount
+    setUserWordCount,
+    resetLoginError
   } = useApplicationData();
   console.log("------APPLICATION.JS state ------\n", state);
 
@@ -36,6 +37,7 @@ export default function Application() {
         registrationHandler={registrationHandler}
         loginHandler={loginHandler}
         loginError={state.loginError}
+        resetLoginError={resetLoginError}
       />
 
       {state.currentUser && (

@@ -31,7 +31,7 @@ export default function Login(props) {
   });
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [authenticationError, setAuthenticationError] = React.useState(
-    props.loginError
+    false
   );
 
   const useStyles = makeStyles({
@@ -61,6 +61,7 @@ export default function Login(props) {
   const handleClose = () => {
     setAnchorEl(null);
     setAuthenticationError(false)
+    props.resetLoginError()
   };
 
   const open = Boolean(anchorEl);
@@ -81,13 +82,14 @@ export default function Login(props) {
       setErrorMessage({ email: errorMessage.email, password: true });
     }
     if (validateEmail(email) && password) {
-      props.loginHandler(email, password, props.loginCallback).then(() => {
-        setTimeout(() => {
-          if (!props.user) {
-            setAuthenticationError(true);
-          }
-        }, 1000);
-      });
+      props.loginHandler(email, password, props.loginCallback)
+      // .then(() => {
+      //   setTimeout(() => {
+      //     if (!props.user) {
+      //       setAuthenticationError(true);
+      //     }
+      //   }, 1000);
+      // });
     }
   };
 
@@ -169,7 +171,7 @@ export default function Login(props) {
                   size="large">
                   Continue Your Journey
                 </Button>
-                <Popover
+                { props.loginError && (<Popover
                   id={id}
                   open={open}
                   anchorEl={anchorEl}
@@ -183,11 +185,9 @@ export default function Login(props) {
                     horizontal: "center"
                   }}>
                   <Typography className={classes.typography}>
-                    {authenticationError
-                      ? "invalid email or password."
-                      : "logging in..."}
+                    {"invalid email or password"}
                   </Typography>
-                </Popover>
+                </Popover>)}
               </CardFooter>
             </form>
             <Button
