@@ -51,7 +51,7 @@ export default function Login(props) {
   });
   const classes = useStyles();
 
-  const validateEmail = email => (email ? email.includes("@") : false);
+  const validateEmail = email => (email ? email.includes("@" && ".") : false);
 
   const handleClick = event => {
     validateAndSubmitForm(credentials.email, credentials.password);
@@ -62,6 +62,11 @@ export default function Login(props) {
     setAnchorEl(null);
     setAuthenticationError(false)
     props.resetLoginError()
+    setLabelText({
+      email: "Email",
+      password: "Password"
+    });
+    setErrorMessage({ email: false, password: false })
   };
 
   const open = Boolean(anchorEl);
@@ -74,7 +79,7 @@ export default function Login(props) {
       setErrorMessage({ email: true, password: errorMessage.password });
       if (email && !validateEmail(email)) {
         setLabelText({
-          email: 'Must include "@"',
+          email: 'Must use format "email@example.com"',
           password: labelText.password
         });
       }
