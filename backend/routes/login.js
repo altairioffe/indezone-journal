@@ -26,25 +26,22 @@ router.post("/", (req, res) => {
       //res.send(users)
       if (!doesEmailExist(email, retrievedUsers)) {
         console.log("email does not exist")
-        res.status(400).send({error: "email does not exist"})
+       // res.status(400).send({error: "email does not exist"})
+        return null
       } else {
         return doesEmailExist(email, retrievedUsers); //AUTHENTICATE EMAIL
       }
     })
-    // .then(foundUser => {
-    //   console.log("foundUser: ", foundUser);
-    //   return foundUser;1
-    // })
     .then(foundUser => {
+      if (foundUser === null) {
+        console.log( "NOT FOUND USER AFTER BCRYPT COMPARE" )
+        return res.status(400).send({error: "email does not exist"})
+      }
       if (bcrypt.compareSync(password, foundUser.password)) {
         console.log( "Found USER SFTER BCRYPT COMPARE: ", bcrypt.compareSync(password, foundUser.password) )
         let userData = foundUser;
-
         res.status(200).send(userData);
-      } else {
-        console.log( "NOT FOUND USER AFTER BCRYPT COMPARE" )
-        res.status(400).send({error: "email does not exist"})
-      }
+      } 
     })
     .catch(err => {
       res.status(500).json({ error: err.message });

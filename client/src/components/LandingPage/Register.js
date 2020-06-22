@@ -42,7 +42,7 @@ export default function Register(props) {
     email: "",
     password: ""
   });
-  const [errorMessage, setErrorMessage] = useState({
+  const [errorColour, setErrorColour] = useState({
     firstName: false,
     email: false,
     password: false
@@ -76,7 +76,7 @@ export default function Register(props) {
       if (!password) {
         fieldErrors.password = true;
       }
-      setErrorMessage(fieldErrors);
+      setErrorColour(fieldErrors);
       return false;
     } else {
       props.registrationHandler(firstName, email, password, props.loginCallback);
@@ -102,7 +102,7 @@ export default function Register(props) {
                   required
                   labelText={labelText.firstName}
                   id="firstName"
-                  error={errorMessage.firstName}
+                  error={errorColour.firstName}
                   formControlProps={{
                     required: true,
                     fullWidth: true
@@ -129,7 +129,7 @@ export default function Register(props) {
                   labelText={props.loginError || labelText.email}
                   id="email"
                   required
-                  error={props.loginError || errorMessage.email}
+                  error={props.loginError || errorColour.email}
                   formControlProps={{
                     required: true,
                     fullWidth: true
@@ -155,7 +155,7 @@ export default function Register(props) {
                   labelText={labelText.password}
                   id="password"
                   required
-                  error={errorMessage.password}
+                  error={errorColour.password}
                   formControlProps={{
                     required: true,
                     fullWidth: true
