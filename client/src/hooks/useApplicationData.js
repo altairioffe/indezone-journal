@@ -219,13 +219,26 @@ export default function useApplicationData() {
           .post("api/users", {
             data
           })
-          .then(res => console.log("RESPONSE FROM HANDLER: ", res))
-          .then(() =>
-            loginHandler(email, password, x =>
-              console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
-            )
-          )
-          .then(() => loginCallback())
+          .then(res => {
+            
+            console.log("RESPONSE FROM HANDLER: ", res.data.error)
+            if (res.data.error) {
+              return setState(state => ({
+                ...state,
+                loginError: res.data.error
+              }))
+            }
+
+            else {
+
+              loginHandler(email, password, x =>
+                console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
+              )
+              .then(() => loginCallback())
+            }
+          
+          })
+          
           .catch(err =>
             console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err)
           

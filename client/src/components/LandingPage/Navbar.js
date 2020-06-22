@@ -159,6 +159,7 @@ export default function Navbar(props) {
               registrationHandler={props.registrationHandler}
               loginCallback={renderUserDashboard}
               back={() => setLoginState(1)}
+              loginError={props.loginError}
             />
           </Collapse>
         )}

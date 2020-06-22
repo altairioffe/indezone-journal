@@ -76,6 +76,9 @@ export default function Register(props) {
       password,
       props.loginCallback
     )
+    .then(() => {
+      setTimeout(() => console.log("PROPSLOGIN ERROR: ", props.loginError), 3000)
+    })
     }
   }
 
@@ -120,10 +123,10 @@ export default function Register(props) {
                   }}
                 />
                 <CustomInput
-                  labelText={labelText.email}
+                  labelText={props.loginError || labelText.email}
                   id="email"
                   required
-                  error={errorMessage.email}
+                  error={props.loginError || errorMessage.email}
                   formControlProps={{
                     required: true,
                     fullWidth: true
@@ -177,7 +180,11 @@ export default function Register(props) {
               <CardFooter className={classes.cardFooter}>
                 <Button
                   onClick={() =>
+                    Promise.resolve(
                     validateAndSubmitForm(credentials.handle || false, credentials.email || false, credentials.password || false)
+                    )
+                    .then(() => props.loginError ? console.log("THEN LoginError: ". props.loginError) : console.log("apparently no error.."))
+                    .catch(err => console.log(err))
                   }
                   simple="true"
                   color="primary"

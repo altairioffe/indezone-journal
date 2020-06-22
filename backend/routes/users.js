@@ -32,6 +32,7 @@ router.get("/:id", (req, res) => {
 
 //Create  user
 router.post("/", (req, res) => {
+//confirm email is not already in database
   db.user
     .findAll()
     .then(users => {
@@ -40,7 +41,7 @@ router.post("/", (req, res) => {
       //res.send(users)
       if (doesEmailExist(req.body.data.email, retrievedUsers)) {
         console.log("email already exists");
-        return res.status(400).send({ error: "email already exists" });
+        return res.send({ error: "email already exists" });
       } else {
         console.log("FROM BACKEND: ", req.body.data);
         let hashedPass = bcrypt.hashSync(req.body.data.password, 12);
