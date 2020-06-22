@@ -99,7 +99,7 @@ export default function useApplicationData() {
           }));
         })
         .catch(err => console.log("USERGOALS ERROR: ", err));
-    }
+    } 
   }, [state.currentUser]);
 
   //Set User wordcount
@@ -195,6 +195,7 @@ export default function useApplicationData() {
             )
           )
           .catch(err => {
+            console.log("LOGINNN ERROR: ", err)
              setState(state => ({
               ...state,
               loginError: true
@@ -251,7 +252,14 @@ export default function useApplicationData() {
   const logOutUser = () => {
     setState({
       ...state,
-      currentUser: null
+         currentUser: null,
+        level: null,
+        answer: null,
+        currentUserGoals: null,
+        currentUserWordCount: 0,
+        currentUserInsight: "",
+        level: 1,
+        loginError: false 
     });
     return state.currentUser;
   };
