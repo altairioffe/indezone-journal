@@ -58,16 +58,18 @@ function shuffleArray(array) {
 
 
 export function randomizeQuestions(questions) {
-  const mainGoal = questions[0]
-  console.log("RAW: ", questions)
+  const firstGoal = questions[0]
+  const lastGoal = questions[questions.length-1]
+  console.log("RAW: ", lastGoal)
   //const questionsArray = [...questions];
   //let shufflingQuestions = questionsArray
-  let shufflingQuestions = questions.slice(1)
+  let shufflingQuestions = questions.slice(1, questions.length-1)
   console.log("preshuff Qs: ", shufflingQuestions)
   shuffleArray(shufflingQuestions)
   console.log("Post shuffle Qs: ", shufflingQuestions)
 
-  shufflingQuestions.unshift(mainGoal);
+  shufflingQuestions.unshift(firstGoal)
+  shufflingQuestions.push(lastGoal);
   console.log("RANDOMIZED LIST: ", shufflingQuestions)
   return shufflingQuestions;
 };
