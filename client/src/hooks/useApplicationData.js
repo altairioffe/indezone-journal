@@ -17,7 +17,7 @@ import {
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    goals: [],
+    randomizedQuestions: [],
     biodatas: [],
     currentUserGoals: [],
     currentUser: null,
@@ -33,7 +33,7 @@ export default function useApplicationData() {
       .then(all => {
         setState(state => ({
           ...state,
-          goals: randomizeQuestions(all[0].data),
+          randomizedQuestions: randomizeQuestions(all[0].data),
           biodatas: all[1].data
         }));
       })
@@ -56,7 +56,6 @@ export default function useApplicationData() {
             level: newUserLevel
           }));
         })
-        .then(() => console.log("STATE LEVEL UPDATE COMPLETE: ", state.level))
         .catch(err => console.log(err))
     );
   };

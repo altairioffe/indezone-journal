@@ -32,6 +32,8 @@ export default function QuestionFeed(props) {
       suggestion: goal.suggestion
     };
   });
+  let finalQuestion = props.questions[props.questions.length-1]
+  //questionsArr.push({id: finalQuestion.id, question: finalQuestion.question, suggestion: finalQuestion.suggestion})
 
   const questionsFilteredList = questionsArr.map((goal, i) => {
     return (
@@ -56,6 +58,20 @@ export default function QuestionFeed(props) {
     <section>
       <br />
       {questionsFilteredList}
+      <Slide direction="up" in={false}>
+          <AnswerQuestionPanel
+            finalQuestion={true}
+            key={questionsFilteredList.length}
+            question={finalQuestion.question}
+            suggestion={finalQuestion.suggestion}
+            ansQuestion={props.ansQuestion}
+            setAnswer={props.setAnswer}
+            answer={props.answer}
+            goal_id={finalQuestion.id}
+            addUserGoal={props.addUserGoal}
+            currentUserId={props.currentUserId}
+          />
+        </Slide>
       {!questionsFilteredList.length === 0 && (
         <Card className={classes.root} variant="contained-primary">
           <CardContent>
