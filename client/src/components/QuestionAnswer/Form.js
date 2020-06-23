@@ -63,7 +63,7 @@ export default function Form(props) {
             onChange: function(e) {
               setAns(e.target.value);
               setLabelText([
-                ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on detailed answers for best results" : "Write a few lines...",
+                ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on a detailed answer" : "Write a few lines...",
                 { style: { color: "#00A8E0" } }
               ])
             }

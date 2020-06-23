@@ -16,6 +16,13 @@ export default function SimpleExpansionPanel(props) {
         backgroundColor: "inherit"
       }
     },
+    finalQuestion: {
+      width: "100%",
+      backgroundColor: `rgb(235,240,235)`,
+      "& div": {
+        backgroundColor: "inherit"
+      }
+    },
     heading: {
       fontSize: theme.typography.pxToRem(15),
       fontWeight: theme.typography.fontWeightLight,
@@ -30,7 +37,7 @@ export default function SimpleExpansionPanel(props) {
   return (
     <ExpansionPanel
       smUp="hide"
-      className={classes.root}
+      className={props.finalQuestion && classes.finalQuestion || classes.root}
       TransitionProps={{ unmountOnExit: true }}
       iconButtonProps={{ color: "#00A8E0" }}>
       <ExpansionPanelSummary

@@ -56,7 +56,6 @@ export default function useApplicationData() {
             level: newUserLevel
           }));
         })
-        .then(() => console.log("STATE LEVEL UPDATE COMPLETE: ", state.level))
         .catch(err => console.log(err))
     );
   };

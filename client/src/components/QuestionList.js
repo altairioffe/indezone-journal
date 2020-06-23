@@ -60,6 +60,7 @@ export default function QuestionFeed(props) {
       {questionsFilteredList}
       <Slide direction="up" in={false}>
           <AnswerQuestionPanel
+            finalQuestion={true}
             key={questionsFilteredList.length}
             question={finalQuestion.question}
             suggestion={finalQuestion.suggestion}
