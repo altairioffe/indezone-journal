@@ -1,6 +1,7 @@
 export const  styles = {
   contentStyle:{
-    backgroundColor:"#FAFAFA"
+    backgroundColor:"#FAFAFA",
+    opacity:0.5
     },
   bubbleStyle:{
     border:"2px solid #FAFAFA",
