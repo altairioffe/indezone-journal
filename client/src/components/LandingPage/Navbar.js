@@ -79,7 +79,8 @@ export default function Navbar(props) {
         className="navBar"
         position="sticky"
         color="transparent"
-        elevation={0}>
+        elevation={0}
+      >
         <Grid
           container
           direction="row"
@@ -147,7 +148,7 @@ export default function Navbar(props) {
           </Grid>
         </Grid>
       </AppBar>
-      <Box>
+      <Box mt="20vh">
         {/* REGISTRATION */}
         {props.user === null && (
           <Collapse

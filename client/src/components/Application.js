@@ -27,7 +27,8 @@ export default function Application() {
   console.log("------APPLICATION.JS state ------\n", state);
 
   return (
-    <Container className="">
+    <Container className="" style={{width: '100vw',
+    height: '100vh',backgroundImage: `url("/images/bg-pink-sky.jpg")`, backgroundSize: 'cover', maxWidth: "100%"}}>
       <Navbar
         users={state.users}
         logInUser={data => console.log(data)}
@@ -74,11 +75,11 @@ export default function Application() {
           </div>
         </section>
       )}
-      {state.currentUser === null && (
+      {/* {state.currentUser === null && (
         <div>
           <HeroImage />
         </div>
-      )}
+      )} */}
     </Container>
   );
 }
