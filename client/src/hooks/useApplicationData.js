@@ -25,7 +25,8 @@ export default function useApplicationData() {
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
-    loginError: false
+    loginError: false,
+    userIsMotivated: true
   });
 
   useEffect(() => {
