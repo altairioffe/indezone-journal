@@ -56,7 +56,8 @@ export default function Form(props) {
             "Write a few lines...",
             { style: { color: "#00A8E0" } }
           ])
-        }}
+          }}
+          style={{background: "rgb(255,255,255, .2)"}}
           inputProps={{
             value: ans,
             type: "email",

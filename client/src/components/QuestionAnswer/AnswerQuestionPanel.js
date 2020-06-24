@@ -11,14 +11,14 @@ export default function SimpleExpansionPanel(props) {
   const useStyles = makeStyles(theme => ({
     root: {
       width: "100%",
-      backgroundColor: `rgb(240,240,240)`,
+      backgroundColor: `rgb(240,240,240, 0.6)`,
       "& div": {
         backgroundColor: "inherit"
       }
     },
     finalQuestion: {
       width: "100%",
-      backgroundColor: `rgb(235,240,235)`,
+      backgroundColor: `rgb(235,240,235, 0.6)`,
       "& div": {
         backgroundColor: "inherit"
       }
@@ -28,8 +28,9 @@ export default function SimpleExpansionPanel(props) {
       fontWeight: theme.typography.fontWeightLight,
       flexGrow: 1,
       align: "center",
-      backgroundColor: "inherit",
-      color: "gray"
+      //backgroundColor: "inherit",
+      color: "gray",
+      background: "grgb(240,240,240, 0.0)"
     }
   }));
   const classes = useStyles();
@@ -41,7 +42,7 @@ export default function SimpleExpansionPanel(props) {
       TransitionProps={{ unmountOnExit: true }}
       iconButtonProps={{ color: "#00A8E0" }}>
       <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon style={{ color: "#00A8E0" }} />}
+        expandIcon={<ExpandMoreIcon style={{ color: "#00A8E0", backgroundColor: `rgb(240,240,240, 0.0)` }} />}
         aria-controls="panel1a-content"
         id="panel1a-header">
         <Typography className={classes.heading} fontSize="h2.fontSize">

@@ -84,7 +84,7 @@ export default function Register(props) {
   };
 
   return (
-    <div className={classes.container}>
+    <div className={classes.container} >
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card} style={styledImage}>

@@ -40,6 +40,7 @@ export default function QuestionFeed(props) {
       <div>
         <Slide direction="up" in={false}>
           <AnswerQuestionPanel
+            style={{background: "rgb(255,255,255, 0)"}}
             key={i}
             question={goal.question}
             suggestion={goal.suggestion}
