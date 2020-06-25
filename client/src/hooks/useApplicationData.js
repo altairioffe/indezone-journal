@@ -26,7 +26,7 @@ export default function useApplicationData() {
     currentUserWordCount: 0,
     level: 1,
     loginError: false,
-    userIsMotivated: true
+    userIsMotivated: null
   });
 
   useEffect(() => {

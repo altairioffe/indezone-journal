@@ -61,8 +61,8 @@ export default function Navbar(props) {
   /* 
     State 0: Logged out, prompt to register
     State 1: Logged out, prompt to log in
-    State 2: Logged in, render main page
-    State 3: Logged in, prompted to select mood
+    State 2: Welcome Logged in User
+      Logout, Welcome User
   */
 
   const renderUserDashboard = () => setLoginState(2);

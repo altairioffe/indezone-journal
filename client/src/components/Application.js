@@ -4,6 +4,7 @@ import Bio from "./Bio/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList";
+import Mood from "./Mood";
 import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
@@ -27,7 +28,6 @@ export default function Application() {
   } = useApplicationData();
   console.log("------APPLICATION.JS state ------\n", state);
 
-
   const parallaxStyle = {
     width: "100vw",
     height: "100vh",
@@ -36,29 +36,27 @@ export default function Application() {
     maxWidth: "100%",
     //position: "fixed",
     backgroundRepeat: "no-repeat"
-  }
+  };
   const containerStyle = {
     height: "100vh"
-  }
+  };
 
   return (
     <div>
       <Parallax
-      className = {parallaxStyle}
+        className={parallaxStyle}
         blur={10}
         bgImage={require("./LandingPage/LandingImage/bg-pink-sky.jpg")}
         bgImageAlt="the cat"
         strength={800}
-        bgStyle={{backgroundAttachment: "fixed"}}
-        backgroundRepeat="no-repeat"
-        >
+        bgStyle={{ backgroundAttachment: "fixed" }}
+        backgroundRepeat="no-repeat">
         <Container
           className=""
           //style={{position: "absolute"}}
           // style={{width: '100vw',
           // height: '100vh',backgroundImage: `url("/images/bg-pink-sky.jpg")`, backgroundSize: 'cover', maxWidth: "100%"}}
-          style={{minHeight: "100vh"}}
-        >
+          style={{ minHeight: "100vh" }}>
           <Navbar
             users={state.users}
             logInUser={data => console.log(data)}
@@ -69,9 +67,12 @@ export default function Application() {
             loginHandler={loginHandler}
             loginError={state.loginError}
             resetLoginError={resetLoginError}
+            userIsMotivated={state.userIsMotivated}
           />
 
-          {state.currentUser && (
+          {state.currentUser && <Mood />}
+
+          {state.currentUser &&  (
             <section className="feed">
               <br />
               <Bio
