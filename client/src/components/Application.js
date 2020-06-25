@@ -57,7 +57,7 @@ export default function Application() {
           // style={{width: '100vw',
           // height: '100vh',backgroundImage: `url("/images/bg-pink-sky.jpg")`, backgroundSize: 'cover', maxWidth: "100%"}}
           style={{ minHeight: "100vh" }}>
-          <Navbar
+          {/* <Navbar
             users={state.users}
             logInUser={data => console.log(data)}
             logoutUser={logOutUser}
@@ -67,12 +67,13 @@ export default function Application() {
             loginHandler={loginHandler}
             loginError={state.loginError}
             resetLoginError={resetLoginError}
-            userIsMotivated={state.userIsMotivated}
-          />
+          /> */}
+            <Mood/>
+          {state.currentUser && (
+            <Mood userIsMotivated={state.userIsMotivated} />
+          )}
 
-          {state.currentUser && <Mood />}
-
-          {state.currentUser &&  (
+          {state.currentUser && (
             <section className="feed">
               <br />
               <Bio
