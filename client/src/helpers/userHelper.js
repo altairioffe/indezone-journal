@@ -1,15 +1,6 @@
 import moment from "moment";
 
 export function checkCompliance(userGoals) {
-  // check if most recent entry before today was within 24 hours
-
-  // console.log(
-  //   "STAET OF TODAY: ",
-  //   moment(moment().subtract(24, "minutes")).isBetween(
-  //     moment().subtract(24, "hours"),
-  //     moment().startOf("minute")
-  //   )
-  // );
 
   let compliant = false;
   if (userGoals.length >= 1) {
@@ -49,6 +40,35 @@ export function checkIfFirstPostToday(userGoals) {
   } else return false;
 }
 
+
+function divideQuestionsByMood(questions, mood) {
+
+  let result = [];
+
+  if (mood === "happy") {
+
+    result.push(questions.slice(0,15))
+  }
+
+
+
+
+  let resultObj ={
+    happy: {
+      main: "",
+      randomized: "",
+      final: ""
+    },
+    sad: {
+      main: "",
+      randomized: "",
+      final: ""
+    }
+  }
+
+
+}
+
 function shuffleArray(array) {
   for (let i = array.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
@@ -58,15 +78,12 @@ function shuffleArray(array) {
 
 
 export function randomizeQuestions(questions) {
+
+
   const firstGoal = questions[0]
   const lastGoal = questions[questions.length-1]
-  console.log("RAW: ", lastGoal)
-  //const questionsArray = [...questions];
-  //let shufflingQuestions = questionsArray
   let shufflingQuestions = questions.slice(1, questions.length-1)
-  console.log("preshuff Qs: ", shufflingQuestions)
   shuffleArray(shufflingQuestions)
-  console.log("Post shuffle Qs: ", shufflingQuestions)
 
   shufflingQuestions.unshift(firstGoal)
   shufflingQuestions.push(lastGoal);

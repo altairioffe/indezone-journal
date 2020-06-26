@@ -25,7 +25,8 @@ export default function Application() {
     getBio,
     setUserWordCount,
     resetLoginError,
-    renderMainPage
+    renderMainPage,
+    setUserMood
   } = useApplicationData();
   console.log("------APPLICATION.JS state ------\n", state);
 
@@ -74,6 +75,7 @@ export default function Application() {
             <Mood 
             userIsMotivated={state.userIsMotivated} 
             renderMainPage={renderMainPage}
+            setUserMood={setUserMood}
             />
           )}
 

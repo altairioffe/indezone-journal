@@ -26,11 +26,12 @@ export default function useApplicationData() {
     currentUserWordCount: 0,
     level: 1,
     loginError: false,
-    userIsMotivated: null,
+    userMood: null,
     renderMainPage: false
   });
 
   useEffect(() => {
+    console.log("GETTTTING QUESTIONS")
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         setState(state => ({
@@ -112,8 +113,11 @@ export default function useApplicationData() {
   };
 
   const renderMainPage = () => {
-
     setState(state => ({...state, renderMainPage: true}))
+  }
+
+  const setUserMood = (mood) => {
+    setState(state => ({...state, userMood: mood}))
   }
 
 
@@ -302,6 +306,7 @@ export default function useApplicationData() {
     getBio,
     setUserWordCount,
     resetLoginError,
-    renderMainPage
+    renderMainPage,
+    setUserMood
   };
 }

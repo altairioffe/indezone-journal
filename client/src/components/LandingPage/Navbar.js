@@ -43,7 +43,8 @@ export default function Navbar(props) {
       height: "40vh",
       display: "flex",
       width: "200%",
-      flexDirection: "row"
+      flexDirection: "row",
+      marginBottom: "-10vh"
     },
     title: {
       color: "gray",
