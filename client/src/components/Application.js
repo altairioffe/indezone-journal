@@ -4,7 +4,7 @@ import Bio from "./Bio/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList";
-import Mood from "./Mood";
+import Mood from "./Mood/Mood";
 import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
