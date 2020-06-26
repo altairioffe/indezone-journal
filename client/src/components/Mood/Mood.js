@@ -100,6 +100,8 @@ export default function Login(props) {
             direction="row"
             alignItems="center"
             spacing={2}>
+
+              
             <GridItem xs={12} sm={12} md={6}>
               {moodSelection !== "happy" && (
                 <Fade in={moodSelection !== "happy"} timeout={1000}>
@@ -119,7 +121,7 @@ export default function Login(props) {
                 <Fade in={moodSelection === "happy"} timeout={1000}>
                   <Card className={classes.innerCard}>
                     <Typography className={classes.innerText}>
-                      Great. We'll serve up some questions to help you focus
+                      Great! We'll serve up some questions to help you focus
                       that energy
                     </Typography>
                   </Card>
@@ -146,10 +148,7 @@ export default function Login(props) {
                 <Fade in={moodSelection === "sad"} timeout={1000}>
                   <Card className={classes.innerCard}>
                     <Typography className={classes.innerText}>
-                      It's okay if you're not feeling 100% right now. By
-                      changing your thoughts, you can change how you feel. We'll
-                      give you some questions to help build mindfulness and
-                      self-compassion. The more your practice, the easier it
+                      It's okay if you're not feeling 100% right now. Research shows that you can change how you feel by changing your thoughts. The more your practice, the easier it
                       gets.
                     </Typography>
                   </Card>
@@ -159,14 +158,11 @@ export default function Login(props) {
           </GridContainer>
           {moodSelection && (
             <Fade in={moodSelection} timeout={3000}>
+              <Card className={classes.innerCard}>
               <LoadingImage
-                message={
-                  (moodSelection === "happy" &&
-                    "loading qestions to help you focus that positive energy") ||
-                  (moodSelection === "sad" &&
-                    "loading questions to build mindfulness & self-compassion")
-                }
+                mood={moodSelection}
               />
+              </Card>
             </Fade>
           )}
         </Card>
