@@ -26,7 +26,8 @@ export default function useApplicationData() {
     currentUserWordCount: 0,
     level: 1,
     loginError: false,
-    userIsMotivated: null
+    userIsMotivated: null,
+    renderMainPage: false
   });
 
   useEffect(() => {
@@ -109,6 +110,12 @@ export default function useApplicationData() {
       currentUserWordCount: getUserWordCount(state.currentUserGoals)
     }));
   };
+
+  const renderMainPage = () => {
+
+    setState(state => ({...state, renderMainPage: true}))
+  }
+
 
   // set Answer
   const setAnswer = function(ans) {
@@ -294,6 +301,7 @@ export default function useApplicationData() {
     loginHandler,
     getBio,
     setUserWordCount,
-    resetLoginError
+    resetLoginError,
+    renderMainPage
   };
 }
