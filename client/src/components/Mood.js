@@ -23,7 +23,7 @@ import Typography from "@material-ui/core/Typography";
 import { Button } from "@material-ui/core";
 
 export default function Login(props) {
-  const [credentials, setCredentials] = useState({ email: "", password: "" });
+  const [moodSelection, setMoodSelection] = useState("");
   const [errorMessage, setErrorMessage] = useState({
     email: false,
     password: false
@@ -49,27 +49,37 @@ export default function Login(props) {
       height: "80vh",
       width: "80vh",
       flexGrow: 1,
-      backgroundColor: `rgb(235,240,235, 0.6)`
-      //padding: "10vh"
+      backgroundColor: `rgb(235,240,235, 0.6)`,
+      padding: "5vh"
     },
     button: {
       height: "70%",
       width: "70%"
     },
     innerCard: {
-      height: "100px",
-      width: "100%",
-      background: "green",
-      margin: 0
+      backgroundColor: `rgb(235,240,235, 0)`,
+      boxShadow: "none"
     },
     typography: {
       fontSize: "2em",
       padding: "1em"
+    },
+    innerText: {
+      fontSize: "1em",
+      padding: "1em",
+      margin: "2em"
     }
   });
   const classes = useStyles();
 
-  const handleClick = event => {};
+  const setUserMood = mood => {
+    setMoodSelection(mood);
+    // set mood
+    //  disable other button
+    // replace clicked button with confirmation text
+    // set timeout
+    // render main page
+  };
 
   return (
     <div>
@@ -89,25 +99,76 @@ export default function Login(props) {
             alignItems="center"
             spacing={2}>
             <GridItem xs={12} sm={12} md={6}>
-              <IconButton
-                className={classes.button}
-                simple="true"
-                onClick={props.back}
-                color="primary"
-                size="large">
-                <SentimentSatisfiedIcon className={classes.button} />
-              </IconButton>
+              {moodSelection !== "happy" && (
+                <IconButton
+                  className={classes.button}
+                  disabled={moodSelection === "sad"}
+                  simple="true"
+                  onClick={() => setUserMood("happy")}
+                  color="primary"
+                  size="large">
+                  <SentimentSatisfiedIcon className={classes.button} />
+                </IconButton>
+              )}
+
+              {moodSelection === "happy" && (
+                <Card className={classes.innerCard}>
+                  <Typography className={classes.innerText}>
+                    Great. We'll serve up some questions to help you focus that
+                    energy
+                  </Typography>
+                </Card>
+              )}
             </GridItem>
             <GridItem xs={12} sm={12} md={6}>
-              <IconButton
-                className={classes.button}
-                simple="true"
-                onClick={props.back}
-                color="primary"
-                fullWidth="true"
-                size="large">
-                <SentimentDissatisfiedIcon className={classes.button} />
-              </IconButton>
+              {moodSelection !== "sad" && (
+                <IconButton
+                  className={classes.button}
+                  disabled={moodSelection === "happy"}
+                  simple="true"
+                  onClick={() => setUserMood("sad")}
+                  color="primary"
+                  fullWidth="true"
+                  size="large">
+                  <SentimentDissatisfiedIcon className={classes.button} />
+                </IconButton>
+              )}
+
+              {moodSelection === "sad" && (
+                <Card className={classes.innerCard}>
+                  <Typography className={classes.innerText}>
+                    It's okay if you're not feeling 100% right now. By changing
+                    your thoughts, you can change how you feel. We'll give you
+                    some questions to help build mindfulness and
+                    self-compassion. The more your practice, the easier it gets.
+                  </Typography>
+                </Card>
+              )}
+            </GridItem>
+          </GridContainer>
+
+          <GridContainer
+            justify="center"
+            direction="row"
+            alignItems="center"
+            spacing={2}>
+            <GridItem xs={12} sm={12} md={6}>
+              <Card className={classes.innerCard}>
+                <Typography className={classes.innerText}>
+                  Great. We'll serve up some questions to help you focus that
+                  energy
+                </Typography>
+              </Card>
+            </GridItem>
+            <GridItem xs={12} sm={12} md={6}>
+              <Card className={classes.innerCard}>
+                <Typography className={classes.innerText}>
+                  It's okay if you're not feeling 100% right now. By changing
+                  your thoughts, you can change how you feel. We'll give you
+                  some questions to help build mindfulness and self-compassion.
+                  The more your practice, the easier it gets.
+                </Typography>
+              </Card>
             </GridItem>
           </GridContainer>
         </Card>
