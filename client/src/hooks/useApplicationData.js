@@ -5,7 +5,8 @@ import {
   checkIfFirstPostToday,
   randomizeQuestions,
   getBio,
-  getUserWordCount
+  getUserWordCount,
+  divideQuestionsByTime
 } from "../helpers/userHelper";
 
 /*
@@ -18,6 +19,10 @@ import {
 export default function useApplicationData() {
   const [state, setState] = useState({
     randomizedQuestions: [],
+    morningHappyQuestions: [],
+    morningSadQuestions: [],
+    eveningHappyQuestions: [],
+    eveningSadQuestions: [],
     biodatas: [],
     currentUserGoals: [],
     currentUser: null,
@@ -34,9 +39,15 @@ export default function useApplicationData() {
     console.log("GETTTTING QUESTIONS")
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
+        let dividedQuestions = divideQuestionsByTime(all[0].data)
+        console.log("DIVIDED: ", dividedQuestions)
         setState(state => ({
           ...state,
           randomizedQuestions: randomizeQuestions(all[0].data),
+          morningHappyQuestions: dividedQuestions.morning.happy,
+          morningSadQuestions: dividedQuestions.morning.sad,
+          eveningHappyQuestions: dividedQuestions.evening.happy,
+          eveningSadQuestions: dividedQuestions.evening.sad,
           biodatas: all[1].data
         }));
       })
