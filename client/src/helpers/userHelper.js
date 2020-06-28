@@ -38,7 +38,7 @@ export function checkIfFirstPostToday(userGoals) {
   } else return false;
 }
 
-export function divideQuestionsByTime(questions) {
+export function organizeQuestionsByTime(questions) {
   let dividedQuestions = {
     morning: {
       happy: [],

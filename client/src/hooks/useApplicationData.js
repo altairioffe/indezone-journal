@@ -1,12 +1,14 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import moment from "moment";
+
 import {
   checkCompliance,
   checkIfFirstPostToday,
   randomizeQuestions,
   getBio,
   getUserWordCount,
-  divideQuestionsByTime
+  organizeQuestionsByTime
 } from "../helpers/userHelper";
 
 /*
@@ -19,10 +21,7 @@ import {
 export default function useApplicationData() {
   const [state, setState] = useState({
     randomizedQuestions: [],
-    morningHappyQuestions: [],
-    morningSadQuestions: [],
-    eveningHappyQuestions: [],
-    eveningSadQuestions: [],
+    organizedQuestionsByTime: {},
     biodatas: [],
     currentUserGoals: [],
     currentUser: null,
@@ -32,6 +31,7 @@ export default function useApplicationData() {
     level: 1,
     loginError: false,
     userMood: null,
+    timeOfDay: "morning",
     renderMainPage: false
   });
 
@@ -39,15 +39,12 @@ export default function useApplicationData() {
     console.log("GETTTTING QUESTIONS")
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
-        let dividedQuestions = divideQuestionsByTime(all[0].data)
-        console.log("DIVIDED: ", dividedQuestions)
+        let organizedQuestions = organizeQuestionsByTime(all[0].data)
+        console.log("DIVIDED: ", organizedQuestions)
         setState(state => ({
           ...state,
           randomizedQuestions: randomizeQuestions(all[0].data),
-          morningHappyQuestions: dividedQuestions.morning.happy,
-          morningSadQuestions: dividedQuestions.morning.sad,
-          eveningHappyQuestions: dividedQuestions.evening.happy,
-          eveningSadQuestions: dividedQuestions.evening.sad,
+          organizedQuestionsByTime: organizedQuestions,
           biodatas: all[1].data
         }));
       })
