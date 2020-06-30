@@ -12,12 +12,10 @@ export default function Wall(props) {
 
   let questions = props.questions;
   
-  console.log("QUUESSAAARIONNNNN ", userGoals[0])
   let userGoalsView = userGoals[0].map(userGoal => {
     let linkedQuestion = questions.filter(
       question => question.id === userGoal.goal_id
     );
-    console.log("LINKED QUESTION______: ", linkedQuestion)
     let timeStamp = new Date(userGoal.createdAt);
     return (
       <WallItem

@@ -11,6 +11,8 @@ import {
   organizeQuestionsByTime
 } from "../helpers/userHelper";
 
+import { setTimeOfDay} from "../helpers/questionHelper";
+
 /*
   - on login: if no post yesterday & no post today, reduce level by 1, update state & db
   - on login: if no post yesterday BUT post has already been made previously today, no change to level
@@ -129,6 +131,9 @@ export default function useApplicationData() {
     setState(state => ({...state, userMood: mood}))
   }
 
+  const setTime = () => {
+    setState(state => ({...state, timeOfDay: setTimeOfDay(moment())}))
+  }
 
   // set Answer
   const setAnswer = function(ans) {
@@ -206,6 +211,7 @@ export default function useApplicationData() {
           .then(response => {
             return setCurrentUser(response.data);
           })
+          .then(() => setTime())
           .then(() => loginCallback())
           .then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
