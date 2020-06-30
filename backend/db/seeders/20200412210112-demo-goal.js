@@ -255,6 +255,7 @@ module.exports = {
       id:36,
       question: 'What\'s on your mind?',
       suggestion: 'Use this space for ideas, plans, or anything else you\'d like',
+      createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
@@ -340,7 +341,7 @@ module.exports = {
       suggestion: 'Use this space for ideas, plans, or anything else you\'d like',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
-    },
+    }
 
     ]);
   },
