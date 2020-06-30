@@ -40,10 +40,11 @@ export default function useApplicationData() {
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
         let organizedQuestions = organizeQuestionsByTime(all[0].data)
+        let randomizedQuestions = randomizeQuestions(all[0].data)
         console.log("DIVIDED: ", organizedQuestions)
         setState(state => ({
           ...state,
-          randomizedQuestions: randomizeQuestions(all[0].data),
+          randomizedQuestions: randomizedQuestions,
           organizedQuestionsByTime: organizedQuestions,
           biodatas: all[1].data
         }));

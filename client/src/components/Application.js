@@ -10,6 +10,7 @@ import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import { Container } from "@material-ui/core";
 import { Parallax, Background } from "react-parallax";
+import { pickUserQuestions } from "../helpers/questionHelper"
 
 export default function Application() {
   const {
@@ -93,7 +94,7 @@ export default function Application() {
               <QuestionList
                 ansQuestion={ansQuestion}
                 level={state.level}
-                questions={state.randomizedQuestions}
+                questions={pickUserQuestions(state.organizedQuestionsByTime, state.timeOfDay, state.userMood)}
                 currentUserGoals={state.currentUserGoals}
                 setAnswer={setAnswer}
                 answer={state.answer}
@@ -111,7 +112,7 @@ export default function Application() {
                   state.currentUserGoals.length >= 1 && (
                     <Wall
                       userGoals={state.currentUserGoals}
-                      goals={state.randomizedQuestions}
+                      questions={state.randomizedQuestions}
                     />
                   )}
               </div>

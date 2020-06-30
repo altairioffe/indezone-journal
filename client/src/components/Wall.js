@@ -10,18 +10,20 @@ export default function Wall(props) {
   userGoals.push(props.userGoals);
   userGoals[0].sort((a, b) => b.id - a.id);
 
-  let questions = props.goals;
-
+  let questions = props.questions;
+  
+  console.log("QUUESSAAARIONNNNN ", userGoals[0])
   let userGoalsView = userGoals[0].map(userGoal => {
     let linkedQuestion = questions.filter(
       question => question.id === userGoal.goal_id
     );
+    console.log("LINKED QUESTION______: ", linkedQuestion)
     let timeStamp = new Date(userGoal.createdAt);
     return (
       <WallItem
         key={userGoal.id}
         createdAt={moment(timeStamp).format("HH:mm MMM DD, YYYY")}
-        question={linkedQuestion[0].question}
+        question={linkedQuestion.length > 0 ? linkedQuestion[0].question : "Entry:"}
         answer={userGoal.answer}
       />
     );
