@@ -45,13 +45,6 @@ export default function Bio(props) {
   return (
     <main style={{marginTop: "-80px"}}>
       <section>
-        <h2 className={classes.root}>
-          Take A Moment To Start Your Day With Purpose
-        </h2>
-        <br />
-      </section>
-
-      <section>
         {mode === USERBIO && (
           <UserBio
             bio={props.bio}

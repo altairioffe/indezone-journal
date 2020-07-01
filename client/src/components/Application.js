@@ -1,6 +1,7 @@
 import React from "react";
 import Wall from "./Wall";
 import Bio from "./Bio/Index";
+import Rewards from "./Rewards/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList";
@@ -83,6 +84,7 @@ export default function Application() {
           {state.currentUser && state.renderMainPage && (
             <section className="feed">
               <br />
+              <Rewards/>
               <Bio
                 bio={getBio(state.biodatas, state.currentUser)}
                 level={state.level}
