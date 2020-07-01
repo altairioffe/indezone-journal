@@ -78,7 +78,7 @@ module.exports = {
     },
     {
       id:11,
-      question: 'What\'s on your mind?',
+      question: 'What have you been avoiding or putting off?',
       suggestion: 'Use this space for ideas, plans, or anything else you\'d like',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -148,7 +148,7 @@ module.exports = {
     },
     {
       id:21,
-      question: 'Identify one personal value that\'s important to you. What does it look like, and how can you embody that value today?',
+      question: 'Identify one personal value that\'s important to you. Define what it look like. How can you embody that value today?',
       suggestion: 'What are some things that might be holding you back?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -156,7 +156,7 @@ module.exports = {
     {
       id:22,
       question: 'When you have a negative thought, what is the first thing you do?',
-      suggestion: 'Why are you unable to fit that into your schedule?',
+      suggestion: 'As soon as you catch a negative thought, challenge it',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
