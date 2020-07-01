@@ -1,12 +1,17 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
+import moment from "moment";
+
 import {
   checkCompliance,
   checkIfFirstPostToday,
   randomizeQuestions,
   getBio,
-  getUserWordCount
+  getUserWordCount,
+  organizeQuestionsByTime
 } from "../helpers/userHelper";
+
+import { setTimeOfDay} from "../helpers/questionHelper";
 
 /*
   - on login: if no post yesterday & no post today, reduce level by 1, update state & db
@@ -18,6 +23,7 @@ import {
 export default function useApplicationData() {
   const [state, setState] = useState({
     randomizedQuestions: [],
+    organizedQuestionsByTime: {},
     biodatas: [],
     currentUserGoals: [],
     currentUser: null,
@@ -25,15 +31,23 @@ export default function useApplicationData() {
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
-    loginError: false
+    loginError: false,
+    userMood: null,
+    timeOfDay: "morning",
+    renderMainPage: false
   });
 
   useEffect(() => {
+    console.log("GETTTTING QUESTIONS")
     Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
       .then(all => {
+        let organizedQuestions = organizeQuestionsByTime(all[0].data)
+        let randomizedQuestions = randomizeQuestions(all[0].data)
+        console.log("DIVIDED: ", organizedQuestions)
         setState(state => ({
           ...state,
-          randomizedQuestions: randomizeQuestions(all[0].data),
+          randomizedQuestions: randomizedQuestions,
+          organizedQuestionsByTime: organizedQuestions,
           biodatas: all[1].data
         }));
       })
@@ -108,6 +122,18 @@ export default function useApplicationData() {
       currentUserWordCount: getUserWordCount(state.currentUserGoals)
     }));
   };
+
+  const renderMainPage = () => {
+    setState(state => ({...state, renderMainPage: true}))
+  }
+
+  const setUserMood = (mood) => {
+    setState(state => ({...state, userMood: mood}))
+  }
+
+  const setTime = () => {
+    setState(state => ({...state, timeOfDay: setTimeOfDay(moment())}))
+  }
 
   // set Answer
   const setAnswer = function(ans) {
@@ -185,6 +211,7 @@ export default function useApplicationData() {
           .then(response => {
             return setCurrentUser(response.data);
           })
+          .then(() => setTime())
           .then(() => loginCallback())
           .then(() => updateUserLevelOnLogin(state.currentUserGoals))
           .then(x =>
@@ -293,6 +320,8 @@ export default function useApplicationData() {
     loginHandler,
     getBio,
     setUserWordCount,
-    resetLoginError
+    resetLoginError,
+    renderMainPage,
+    setUserMood
   };
 }

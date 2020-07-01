@@ -43,7 +43,7 @@ export default function Bio(props) {
   const classes = useStyles();
 
   return (
-    <main>
+    <main style={{marginTop: "-80px"}}>
       <section>
         <h2 className={classes.root}>
           Take A Moment To Start Your Day With Purpose

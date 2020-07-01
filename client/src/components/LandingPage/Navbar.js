@@ -43,7 +43,8 @@ export default function Navbar(props) {
       height: "40vh",
       display: "flex",
       width: "200%",
-      flexDirection: "row"
+      flexDirection: "row",
+      marginBottom: "-10vh"
     },
     title: {
       color: "gray",
@@ -135,7 +136,7 @@ export default function Navbar(props) {
                         <strong>
                           {props.user ? props.user.handle : "error"}.
                         </strong>{" "}
-                        Score:{" "}
+                        Level:{" "}
                         <strong style={{ color: "#00A8E0" }}>
                           {props.level}
                         </strong>
