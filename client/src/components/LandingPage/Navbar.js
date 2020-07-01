@@ -136,7 +136,7 @@ export default function Navbar(props) {
                         <strong>
                           {props.user ? props.user.handle : "error"}.
                         </strong>{" "}
-                        Score:{" "}
+                        Level:{" "}
                         <strong style={{ color: "#00A8E0" }}>
                           {props.level}
                         </strong>
