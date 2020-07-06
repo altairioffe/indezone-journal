@@ -1,37 +1,25 @@
 import React, { useState, useEffect } from "react";
 
-import Profile from "./Profile";
-import UserBio from "./UserBio";
-import Error from "./Error";
-import Insights from "./Insights";
-import Status from "./Loading";
 import PollIcon from "@material-ui/icons/Poll";
 import LockIcon from "@material-ui/icons/Lock";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { Button } from "@material-ui/core";
+
+import Level1 from "./Level1";
+import Level2 from "./Level2";
+import Level3 from "./Level3";
+import Level4 from "./Level4";
+import Level5 from "./Level5";
+import Level6 from "./Level6";
+import Level7 from "./Level7";
+import Level8 from "./Level8";
+import Level9 from "./Level9";
+import Level10 from "./Level10";
+
 import useVisualMode from "../../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";
 
-export default function Bio(props) {
-  const USERBIO = "USERBIO";
-  const INSIGHTS = "INSIGHTS";
-  const LOADING = "LOADING";
-  // const EDIT = "EDIT";
-  const DENIED = "DENIED";
-  const ERROR = "ERROR";
-
-  const level = props.level;
-  const { mode, transition, back } = useVisualMode(USERBIO);
-
-  const loadInsight = () => {
-    props
-      .requestInsight(props.currentUserGoals)
-      .then(() => {
-        transition(INSIGHTS);
-      })
-      .catch(error => transition(ERROR));
-  };
-
+export default function Resource(props) {
   const useStyles = makeStyles(theme => ({
     root: {
       textAlign: "center",
@@ -56,65 +44,46 @@ export default function Bio(props) {
     }
   }));
   const classes = useStyles();
-  
+
+  const [renderResource, setRenderResource] = useState(false);
 
   return (
     <main style={{ marginTop: "-80px" }}>
-      <Button
-        className={classes.button}
-        back={() => props.back}
-        disabled={props.disabled}
-        endIcon={(props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />}>
-        BACK
-      </Button>
+      {renderResource === false && (
+        <Button
+          className={classes.button}
+          onClick={() => setRenderResource(true)}
+          disabled={props.disabled}
+          endIcon={
+            (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
+          }>
+          Show BrainFood
+        </Button>
+      )}
+      {renderResource === true && (
+        <section>
+          {props.level === 1 && <Level1 />}
+          {props.level === 2 && <Level2 />}
+          {props.level === 3 && <Level3 />}
+          {props.level === 4 && <Level4 />}
+          {props.level === 5 && <Level5 />}
+          {props.level === 6 && <Level6 />}
+          {props.level === 7 && <Level7 />}
+          {props.level === 8 && <Level8 />}
+          {props.level === 9 && <Level9 />}
+          {props.level === 10 && <Level10 />}
 
-      <section>
-        {mode === USERBIO && (
-          <UserBio
-            bio={props.bio}
-            level={level}
-            onClick={() => {
-              if (level > 600) {
-                transition(LOADING);
-                loadInsight();
-              } else {
-                transition(DENIED);
-              }
-            }}
-          />
-        )}
-
-        {mode === DENIED && (
-          <Error
-            message={
-              "Reach 600 points to access your insights! Your points grow as you increase the total word count from all your entries"
-            }
-            onCancel={back}
-          />
-        )}
-
-        {mode === ERROR && (
-          <Error
-            message={
-              "Unable to load insights! Make sure you are providing enough data for an analysis by writing complete sentences!"
-            }
-            onCancel={back}
-          />
-        )}
-
-        {mode === LOADING && (
-          <Status message={"Loading insights!"} onCancel={back} />
-        )}
-
-        {mode === INSIGHTS && (
-          <Insights
-            insights={props.userInsight}
-            onCancel={() => {
-              transition(USERBIO);
-            }}
-          />
-        )}
-      </section>
+          <Button
+            className={classes.button}
+            onClick={() => setRenderResource(false)}
+            disabled={props.disabled}
+            endIcon={
+              (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
+            }>
+            HIDE BrainFood
+          </Button>
+        </section>
+      )}
     </main>
   );
 }

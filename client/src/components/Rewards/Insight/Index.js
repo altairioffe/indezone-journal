@@ -60,13 +60,6 @@ export default function Bio(props) {
 
   return (
     <main style={{ marginTop: "-80px" }}>
-      <Button
-        className={classes.button}
-        back={() => props.back}
-        disabled={props.disabled}
-        endIcon={(props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />}>
-        BACK
-      </Button>
 
       <section>
         {mode === USERBIO && (

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import Insight from "./Insight/Index";
+import Resource from "./Resources/Index";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PollIcon from "@material-ui/icons/Poll";
@@ -71,14 +72,28 @@ export default function Rewards(props) {
           </Button>
         )}
         {renderReward === true && (
-          <Insight
-            bio={props.bio}
-            level={props.level}
-            back={() => setRenderReward(false)}
-            requestInsight={props.requestInsight}
-            currentUserGoals={props.currentUserGoals}
-            userInsight={props.currentUserInsight}
-          />
+          <section>
+            <Button
+              className={classes.button}
+              onClick={() => setRenderReward(false)}
+              disabled={props.disabled}
+              >
+              Hide Rewards
+            </Button>
+
+            <Insight
+              bio={props.bio}
+              level={props.level}
+              requestInsight={props.requestInsight}
+              currentUserGoals={props.currentUserGoals}
+              userInsight={props.currentUserInsight}
+            />
+
+            <Resource
+            level={1}
+            />
+
+          </section>
         )}
       </article>
     </main>
