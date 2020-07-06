@@ -1,6 +1,6 @@
 import React from "react";
 import Wall from "./Wall";
-import Bio from "./Bio/Index";
+import Insight from "./Insight/Index";
 import Rewards from "./Rewards/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
@@ -85,7 +85,7 @@ export default function Application() {
             <section className="feed">
               <br />
               <Rewards/>
-              <Bio
+              <Insight
                 bio={getBio(state.biodatas, state.currentUser)}
                 level={state.level}
                 requestInsight={requestInsight}

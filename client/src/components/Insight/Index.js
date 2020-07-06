@@ -38,12 +38,32 @@ export default function Bio(props) {
       "& small": {
         color: "skyblue"
       }
+    },
+    button: {
+      background: "#00A8E0",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "skyBlue",
+        color: "#FFF"
+      },
+      fontWeight: 300,
+      fontSize: "1em",
+      padding: "0.8em 1.2em"
     }
   }));
   const classes = useStyles();
+  
 
   return (
-    <main style={{marginTop: "-80px"}}>
+    <main style={{ marginTop: "-80px" }}>
+      <Button
+        className={classes.button}
+        back={props.back}
+        disabled={props.disabled}
+        endIcon={(props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />}>
+        BACK
+      </Button>
+
       <section>
         {mode === USERBIO && (
           <UserBio
