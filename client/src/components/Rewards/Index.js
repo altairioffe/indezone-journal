@@ -1,12 +1,14 @@
 import React, { useState } from "react";
-import Insight from "../Insight/Index";
+import Insight from "./Insight/Index";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PollIcon from "@material-ui/icons/Poll";
 import LockIcon from "@material-ui/icons/Lock";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 
-export default function UserBio(props) {
+import useVisualMode from "../../hooks/useVisualMode";
+
+export default function Rewards(props) {
   // Define Styles
   const useStyles = makeStyles({
     root: {
@@ -33,16 +35,19 @@ export default function UserBio(props) {
   });
   const classes = useStyles();
 
-
   /*
-onClick
-- setState to render Bio
 
+- quote
 
+-button (REWARDS)
+  onClick: transition mode to display 
+    -Back Button
+    -get insights button
+    -render resource / reward based on user level
 
   */
 
- const [renderReward, setRenderReward] = useState(false);
+  const [renderReward, setRenderReward] = useState(false);
 
   return (
     <main style={{ marginTop: "-80px" }}>
@@ -55,24 +60,25 @@ onClick
       <article className="">
         <p>{props.bio || ""}</p>
         {renderReward === false && (
-        <Button
-          className={classes.button}
-          onClick={() => setRenderReward(true)}
-          disabled={props.disabled}
-          endIcon={
-            (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
-          }>
-          VIEW REWARDS
-        </Button>
+          <Button
+            className={classes.button}
+            onClick={() => setRenderReward(true)}
+            disabled={props.disabled}
+            endIcon={
+              (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
+            }>
+            VIEW REWARDS
+          </Button>
         )}
-              {renderReward === true && (
-        <Insight
-        bio={props.bio}
-        level={props.level}
-        requestInsight={props.requestInsight}
-        currentUserGoals={props.currentUserGoals}
-        userInsight={props.currentUserInsight}
-        />
+        {renderReward === true && (
+          <Insight
+            bio={props.bio}
+            level={props.level}
+            back={() => setRenderReward(false)}
+            requestInsight={props.requestInsight}
+            currentUserGoals={props.currentUserGoals}
+            userInsight={props.currentUserInsight}
+          />
         )}
       </article>
     </main>

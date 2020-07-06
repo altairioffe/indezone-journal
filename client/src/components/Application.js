@@ -1,6 +1,6 @@
 import React from "react";
 import Wall from "./Wall";
-import Insight from "./Insight/Index";
+import Insight from "./Rewards/Insight/Index";
 import Rewards from "./Rewards/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
