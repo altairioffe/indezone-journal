@@ -1,5 +1,5 @@
-import React from "react";
-import Bio from "../Insight/Index";
+import React, { useState } from "react";
+import Insight from "../Insight/Index";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import PollIcon from "@material-ui/icons/Poll";
@@ -67,11 +67,11 @@ onClick
         )}
               {renderReward === true && (
         <Insight
-        bio={getBio(state.biodatas, state.currentUser)}
-        level={state.level}
-        requestInsight={requestInsight}
-        currentUserGoals={state.currentUserGoals}
-        userInsight={state.currentUserInsight}
+        bio={props.bio}
+        level={props.level}
+        requestInsight={props.requestInsight}
+        currentUserGoals={props.currentUserGoals}
+        userInsight={props.currentUserInsight}
         />
         )}
       </article>

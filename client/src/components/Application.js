@@ -11,7 +11,7 @@ import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import { Container } from "@material-ui/core";
 import { Parallax, Background } from "react-parallax";
-import { pickUserQuestions } from "../helpers/questionHelper"
+import { pickUserQuestions } from "../helpers/questionHelper";
 
 export default function Application() {
   const {
@@ -74,29 +74,33 @@ export default function Application() {
           />
 
           {state.currentUser && !state.renderMainPage && (
-            <Mood 
-            userIsMotivated={state.userIsMotivated} 
-            renderMainPage={renderMainPage}
-            setUserMood={setUserMood}
+            <Mood
+              userIsMotivated={state.userIsMotivated}
+              renderMainPage={renderMainPage}
+              setUserMood={setUserMood}
             />
           )}
 
           {state.currentUser && state.renderMainPage && (
             <section className="feed">
               <br />
-              <Rewards/>
-              <Insight
+              <Rewards
                 bio={getBio(state.biodatas, state.currentUser)}
                 level={state.level}
                 requestInsight={requestInsight}
                 currentUserGoals={state.currentUserGoals}
                 userInsight={state.currentUserInsight}
               />
+        
               <br />
               <QuestionList
                 ansQuestion={ansQuestion}
                 level={state.level}
-                questions={pickUserQuestions(state.organizedQuestionsByTime, state.timeOfDay, state.userMood)}
+                questions={pickUserQuestions(
+                  state.organizedQuestionsByTime,
+                  state.timeOfDay,
+                  state.userMood
+                )}
                 currentUserGoals={state.currentUserGoals}
                 setAnswer={setAnswer}
                 answer={state.answer}
