@@ -4,6 +4,7 @@ import PollIcon from "@material-ui/icons/Poll";
 import LockIcon from "@material-ui/icons/Lock";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { Button } from "@material-ui/core";
+import Card from "../../Card/Card.js";
 
 import Level1 from "./Level1";
 import Level2 from "./Level2";
@@ -41,14 +42,18 @@ export default function Resource(props) {
       fontWeight: 300,
       fontSize: "1em",
       padding: "0.8em 1.2em"
+    },
+    card: {
+      backgroundColor: "rgb(235,240,235, 0)",
+      boxShadow: "none"
     }
   }));
   const classes = useStyles();
 
-  const [renderResource, setRenderResource] = useState(false);
+  const [renderResource, setRenderResource] = useState(true);
 
   return (
-    <main style={{ marginTop: "-80px" }}>
+    <Card className={classes.card}>
       {renderResource === false && (
         <Button
           className={classes.button}
@@ -76,14 +81,11 @@ export default function Resource(props) {
           <Button
             className={classes.button}
             onClick={() => setRenderResource(false)}
-            disabled={props.disabled}
-            endIcon={
-              (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
-            }>
+            disabled={props.disabled}>
             HIDE BrainFood
           </Button>
         </section>
       )}
-    </main>
+    </Card>
   );
 }

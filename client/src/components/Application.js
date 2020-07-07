@@ -87,6 +87,7 @@ export default function Application() {
               <Rewards
                 bio={getBio(state.biodatas, state.currentUser)}
                 level={state.level}
+                user={state.currentUser.handle}
                 requestInsight={requestInsight}
                 currentUserGoals={state.currentUserGoals}
                 userInsight={state.currentUserInsight}

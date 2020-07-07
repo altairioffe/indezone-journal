@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Insight from "./Insight/Index";
 import Resource from "./Resources/Index";
 import { Button } from "@material-ui/core";
+import Card from '@material-ui/core/Card';
 import { makeStyles } from "@material-ui/core/styles";
 import PollIcon from "@material-ui/icons/Poll";
 import LockIcon from "@material-ui/icons/Lock";
@@ -32,6 +33,14 @@ export default function Rewards(props) {
       fontWeight: 300,
       fontSize: "1em",
       padding: "0.8em 1.2em"
+    },
+    mainCard: {
+      backgroundColor: "rgb(235,240,235, 0.5)",
+      boxShadow: "none"
+    },
+    card: {
+      backgroundColor: "rgb(235,240,235, 0)",
+      boxShadow: "none"
     }
   });
   const classes = useStyles();
@@ -51,15 +60,15 @@ export default function Rewards(props) {
   const [renderReward, setRenderReward] = useState(false);
 
   return (
-    <main style={{ marginTop: "-80px" }}>
+    <main style={{ marginTop: "-80px"}}>
       <section>
         <h2 className={classes.root}>
           Take A Moment To Start Your Day With Purpose
         </h2>
         <br />
       </section>
-      <article className="">
-        <p>{props.bio || ""}</p>
+      <Card className={classes.card}>
+
         {renderReward === false && (
           <Button
             className={classes.button}
@@ -72,15 +81,7 @@ export default function Rewards(props) {
           </Button>
         )}
         {renderReward === true && (
-          <section>
-            <Button
-              className={classes.button}
-              onClick={() => setRenderReward(false)}
-              disabled={props.disabled}
-              >
-              Hide Rewards
-            </Button>
-
+          <Card className={classes.mainCard}>
             <Insight
               bio={props.bio}
               level={props.level}
@@ -89,13 +90,17 @@ export default function Rewards(props) {
               userInsight={props.currentUserInsight}
             />
 
-            <Resource
-            level={1}
-            />
+            <Resource level={1} user={props.user}/>
 
-          </section>
+            <Button
+              className={classes.button}
+              onClick={() => setRenderReward(false)}
+              disabled={props.disabled}>
+              Hide Rewards
+            </Button>
+          </Card>
         )}
-      </article>
+      </Card>
     </main>
   );
 }

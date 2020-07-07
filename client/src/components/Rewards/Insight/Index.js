@@ -8,6 +8,7 @@ import Status from "./Loading";
 import PollIcon from "@material-ui/icons/Poll";
 import LockIcon from "@material-ui/icons/Lock";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import Card from "../../Card/Card.js";
 import { Button } from "@material-ui/core";
 import useVisualMode from "../../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";
@@ -53,13 +54,17 @@ export default function Bio(props) {
       fontWeight: 300,
       fontSize: "1em",
       padding: "0.8em 1.2em"
+    },
+    card: {
+      backgroundColor: "rgb(235,240,235, 0)",
+      boxShadow: "none"
     }
   }));
   const classes = useStyles();
   
 
   return (
-    <main style={{ marginTop: "-80px" }}>
+    <Card className={classes.card}>
 
       <section>
         {mode === USERBIO && (
@@ -108,6 +113,6 @@ export default function Bio(props) {
           />
         )}
       </section>
-    </main>
+    </Card>
   );
 }

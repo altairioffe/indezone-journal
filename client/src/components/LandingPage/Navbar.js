@@ -55,7 +55,7 @@ export default function Navbar(props) {
   });
   const classes = useStyles();
   // Here are the states to keep track of login process
-  const [loginState, setLoginState] = useState(1);
+  const [loginState, setLoginState] = useState(2);
   const [loginEmail, setLoginEmail] = useState(null);
   const [loginPassword, setLoginPassword] = useState(null);
   const [user, setUser] = useState(props.user);
