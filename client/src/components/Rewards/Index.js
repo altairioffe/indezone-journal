@@ -60,13 +60,8 @@ export default function Rewards(props) {
   const [renderReward, setRenderReward] = useState(false);
 
   return (
-    <main style={{ marginTop: "-80px"}}>
-      <section>
-        <h2 className={classes.root}>
-          Take A Moment To Start Your Day With Purpose
-        </h2>
-        <br />
-      </section>
+    <main>
+
       <Card className={classes.card}>
 
         {renderReward === false && (
@@ -96,7 +91,7 @@ export default function Rewards(props) {
               className={classes.button}
               onClick={() => setRenderReward(false)}
               disabled={props.disabled}>
-              Hide Rewards
+              Got it!
             </Button>
           </Card>
         )}

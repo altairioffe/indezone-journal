@@ -55,6 +55,7 @@ export default function Resource(props) {
   return (
     <Card className={classes.card}>
       {renderResource === false && (
+        <div>
         <Button
           className={classes.button}
           onClick={() => setRenderResource(true)}
@@ -64,6 +65,7 @@ export default function Resource(props) {
           }>
           Show BrainFood
         </Button>
+        </div>
       )}
       {renderResource === true && (
         <section>

@@ -36,22 +36,30 @@ export default function Level1(props) {
       <h2>Level 1 </h2>
       <p>Hi, {props.user}!</p>
       <br />
+      <p>This is where you view your rewards.</p>
+      <br />{" "}
       <p>
-        This is where you view your rewards. By answering at least one question in your journal each day, you level up to reveal a new challenge that will help unlock your brain power.
-
-        Don't break your streak! If you miss one or more days, you will drop back down one level.
-
-        With each new level, you also earn one additional question slot (below), for deeper introspection. 
-        Approach the questions with an open mind and aim to answer all of them, but spend at least 1-2 minutes on a meaningful answer for each. 
-        
+        {" "}
+        By answering at least one question in your journal each day, you level
+        up to reveal a new challenge that will help unlock your brain power.
+        Don't break your streak! If you miss one or more days, you drop
+        back down by one level.{" "}
+      </p>
+      <br />{" "}
+      <p>
+        With each new level, you also earn one additional question slot (below),
+        for deeper introspection. Approach the questions with an open mind and
+        aim to answer all of them, but spend at least 1-2 minutes on a
+        meaningful answer for each.{" "}
+      </p>
+      <br />{" "}
+      <p>
         Write using full sentences, in a tone that feels most natural to you.
-
         
         Here, you'll find useful techniques and resources to increase your
         brainpower. The first step is developing more control over your
         thoughts, feelings, and actions.
       </p>
-
       <div>
         <Card className={classes.card}>
           <div>
@@ -69,7 +77,6 @@ export default function Level1(props) {
           </div>
         </Card>
       </div>
-
       <h4> Ready to level up? Make your first entry!</h4>
     </section>
   );

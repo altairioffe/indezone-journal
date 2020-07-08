@@ -1,7 +1,8 @@
 import React from "react";
 import Wall from "./Wall";
-import Insight from "./Rewards/Insight/Index";
 import Rewards from "./Rewards/Index";
+import Heading from "./Heading/Index";
+import Insight from "./Rewards/Insight/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList";
@@ -83,16 +84,7 @@ export default function Application() {
 
           {state.currentUser && state.renderMainPage && (
             <section className="feed">
-              <br />
-              <Rewards
-                bio={getBio(state.biodatas, state.currentUser)}
-                level={state.level}
-                user={state.currentUser.handle}
-                requestInsight={requestInsight}
-                currentUserGoals={state.currentUserGoals}
-                userInsight={state.currentUserInsight}
-              />
-        
+              <Heading />
               <br />
               <QuestionList
                 ansQuestion={ansQuestion}
@@ -113,6 +105,15 @@ export default function Application() {
                   state.currentUserGoals,
                   state.currentUser
                 )}
+              />
+              <br />
+              <Rewards
+                bio={getBio(state.biodatas, state.currentUser)}
+                level={state.level}
+                user={state.currentUser.handle}
+                requestInsight={requestInsight}
+                currentUserGoals={state.currentUserGoals}
+                userInsight={state.currentUserInsight}
               />
               <div>
                 {state.currentUserGoals &&
