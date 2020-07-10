@@ -13,8 +13,7 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import Carousel from 'react-material-ui-carousel'
-
+import Carousel from "react-material-ui-carousel";
 
 // const styles = theme => ({
 //   root: {
@@ -114,7 +113,7 @@ export default function Heading() {
           </IconButton>
         </span>
       </section>
-      <Dialog
+      <Dialog 
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}>
@@ -127,16 +126,16 @@ export default function Heading() {
             <CloseIcon />
           </IconButton>
         </MuiDialogTitle>
-        <MuiDialogContent dividers>
-          <Carousel autoPlay={false} >
-          <Tutorial1 />
-          <Tutorial2 />
-          <Tutorial3 />
+        <MuiDialogContent dividers style={{ padding: "0px"}}>
+          <Carousel autoPlay={false}>
+            <Tutorial1 />
+            <Tutorial2 />
+            <Tutorial3 />
           </Carousel>
         </MuiDialogContent>
         <MuiDialogActions>
           <Button autoFocus onClick={handleClose} color="primary">
-            Next
+            Skip Tutorial
           </Button>
         </MuiDialogActions>
       </Dialog>
