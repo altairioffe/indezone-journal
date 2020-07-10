@@ -63,7 +63,7 @@ export default function QuestionFeed(props) {
         <AnswerQuestionPanel
           finalQuestion={true}
           key={questionsFilteredList.length}
-          question={finalQuestion.question}
+          question={`BONUS: ${finalQuestion.question}`}
           suggestion={finalQuestion.suggestion}
           ansQuestion={props.ansQuestion}
           setAnswer={props.setAnswer}

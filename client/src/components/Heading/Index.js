@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import Tutorial1 from "./Tutorial1.js";
+import Tutorial2 from "./Tutorial2.js";
+import Tutorial3 from "./Tutorial3.js";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import useVisualMode from "../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";
@@ -10,6 +13,8 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import Carousel from 'react-material-ui-carousel'
+
 
 // const styles = theme => ({
 //   root: {
@@ -113,37 +118,25 @@ export default function Heading() {
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}>
-        <MuiDialogTitle id="customized-dialog-title" onClose={handleClose }>
+        <MuiDialogTitle id="customized-dialog-title" onClose={handleClose}>
           Modal title
-          <IconButton aria-label="close" className={classes.closeButton} onClick={handleClose}>
-          <CloseIcon />
-        </IconButton>
+          <IconButton
+            aria-label="close"
+            className={classes.closeButton}
+            onClick={handleClose}>
+            <CloseIcon />
+          </IconButton>
         </MuiDialogTitle>
         <MuiDialogContent dividers>
-          <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta
-            ac consectetur ac, vestibulum at eros.
-          </Typography>
-          <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor
-            auctor.
-          </Typography>
-          <Typography gutterBottom>
-            Aenean lacinia bibendum nulla sed consectetur. Praesent commodo
-            cursus magna, vel scelerisque nisl consectetur et. Donec sed odio
-            dui. Donec ullamcorper nulla non metus auctor fringilla.
-          </Typography>
+          <Carousel autoPlay={false} >
+          <Tutorial1 />
+          <Tutorial2 />
+          <Tutorial3 />
+          </Carousel>
         </MuiDialogContent>
         <MuiDialogActions>
           <Button autoFocus onClick={handleClose} color="primary">
             Next
-          </Button>
-        </MuiDialogActions>
-        <MuiDialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
-            Skip
           </Button>
         </MuiDialogActions>
       </Dialog>
