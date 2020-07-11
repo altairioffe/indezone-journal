@@ -48,15 +48,19 @@ export default function Login(props) {
     },
     card: {
       height: "80vh",
-      width: "80vh",
+      width: "80vw",
       flexGrow: 1,
       backgroundColor: `rgb(235,240,235, 0.6)`,
       padding: "5vh",
       marginTop: "-10vh"
     },
     button: {
-      height: "70%",
-      width: "70%"
+      // height: "100%",
+      // width: "50%"
+    },
+    image: {
+      height: "300px",
+      width: "300px"
     },
     innerCard: {
       backgroundColor: `rgb(235,240,235, 0)`,
@@ -114,7 +118,7 @@ export default function Login(props) {
                     onClick={() => setUserMood("happy")}
                     color="primary"
                     size="large">
-                    <SentimentSatisfiedIcon className={classes.button} />
+                    <img src={"../images/happy-brain.svg"} className={classes.image}/>
                   </IconButton>
                 </Fade>
               )}
@@ -141,7 +145,7 @@ export default function Login(props) {
                     color="primary"
                     fullWidth="true"
                     size="large">
-                    <SentimentDissatisfiedIcon className={classes.button} />
+                    <img src={"../images/sad-brain.svg"} className={classes.image}/>
                   </IconButton>
                 </Fade>
               )}

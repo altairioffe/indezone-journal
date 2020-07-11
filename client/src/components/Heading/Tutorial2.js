@@ -35,23 +35,19 @@ export default function Tutorial2(props) {
       <div className={classes.content}>
         <Typography gutterBottom>Let’s get started!</Typography>
         <Typography gutterBottom>
-          With regular use, this app is designed to help increase your:
+          With regular use, this app is designed to help you:
         </Typography>
         <Typography gutterBottom>
           <ul className={classes.list}>
-            <li style={{marginBottom: "10px"}}>Focus around your goals</li>
+            <li style={{marginBottom: "10px"}}>Increase focus around your goals and values</li>
             <li style={{marginBottom: "10px"}}>
-              Awareness of automatic thoughts or feelings that might be
+              Develop awareness of automatic thoughts or feelings that might be
               holding you back
             </li>
-            <li style={{marginBottom: "10px"}}> Control over your own thoughts and feelings </li>
-            <li style={{marginBottom: "10px"}}> Self-compassion and gratitude</li>
+            <li style={{marginBottom: "10px"}}> Learn how to control your thoughts and feelings </li>
+            <li style={{marginBottom: "10px"}}> Build self-compassion and gratitude</li>
             <li style={{marginBottom: "10px"}}>
-              Awareness of your values so you can prioritze your goals and direct
-              your energy towards achieving them
-            </li>
-            <li style={{marginBottom: "10px"}}>
-              Deep insight into who you are, so that you can make changes
+              Get deeper insight into who you are and what's important to you, so that you can grow
               towards the person you want to be
             </li>
           </ul>
