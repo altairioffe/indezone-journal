@@ -44,7 +44,7 @@ export default function Tutorial1(props) {
       <br/>
       <br/>
       <Typography variant="h5" gutterBottom>
-        what your mind is capable of.
+        it's what your mind is capable of.
       </Typography>
     </div>
     </section>

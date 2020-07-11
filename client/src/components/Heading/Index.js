@@ -2,6 +2,13 @@ import React, { useState } from "react";
 import Tutorial1 from "./Tutorial1.js";
 import Tutorial2 from "./Tutorial2.js";
 import Tutorial3 from "./Tutorial3.js";
+import Tutorial4 from "./Tutorial4.js";
+import Tutorial5 from "./Tutorial5.js";
+import Tutorial6 from "./Tutorial6.js";
+import Tutorial7 from "./Tutorial7.js";
+import Tutorial8 from "./Tutorial8.js";
+import Tutorial9 from "./Tutorial9.js";
+import Tutorial10 from "./Tutorial10.js";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import useVisualMode from "../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";
@@ -131,6 +138,13 @@ export default function Heading() {
             <Tutorial1 />
             <Tutorial2 />
             <Tutorial3 />
+            <Tutorial4 />
+            <Tutorial5 />
+            <Tutorial6 />
+            <Tutorial7 />
+            <Tutorial8 />
+            <Tutorial9 />
+            <Tutorial10 />
           </Carousel>
         </MuiDialogContent>
         <MuiDialogActions>

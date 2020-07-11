@@ -49,42 +49,18 @@ export default function Tutorial4(props) {
         <Typography gutterBottom>To get the most out of Indezone Journal:</Typography>
         <br />
         <List className={classes.root}>
-
-        <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <CreateIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={<p>Answer <i>at least</i> one question every day</p>}
-              secondary={<p>Make entries each morning <i>and</i> evening for best results</p>}
-            />
-          </ListItem>
-
+    
           <ListItem>
             <ListItemAvatar>
               <Avatar>
-                <WbSunnyIcon />
+                <FitnessCenterIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="Morning questions are geared more towards planning"
-              secondary="July 20, 2014"
+              primary="With each new level, you receive a new resource, challenging you to develop a new mental skill. "
+              secondary="The resource for each level expires when you level up and a new resource takes its place. Make sure you get the most out of it while it’s there!"
             />
           </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <NightsStayIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Evening, your questions focus more on reflection"
-              secondary="Jan 9, 2014"
-            />
-          </ListItem>
-
         </List>
       </div>
     </section>
