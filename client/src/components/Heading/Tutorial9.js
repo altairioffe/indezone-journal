@@ -15,6 +15,7 @@ import CreateIcon from "@material-ui/icons/Create";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 
+
 export default function Tutorial4(props) {
   const useStyles = makeStyles({
     root: {
@@ -46,22 +47,12 @@ export default function Tutorial4(props) {
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
         {" "}
-        <Typography gutterBottom>To get the most out of Indezone Journal:</Typography>
+        <Typography gutterBottom>
+          To get the most out of Indezone Journal:
+        </Typography>
         <br />
         <List className={classes.root}>
-    
-        <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <TrendingUpIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Your level increases every day that you keep a streak going. Don't break your streak, or you'll drop down one level!"
-              secondary="The number of questions increases with your level, challenging you to reflect and plan more deeply."
-            />
-          </ListItem>
-
+         
           <ListItem>
             <ListItemAvatar>
               <Avatar>
@@ -69,22 +60,11 @@ export default function Tutorial4(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="With each new level, you receive a new resource, challenging you to develop a new mental skill. "
+              primary="Get a new resource, challenging you to develop a new mental skill. "
               secondary="The resource for each level expires when you level up and a new resource takes its place. Make sure you get the most out of it while it’s there!"
             />
           </ListItem>
 
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <TrendingUpIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="The number of questions displayed is based on your level, plus a bonus slot where you can write and reflect on anything you like."
-              secondary=" As you level up, the number of questions increases, challenging you to reflect and plan more deeply."
-            />
-          </ListItem>
         </List>
       </div>
     </section>

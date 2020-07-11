@@ -57,16 +57,46 @@ export default function Tutorial4(props) {
             </ListItemAvatar>
             <ListItemText
               primary="Your dashboard has a list of questions"
+            />
+          </ListItem>
+          <ListItem style={{marginTop: "-30px"}}>
+            <ListItemAvatar>
+            </ListItemAvatar>
+            <ListItemText
               secondary={
                 <>
-                <p>These questions are based on techniques backed by modern psychology research, including: </p>
-              <ul>
-                <li>Cognitive Behavioral Therapy (CBT)</li>
-                <li>Mindfulness</li>
-                <li>Neuroplasticity</li>
-              </ul>
-              </>
-  }       
+                  <p>
+                    These questions are based on techniques backed by modern
+                    psychology research, including:{" "}
+                  </p>
+                  <ul>
+                    <li>Cognitive Behavioral Therapy (CBT)</li>
+                    <li>Mindfulness</li>
+                    <li>Neuroplasticity</li>
+                  </ul>
+                </>
+              }
+            />
+          </ListItem>
+
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <WbSunnyIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={<p>Morning questions focus on <i>planning</i> and <i>mindset</i></p>}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <NightsStayIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={<p>Evening questions focus more on <i>reflection</i></p>}
             />
           </ListItem>
         </List>

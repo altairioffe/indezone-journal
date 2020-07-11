@@ -14,6 +14,8 @@ import NightsStayIcon from "@material-ui/icons/NightsStay";
 import CreateIcon from "@material-ui/icons/Create";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
+
 
 export default function Tutorial4(props) {
   const useStyles = makeStyles({
@@ -38,8 +40,10 @@ export default function Tutorial4(props) {
     },
     list: {
       marginBottom: "10px",
-      marginLeft: "-10px"
-    }
+    },
+    subList: {
+      marginLeft: "-1.5rem",
+    },
   });
   const classes = useStyles();
   return (
@@ -50,38 +54,57 @@ export default function Tutorial4(props) {
         <br />
         <List className={classes.root}>
 
-        <ListItem>
+        <ListItem className={classes.list}>
             <ListItemAvatar>
               <Avatar>
                 <CreateIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={<p>Answer <i>at least</i> one question every day</p>}
-              secondary={<p>Make entries each morning <i>and</i> evening for best results</p>}
+              primary={<p style={{margin: "0px"}}>Answer <i>at least</i> one question every day</p>}
+              secondary={
+                <>
+                <ul className={classes.subList}>
+                  <li>
+                  Make entries each morning <i>and</i> evening for best results
+                  </li>
+                </ul>
+              </>}
             />
           </ListItem>
 
-          <ListItem>
+          <ListItem className={classes.list}>
             <ListItemAvatar>
               <Avatar>
-                <WbSunnyIcon />
+                <TrendingUpIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="Morning questions are geared more towards planning"
-              secondary="July 20, 2014"
+              primary="Level up to get more questions"
+              secondary={
+                <>
+                  <ul className={classes.subList}>
+                    <li>
+                      Your level increases every day that you keep a streak of
+                      daily entries
+                    </li>
+                    <li>
+                      Don't break your streak, or you'll drop down one level!
+                    </li>
+                  </ul>
+                </>
+              }
             />
           </ListItem>
-          <ListItem>
+
+          <ListItem className={classes.list}>
             <ListItemAvatar>
               <Avatar>
-                <NightsStayIcon />
+              <FlashOnIcon style={{ color: "00A8E0" }}></FlashOnIcon>
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="Evening, your questions focus more on reflection"
-              secondary="Jan 9, 2014"
+              primary="Earn Power Entries for answers that are over 20 words long"
             />
           </ListItem>
 
