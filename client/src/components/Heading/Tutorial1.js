@@ -25,7 +25,7 @@ export default function Tutorial1(props) {
     },
     content: {
       textAlign: "center",
-      padding: "30px",
+      padding: "40px",
       height: "50vh"
     }
   });
@@ -34,17 +34,20 @@ export default function Tutorial1(props) {
   return (
     <section className={classes.background} style={{padding:"0px"}}>
       <div className={classes.content}>
+      <br/>
       <Typography variant="h6" gutterBottom>
         Welcome to Indezone Journal.
       </Typography>
+      <br/>
       <br/>
       <Typography gutterBottom>
         We’re going to show you a superpower that you might not know you had:
       </Typography>
       <br/>
       <br/>
+      <br/>
       <Typography variant="h5" gutterBottom>
-        it's what your mind is capable of.
+        what your mind is capable of.
       </Typography>
     </div>
     </section>
