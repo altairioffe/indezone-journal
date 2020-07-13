@@ -80,12 +80,12 @@ export default function Resource(props) {
           {props.level === 9 && <Level9 />}
           {props.level === 10 && <Level10 />}
 
-          <Button
+          {/* <Button
             className={classes.button}
             onClick={() => setRenderResource(false)}
             disabled={props.disabled}>
             HIDE BrainFood
-          </Button>
+          </Button> */}
         </section>
       )}
     </Card>

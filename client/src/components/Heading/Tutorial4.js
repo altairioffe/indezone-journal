@@ -33,22 +33,24 @@ export default function Tutorial4(props) {
   return (
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
-        {" "}
-        <Typography gutterBottom>
-          First, let’s get a better idea of what we’re working with:
-          <b> your mind</b>.
+      <Typography gutterBottom>
+          Your mind also creates your “normal” reality when you’re awake, where its main job is to keep you safe.
         </Typography>
         <br />
         <Typography gutterBottom>
-          The human mind (<i>your</i> mind) is the most powerful supercomputer
-          that we know of. When you dream at night, it casually creates entire
-          new worlds and realities— and that’s just while you’re sleeping.
+          But the human brain in its current form was created thousands of years ago, when our main goals were:
+          <ul>
+            <li>Don't get eaten</li>
+            <li>Don't get kicked out of the tribe</li>
+            </ul>
         </Typography>
         <br />
         <Typography gutterBottom>
-          It also creates your “normal” reality when you’re awake. Most
-          importantly, it wants to keep you safe. That's a big job, and it got
-          you this far.
+          
+        </Typography>
+        <br />
+        <Typography gutterBottom>
+
         </Typography>
       </div>
     </section>

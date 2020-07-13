@@ -33,7 +33,7 @@ export default function Tutorial2(props) {
   return (
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
-        <Typography gutterBottom>Let’s get started!</Typography>
+        <Typography gutterBottom></Typography>
         <Typography gutterBottom>
           With regular use, this app is designed to help you:
         </Typography>

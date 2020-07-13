@@ -45,11 +45,7 @@ export default function Tutorial3(props) {
           new worlds and realities— and that’s just while you’re sleeping.
         </Typography>
         <br />
-        <Typography gutterBottom>
-          It also creates your “normal” reality when you’re awake. Most
-          importantly, it wants to keep you safe. That's a big job, and it got
-          you this far.
-        </Typography>
+
       </div>
     </section>
   );

@@ -75,6 +75,9 @@ export default function Rewards(props) {
         )}
         {renderReward === true && (
           <Card className={classes.mainCard}>
+
+            <Resource level={1} user={props.user} />
+
             <Insight
               bio={props.bio}
               level={props.level}
@@ -82,8 +85,6 @@ export default function Rewards(props) {
               currentUserGoals={props.currentUserGoals}
               userInsight={props.currentUserInsight}
             />
-
-            <Resource level={1} user={props.user} />
 
             <Button
               className={classes.button}
