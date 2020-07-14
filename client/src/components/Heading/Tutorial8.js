@@ -66,7 +66,7 @@ export default function Tutorial4(props) {
                 <>
                 <ul className={classes.subList}>
                   <li>
-                  Make entries each morning <i>and</i> evening for best results
+                  Make entries both, morning <i>and</i> evening for best results
                   </li>
                 </ul>
               </>}
@@ -89,7 +89,7 @@ export default function Tutorial4(props) {
                       daily entries
                     </li>
                     <li>
-                      Don't break your streak, or you'll drop down one level!
+                      Don't break your streak, or you'll drop down by one level!
                     </li>
                   </ul>
                 </>

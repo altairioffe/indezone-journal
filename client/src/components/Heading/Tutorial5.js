@@ -27,7 +27,12 @@ export default function Tutorial4(props) {
     list: {
       marginBottom: "10px",
       marginLeft: "-10px"
-    }
+    },
+    image: {
+     // backgroundImage: `url("../images/3-goals.png")`,
+      maxHeight: "100%",
+      maxWidth: "100%"
+    },
   });
   const classes = useStyles();
   return (
@@ -35,21 +40,22 @@ export default function Tutorial4(props) {
       <div className={classes.content}>
         {" "}
         <Typography gutterBottom>
-          Today, we live in a completely different world.
-        </Typography>
-        <Typography gutterBottom>
-          A world where we don't need to worry about getting eaten by a jaguar. One where we have to access to clean drinking water, electricity, and 
-          <b> so much information</b>.
+          Today, the world is much different. We're safe from wild animals. We
+          have clean drinking water on tap, and access to all human knowledge in
+          our pocket, through the internet.
         </Typography>
         <br />
         <Typography gutterBottom>
-          The human mind (<i>your</i> mind) is the most powerful supercomputer
-          that we know of.
+          Instead of worrying about wild predators, your goals today might be
+          more like:
         </Typography>
         <br />
-        <Typography gutterBottom>
-     
-        </Typography>
+        <div   style={{objectFit: "cover"}}>
+        <img src={"../images/3-goals.png"} className={classes.image} />
+        </div>
+        <Typography gutterBottom></Typography>
+        <br />
+        <Typography gutterBottom></Typography>
       </div>
     </section>
   );

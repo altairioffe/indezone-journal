@@ -35,14 +35,22 @@ export default function Tutorial3(props) {
       <div className={classes.content}>
         {" "}
         <Typography gutterBottom>
-          First, let’s get a better idea of what we’re working with:
+          Before we start, let’s get a better idea of what we’re working with:
           <b> your mind</b>.
         </Typography>
         <br />
         <Typography gutterBottom>
           The human mind (<i>your</i> mind) is the most powerful supercomputer
-          that we know of. When you dream at night, it casually creates entire
-          new worlds and realities— and that’s just while you’re sleeping.
+          that we know of.
+        </Typography>
+        <br />
+        <Typography gutterBottom>
+          When you dream at night, it casually creates entire
+          new worlds and realities— and that’s just <i>while you’re sleeping</i>.
+        </Typography>
+        <br />
+        <Typography gutterBottom>
+        This supercomputer also creates your “normal” reality when you’re awake, and it does its best to be helpful.
         </Typography>
         <br />
 

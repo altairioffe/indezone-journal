@@ -33,9 +33,7 @@ export default function Tutorial4(props) {
   return (
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
-      <Typography gutterBottom>
-          Your mind also creates your “normal” reality when you’re awake, where its main job is to keep you safe.
-        </Typography>
+
         <br />
         <Typography gutterBottom>
           But the human brain in its current form was created thousands of years ago, when our main goals were:

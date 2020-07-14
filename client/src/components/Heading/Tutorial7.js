@@ -56,7 +56,7 @@ export default function Tutorial4(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="Your dashboard has a list of questions"
+              primary="You get a list of questions based on how you're feeling"
             />
           </ListItem>
           <ListItem style={{marginTop: "-30px"}}>
@@ -66,8 +66,7 @@ export default function Tutorial4(props) {
               secondary={
                 <>
                   <p>
-                    These questions are based on techniques backed by modern
-                    psychology research, including:{" "}
+                    These questions are based on the latest research in psychology and cognitive science, including:
                   </p>
                   <ul>
                     <li>Cognitive Behavioral Therapy (CBT)</li>
@@ -86,7 +85,7 @@ export default function Tutorial4(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={<p>Morning questions focus on <i>planning</i> and <i>mindset</i></p>}
+              primary={<p>In the morning, questions focus on <i>planning</i> and <i>mindset</i></p>}
             />
           </ListItem>
           <ListItem>
@@ -96,7 +95,7 @@ export default function Tutorial4(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={<p>Evening questions focus more on <i>reflection</i></p>}
+              primary={<p>In the evening, questions focus more on <i>reflection</i></p>}
             />
           </ListItem>
         </List>

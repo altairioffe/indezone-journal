@@ -35,20 +35,21 @@ export default function Tutorial4(props) {
       <div className={classes.content}>
         {" "}
         <Typography gutterBottom>
-          First, let’s get a better idea of what we’re working with:
-          <b> your mind</b>.
+          Even a modern supercomputer that still runs on Windows 95 won’t feel
+          like much of a supercomputer, because it only runs old programs that
+          aren’t very helpful anymore.
         </Typography>
         <br />
         <Typography gutterBottom>
-          The human mind (<i>your</i> mind) is the most powerful supercomputer
-          that we know of. When you dream at night, it casually creates entire
-          new worlds and realities— and that’s just while you’re sleeping.
+          In the same way, our brain is still trying to update its operating
+          system to catch up to our new lifestyle and connection to the
+          internet.
         </Typography>
         <br />
         <Typography gutterBottom>
-          It also creates your “normal” reality when you’re awake. Most
-          importantly, it wants to keep you safe. That's a big job, and it got
-          you this far.
+          It still runs thousands of old programs on autopilot that used to be
+          helpful but are now counter-productive. Instead of “Danger! A tiger is
+          chasing me!”, it's “Danger! Did I reply to my co-worker's email?!"
         </Typography>
       </div>
     </section>
