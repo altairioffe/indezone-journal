@@ -34,22 +34,18 @@ export default function Tutorial4(props) {
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
         {" "}
+        <br />
         <Typography gutterBottom>
-          Even a modern supercomputer that still runs on Windows 95 won’t feel
-          like much of a supercomputer, because it only runs old programs that
-          aren’t very helpful anymore.
+          But our brain is still hard-wired with thousands of 
         </Typography>
         <br />
         <Typography gutterBottom>
-          In the same way, our brain is still trying to update its operating
-          system to catch up to our new lifestyle and connection to the
-          internet.
+          Now, imagine a modern supercomputer, but it still runs on Windows 95. If it mostly runs old programs that
+          are no longer helpful, it wouldn't feel like much of a supercomputer, would it?
+          
         </Typography>
-        <br />
         <Typography gutterBottom>
-          It still runs thousands of old programs on autopilot that used to be
-          helpful but are now counter-productive. Instead of “Danger! A tiger is
-          chasing me!”, it's “Danger! Did I reply to my co-worker's email?!"
+          But the brain can be re-wired, and the mind can be updated.
         </Typography>
       </div>
     </section>

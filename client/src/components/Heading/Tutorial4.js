@@ -44,7 +44,7 @@ export default function Tutorial4(props) {
         </Typography>
         <br />
         <Typography gutterBottom>
-          
+          Like an autopilot, it would create thoughts, feelings, and behaviours meant to keep you safe.
         </Typography>
         <br />
         <Typography gutterBottom>

@@ -40,13 +40,12 @@ export default function Tutorial4(props) {
       <div className={classes.content}>
         {" "}
         <Typography gutterBottom>
-          Today, the world is much different. We're safe from wild animals. We
-          have clean drinking water on tap, and access to all human knowledge in
-          our pocket, through the internet.
+          The world we live in today is much different. 
         </Typography>
+        
         <br />
         <Typography gutterBottom>
-          Instead of worrying about wild predators, your goals today might be
+          Instead of surviving wild predators, your main goal might be
           more like:
         </Typography>
         <br />
