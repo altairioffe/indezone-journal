@@ -35,22 +35,19 @@ export default function Tutorial3(props) {
       <div className={classes.content}>
         {" "}
         <Typography gutterBottom>
-          Before we start, let’s get a better idea of what we’re working with:
-          <b> your mind</b>.
+        We’ll use a special kind of journaling to expand your awareness.
         </Typography>
         <br />
         <Typography gutterBottom>
-          The human mind (<i>your</i> mind) is the most powerful supercomputer
-          that we know of.
+        We provide carefully-selected questions, ones often used by psychologists and high-performance coaches, so you always have something to write about
+
         </Typography>
         <br />
         <Typography gutterBottom>
-          When you dream at night, it casually creates entire
-          new worlds and realities— and that’s just <i>while you’re sleeping</i>.
+        It’s easy to get started, and you’ll be introduced to more advanced techniques (and more questions) as you make progress
         </Typography>
         <br />
         <Typography gutterBottom>
-        This supercomputer also creates your “normal” reality when you’re awake, and it does its best to be helpful.
         </Typography>
         <br />
 

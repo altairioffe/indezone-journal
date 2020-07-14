@@ -46,59 +46,24 @@ export default function Tutorial4(props) {
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
         {" "}
-        <Typography gutterBottom>Here's how it works:</Typography>
+        <Typography gutterBottom>To get the most out of Indezone Journal:</Typography>
         <br />
         <List className={classes.root}>
+    
           <ListItem>
             <ListItemAvatar>
               <Avatar>
-                <ListIcon />
+                <FitnessCenterIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="You get a list of questions based on how you're feeling"
-            />
-          </ListItem>
-          <ListItem style={{marginTop: "-30px"}}>
-            <ListItemAvatar>
-            </ListItemAvatar>
-            <ListItemText
-              secondary={
-                <>
-                  <p>
-                    These questions are based on the latest research in psychology and cognitive science, including:
-                  </p>
-                  <ul>
-                    <li>Cognitive Behavioral Therapy (CBT)</li>
-                    <li>Mindfulness</li>
-                    <li>Neuroplasticity</li>
-                  </ul>
-                </>
-              }
-            />
-          </ListItem>
-
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <WbSunnyIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={<p>In the morning, questions focus on <i>planning</i> and <i>mindset</i></p>}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <NightsStayIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={<p>In the evening, questions focus more on <i>reflection</i></p>}
+              primary="With each new level, you receive a new resource, challenging you to develop a new mental skill. "
+              secondary="The resource for each level expires when you level up and a new resource takes its place. Make sure you get the most out of it while it’s there!"
             />
           </ListItem>
         </List>
+        <Typography gutterBottom>Ready? Let's get started!</Typography>
+
       </div>
     </section>
   );

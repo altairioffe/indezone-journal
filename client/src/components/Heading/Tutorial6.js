@@ -2,6 +2,19 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Background from "../LandingPage/LandingImage/bg-pink-sky.jpg";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ListIcon from "@material-ui/icons/List";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import NightsStayIcon from "@material-ui/icons/NightsStay";
+import CreateIcon from "@material-ui/icons/Create";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
+
 
 export default function Tutorial4(props) {
   const useStyles = makeStyles({
@@ -34,19 +47,24 @@ export default function Tutorial4(props) {
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
         {" "}
-        <br />
         <Typography gutterBottom>
-          But our brain is still hard-wired with thousands of 
         </Typography>
         <br />
-        <Typography gutterBottom>
-          Now, imagine a modern supercomputer, but it still runs on Windows 95. If it mostly runs old programs that
-          are no longer helpful, it wouldn't feel like much of a supercomputer, would it?
-          
-        </Typography>
-        <Typography gutterBottom>
-          But the brain can be re-wired, and the mind can be updated.
-        </Typography>
+        <List className={classes.root}>
+         
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <FitnessCenterIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Get a new resource, challenging you to develop a new mental skill. "
+              secondary="The resource for each level expires when you level up and a new resource takes its place. Make sure you get the most out of it while it’s there!"
+            />
+          </ListItem>
+
+        </List>
       </div>
     </section>
   );

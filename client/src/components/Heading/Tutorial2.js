@@ -47,8 +47,7 @@ export default function Tutorial2(props) {
             <li style={{marginBottom: "10px"}}> Learn how to control your thoughts and feelings </li>
             <li style={{marginBottom: "10px"}}> Build self-compassion and gratitude</li>
             <li style={{marginBottom: "10px"}}>
-              Get deeper insight into who you are and what's important to you, so that you can grow
-              towards the person you want to be
+              Take clear steps towards the person you want to be
             </li>
           </ul>
         </Typography>

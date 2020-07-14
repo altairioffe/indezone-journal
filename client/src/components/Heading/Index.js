@@ -142,9 +142,6 @@ export default function Heading() {
             <Tutorial5 />
             <Tutorial6 />
             <Tutorial7 />
-            <Tutorial8 />
-            <Tutorial9 />
-            <Tutorial10 />
           </Carousel>
         </MuiDialogContent>
         <MuiDialogActions>

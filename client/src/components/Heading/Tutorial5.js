@@ -2,6 +2,20 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Background from "../LandingPage/LandingImage/bg-pink-sky.jpg";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ListIcon from "@material-ui/icons/List";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import NightsStayIcon from "@material-ui/icons/NightsStay";
+import CreateIcon from "@material-ui/icons/Create";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
+
 
 export default function Tutorial4(props) {
   const useStyles = makeStyles({
@@ -26,12 +40,9 @@ export default function Tutorial4(props) {
     },
     list: {
       marginBottom: "10px",
-      marginLeft: "-10px"
     },
-    image: {
-     // backgroundImage: `url("../images/3-goals.png")`,
-      maxHeight: "100%",
-      maxWidth: "100%"
+    subList: {
+      marginLeft: "-1.5rem",
     },
   });
   const classes = useStyles();
@@ -40,21 +51,66 @@ export default function Tutorial4(props) {
       <div className={classes.content}>
         {" "}
         <Typography gutterBottom>
-          The world we live in today is much different. 
-        </Typography>
-        
-        <br />
-        <Typography gutterBottom>
-          Instead of surviving wild predators, your main goal might be
-          more like:
+          
         </Typography>
         <br />
-        <div   style={{objectFit: "cover"}}>
-        <img src={"../images/3-goals.png"} className={classes.image} />
-        </div>
-        <Typography gutterBottom></Typography>
-        <br />
-        <Typography gutterBottom></Typography>
+        <List className={classes.root}>
+
+        <ListItem className={classes.list}>
+            <ListItemAvatar>
+              <Avatar>
+                <CreateIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={<p style={{margin: "0px"}}>Answer <i>at least</i> one question every day to level up</p>}
+              secondary={
+                <>
+                <ul className={classes.subList}>
+                  <li>
+                  Make entries both, morning <i>and</i> evening for best results
+                  </li>
+                </ul>
+              </>}
+            />
+          </ListItem>
+
+          <ListItem className={classes.list}>
+            <ListItemAvatar>
+              <Avatar>
+                <TrendingUpIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Level up to get more questions"
+              secondary={
+                <>
+                  <ul className={classes.subList}>
+                    <li>
+                      Your level increases every day that you keep a streak of
+                      daily entries
+                    </li>
+                    <li>
+                      Don't break your streak, or you'll drop down by one level!
+                    </li>
+                  </ul>
+                </>
+              }
+            />
+          </ListItem>
+
+          <ListItem className={classes.list}>
+            <ListItemAvatar>
+              <Avatar>
+              <FlashOnIcon style={{ color: "00A8E0" }}></FlashOnIcon>
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Earn Power Entries for answers that are over 20 words long"
+            />
+          </ListItem>
+
+        </List>
       </div>
     </section>
   );

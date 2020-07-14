@@ -61,7 +61,7 @@ export default function Tutorial4(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={<p style={{margin: "0px"}}>Answer <i>at least</i> one question every day</p>}
+              primary={<p style={{margin: "0px"}}>Answer <i>at least</i> one question every day to level up</p>}
               secondary={
                 <>
                 <ul className={classes.subList}>
