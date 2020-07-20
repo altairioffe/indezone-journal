@@ -34,7 +34,7 @@ export default function Tutorial4(props) {
       padding: "0px"
     },
     content: {
-      padding: "20px"
+      padding: "20px 50px 0px"
     },
     list: {
       marginBottom: "10px",
@@ -49,7 +49,7 @@ export default function Tutorial4(props) {
         <Typography gutterBottom>Here's how it works:</Typography>
         <br />
         <List className={classes.root}>
-          <ListItem>
+          <ListItem style={{ marginTop: "-30px" }}>
             <ListItemAvatar>
               <Avatar>
                 <ListIcon />
@@ -65,7 +65,7 @@ export default function Tutorial4(props) {
             <ListItemText
               secondary={
                 <>
-                  <p>By applying research-backed methods like:</p>
+                  <p>Through research-backed methods like:</p>
                   <ul>
                     <li>Cognitive Behavioral Therapy (CBT)</li>
                     <li>Mindfulness</li>
@@ -76,7 +76,7 @@ export default function Tutorial4(props) {
             />
           </ListItem>
 
-          <ListItem>
+          <ListItem style={{ marginTop: "-20px" }}>
             <ListItemAvatar>
               <Avatar>
                 <WbSunnyIcon />
@@ -91,7 +91,7 @@ export default function Tutorial4(props) {
               }
             />
           </ListItem>
-          <ListItem>
+          <ListItem style={{ marginTop: "-20px" }}>
             <ListItemAvatar>
               <Avatar>
                 <NightsStayIcon />
