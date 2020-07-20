@@ -43,9 +43,6 @@ export default function Level1(props) {
   const classes = useStyles();
   return (
     <section>
-      <hr/>
-      <br />
-      <br />
       <br />
       <div>
       <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>

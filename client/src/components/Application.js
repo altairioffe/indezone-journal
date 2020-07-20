@@ -86,6 +86,16 @@ export default function Application() {
             <section className="feed">
               <Heading />
               <br />
+              <Rewards
+                bio={getBio(state.biodatas, state.currentUser)}
+                level={state.level}
+                user={state.currentUser.handle}
+                requestInsight={requestInsight}
+                currentUserGoals={state.currentUserGoals}
+                userInsight={state.currentUserInsight}
+              />
+              <div>
+                <br/>
               <QuestionList
                 ansQuestion={ansQuestion}
                 level={state.level}
@@ -107,15 +117,7 @@ export default function Application() {
                 )}
               />
               <br />
-              <Rewards
-                bio={getBio(state.biodatas, state.currentUser)}
-                level={state.level}
-                user={state.currentUser.handle}
-                requestInsight={requestInsight}
-                currentUserGoals={state.currentUserGoals}
-                userInsight={state.currentUserInsight}
-              />
-              <div>
+
                 {state.currentUserGoals &&
                   state.currentUserGoals.length >= 1 && (
                     <Wall

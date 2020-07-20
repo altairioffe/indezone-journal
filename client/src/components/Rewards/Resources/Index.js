@@ -47,7 +47,10 @@ export default function Resource(props) {
     },
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
-      boxShadow: "none"
+      boxShadow: "none",
+      maxWidth: "800px",
+      display: "block",
+      margin: "auto"
     }
   }));
   const classes = useStyles();
@@ -75,9 +78,10 @@ export default function Resource(props) {
           justify="center"
           direction="row"
           alignItems="center"
-          spacing={2}>
+          spacing={2}
+        >
           <GridItem xs={6} sm={6} md={6} style={{textAlign: 'right'}}>
-            <h2>You're at Level 1 </h2>
+            <h2>Level 1 </h2>
           </GridItem>
           <GridItem xs={6} sm={6} md={6}>
             <div style={{textAlign: 'left'}}>
@@ -86,7 +90,7 @@ export default function Resource(props) {
                 style={{
                   margin: "0px",
                   height: "auto",
-                  maxWidth: "10vw",
+                  maxWidth: "15vh",
                   display: "block",
                   backgroundPosition: "50% 50%",
                   backgroundSize: "cover"
@@ -95,6 +99,7 @@ export default function Resource(props) {
             </div>
           </GridItem>
         </GridContainer>
+<hr/>
 
         {renderResource === true && (
           <section>

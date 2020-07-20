@@ -55,7 +55,7 @@ export default function Tutorial4(props) {
         </Typography>
         <br />
         <Typography gutterBottom>
-          Consult Professor Brainsley for your first challenge!
+          View your challenges to meet your instructor!
           <br />
         </Typography>
         <br />

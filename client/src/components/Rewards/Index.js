@@ -10,6 +10,12 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 
+import Dialog from "@material-ui/core/Dialog";
+import MuiDialogTitle from "@material-ui/core/DialogTitle";
+import MuiDialogContent from "@material-ui/core/DialogContent";
+import MuiDialogActions from "@material-ui/core/DialogActions";
+import CloseIcon from "@material-ui/icons/Close";
+
 import useVisualMode from "../../hooks/useVisualMode";
 
 export default function Rewards(props) {
@@ -73,27 +79,37 @@ export default function Rewards(props) {
             <Typography>Consult Professor Brainsley</Typography>
           </>
         )}
-        {openDialog === true && (
-          <Card className={classes.mainCard}>
 
-            <Resource level={1} user={props.user} />
+        <Dialog
+          maxWidth="false"
+          onClose={() => setOpenDialog(false)}
+          aria-labelledby="customized-dialog-title"
+          open={openDialog}>
+          <div style={{width: "80vw"}}>
+          <MuiDialogContent dividers style={{ padding: "0px" }}>
+            <Card className={classes.mainCard}>
+              <Resource level={1} user={props.user} />
 
-            <Insight
-              bio={props.bio}
-              level={props.level}
-              requestInsight={props.requestInsight}
-              currentUserGoals={props.currentUserGoals}
-              userInsight={props.currentUserInsight}
-            />
-
+              <Insight
+                bio={props.bio}
+                level={props.level}
+                requestInsight={props.requestInsight}
+                currentUserGoals={props.currentUserGoals}
+                userInsight={props.currentUserInsight}
+              />
+              <br />
+            </Card>
+          </MuiDialogContent>
+          <MuiDialogActions>
             <Button
-              className={classes.button}
+              autoFocus
               onClick={() => setOpenDialog(false)}
-              disabled={props.disabled}>
-              Got it!
+              color="primary">
+              Got It!
             </Button>
-          </Card>
-        )}
+          </MuiDialogActions>
+          </div>
+        </Dialog>
       </Card>
     </main>
   );
