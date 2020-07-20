@@ -45,12 +45,7 @@ export default function Level1(props) {
     <section>
       <br />
       <br />
-
-      <h2>Level 1 </h2>
-      <p>Hi, {props.user}!</p>
       <br />
-      <p>This is where you view your rewards.</p>
-      <br />{" "}
       <div>
       <Carousel autoPlay={false} navButtonsAlwaysVisible={true}>
             <Slide1 />

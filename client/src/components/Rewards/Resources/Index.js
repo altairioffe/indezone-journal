@@ -5,6 +5,8 @@ import LockIcon from "@material-ui/icons/Lock";
 import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { Button } from "@material-ui/core";
 import Card from "../../Card/Card.js";
+import GridContainer from "../../Grid/GridContainer.js";
+import GridItem from "../../Grid/GridItem.js";
 
 import Level1 from "./Level1/Index";
 import Level2 from "./Level2";
@@ -56,38 +58,66 @@ export default function Resource(props) {
     <Card className={classes.card}>
       {renderResource === false && (
         <div>
-        <Button
-          className={classes.button}
-          onClick={() => setRenderResource(true)}
-          disabled={props.disabled}
-          endIcon={
-            (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
-          }>
-          Show BrainFood
-        </Button>
+          <Button
+            className={classes.button}
+            onClick={() => setRenderResource(true)}
+            disabled={props.disabled}
+            endIcon={
+              (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
+            }>
+            Show BrainFood
+          </Button>
         </div>
       )}
-      {renderResource === true && (
-        <section>
-          {props.level === 1 && <Level1 />}
-          {props.level === 2 && <Level2 />}
-          {props.level === 3 && <Level3 />}
-          {props.level === 4 && <Level4 />}
-          {props.level === 5 && <Level5 />}
-          {props.level === 6 && <Level6 />}
-          {props.level === 7 && <Level7 />}
-          {props.level === 8 && <Level8 />}
-          {props.level === 9 && <Level9 />}
-          {props.level === 10 && <Level10 />}
 
-          {/* <Button
+      <div>
+        <GridContainer
+          justify="center"
+          direction="row"
+          alignItems="center"
+          spacing={2}>
+          <GridItem xs={6} sm={6} md={6} style={{textAlign: 'right'}}>
+            <h2>Level 1 </h2>
+          </GridItem>
+          <GridItem xs={6} sm={6} md={6}>
+            <div style={{textAlign: 'left'}}>
+              <img
+                src="images/happy-brain.svg"
+                style={{
+                  margin: "0px",
+                  height: "auto",
+                  maxWidth: "10vw",
+                  display: "block",
+                  backgroundPosition: "50% 50%",
+                  backgroundSize: "cover"
+                }}
+              />
+            </div>
+          </GridItem>
+        </GridContainer>
+
+        {renderResource === true && (
+          <section>
+            {props.level === 1 && <Level1 />}
+            {props.level === 2 && <Level2 />}
+            {props.level === 3 && <Level3 />}
+            {props.level === 4 && <Level4 />}
+            {props.level === 5 && <Level5 />}
+            {props.level === 6 && <Level6 />}
+            {props.level === 7 && <Level7 />}
+            {props.level === 8 && <Level8 />}
+            {props.level === 9 && <Level9 />}
+            {props.level === 10 && <Level10 />}
+
+            {/* <Button
             className={classes.button}
             onClick={() => setRenderResource(false)}
             disabled={props.disabled}>
             HIDE BrainFood
           </Button> */}
-        </section>
-      )}
+          </section>
+        )}
+      </div>
     </Card>
   );
 }

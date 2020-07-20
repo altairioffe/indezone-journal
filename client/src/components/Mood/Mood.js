@@ -10,14 +10,7 @@ import GridItem from "../Grid/GridItem.js";
 // import Button from "./CustomButtons/Button.js";
 import Card from "../Card/Card.js";
 import IconButton from "@material-ui/core/IconButton";
-import SentimentSatisfiedIcon from "@material-ui/icons/SentimentSatisfied";
-import SentimentDissatisfiedIcon from "@material-ui/icons/SentimentDissatisfied";
 
-import CardBody from "../Card/CardBody.js";
-import CardHeader from "../Card/CardHeader.js";
-import CardFooter from "../Card/CardFooter.js";
-import CustomInput from "../CustomInput/CustomInput.js";
-import Popover from "@material-ui/core/Popover";
 import Fade from "@material-ui/core/Fade";
 import Typography from "@material-ui/core/Typography";
 import LoadingImage from "./Loading";
@@ -107,7 +100,6 @@ export default function Login(props) {
             alignItems="center"
             spacing={2}>
 
-              
             <GridItem xs={12} sm={12} md={6}>
               {moodSelection !== "happy" && (
                 <Fade in={moodSelection !== "happy"} timeout={1000}>
