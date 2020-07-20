@@ -40,8 +40,8 @@ export default function Slide1(props) {
       <img
         src="images/brainsley-01.png"
         style={{
-          height: "auto",
-          maxWidth: "80vw",
+          height: "45vh",
+          width: "auto",
           margin: "auto",
           display: "block",
           backgroundPosition: "50% 50%",
