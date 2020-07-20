@@ -2,6 +2,15 @@ import React, { useState } from "react";
 import Card from "../../../Card/Card.js";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
+import Slide1 from "./Slide1.js";
+import Slide2 from "./Slide2.js";
+import Slide3 from "./Slide3.js";
+import Slide4 from "./Slide4.js";
+import Slide5 from "./Slide5.js";
+import Slide6 from "./Slide6.js";
+import Slide7 from "./Slide7.js";
+import Slide8 from "./Slide8.js";
+import Carousel from "react-material-ui-carousel";
 
 export default function Level1(props) {
   const useStyles = makeStyles(theme => ({
@@ -35,17 +44,6 @@ export default function Level1(props) {
   return (
     <section>
       <br />
-      <Typography>Greetings, mind wanderer.</Typography>
-      <br />
-      <br />
-      <Typography>
-        Great potential, I see in you. But you have much to learn.
-      </Typography>
-      <br />
-      <Typography>
-        Alas, you have no need for a guru until you have begun your journey.
-      </Typography>
-      <br />
       <br />
 
       <h2>Level 1 </h2>
@@ -54,21 +52,19 @@ export default function Level1(props) {
       <p>This is where you view your rewards.</p>
       <br />{" "}
       <div>
-        <Card className={classes.card}>
-          <div>
-            <img
-              src="images/mindfulnessgraphic.jpg"
-              style={{
-                height: "auto",
-                maxWidth: "80vw",
-                margin: "auto",
-                display: "block",
-                backgroundPosition: "50% 50%",
-                backgroundSize: "cover"
-              }}
-            />
-          </div>
-        </Card>
+      <Carousel autoPlay={false} navButtonsAlwaysVisible={true}>
+            <Slide1 />
+            <Slide2 />
+            <Slide3 />
+            <Slide4 />
+            <Slide5 />
+            <Slide6 />
+            <Slide7 />
+            <Slide8 />
+          </Carousel>
+      </div>
+      <br />{" "}
+      <div>
       </div>
       <h4> Ready to level up? Make your first entry!</h4>
     </section>

@@ -53,16 +53,16 @@ export default function Rewards(props) {
 
   */
 
-  const [renderReward, setRenderReward] = useState(false);
+  const [openDialog, setOpenDialog] = useState(false);
 
   return (
     <main>
       <Card className={classes.card}>
-        {renderReward === false && (
+        {openDialog === false && (
           <>
             <IconButton
               className={classes.button}
-              onClick={() => setRenderReward(true)}
+              onClick={() => setOpenDialog(true)}
               simple="true"
               size="large">
               <img
@@ -73,7 +73,7 @@ export default function Rewards(props) {
             <Typography>Consult Professor Brainsley</Typography>
           </>
         )}
-        {renderReward === true && (
+        {openDialog === true && (
           <Card className={classes.mainCard}>
 
             <Resource level={1} user={props.user} />
@@ -88,7 +88,7 @@ export default function Rewards(props) {
 
             <Button
               className={classes.button}
-              onClick={() => setRenderReward(false)}
+              onClick={() => setOpenDialog(false)}
               disabled={props.disabled}>
               Got it!
             </Button>
