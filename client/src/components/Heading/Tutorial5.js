@@ -16,7 +16,6 @@ import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
 
-
 export default function Tutorial4(props) {
   const useStyles = makeStyles({
     root: {
@@ -39,11 +38,11 @@ export default function Tutorial4(props) {
       padding: "20px"
     },
     list: {
-      marginBottom: "10px",
+      marginBottom: "10px"
     },
     subList: {
-      marginLeft: "-1.5rem",
-    },
+      marginLeft: "-1.5rem"
+    }
   });
   const classes = useStyles();
   return (
@@ -51,66 +50,16 @@ export default function Tutorial4(props) {
       <div className={classes.content}>
         {" "}
         <Typography gutterBottom>
-          
+          Ready to get started?
+          <br />
         </Typography>
         <br />
-        <List className={classes.root}>
+        <Typography gutterBottom>
+          Consult Professor Brainsley for your first challenge!
+          <br />
+        </Typography>
+        <br />
 
-        <ListItem className={classes.list}>
-            <ListItemAvatar>
-              <Avatar>
-                <CreateIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={<p style={{margin: "0px"}}>Answer <i>at least</i> one question every day to level up</p>}
-              secondary={
-                <>
-                <ul className={classes.subList}>
-                  <li>
-                  Make entries both, morning <i>and</i> evening for best results
-                  </li>
-                </ul>
-              </>}
-            />
-          </ListItem>
-
-          <ListItem className={classes.list}>
-            <ListItemAvatar>
-              <Avatar>
-                <TrendingUpIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Level up to get more questions"
-              secondary={
-                <>
-                  <ul className={classes.subList}>
-                    <li>
-                      Your level increases every day that you keep a streak of
-                      daily entries
-                    </li>
-                    <li>
-                      Don't break your streak, or you'll drop down by one level!
-                    </li>
-                  </ul>
-                </>
-              }
-            />
-          </ListItem>
-
-          <ListItem className={classes.list}>
-            <ListItemAvatar>
-              <Avatar>
-              <FlashOnIcon style={{ color: "00A8E0" }}></FlashOnIcon>
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Earn Power Entries for answers that are over 20 words long"
-            />
-          </ListItem>
-
-        </List>
       </div>
     </section>
   );

@@ -6,7 +6,7 @@ import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import { Button } from "@material-ui/core";
 import Card from "../../Card/Card.js";
 
-import Level1 from "./Level1";
+import Level1 from "./Level1/Index";
 import Level2 from "./Level2";
 import Level3 from "./Level3";
 import Level4 from "./Level4";

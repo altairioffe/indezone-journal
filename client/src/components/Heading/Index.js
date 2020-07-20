@@ -99,7 +99,7 @@ export default function Heading() {
   });
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -140,8 +140,6 @@ export default function Heading() {
             <Tutorial3 />
             <Tutorial4 />
             <Tutorial5 />
-            <Tutorial6 />
-            <Tutorial7 />
           </Carousel>
         </MuiDialogContent>
         <MuiDialogActions>

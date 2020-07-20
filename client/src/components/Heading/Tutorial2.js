@@ -35,19 +35,18 @@ export default function Tutorial2(props) {
       <div className={classes.content}>
         <Typography gutterBottom></Typography>
         <Typography gutterBottom>
-          With regular use, this app is designed to help you:
+        We’ll use a special klind of journaling, with questions designed to:
         </Typography>
         <Typography gutterBottom>
           <ul className={classes.list}>
             <li style={{marginBottom: "10px"}}>Increase focus around your goals and values</li>
             <li style={{marginBottom: "10px"}}>
-              Develop awareness of automatic thoughts or feelings that might be
+              Discover and <i>change</i> automatic thoughts or feelings that might be
               holding you back
             </li>
-            <li style={{marginBottom: "10px"}}> Learn how to control your thoughts and feelings </li>
             <li style={{marginBottom: "10px"}}> Build self-compassion and gratitude</li>
             <li style={{marginBottom: "10px"}}>
-              Take clear steps towards the person you want to be
+              Feel more empowered to push past your limits
             </li>
           </ul>
         </Typography>

@@ -14,6 +14,8 @@ import NightsStayIcon from "@material-ui/icons/NightsStay";
 import CreateIcon from "@material-ui/icons/Create";
 import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
 import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
+
 
 export default function Tutorial4(props) {
   const useStyles = makeStyles({
@@ -38,66 +40,74 @@ export default function Tutorial4(props) {
     },
     list: {
       marginBottom: "10px",
-      marginLeft: "-10px"
-    }
+    },
+    subList: {
+      marginLeft: "-1.5rem",
+    },
   });
   const classes = useStyles();
   return (
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
         {" "}
-        <Typography gutterBottom>Here's how it works:</Typography>
+        <Typography gutterBottom>To get the most out of Indezone Journal:</Typography>
         <br />
         <List className={classes.root}>
-          <ListItem>
+
+        <ListItem className={classes.list}>
             <ListItemAvatar>
               <Avatar>
-                <ListIcon />
+                <CreateIcon />
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="You get a list of questions based on how you're feeling"
-            />
-          </ListItem>
-          <ListItem style={{marginTop: "-30px"}}>
-            <ListItemAvatar>
-            </ListItemAvatar>
-            <ListItemText
+              primary={<p style={{margin: "0px"}}>Answer <i>at least</i> one question every day to level up</p>}
               secondary={
                 <>
-                  <p>
-                    These are based on the latest research in psychology and cognitive science, including:
-                  </p>
-                  <ul>
-                    <li>Cognitive Behavioral Therapy (CBT)</li>
-                    <li>Mindfulness</li>
-                    <li>Neuroplasticity</li>
+                <ul className={classes.subList}>
+                  <li>
+                  Make entries both, morning <i>and</i> evening for best results
+                  </li>
+                </ul>
+              </>}
+            />
+          </ListItem>
+
+          <ListItem className={classes.list}>
+            <ListItemAvatar>
+              <Avatar>
+                <TrendingUpIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Level up to get more questions and lessons"
+              secondary={
+                <>
+                  <ul className={classes.subList}>
+                    <li>
+                      Your level increases every day that you keep a streak of
+                      daily entries
+                    </li>
+                    <li>
+                      Don't break your streak, or you'll drop down by one level!
+                    </li>
                   </ul>
                 </>
               }
             />
           </ListItem>
 
-          <ListItem>
+          <ListItem className={classes.list}>
             <ListItemAvatar>
               <Avatar>
-                <WbSunnyIcon />
+              <FlashOnIcon style={{ color: "00A8E0" }}></FlashOnIcon>
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary={<p>In the morning, questions focus on <i>planning</i> and <i>mindset</i></p>}
+              primary="Earn Power Entries for answers that are over 20 words long"
             />
           </ListItem>
-          <ListItem>
-            <ListItemAvatar>
-              <Avatar>
-                <NightsStayIcon />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary={<p>In the evening, questions focus more on <i>reflection</i></p>}
-            />
-          </ListItem>
+
         </List>
       </div>
     </section>

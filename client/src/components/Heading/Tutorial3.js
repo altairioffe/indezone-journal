@@ -2,8 +2,20 @@ import React from "react";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Background from "../LandingPage/LandingImage/bg-pink-sky.jpg";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+import ListIcon from "@material-ui/icons/List";
+import TrendingUpIcon from "@material-ui/icons/TrendingUp";
+import WbSunnyIcon from "@material-ui/icons/WbSunny";
+import NightsStayIcon from "@material-ui/icons/NightsStay";
+import CreateIcon from "@material-ui/icons/Create";
+import FitnessCenterIcon from "@material-ui/icons/FitnessCenter";
+import EmojiEventsIcon from "@material-ui/icons/EmojiEvents";
 
-export default function Tutorial3(props) {
+export default function Tutorial4(props) {
   const useStyles = makeStyles({
     root: {
       textAlign: "center",
@@ -34,23 +46,67 @@ export default function Tutorial3(props) {
     <section className={classes.background} style={{ padding: "0px" }}>
       <div className={classes.content}>
         {" "}
-        <Typography gutterBottom>
-        We’ll use a special kind of journaling to expand your awareness.
-        </Typography>
+        <Typography gutterBottom>Here's how it works:</Typography>
         <br />
-        <Typography gutterBottom>
-        We provide carefully-selected questions, ones often used by psychologists and high-performance coaches, so you always have something to write about
+        <List className={classes.root}>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <ListIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="These questions will help you build the mindset of the world’s top performers
+              "
+            />
+          </ListItem>
+          <ListItem style={{ marginTop: "-30px" }}>
+            <ListItemAvatar></ListItemAvatar>
+            <ListItemText
+              secondary={
+                <>
+                  <p>By applying research-backed methods like:</p>
+                  <ul>
+                    <li>Cognitive Behavioral Therapy (CBT)</li>
+                    <li>Mindfulness</li>
+                    <li>And more!</li>
+                  </ul>
+                </>
+              }
+            />
+          </ListItem>
 
-        </Typography>
-        <br />
-        <Typography gutterBottom>
-        It’s easy to get started, and you’ll be introduced to more advanced techniques (and more questions) as you make progress
-        </Typography>
-        <br />
-        <Typography gutterBottom>
-        </Typography>
-        <br />
-
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <WbSunnyIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={
+                <p>
+                  In the morning, questions focus on <i>planning</i> and{" "}
+                  <i>mindset</i>
+                </p>
+              }
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemAvatar>
+              <Avatar>
+                <NightsStayIcon />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary={
+                <p>
+                  In the evening, questions focus more on <i>reflection</i> and{" "}
+                  <i>learning</i>
+                </p>
+              }
+            />
+          </ListItem>
+        </List>
       </div>
     </section>
   );

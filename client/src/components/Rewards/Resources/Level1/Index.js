@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Card from "../../Card/Card.js";
+import Card from "../../../Card/Card.js";
 import { makeStyles } from "@material-ui/core/styles";
 import Typography from "@material-ui/core/Typography";
 
