@@ -43,11 +43,12 @@ export default function Level1(props) {
   const classes = useStyles();
   return (
     <section>
+      <hr/>
       <br />
       <br />
       <br />
       <div>
-      <Carousel autoPlay={false} navButtonsAlwaysVisible={true}>
+      <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>
             <Slide1 />
             <Slide2 />
             <Slide3 />
@@ -61,7 +62,6 @@ export default function Level1(props) {
       <br />{" "}
       <div>
       </div>
-      <h4> Ready to level up? Make your first entry!</h4>
     </section>
   );
 }

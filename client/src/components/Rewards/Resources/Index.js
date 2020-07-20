@@ -77,7 +77,7 @@ export default function Resource(props) {
           alignItems="center"
           spacing={2}>
           <GridItem xs={6} sm={6} md={6} style={{textAlign: 'right'}}>
-            <h2>Level 1 </h2>
+            <h2>You're at Level 1 </h2>
           </GridItem>
           <GridItem xs={6} sm={6} md={6}>
             <div style={{textAlign: 'left'}}>
