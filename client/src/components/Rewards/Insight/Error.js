@@ -56,19 +56,8 @@ export default function Error(props) {
       <div>
         <img src="images/brainsley-error.png" className={classes.image} />
       </div>
-      <List >
-        <ListItem style={{ marginTop: "-30px" }}>
-          <ListItemAvatar>
-            <Avatar>
-              <LockIcon style={{ color: "#00A8E0"}} />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText
-            primary="Not so fast, young Mind Wanderer!!! Reach level 10 and make 40 Power Entries before you request my insight...
-              "
-          />
-        </ListItem>
-      </List>
+      <LockIcon style={{ color: "#00A8E0"}} />
+      <h4>Not so fast, young Mind Wanderer!!! Reach level 10 and make 40 Power Entries before you request my insight...</h4>
       <Button className={classes.button} onClick={props.onCancel}>
         BACK
       </Button>
