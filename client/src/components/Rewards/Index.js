@@ -90,6 +90,7 @@ export default function Rewards(props) {
             <Card className={classes.mainCard}>
               <Resource level={1} user={props.user} />
 
+              <hr />
               <Insight
                 bio={props.bio}
                 level={props.level}

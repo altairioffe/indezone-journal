@@ -30,7 +30,15 @@ export default function Slide1(props) {
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
       boxShadow: "none"
-    }
+    },
+    image: {  
+          height: "45vh",
+          width: "auto",
+          margin: "auto",
+          display: "block",
+          backgroundPosition: "50% 50%",
+          backgroundSize: "cover"
+        }
   }));
   const classes = useStyles();
 
@@ -39,14 +47,7 @@ export default function Slide1(props) {
     <div>
       <img
         src="images/brainsley-01.png"
-        style={{
-          height: "45vh",
-          width: "auto",
-          margin: "auto",
-          display: "block",
-          backgroundPosition: "50% 50%",
-          backgroundSize: "cover"
-        }}
+        className={classes.image}
       />
     </div>
   </Card>

@@ -57,7 +57,8 @@ export default function Bio(props) {
     },
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
-      boxShadow: "none"
+      boxShadow: "none",
+      textAlign: "center"
     }
   }));
   const classes = useStyles();
@@ -93,9 +94,6 @@ export default function Bio(props) {
 
         {mode === ERROR && (
           <Error
-            message={
-              "Unable to load insights! Make sure you are providing enough data for an analysis by writing complete sentences!"
-            }
             onCancel={back}
           />
         )}

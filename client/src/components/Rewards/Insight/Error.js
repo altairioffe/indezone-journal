@@ -2,6 +2,12 @@ import React from "react";
 import { Button } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import LockIcon from "@material-ui/icons/Lock";
+import Typography from "@material-ui/core/Typography";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemText from "@material-ui/core/ListItemText";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
 
 export default function Error(props) {
   // Define Styles
@@ -39,8 +45,24 @@ export default function Error(props) {
 
   return (
     <main className="heading">
-      <LockIcon style={{ color: "#00A8E0" }} />
-      <h4 className={classes.heading}>{props.message}</h4>
+        <div>
+      <img
+        src="images/brainsley-error.png"
+        className={classes.image}
+      />
+    </div>
+            <List className={classes.root}>
+          <ListItem style={{ marginTop: "-30px" }}>
+            <ListItemAvatar>
+              <Avatar>
+                 <LockIcon style={{ color: "#00A8E0" }} />
+              </Avatar>
+            </ListItemAvatar>
+            <ListItemText
+              primary="Earn my most prized hat and attain 40 Power Entries to access this feature!
+              "
+            />
+          </ListItem>
       <Button className={classes.button} onClick={props.onCancel}>
         BACK
       </Button>
