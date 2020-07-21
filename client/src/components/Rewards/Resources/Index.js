@@ -74,32 +74,6 @@ export default function Resource(props) {
       )}
 
       <div>
-        <GridContainer
-          justify="center"
-          direction="row"
-          alignItems="center"
-          spacing={2}
-        >
-          <GridItem xs={6} sm={6} md={6} style={{textAlign: 'right'}}>
-            <h2>Level 1 </h2>
-          </GridItem>
-          <GridItem xs={6} sm={6} md={6}>
-            <div style={{textAlign: 'left'}}>
-              <img
-                src="images/happy-brain.svg"
-                style={{
-                  margin: "0px",
-                  height: "auto",
-                  maxWidth: "15vh",
-                  display: "block",
-                  backgroundPosition: "50% 50%",
-                  backgroundSize: "cover"
-                }}
-              />
-            </div>
-          </GridItem>
-        </GridContainer>
-<hr/>
 
         {renderResource === true && (
           <section>

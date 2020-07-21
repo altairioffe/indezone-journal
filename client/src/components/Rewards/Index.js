@@ -15,6 +15,8 @@ import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
+import GridContainer from "../Grid/GridContainer.js";
+import GridItem from "../Grid/GridItem.js";
 
 import useVisualMode from "../../hooks/useVisualMode";
 
@@ -85,30 +87,60 @@ export default function Rewards(props) {
           onClose={() => setOpenDialog(false)}
           aria-labelledby="customized-dialog-title"
           open={openDialog}>
-          <div style={{width: "80vw"}}>
-          <MuiDialogContent dividers style={{ padding: "0px" }}>
-            <Card className={classes.mainCard}>
-              <Resource level={1} user={props.user} />
+          <div style={{ width: "80vw" }}>
 
-              <hr />
-              <Insight
-                bio={props.bio}
-                level={props.level}
-                requestInsight={props.requestInsight}
-                currentUserGoals={props.currentUserGoals}
-                userInsight={props.currentUserInsight}
-              />
-              <br />
-            </Card>
-          </MuiDialogContent>
-          <MuiDialogActions>
-            <Button
-              autoFocus
-              onClick={() => setOpenDialog(false)}
-              color="primary">
-              Got It!
-            </Button>
-          </MuiDialogActions>
+            <MuiDialogContent dividers style={{ padding: "0px" }}>
+              <div>
+                <GridContainer
+                  justify="center"
+                  direction="row"
+                  alignItems="center"
+                  spacing={2}>
+                  <GridItem xs={6} sm={6} md={6} style={{ textAlign: "right" }}>
+                    <h2>Level 1 </h2>
+                  </GridItem>
+                  <GridItem xs={6} sm={6} md={6}>
+                    <div style={{ textAlign: "left" }}>
+                      <img
+                        src="images/happy-brain.svg"
+                        style={{
+                          margin: "0px",
+                          height: "auto",
+                          maxWidth: "15vh",
+                          display: "block",
+                          backgroundPosition: "50% 50%",
+                          backgroundSize: "cover"
+                        }}
+                      />
+                    </div>
+                  </GridItem>
+                </GridContainer>
+                <hr />
+              </div>
+            </MuiDialogContent>
+
+            <MuiDialogContent dividers style={{ padding: "0px" }}>
+              <Card className={classes.mainCard}>
+                <Resource level={1} user={props.user} />
+
+                <hr />
+                <Insight
+                  bio={props.bio}
+                  level={props.level}
+                  requestInsight={props.requestInsight}
+                  currentUserGoals={props.currentUserGoals}
+                  userInsight={props.currentUserInsight}
+                />
+                <br />
+              </Card>
+            </MuiDialogContent>
+            <MuiDialogActions>
+              <Button
+                onClick={() => setOpenDialog(false)}
+                color="primary">
+                Got It!
+              </Button>
+            </MuiDialogActions>
           </div>
         </Dialog>
       </Card>

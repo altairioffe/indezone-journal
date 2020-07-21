@@ -39,30 +39,36 @@ export default function Error(props) {
       fontWeight: 300,
       fontSize: "1em",
       padding: "0.5em 2em"
+    },
+    image: {  
+      height: "45vh",
+      width: "auto",
+      margin: "auto",
+      display: "block",
+      backgroundPosition: "50% 50%",
+      backgroundSize: "cover"
     }
   });
   const classes = useStyles();
 
   return (
     <main className="heading">
-        <div>
-      <img
-        src="images/brainsley-error.png"
-        className={classes.image}
-      />
-    </div>
-            <List className={classes.root}>
-          <ListItem style={{ marginTop: "-30px" }}>
-            <ListItemAvatar>
-              <Avatar>
-                 <LockIcon style={{ color: "#00A8E0" }} />
-              </Avatar>
-            </ListItemAvatar>
-            <ListItemText
-              primary="Earn my most prized hat and attain 40 Power Entries to access this feature!
+      <div>
+        <img src="images/brainsley-error.png" className={classes.image} />
+      </div>
+      <List >
+        <ListItem style={{ marginTop: "-30px" }}>
+          <ListItemAvatar>
+            <Avatar>
+              <LockIcon style={{ color: "#00A8E0"}} />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText
+            primary="Not so fast, young Mind Wanderer!!! Reach level 10 and make 40 Power Entries before you request my insight...
               "
-            />
-          </ListItem>
+          />
+        </ListItem>
+      </List>
       <Button className={classes.button} onClick={props.onCancel}>
         BACK
       </Button>
