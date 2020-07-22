@@ -22,6 +22,9 @@ import useVisualMode from "../../hooks/useVisualMode";
 
 export default function Rewards(props) {
   // Define Styles
+
+  const [pulse, setPulse] = useState(`$pulse 3000ms infinite`);
+
   const useStyles = makeStyles({
     root: {
       textAlign: "center",
@@ -49,17 +52,17 @@ export default function Rewards(props) {
     image: {
       height: "10vh",
       width: "auto",
-      animation: `$pulse 3000ms infinite`
+      animation: pulse
     },
     "@keyframes pulse": {
       "0%": {
         transform: "scale(0.95)"
       },
-    
+
       "70%": {
         transform: "scale(1.4)"
       },
-    
+
       "100%": {
         transform: "scale(0.95)"
       }
@@ -88,14 +91,16 @@ export default function Rewards(props) {
           <>
             <IconButton
               className={classes.button}
-              onClick={() => setOpenDialog(true)}
+              onClick={() => {
+                setOpenDialog(true);
+                setPulse(false);
+              }}
               simple="true"
               size="large">
               <img
                 src={"../images/indezone-icon.png"}
                 className={classes.image}
               />
-            <Typography>View Rewards & Challenges</Typography>
             </IconButton>
           </>
         )}
@@ -106,7 +111,6 @@ export default function Rewards(props) {
           aria-labelledby="customized-dialog-title"
           open={openDialog}>
           <div style={{ width: "80vw" }}>
-
             <MuiDialogContent dividers style={{ padding: "0px" }}>
               <div>
                 <GridContainer
@@ -153,9 +157,7 @@ export default function Rewards(props) {
               </Card>
             </MuiDialogContent>
             <MuiDialogActions>
-              <Button
-                onClick={() => setOpenDialog(false)}
-                color="primary">
+              <Button onClick={() => setOpenDialog(false)} color="primary">
                 Got It!
               </Button>
             </MuiDialogActions>
