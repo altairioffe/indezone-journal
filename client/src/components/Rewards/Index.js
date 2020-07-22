@@ -45,6 +45,24 @@ export default function Rewards(props) {
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
       boxShadow: "none"
+    },
+    image: {
+      height: "10vh",
+      width: "auto",
+      animation: `$pulse 3000ms infinite`
+    },
+    "@keyframes pulse": {
+      "0%": {
+        transform: "scale(0.95)"
+      },
+    
+      "70%": {
+        transform: "scale(1.4)"
+      },
+    
+      "100%": {
+        transform: "scale(0.95)"
+      }
     }
   });
   const classes = useStyles();
@@ -74,11 +92,11 @@ export default function Rewards(props) {
               simple="true"
               size="large">
               <img
-                src={"../images/professor-brain.svg"}
+                src={"../images/indezone-icon.png"}
                 className={classes.image}
               />
+            <Typography>View Rewards & Challenges</Typography>
             </IconButton>
-            <Typography>Consult Professor Brainsley</Typography>
           </>
         )}
 
