@@ -59,20 +59,6 @@ export default function Resource(props) {
 
   return (
     <Card className={classes.card}>
-      {renderResource === false && (
-        <div>
-          <Button
-            className={classes.button}
-            onClick={() => setRenderResource(true)}
-            disabled={props.disabled}
-            endIcon={
-              (props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />
-            }>
-            Show BrainFood
-          </Button>
-        </div>
-      )}
-
       <div>
 
         {renderResource === true && (

@@ -23,8 +23,6 @@ import useVisualMode from "../../hooks/useVisualMode";
 export default function Rewards(props) {
   // Define Styles
 
-  //const [pulse, setPulse] = useState(props.newChallengeNotification && `$pulse 3000ms infinite` || "");
-
   const useStyles = makeStyles({
     root: {
       textAlign: "center",
@@ -48,6 +46,14 @@ export default function Rewards(props) {
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
       boxShadow: "none"
+    },
+    avatar: {
+      margin: "0px",
+      height: "auto",
+      maxWidth: "15vh",
+      display: "block",
+      backgroundPosition: "50% 50%",
+      backgroundSize: "cover"
     },
     image: {
       height: "15vh",
@@ -116,17 +122,16 @@ export default function Rewards(props) {
                   </GridItem>
                   <GridItem xs={6} sm={6} md={6}>
                     <div style={{ textAlign: "left" }}>
-                      <img
-                        src="images/happy-brain.svg"
-                        style={{
-                          margin: "0px",
-                          height: "auto",
-                          maxWidth: "15vh",
-                          display: "block",
-                          backgroundPosition: "50% 50%",
-                          backgroundSize: "cover"
-                        }}
-                      />
+                      {props.level === 1 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 2 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 3 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 4 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 5 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 6 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 7 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 8 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 9 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
+                      {props.level === 10 && (<img src="images/happy-brain.svg" className={classes.avatar} />)}
                     </div>
                   </GridItem>
                 </GridContainer>
