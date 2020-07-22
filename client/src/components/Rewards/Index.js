@@ -23,7 +23,7 @@ import useVisualMode from "../../hooks/useVisualMode";
 export default function Rewards(props) {
   // Define Styles
 
-  const [pulse, setPulse] = useState(`$pulse 3000ms infinite`);
+  //const [pulse, setPulse] = useState(props.newChallengeNotification && `$pulse 3000ms infinite` || "");
 
   const useStyles = makeStyles({
     root: {
@@ -39,7 +39,7 @@ export default function Rewards(props) {
     button: {
       fontWeight: 300,
       fontSize: "1em",
-      padding: "0.8em 1.2em"
+      padding: "0px"
     },
     mainCard: {
       backgroundColor: "rgb(235,240,235, 0.5)",
@@ -50,9 +50,10 @@ export default function Rewards(props) {
       boxShadow: "none"
     },
     image: {
-      height: "10vh",
+      height: "15vh",
       width: "auto",
-      animation: pulse
+      margin: "-25px 0px -25px",
+      animation: props.newChallengeNotification && `$pulse 3000ms infinite` || ""
     },
     "@keyframes pulse": {
       "0%": {
@@ -70,19 +71,13 @@ export default function Rewards(props) {
   });
   const classes = useStyles();
 
-  /*
-
-- quote
-
--button (REWARDS)
-  onClick: transition mode to display 
-    -Back Button
-    -get insights button
-    -render resource / reward based on user level
-
-  */
-
   const [openDialog, setOpenDialog] = useState(false);
+
+  const handleClick = () =>{
+ // setOpenDialog(true);
+ console.log(props.dismissNewChallengeNotification)
+ props.dismissNewChallengeNotification();
+  }
 
   return (
     <main>
@@ -91,10 +86,7 @@ export default function Rewards(props) {
           <>
             <IconButton
               className={classes.button}
-              onClick={() => {
-                setOpenDialog(true);
-                setPulse(false);
-              }}
+              onClick={() => handleClick() }
               simple="true"
               size="large">
               <img

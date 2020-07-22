@@ -29,7 +29,8 @@ export default function Application() {
     setUserWordCount,
     resetLoginError,
     renderMainPage,
-    setUserMood
+    setUserMood,
+    dismissNewChallengeNotification
   } = useApplicationData();
   console.log("------APPLICATION.JS state ------\n", state);
 
@@ -93,6 +94,8 @@ export default function Application() {
                 requestInsight={requestInsight}
                 currentUserGoals={state.currentUserGoals}
                 userInsight={state.currentUserInsight}
+                dismissNewChallengeNotification={dismissNewChallengeNotification}
+                newChallengeNotification={state.newChallengeNotification}
               />
               <div>
                 <br/>

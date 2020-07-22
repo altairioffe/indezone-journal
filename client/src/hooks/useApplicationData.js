@@ -31,6 +31,7 @@ export default function useApplicationData() {
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
+    newChallengeNotification: true,
     loginError: false,
     userMood: "happy",
     timeOfDay: "morning",
@@ -91,11 +92,19 @@ export default function useApplicationData() {
 
     let currentLevel = state.level;
     if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
+      setState(state => ({
+        ...state,
+        newChallengeNotification: true
+      }));
       return levelHandler(state.currentUser.id, currentLevel + 1);
     } else {
       return currentLevel;
     }
   };
+
+  const dismissNewChallengeNotification = () => {
+     setState(state => ({...state, newChallengeNotification: false}));
+  }
 
   //Set current user goals on login
   useEffect(() => {
@@ -322,6 +331,7 @@ export default function useApplicationData() {
     setUserWordCount,
     resetLoginError,
     renderMainPage,
-    setUserMood
+    setUserMood,
+    dismissNewChallengeNotification
   };
 }
