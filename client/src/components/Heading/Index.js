@@ -59,7 +59,7 @@ import Carousel from "react-material-ui-carousel";
 //   }
 // }))(MuiDialogActions);
 
-export default function Heading() {
+export default function Heading(props) {
   const useStyles = makeStyles({
     root: {
       textAlign: "center",
@@ -93,7 +93,7 @@ export default function Heading() {
   });
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(props.level === 1);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -119,7 +119,7 @@ export default function Heading() {
         aria-labelledby="customized-dialog-title"
         open={open}>
         <MuiDialogTitle id="customized-dialog-title" onClose={handleClose}>
-          Modal title
+          Tutorial
           <IconButton
             aria-label="close"
             className={classes.closeButton}

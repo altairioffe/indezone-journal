@@ -26,15 +26,15 @@ export default function useApplicationData() {
     organizedQuestionsByTime: {},
     biodatas: [],
     currentUserGoals: [],
-    currentUser: true,
+    currentUser: null,
     answer: "",
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
     newChallengeNotification: true,
     loginError: false,
-    userMood: "happy",
-    timeOfDay: "morning",
+    userMood: "",
+    timeOfDay: "",
     renderMainPage: false
   });
 

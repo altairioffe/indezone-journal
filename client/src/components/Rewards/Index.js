@@ -53,7 +53,8 @@ export default function Rewards(props) {
       height: "15vh",
       width: "auto",
       margin: "-25px 0px -25px",
-      animation: props.newChallengeNotification && `$pulse 3000ms infinite` || ""
+      animation:
+        (props.newChallengeNotification && `$pulse 3000ms infinite`) || ""
     },
     "@keyframes pulse": {
       "0%": {
@@ -73,11 +74,11 @@ export default function Rewards(props) {
 
   const [openDialog, setOpenDialog] = useState(false);
 
-  const handleClick = () =>{
- // setOpenDialog(true);
- console.log(props.dismissNewChallengeNotification)
- props.dismissNewChallengeNotification();
-  }
+  const handleClick = () => {
+    setOpenDialog(true);
+    console.log(props.dismissNewChallengeNotification);
+    props.dismissNewChallengeNotification();
+  };
 
   return (
     <main>
@@ -86,7 +87,7 @@ export default function Rewards(props) {
           <>
             <IconButton
               className={classes.button}
-              onClick={() => handleClick() }
+              onClick={() => handleClick()}
               simple="true"
               size="large">
               <img
@@ -111,7 +112,7 @@ export default function Rewards(props) {
                   alignItems="center"
                   spacing={2}>
                   <GridItem xs={6} sm={6} md={6} style={{ textAlign: "right" }}>
-                    <h2>Level 1 </h2>
+                    <h2>Level {props.level} </h2>
                   </GridItem>
                   <GridItem xs={6} sm={6} md={6}>
                     <div style={{ textAlign: "left" }}>
@@ -135,7 +136,7 @@ export default function Rewards(props) {
 
             <MuiDialogContent dividers style={{ padding: "0px" }}>
               <Card className={classes.mainCard}>
-                <Resource level={1} user={props.user} />
+                <Resource level={props.level} user={props.user} />
 
                 <hr />
                 <Insight
