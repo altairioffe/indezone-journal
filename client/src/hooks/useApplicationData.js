@@ -31,7 +31,7 @@ export default function useApplicationData() {
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
-    newChallengeNotification: true,
+    newChallengeNotification: false,
     loginError: false,
     userMood: "",
     timeOfDay: "",

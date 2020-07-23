@@ -60,7 +60,7 @@ export default function Rewards(props) {
       width: "auto",
       margin: "-25px 0px -25px",
       animation:
-        (props.newChallengeNotification && `$pulse 3000ms infinite`) || ""
+        ((props.level === 1 || props.newChallengeNotification) && `$pulse 2000ms infinite`) || ""
     },
     "@keyframes pulse": {
       "0%": {
@@ -68,7 +68,7 @@ export default function Rewards(props) {
       },
 
       "70%": {
-        transform: "scale(1.4)"
+        transform: "scale(1.2)"
       },
 
       "100%": {
