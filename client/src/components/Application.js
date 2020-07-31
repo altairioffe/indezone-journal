@@ -1,6 +1,8 @@
 import React from "react";
 import Wall from "./Wall";
-import Bio from "./Bio/Index";
+import Rewards from "./Rewards/Index";
+import Heading from "./Heading/Index";
+import Insight from "./Rewards/Insight/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList";
@@ -10,7 +12,7 @@ import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import { Container } from "@material-ui/core";
 import { Parallax, Background } from "react-parallax";
-import { pickUserQuestions } from "../helpers/questionHelper"
+import { pickUserQuestions } from "../helpers/questionHelper";
 
 export default function Application() {
   const {
@@ -27,7 +29,8 @@ export default function Application() {
     setUserWordCount,
     resetLoginError,
     renderMainPage,
-    setUserMood
+    setUserMood,
+    dismissNewChallengeNotification
   } = useApplicationData();
   console.log("------APPLICATION.JS state ------\n", state);
 
@@ -73,28 +76,38 @@ export default function Application() {
           />
 
           {state.currentUser && !state.renderMainPage && (
-            <Mood 
-            userIsMotivated={state.userIsMotivated} 
-            renderMainPage={renderMainPage}
-            setUserMood={setUserMood}
+            <Mood
+              userIsMotivated={state.userIsMotivated}
+              renderMainPage={renderMainPage}
+              setUserMood={setUserMood}
             />
           )}
 
           {state.currentUser && state.renderMainPage && (
             <section className="feed">
+              <Heading 
+              level={state.level}/>
               <br />
-              <Bio
+              <Rewards
                 bio={getBio(state.biodatas, state.currentUser)}
                 level={state.level}
+                user={state.currentUser.handle}
                 requestInsight={requestInsight}
                 currentUserGoals={state.currentUserGoals}
                 userInsight={state.currentUserInsight}
+                dismissNewChallengeNotification={dismissNewChallengeNotification}
+                newChallengeNotification={state.newChallengeNotification}
               />
-              <br />
+              <div>
+                <br/>
               <QuestionList
                 ansQuestion={ansQuestion}
                 level={state.level}
-                questions={pickUserQuestions(state.organizedQuestionsByTime, state.timeOfDay, state.userMood)}
+                questions={pickUserQuestions(
+                  state.organizedQuestionsByTime,
+                  state.timeOfDay,
+                  state.userMood
+                )}
                 currentUserGoals={state.currentUserGoals}
                 setAnswer={setAnswer}
                 answer={state.answer}
@@ -107,7 +120,8 @@ export default function Application() {
                   state.currentUser
                 )}
               />
-              <div>
+              <br />
+
                 {state.currentUserGoals &&
                   state.currentUserGoals.length >= 1 && (
                     <Wall

@@ -36,7 +36,7 @@ module.exports = {
     },
     {
       id:5,
-      question: 'What would be different if you felt that you could push yourself harder today?',
+      question: 'How would your day be different if you felt that you could push yourself harder today?',
       suggestion: 'Who might be counting on you to be at your best? What can you do to support them?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()

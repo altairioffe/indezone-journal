@@ -5,7 +5,12 @@ import UserBio from "./UserBio";
 import Error from "./Error";
 import Insights from "./Insights";
 import Status from "./Loading";
-import useVisualMode from "../../hooks/useVisualMode";
+import PollIcon from "@material-ui/icons/Poll";
+import LockIcon from "@material-ui/icons/Lock";
+import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+import Card from "../../Card/Card.js";
+import { Button } from "@material-ui/core";
+import useVisualMode from "../../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";
 
 export default function Bio(props) {
@@ -38,18 +43,29 @@ export default function Bio(props) {
       "& small": {
         color: "skyblue"
       }
+    },
+    button: {
+      background: "#00A8E0",
+      color: "white",
+      "&:hover": {
+        backgroundColor: "skyBlue",
+        color: "#FFF"
+      },
+      fontWeight: 300,
+      fontSize: "1em",
+      padding: "0.8em 1.2em"
+    },
+    card: {
+      backgroundColor: "rgb(235,240,235, 0)",
+      boxShadow: "none",
+      textAlign: "center"
     }
   }));
   const classes = useStyles();
+  
 
   return (
-    <main style={{marginTop: "-80px"}}>
-      <section>
-        <h2 className={classes.root}>
-          Take A Moment To Start Your Day With Purpose
-        </h2>
-        <br />
-      </section>
+    <Card className={classes.card}>
 
       <section>
         {mode === USERBIO && (
@@ -78,9 +94,6 @@ export default function Bio(props) {
 
         {mode === ERROR && (
           <Error
-            message={
-              "Unable to load insights! Make sure you are providing enough data for an analysis by writing complete sentences!"
-            }
             onCancel={back}
           />
         )}
@@ -98,6 +111,6 @@ export default function Bio(props) {
           />
         )}
       </section>
-    </main>
+    </Card>
   );
 }
