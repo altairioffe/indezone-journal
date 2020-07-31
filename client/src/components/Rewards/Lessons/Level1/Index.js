@@ -38,6 +38,14 @@ export default function Level1(props) {
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
       boxShadow: "none"
+    },
+    image: {  
+      height: "45vh",
+      width: "auto",
+      margin: "auto",
+      display: "block",
+      backgroundPosition: "50% 50%",
+      backgroundSize: "cover"
     }
   }));
   const classes = useStyles();
@@ -46,14 +54,38 @@ export default function Level1(props) {
       <br />
       <div>
       <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>
-            <Slide1 />
-            <Slide2 />
-            <Slide3 />
-            <Slide4 />
-            <Slide5 />
-            <Slide6 />
-            <Slide7 />
-            <Slide8 />
+      <img
+        src="images/lessons/brainsley-01.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/brainsley-02.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/brainsley-03.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/brainsley-04.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/brainsley-05.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/brainsley-06.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/brainsley-07.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/brainsley-08.png"
+        className={classes.image}
+      />
           </Carousel>
       </div>
       <br />{" "}

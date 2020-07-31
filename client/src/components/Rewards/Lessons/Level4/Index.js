@@ -45,6 +45,14 @@ export default function Level1(props) {
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
       boxShadow: "none"
+    },
+    image: {  
+      height: "45vh",
+      width: "auto",
+      margin: "auto",
+      display: "block",
+      backgroundPosition: "50% 50%",
+      backgroundSize: "cover"
     }
   }));
   const classes = useStyles();
@@ -53,21 +61,66 @@ export default function Level1(props) {
       <br />
       <div>
       <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>
-            <Slide1 />
-            <Slide2 />
-            <Slide3 />
-            <Slide4 />
-            <Slide5 />
-            <Slide6 />
-            <Slide7 />
-            <Slide8 />
-            <Slide9 />
-            <Slide10 />
-            <Slide11 />
-            <Slide12 />
-            <Slide13 />
-            <Slide14 />
-            <Slide15 />
+      <img
+        src="images/lessons/lesson-4-01.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-02.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-03.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-04.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-05.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-06.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-07.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-08.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-09.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-10.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-11.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-12.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-13.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-14.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-4-15.png"
+        className={classes.image}
+      />
           </Carousel>
       </div>
       <br />{" "}
