@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Insight from "./Insight/Index";
-import Resource from "./Resources/Index";
+import Resource from "./Lessons/Index";
 import { Button } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
