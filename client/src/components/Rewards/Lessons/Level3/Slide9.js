@@ -3,7 +3,7 @@ import Card from "../../../Card/Card.js";
 import { makeStyles } from "@material-ui/core/styles";
 
 
-export default function Slide7(props) {
+export default function Slide8(props) {
 
   const useStyles = makeStyles(theme => ({
     root: {
@@ -46,7 +46,7 @@ export default function Slide7(props) {
     <Card className={classes.card}>
     <div>
       <img
-        src="images/lesson-3/lesson-3-07.png"
+        src="images/lesson-3/lesson-3-09.png"
         className={classes.image}
 
       />
