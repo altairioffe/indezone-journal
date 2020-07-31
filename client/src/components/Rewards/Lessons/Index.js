@@ -9,15 +9,15 @@ import GridContainer from "../../Grid/GridContainer.js";
 import GridItem from "../../Grid/GridItem.js";
 
 import Level1 from "./Level1/Index";
-import Level2 from "./Level2";
-import Level3 from "./Level3";
-import Level4 from "./Level4";
-import Level5 from "./Level5";
-import Level6 from "./Level6";
-import Level7 from "./Level7";
-import Level8 from "./Level8";
-import Level9 from "./Level9";
-import Level10 from "./Level10";
+import Level2 from "./Level2/Index";
+import Level3 from "./Level3/Index";
+import Level4 from "./Level4/Index";
+import Level5 from "./Level5/Index";
+import Level6 from "./Level6/Index";
+import Level7 from "./Level7/Index";
+import Level8 from "./Level8/Index";
+import Level9 from "./Level9/Index";
+import Level10 from "./Level10/Index";
 
 import useVisualMode from "../../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";

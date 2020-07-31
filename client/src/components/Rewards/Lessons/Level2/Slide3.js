@@ -46,7 +46,7 @@ export default function Slide3(props) {
     <Card className={classes.card}>
     <div>
       <img
-        src="images/brainsley-03.png"
+        src="images/lesson-2/lesson-2-03.png"
         className={classes.image}
 
       />
