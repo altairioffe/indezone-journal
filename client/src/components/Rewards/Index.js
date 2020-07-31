@@ -17,12 +17,11 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import CloseIcon from "@material-ui/icons/Close";
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
 
 import useVisualMode from "../../hooks/useVisualMode";
 
 export default function Rewards(props) {
-
-
   const [levelOneNotification, setLevelOneNotification] = useState(
     props.level === 1
   );
@@ -64,7 +63,9 @@ export default function Rewards(props) {
       width: "auto",
       margin: "-25px 0px -25px",
       animation:
-        (levelOneNotification || props.newChallengeNotification) && `$pulse 2000ms infinite` || ""
+        ((levelOneNotification || props.newChallengeNotification) &&
+          `$pulse 2000ms infinite`) ||
+        ""
     },
     "@keyframes pulse": {
       "0%": {
@@ -122,8 +123,17 @@ export default function Rewards(props) {
                   direction="row"
                   alignItems="center"
                   spacing={2}>
-                  <GridItem xs={6} sm={6} md={6} style={{ textAlign: "right" }}>
+                  <GridItem
+                    xs={6}
+                    sm={6}
+                    md={6}
+                    style={{ textAlign: "right" }}
+                    direction="column">
                     <h2>Level {props.level} </h2>
+                    <div>
+                     
+                      <h6> <FlashOnIcon style={{ color: "00A8E0", marginBottom: "-8px"}}></FlashOnIcon>Power Entries: {props.powerEntries}</h6>
+                    </div>
                   </GridItem>
                   <GridItem xs={6} sm={6} md={6}>
                     <div style={{ textAlign: "left" }}>
