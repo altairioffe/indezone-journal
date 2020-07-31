@@ -205,6 +205,7 @@ export default function Rewards(props) {
                   requestInsight={props.requestInsight}
                   currentUserGoals={props.currentUserGoals}
                   userInsight={props.currentUserInsight}
+                  powerEntries={props.powerEntries}
                 />
                 <br />
               </Card>

@@ -13,6 +13,7 @@ import { answeredGoals } from "../helpers/filterbyToday";
 import { Container } from "@material-ui/core";
 import { Parallax, Background } from "react-parallax";
 import { pickUserQuestions } from "../helpers/questionHelper";
+import { countPowerEntries } from "../helpers/questionHelper";
 
 export default function Application() {
   const {
@@ -97,6 +98,7 @@ export default function Application() {
                 userInsight={state.currentUserInsight}
                 dismissNewChallengeNotification={dismissNewChallengeNotification}
                 newChallengeNotification={state.newChallengeNotification}
+                powerEntries={countPowerEntries(state.currentUserGoals)}
               />
               <div>
                 <br/>

@@ -88,6 +88,7 @@ export default function Bio(props) {
             message={
               "Reach 600 points to access your insights! Your points grow as you increase the total word count from all your entries"
             }
+            powerEntries={props.powerEntries}
             onCancel={back}
           />
         )}

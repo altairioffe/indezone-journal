@@ -58,6 +58,8 @@ export default function Error(props) {
       </div>
       <LockIcon style={{ color: "#00A8E0"}} />
       <h4>Not so fast, young Mind Wanderer!!! Reach level 10 and make 40 Power Entries before you request my insight...</h4>
+      <br/>
+      <h4>You have {props.powerEntries} Power Entries</h4>
       <Button className={classes.button} onClick={props.onCancel}>
         BACK
       </Button>
