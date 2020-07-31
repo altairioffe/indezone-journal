@@ -54,14 +54,42 @@ export default function Level1(props) {
       <br />
       <div>
       <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>
-            <Slide1 />
-            <Slide2 />
-            <Slide3 />
-            <Slide4 />
-            <Slide5 />
-            <Slide6 />
-            <Slide7 />
-            <Slide8 />
+      <img
+        src="images/lessons/lesson-9-01.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-02.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-03.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-04.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-05.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-06.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-07.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-08.png"
+        className={classes.image}
+      />
+      <img
+        src="images/lessons/lesson-9-09.png"
+        className={classes.image}
+      />
           </Carousel>
       </div>
       <br />{" "}
