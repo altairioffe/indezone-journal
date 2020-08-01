@@ -87,7 +87,7 @@ export default function Bio(props) {
         {mode === DENIED && (
           <Error
             message={
-              "Reach 600 points to access your insights! Your points grow as you increase the total word count from all your entries"
+              "Reach level 10 to access your insights! Your points grow as you increase the total word count from all your entries"
             }
             powerEntries={props.powerEntries}
             onCancel={back}

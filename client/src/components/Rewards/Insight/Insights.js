@@ -32,7 +32,7 @@ export default function Insights(props) {
 
   return (
     <article>
-      <h2> Here is an analysis of your entries: </h2>
+      <h2> Here is my analysis of your entries: </h2>
       <p style={{ fontWeight: "bold" }}>{props.insights}</p>
       <Button
         className={classes.button}
