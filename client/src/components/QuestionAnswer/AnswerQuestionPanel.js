@@ -41,8 +41,8 @@ export default function SimpleExpansionPanel(props) {
       className={props.finalQuestion && classes.finalQuestion || classes.root}
       TransitionProps={{ unmountOnExit: true }}
       iconButtonProps={{ color: "#00A8E0" }}>
-      <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon style={{ color: "#00A8E0", height: "3em", backgroundColor: `rgb(240,240,240, 0.0)` }} />}
+      <ExpansionPanelSummary style={{backgroundColor: "rgb(240,240,240, 0.0)"}}
+        expandIcon={<ExpandMoreIcon style={{ color: "#00A8E0", height: "3em", backgroundColor: "rgb(240,240,240, 0.0)" }} />}
         aria-controls="panel1a-content"
         id="panel1a-header">
         <Typography className={classes.heading} fontSize="h2.fontSize">

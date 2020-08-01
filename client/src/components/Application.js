@@ -52,9 +52,9 @@ export default function Application() {
     <div>
       <Parallax
         className={parallaxStyle}
-        blur={10}
-        bgImage={require("./LandingPage/LandingImage/bg-pink-sky.jpg")}
-        bgImageAlt="the cat"
+        blur={! state.currentUser? 2 : 100}
+        bgImage={require("./LandingPage/LandingImage/road-sky.jpg")}
+        bgImageAlt="background"
         strength={800}
         bgStyle={{ backgroundAttachment: "fixed" }}
         backgroundRepeat="no-repeat">
