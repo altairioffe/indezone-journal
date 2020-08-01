@@ -72,8 +72,9 @@ export default function Bio(props) {
           <UserBio
             bio={props.bio}
             level={level}
+            powerEntries={props.powerEntries}
             onClick={() => {
-              if (level > 600) {
+              if (level > 9 && props.powerEntries > 39) {
                 transition(LOADING);
                 loadInsight();
               } else {
