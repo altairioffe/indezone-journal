@@ -8,6 +8,7 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 import ListItemAvatar from "@material-ui/core/ListItemAvatar";
 import Avatar from "@material-ui/core/Avatar";
+import FlashOnIcon from "@material-ui/icons/FlashOn";
 
 export default function Error(props) {
   // Define Styles
@@ -24,7 +25,8 @@ export default function Error(props) {
       textAlign: "center"
     },
     heading: {
-      fontWeight: "300"
+      fontWeight: "300",
+      padding: "10px"
     },
     paragraph: {
       fontWeight: "300"
@@ -40,7 +42,7 @@ export default function Error(props) {
       fontSize: "1em",
       padding: "0.5em 2em"
     },
-    image: {  
+    image: {
       height: "45vh",
       width: "auto",
       margin: "auto",
@@ -52,12 +54,18 @@ export default function Error(props) {
   const classes = useStyles();
 
   return (
-    <main className="heading">
+    <main className={classes.heading}>
       <div>
         <img src="images/brainsley-error.png" className={classes.image} />
       </div>
-      <LockIcon style={{ color: "#00A8E0"}} />
-      <h4>Not so fast, young Mind Wanderer!!! Reach level 10 and make 40 Power Entries before you request my insight...</h4>
+      <LockIcon style={{ color: "#00A8E0" }} />
+      <h4>
+        Not so fast, young Mind Wanderer!!! Reach level 10 and make 40 Power
+        Entries before you request my insight...
+      </h4>
+      <br />
+      <h4>You have {props.powerEntries} Power Entries</h4>
+      <p> Earn Power Entries by writing answers at least 40 words long</p>
       <Button className={classes.button} onClick={props.onCancel}>
         BACK
       </Button>

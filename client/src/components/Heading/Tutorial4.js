@@ -104,7 +104,7 @@ export default function Tutorial4(props) {
               </Avatar>
             </ListItemAvatar>
             <ListItemText
-              primary="Earn Power Entries for answers that are over 20 words long"
+              primary="Earn Power Entries for answers that are over 40 words long"
             />
           </ListItem>
 

@@ -40,7 +40,7 @@ export default function UserBio(props) {
         className={classes.button}
         onClick={props.onClick}
         disabled={props.disabled}
-        endIcon={(props.level >= 600 && <PollIcon />) || <InfoOutlinedIcon />}>
+        endIcon={(props.level >= 10 && props.powerEntries > 39 && <PollIcon />) || <InfoOutlinedIcon />}>
         GET INSIGHTS
       </Button>
     </article>

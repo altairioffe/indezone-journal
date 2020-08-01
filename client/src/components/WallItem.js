@@ -13,7 +13,7 @@ export default function WallItem(props) {
       titleStyle={{ color: "#00A8E0", fontWeight: "bold" }}
       createdAt={props.createdAt}
       icon={
-        props.answer.split(" ").length > 20 ? (
+        props.answer.split(" ").length > 40 ? (
           <FlashOnIcon style={{ color: "00A8E0" }}></FlashOnIcon>
         ) : (
           <FormatQuote style={{ color: "lavender" }}></FormatQuote>

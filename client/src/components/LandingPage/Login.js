@@ -53,7 +53,8 @@ export default function Login(props) {
 
   const validateEmail = email => (email ? email.includes("@") && email.includes(".") : false);
 
-  const handleClick = event => {
+  const handleSubmit = event => {
+    event.preventDefault();
     validateAndSubmitForm(credentials.email, credentials.password);
     if (credentials.email && validateEmail(credentials.email) && credentials.password) {
       setAnchorEl(event.currentTarget);
@@ -100,9 +101,8 @@ export default function Login(props) {
           <Card className={classes.card}>
             <form
               className={classes.form}
-              onSubmit={data =>
-                console.log("useless data from login form?", data)
-              }>
+              onSubmit={handleSubmit}
+              >
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Log In</h4>
               </CardHeader>
@@ -112,6 +112,7 @@ export default function Login(props) {
               <CardBody>
                 <CustomInput
                   labelText={labelText.email}
+                  // autoComplete="current-email"
                   id="email"
                   required
                   error={errorMessage.email}
@@ -137,6 +138,8 @@ export default function Login(props) {
                 />
                 <CustomInput
                   labelText={labelText.password}
+                  // autoComplete="current-password"
+
                   id="password"
                   required
                   error={errorMessage.password}
@@ -159,13 +162,14 @@ export default function Login(props) {
                         </Icon>
                       </InputAdornment>
                     ),
-                    autoComplete: "off"
+                    // autoComplete: "off"
                   }}
                 />
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={handleClick}
+                  // onClick={handleSubmit}
+                  type="submit"
                   simple="true"
                   color="primary"
                   size="large">

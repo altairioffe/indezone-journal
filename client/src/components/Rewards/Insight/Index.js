@@ -72,8 +72,9 @@ export default function Bio(props) {
           <UserBio
             bio={props.bio}
             level={level}
+            powerEntries={props.powerEntries}
             onClick={() => {
-              if (level > 600) {
+              if (level > 9 && props.powerEntries > 39) {
                 transition(LOADING);
                 loadInsight();
               } else {
@@ -86,8 +87,9 @@ export default function Bio(props) {
         {mode === DENIED && (
           <Error
             message={
-              "Reach 600 points to access your insights! Your points grow as you increase the total word count from all your entries"
+              "Reach level 10 to access your insights! Your points grow as you increase the total word count from all your entries"
             }
+            powerEntries={props.powerEntries}
             onCancel={back}
           />
         )}

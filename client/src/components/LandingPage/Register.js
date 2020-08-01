@@ -83,6 +83,16 @@ export default function Register(props) {
     }
   };
 
+  const handleSubmit = event => {
+    event.preventDefault();
+    validateAndSubmitForm(
+      credentials.firstName || false,
+      credentials.email || false,
+      credentials.password || false
+    )
+  }
+
+
   return (
     <div className={classes.container} >
       <GridContainer justify="center">
@@ -90,7 +100,7 @@ export default function Register(props) {
           <Card className={classes.card} style={styledImage}>
             <form
               className={classes.form}
-              onSubmit={data => console.log("Form onsubmit useless?: ", data)}>
+              onSubmit={handleSubmit}>
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Register</h4>
               </CardHeader>
@@ -182,13 +192,14 @@ export default function Register(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  onClick={() =>
-                      validateAndSubmitForm(
-                        credentials.firstName || false,
-                        credentials.email || false,
-                        credentials.password || false
-                      )
-                  }
+                  // onClick={() =>
+                  //     validateAndSubmitForm(
+                  //       credentials.firstName || false,
+                  //       credentials.email || false,
+                  //       credentials.password || false
+                  //     )
+                  // }
+                  type="submit"
                   simple="true"
                   color="primary"
                   size="large">
