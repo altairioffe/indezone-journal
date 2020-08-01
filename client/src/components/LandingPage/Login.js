@@ -53,7 +53,7 @@ export default function Login(props) {
 
   const validateEmail = email => (email ? email.includes("@") && email.includes(".") : false);
 
-  const handleClick = event => {
+  const handleSubmit = event => {
     event.preventDefault();
     validateAndSubmitForm(credentials.email, credentials.password);
     if (credentials.email && validateEmail(credentials.email) && credentials.password) {
@@ -101,7 +101,7 @@ export default function Login(props) {
           <Card className={classes.card}>
             <form
               className={classes.form}
-              onSubmit={handleClick}
+              onSubmit={handleSubmit}
               >
               <CardHeader color="primary" className={classes.cardHeader}>
                 <h4>Log In</h4>
@@ -168,7 +168,7 @@ export default function Login(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  // onClick={handleClick}
+                  // onClick={handleSubmit}
                   type="submit"
                   simple="true"
                   color="primary"

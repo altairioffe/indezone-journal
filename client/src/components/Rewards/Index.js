@@ -131,8 +131,15 @@ export default function Rewards(props) {
                     direction="column">
                     <h2>Level {props.level} </h2>
                     <div>
-                     
-                      <h6> <FlashOnIcon style={{ color: "00A8E0", marginBottom: "-8px"}}></FlashOnIcon>Power Entries: {props.powerEntries}</h6>
+                      <h6>
+                        {" "}
+                        <FlashOnIcon
+                          style={{
+                            color: "00A8E0",
+                            marginBottom: "-8px"
+                          }}></FlashOnIcon>
+                        Power Entries: {props.powerEntries}
+                      </h6>
                     </div>
                   </GridItem>
                   <GridItem xs={6} sm={6} md={6}>
