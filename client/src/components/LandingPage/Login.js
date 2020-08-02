@@ -49,20 +49,20 @@ export default function Login(props) {
       padding: "1em",
     },
     card: {
-      backgroundColor: "rgb(240,240,240, 0.5)"
+      backgroundColor: "rgb(255,255,255, 0.8)"
     },
     cardHeader: {
       margin: 0
     },
     button: {
       color: "#00a8e0",
-      fontWeight: 300,
+      fontWeight: 400,
       border: "1px solid #00a8e04d"
     },
     secondaryButton: {
       color: "#00a8e0",
-      fontWeight: 300,
-      fontSize: "1em",
+      fontWeight: 400,
+      fontSize: "0.8em",
       margin: "2em 1em"
     },
     inputIconsColor: {

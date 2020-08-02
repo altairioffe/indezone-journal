@@ -33,6 +33,23 @@ export default function Register(props) {
       height: 48,
       padding: "0 30px",
       margin: "0 10px"
+    },
+    button: {
+      color: "#00a8e0",
+      fontWeight: 400,
+      border: "1px solid #00a8e04d"
+    },
+    cardHeader: {
+      margin: 0
+    },
+    secondaryButton: {
+      color: "#00a8e0",
+      fontWeight: 400,
+      fontSize: "0.8em",
+      margin: "2em 1em"
+    },
+    inputIconsColor: {
+      color: "#00a8e0"
     }
   });
   const classes = useStyles();
@@ -55,7 +72,8 @@ export default function Register(props) {
 
   let styledImage = {};
 
-  const validateEmail = email => (email ? email.includes("@") && email.includes(".") : false);
+  const validateEmail = email =>
+    email ? email.includes("@") && email.includes(".") : false;
 
   const validateAndSubmitForm = (firstName, email, password) => {
     let fieldErrors = {
@@ -70,7 +88,10 @@ export default function Register(props) {
       if (!email || !validateEmail(email)) {
         fieldErrors.email = true;
         if (email && !validateEmail(email)) {
-          setLabelText({ ...labelText, email: 'Must use format "email@example.com"' });
+          setLabelText({
+            ...labelText,
+            email: 'Must use format "email@example.com"'
+          });
         }
       }
       if (!password) {
@@ -79,7 +100,12 @@ export default function Register(props) {
       setErrorColour(fieldErrors);
       return false;
     } else {
-      props.registrationHandler(firstName, email, password, props.loginCallback);
+      props.registrationHandler(
+        firstName,
+        email,
+        password,
+        props.loginCallback
+      );
     }
   };
 
@@ -89,20 +115,17 @@ export default function Register(props) {
       credentials.firstName || false,
       credentials.email || false,
       credentials.password || false
-    )
-  }
-
+    );
+  };
 
   return (
-    <div className={classes.container} >
+    <div className={classes.container}>
       <GridContainer justify="center">
         <GridItem xs={12} sm={12} md={4}>
           <Card className={classes.card} style={styledImage}>
-            <form
-              className={classes.form}
-              onSubmit={handleSubmit}>
-              <CardHeader color="primary" className={classes.cardHeader}>
-                <h4>Create an account</h4>
+            <form className={classes.form} onSubmit={handleSubmit}>
+              <CardHeader color="primary">
+                <h4 className={classes.cardHeader}>Create an account</h4>
               </CardHeader>
 
               <p className={classes.divider}></p>
@@ -130,7 +153,7 @@ export default function Register(props) {
 
                     endAdornment: (
                       <InputAdornment position="end">
-                        <People className={classes.inputIconsColor} />
+                        <People style={{color: "#00a8e0"}} />
                       </InputAdornment>
                     )
                   }}
@@ -156,7 +179,7 @@ export default function Register(props) {
                     },
                     endAdornment: (
                       <InputAdornment position="end">
-                        <Email className={classes.inputIconsColor} />
+                        <Email style={{color: "#00a8e0"}} />
                       </InputAdornment>
                     )
                   }}
@@ -181,7 +204,7 @@ export default function Register(props) {
                     },
                     endAdornment: (
                       <InputAdornment position="end">
-                        <Icon className={classes.inputIconsColor}>
+                        <Icon style={{color: "#00a8e0"}}>
                           lock_outline
                         </Icon>
                       </InputAdornment>
@@ -192,13 +215,7 @@ export default function Register(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  // onClick={() =>
-                  //     validateAndSubmitForm(
-                  //       credentials.firstName || false,
-                  //       credentials.email || false,
-                  //       credentials.password || false
-                  //     )
-                  // }
+                  className={classes.button}
                   type="submit"
                   simple="true"
                   color="primary"
@@ -208,6 +225,7 @@ export default function Register(props) {
               </CardFooter>
             </form>
             <Button
+              className={classes.secondaryButton}
               simple="true"
               onClick={props.back}
               color="primary"

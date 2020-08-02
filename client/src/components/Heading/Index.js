@@ -106,15 +106,22 @@ export default function Heading(props) {
     <div>
       <section style={{ marginTop: "-80px", display: "inlineBlock" }}>
         <span>
-          <h2 className={classes.root}>
-            Take A Moment To Start Your Day With Purpose
-          </h2>
+          {props.timeOfDay === "morning" && (
+            <h2 className={classes.root}>
+              Take A Moment To Start Your Day With Purpose
+            </h2>
+          )}
+          {props.timeOfDay === "evening" && (
+            <h2 className={classes.root}>
+              Take A Moment To Reflect & Learn
+            </h2>
+          )}
           <IconButton color="primary" onClick={handleClickOpen}>
             <InfoOutlinedIcon />
           </IconButton>
         </span>
       </section>
-      <Dialog 
+      <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}>
@@ -127,7 +134,7 @@ export default function Heading(props) {
             <CloseIcon />
           </IconButton>
         </MuiDialogTitle>
-        <MuiDialogContent dividers style={{ padding: "0px"}}>
+        <MuiDialogContent dividers style={{ padding: "0px" }}>
           <Carousel autoPlay={false}>
             <Tutorial1 />
             <Tutorial2 />

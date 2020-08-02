@@ -87,7 +87,8 @@ export default function Application() {
           {state.currentUser && state.renderMainPage && (
             <section className="feed">
               <Heading 
-              level={state.level}/>
+              level={state.level}
+              timeOfDay={state.timeOfDay}/>
               <br />
               <Rewards
                 bio={getBio(state.biodatas, state.currentUser)}
