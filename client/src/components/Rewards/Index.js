@@ -44,7 +44,8 @@ export default function Rewards(props) {
     },
     mainCard: {
       backgroundColor: "rgb(235,240,235, 0.5)",
-      boxShadow: "none"
+      boxShadow: "none",
+      margin: "0px"
     },
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
@@ -146,61 +147,61 @@ export default function Rewards(props) {
                     <div style={{ textAlign: "left" }}>
                       {props.level === 1 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-01.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 2 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-02.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 3 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-03.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 4 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-04.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 5 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-05.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 6 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-06.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 7 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-07.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 8 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-08.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 9 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-09.png"
                           className={classes.avatar}
                         />
                       )}
                       {props.level === 10 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src="images/brain-hats/brain-hats-10.png"
                           className={classes.avatar}
                         />
                       )}
