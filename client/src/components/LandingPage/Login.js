@@ -48,6 +48,26 @@ export default function Login(props) {
     typography: {
       padding: "1em",
     },
+    card: {
+      backgroundColor: "rgb(240,240,240, 0.5)"
+    },
+    cardHeader: {
+      margin: 0
+    },
+    button: {
+      color: "#00a8e0",
+      fontWeight: 300,
+      border: "1px solid #00a8e04d"
+    },
+    secondaryButton: {
+      color: "#00a8e0",
+      fontWeight: 300,
+      fontSize: "1em",
+      margin: "2em 1em"
+    },
+    inputIconsColor: {
+      color: "#00a8e0"
+    }
   });
   const classes = useStyles();
 
@@ -103,8 +123,8 @@ export default function Login(props) {
               className={classes.form}
               onSubmit={handleSubmit}
               >
-              <CardHeader color="primary" className={classes.cardHeader}>
-                <h4>Log In</h4>
+              <CardHeader color="primary">
+                <h4 className={classes.cardHeader}>Log In</h4>
               </CardHeader>
 
               <p className={classes.divider}></p>
@@ -131,7 +151,7 @@ export default function Login(props) {
                     },
                     endAdornment: (
                       <InputAdornment position="end">
-                        <Email className={classes.inputIconsColor} />
+                        <Email style={{color: "#00a8e0"}}/>
                       </InputAdornment>
                     )
                   }}
@@ -157,7 +177,7 @@ export default function Login(props) {
                     },
                     endAdornment: (
                       <InputAdornment position="end">
-                        <Icon className={classes.inputIconsColor}>
+                        <Icon style={{color: "#00a8e0"}}>
                           lock_outline
                         </Icon>
                       </InputAdornment>
@@ -168,7 +188,7 @@ export default function Login(props) {
               </CardBody>
               <CardFooter className={classes.cardFooter}>
                 <Button
-                  // onClick={handleSubmit}
+                  className={classes.button}
                   type="submit"
                   simple="true"
                   color="primary"
@@ -195,11 +215,12 @@ export default function Login(props) {
               </CardFooter>
             </form>
             <Button
+              className={classes.secondaryButton}
               simple="true"
               onClick={props.back}
-              color="primary"
+             
               size="small"
-              fontWeight="bold">
+              >
               Dont have an account yet? Create one!
             </Button>
           </Card>

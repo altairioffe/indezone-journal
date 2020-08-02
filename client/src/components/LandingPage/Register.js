@@ -102,7 +102,7 @@ export default function Register(props) {
               className={classes.form}
               onSubmit={handleSubmit}>
               <CardHeader color="primary" className={classes.cardHeader}>
-                <h4>Register</h4>
+                <h4>Create an account</h4>
               </CardHeader>
 
               <p className={classes.divider}></p>
