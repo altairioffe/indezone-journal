@@ -89,6 +89,9 @@ export default function Tutorial(props) {
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
       boxShadow: "none"
+    },
+    icon: {
+      color: "#00A8E0"
     }
   });
   const classes = useStyles();
@@ -104,7 +107,7 @@ export default function Tutorial(props) {
 
   return (
     <div>
-      <IconButton color="primary" onClick={handleClickOpen}>
+      <IconButton className={classes.icon} onClick={handleClickOpen}>
         <InfoOutlinedIcon />
       </IconButton>
       <Dialog

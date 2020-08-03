@@ -107,25 +107,7 @@ export default function Navbar(props) {
                   p={0}
                   m={0}
                   style={{ padding: "0", margin: "0" }}>
-                  <Grid item justify="flex-end" mr="0">
-                    <Box
-                      display="flex"
-                      p={0}
-                      m={0}
-                      bgcolor="none"
-                      justifyContent="flex-end">
-                    <Tutorial level={props.level} timeOfDay={props.timeOfDay} />
-                      <Grow in={loginState === 2} timeout={500} unmountOnExit>
-                        <Button
-                          onClick={() => logout()}
-                          size="medium"
-                          style={{ textTransform: "none", padding: "0" }}>
-                          Logout
-                        </Button>
-                      </Grow>
-                    </Box>
-                  </Grid>
-
+                    
                   <Grid item justify="flex-end" mr="0">
                     <Grow in={loginState === 2} timeout={500} unmountOnExit>
                       <Typography
@@ -143,6 +125,28 @@ export default function Navbar(props) {
                         </strong>
                       </Typography>
                     </Grow>
+                  </Grid>
+
+                  <Grid item justify="flex-end" mr="0">
+                    <Box
+                      display="flex"
+                      p={0}
+                      m={0}
+                      bgcolor="none"
+                      justifyContent="flex-end">
+                      <Tutorial
+                        level={props.level}
+                        timeOfDay={props.timeOfDay}
+                      />
+                      <Grow in={loginState === 2} timeout={500} unmountOnExit>
+                        <Button
+                          onClick={() => logout()}
+                          size="medium"
+                          style={{ textTransform: "none", padding: "0" }}>
+                          Logout
+                        </Button>
+                      </Grow>
+                    </Box>
                   </Grid>
                 </Container>
               </Grid>
