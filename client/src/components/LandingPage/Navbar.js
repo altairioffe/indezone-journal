@@ -19,6 +19,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Register from "./Register.js";
 import Login from "./Login.js";
+import Tutorial from "../Tutorial/Index.js";
 
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
@@ -80,8 +81,7 @@ export default function Navbar(props) {
         className="navBar"
         position="sticky"
         color="transparent"
-        elevation={0}
-      >
+        elevation={0}>
         <Grid
           container
           direction="row"
@@ -114,6 +114,7 @@ export default function Navbar(props) {
                       m={0}
                       bgcolor="none"
                       justifyContent="flex-end">
+                    <Tutorial level={props.level} timeOfDay={props.timeOfDay} />
                       <Grow in={loginState === 2} timeout={500} unmountOnExit>
                         <Button
                           onClick={() => logout()}

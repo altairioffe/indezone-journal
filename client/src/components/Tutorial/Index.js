@@ -59,7 +59,7 @@ import Carousel from "react-material-ui-carousel";
 //   }
 // }))(MuiDialogActions);
 
-export default function Heading(props) {
+export default function Tutorial(props) {
   const useStyles = makeStyles({
     root: {
       textAlign: "center",
@@ -104,23 +104,9 @@ export default function Heading(props) {
 
   return (
     <div>
-      <section style={{ marginTop: "-80px", display: "inlineBlock" }}>
-        <span>
-          {props.timeOfDay === "morning" && (
-            <h2 className={classes.root}>
-              Take A Moment To Start Your Day With Purpose
-            </h2>
-          )}
-          {props.timeOfDay === "evening" && (
-            <h2 className={classes.root}>
-              Take A Moment To Reflect & Learn
-            </h2>
-          )}
-          <IconButton color="primary" onClick={handleClickOpen}>
-            <InfoOutlinedIcon />
-          </IconButton>
-        </span>
-      </section>
+      <IconButton color="primary" onClick={handleClickOpen}>
+        <InfoOutlinedIcon />
+      </IconButton>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
