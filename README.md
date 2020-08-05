@@ -1,18 +1,21 @@
 # Indezone Journal
 
-A performance journal using IBM's Watson to scan text entries and provide objective insight on who you are.
+A daily performance journal using IBM's Watson to scan text entries and provide objective personality insights for the user.
 
 Overhaul of indezone-app repository (a team project), to implement major bug fixes and missing features.
 
 ## Bug Fixes
 - fix crash on multiple login attempts with empty input
-- remove redundant database tables & columns interfering with Postgres Inserts
+- remove redundant database tables interfering with Postgres Inserts
 
 ## New Features Implemented
-- registration form and account creation for new users
-- move user validation from client to server side
-- replace user level with points system based on total word count
-- replace @handle with user's name
+- registration to create new user account & new login
+- move user validation from client to server side for security
+- password encryption using bcrypt
+- user level based on consistent daily journal entries
+- separate question sets rendered morning and evening
+- questions displayed based on user mood & motivation
+- lessons on mindfulness and productivity delivered with each new level
 
 
 ## Dependencies
@@ -28,5 +31,6 @@ Overhaul of indezone-app repository (a team project), to implement major bug fix
 
 ## Design tools
 
+  - Content: Adobe Illustratory & Photoshop
   - ERD: Lucidchart
   - Mockup & prototype: Figma
