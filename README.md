@@ -31,6 +31,6 @@ Overhaul of indezone-app repository (a team project), to implement major bug fix
 
 ## Design tools
 
-  - Content: Adobe Illustratory & Photoshop
+  - Content: Adobe Illustrator & Photoshop
   - ERD: Lucidchart
   - Mockup & prototype: Figma
