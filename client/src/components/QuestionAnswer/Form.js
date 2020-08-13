@@ -56,7 +56,7 @@ export default function Form(props) {
           variant="filled"
           InputLabelProps={labelText[1]}
           onFocus={() => {setLabelText([
-            "Write a few lines...",
+            "Write at least 40 words for a Power Entry!",
             { style: { color: "#00A8E0" } }
           ])
           }}
@@ -67,7 +67,7 @@ export default function Form(props) {
             onChange: function(e) {
               setAns(e.target.value);
               setLabelText([
-                ans.split(" ").length > 40 ? "Great, keep it up!": "Write at least 40 words for a Power Entry",
+                ans.split(" ").length > 40 ? "Power Entry Achieved! Keep going!": "Nice! Keep it up!",
                 { style: { color: "#00A8E0" } }
               ])
             }
