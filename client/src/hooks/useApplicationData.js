@@ -295,7 +295,10 @@ export default function useApplicationData() {
       currentUserWordCount: 0,
       currentUserInsight: "",
       level: 1,
-      loginError: false
+      loginError: false,
+      userMood: "",
+      timeOfDay: "",
+      renderMainPage: false
     });
     return state.currentUser;
   };
