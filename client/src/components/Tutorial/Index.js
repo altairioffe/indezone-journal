@@ -225,7 +225,7 @@ export default function Tutorial(props) {
         </MuiDialogContent>
         <MuiDialogActions>
           <Button onClick={handleClose} color="primary">
-            Skip Tutorial
+            {activeStep !== maxSteps -1 ? "Skip Tutorial" : "Go To Dashboard"}
           </Button>
         </MuiDialogActions>
       </Dialog>
