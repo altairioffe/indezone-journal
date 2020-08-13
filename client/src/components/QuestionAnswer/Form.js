@@ -50,6 +50,8 @@ export default function Form(props) {
           placeholder={props.suggestion}
           autoFocus
           multiline
+          rows={2}
+          rowsMax={32}
           fullWidth
           variant="filled"
           InputLabelProps={labelText[1]}
@@ -58,7 +60,7 @@ export default function Form(props) {
             { style: { color: "#00A8E0" } }
           ])
           }}
-          style={{background: "rgb(255,255,255, .2)", height: "3em"}}
+          style={{background: "rgb(255,255,255, .2)"}}
           inputProps={{
             value: ans,
             type: "email",
@@ -76,7 +78,7 @@ export default function Form(props) {
           // className={classes.root}
           variant="outlined"
           color="primary"
-          style={{ color: "#00A8E0" }}
+          style={{ color: "#00A8E0", marginTop: "20px" }}
           size="large"
           onClick={() => {
             if (ans) {
