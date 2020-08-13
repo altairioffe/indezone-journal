@@ -186,7 +186,7 @@ export default function Tutorial(props) {
           <div className={classes.root}>
               <img
                 className={classes.img}
-                src={useMediaQuery('(min-width:600px)') ? tutorialStepsDesktop[activeStep].imgPath : tutorialStepsMobile[activeStep].imgPath}
+                src={useMediaQuery('(min-width:1100px)') ? tutorialStepsDesktop[activeStep].imgPath : tutorialStepsMobile[activeStep].imgPath}
                 alt={tutorialStepsMobile[activeStep].label}
               />
             <MobileStepper
