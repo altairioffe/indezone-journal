@@ -9,7 +9,7 @@ import Tooltip from '@material-ui/core/Tooltip';
 export default function Form(props) {
   const [ans, setAns] = useState("");
   const [labelText, setLabelText] = useState([
-    "Write a few lines...",
+    "Write at least 40 words for a Power Entry",
     { style: { color: "#00A8E0" } }
   ]);
  
@@ -65,7 +65,7 @@ export default function Form(props) {
             onChange: function(e) {
               setAns(e.target.value);
               setLabelText([
-                ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on a detailed answer" : "Write a few lines...",
+                ans.split(" ").length > 40 ? "Great, keep it up!": "Write at least 40 words for a Power Entry",
                 { style: { color: "#00A8E0" } }
               ])
             }
