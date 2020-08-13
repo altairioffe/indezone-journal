@@ -15,7 +15,6 @@ import {
   AppBar,
   Typography
 } from "@material-ui/core";
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Register from "./Register.js";
 import Login from "./Login.js";
@@ -107,7 +106,7 @@ export default function Navbar(props) {
                   p={0}
                   m={0}
                   style={{ padding: "0", margin: "0" }}>
-                    
+
                   <Grid item justify="flex-end" mr="0">
                     <Grow in={loginState === 2} timeout={500} unmountOnExit>
                       <Typography
@@ -134,10 +133,14 @@ export default function Navbar(props) {
                       m={0}
                       bgcolor="none"
                       justifyContent="flex-end">
+                      {props.renderMainPage && (
                       <Tutorial
                         level={props.level}
                         timeOfDay={props.timeOfDay}
+                        mood={props.mood}
+                        renderMainPage={props.renderMainPage}
                       />
+                      )}
                       <Grow in={loginState === 2} timeout={500} unmountOnExit>
                         <Button
                           onClick={() => logout()}

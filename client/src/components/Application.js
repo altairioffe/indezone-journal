@@ -70,6 +70,8 @@ export default function Application() {
             logInUser={data => console.log(data)}
             logoutUser={logOutUser}
             user={state.currentUser}
+            mood={state.userMood}
+            renderMainPage={state.renderMainPage}
             level={state.level}
             timeOfDay={state.timeOfDay}
             registrationHandler={registrationHandler}

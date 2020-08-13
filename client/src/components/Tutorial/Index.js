@@ -159,11 +159,14 @@ export default function Tutorial(props) {
   };
 
   return (
-    <div>
+    <div >
       <IconButton className={classes.icon} onClick={handleClickOpen}>
         <InfoOutlinedIcon />
       </IconButton>
       <Dialog
+      // PaperProps={{
+      //   style: {boxShadow: "none"}}}
+      maxWidth={false}
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}>
@@ -221,7 +224,7 @@ export default function Tutorial(props) {
           </Carousel> */}
         </MuiDialogContent>
         <MuiDialogActions>
-          <Button autoFocus onClick={handleClose} color="primary">
+          <Button onClick={handleClose} color="primary">
             Skip Tutorial
           </Button>
         </MuiDialogActions>
