@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Insight from "./Insight/Index";
-import Resource from "./Lessons/Index";
+import Lesson from "./Lessons/Index";
 import { Button } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
@@ -18,8 +18,6 @@ import CloseIcon from "@material-ui/icons/Close";
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
-
-import useVisualMode from "../../hooks/useVisualMode";
 
 export default function Rewards(props) {
   const [levelOneNotification, setLevelOneNotification] = useState(
@@ -43,7 +41,7 @@ export default function Rewards(props) {
       padding: "0px"
     },
     mainCard: {
-      backgroundColor: "rgb(235,240,235, 0.5)",
+      backgroundColor: "white",
       boxShadow: "none",
       margin: "0px"
     },
@@ -128,11 +126,11 @@ export default function Rewards(props) {
                     xs={6}
                     sm={6}
                     md={6}
-                    style={{ textAlign: "right" }}
+                    style={{ textAlign: "right"}}
                     direction="column">
-                    <h2>Level {props.level} </h2>
+                    <h2 style={{margin: "0px"}}>Level {props.level} </h2>
                     <div>
-                      <h6>
+                      <h6 style={{margin: "0px"}}>
                         {" "}
                         <FlashOnIcon
                           style={{
@@ -145,66 +143,10 @@ export default function Rewards(props) {
                   </GridItem>
                   <GridItem xs={6} sm={6} md={6}>
                     <div style={{ textAlign: "left" }}>
-                      {props.level === 1 && (
                         <img
-                          src="images/brain-hats/brain-hats-01.png"
+                          src={`images/brain-hats/brain-hats-0${props.level}.png`}
                           className={classes.avatar}
                         />
-                      )}
-                      {props.level === 2 && (
-                        <img
-                          src="images/brain-hats/brain-hats-02.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 3 && (
-                        <img
-                          src="images/brain-hats/brain-hats-03.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 4 && (
-                        <img
-                          src="images/brain-hats/brain-hats-04.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 5 && (
-                        <img
-                          src="images/brain-hats/brain-hats-05.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 6 && (
-                        <img
-                          src="images/brain-hats/brain-hats-06.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 7 && (
-                        <img
-                          src="images/brain-hats/brain-hats-07.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 8 && (
-                        <img
-                          src="images/brain-hats/brain-hats-08.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 9 && (
-                        <img
-                          src="images/brain-hats/brain-hats-09.png"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 10 && (
-                        <img
-                          src="images/brain-hats/brain-hats-10.png"
-                          className={classes.avatar}
-                        />
-                      )}
                     </div>
                   </GridItem>
                 </GridContainer>
@@ -214,7 +156,7 @@ export default function Rewards(props) {
 
             <MuiDialogContent dividers style={{ padding: "0px" }}>
               <Card className={classes.mainCard}>
-                <Resource level={props.level} user={props.user} />
+                <Lesson level={props.level} user={props.user} />
 
                 <hr />
                 <Insight
