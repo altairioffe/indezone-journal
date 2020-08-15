@@ -1,24 +1,17 @@
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
-import MuiDialogActions from "@material-ui/core/DialogActions";
-import IconButton from "@material-ui/core/IconButton";
-import CloseIcon from "@material-ui/icons/Close";
-import useMediaQuery from '@material-ui/core/useMediaQuery';
+import useMediaQuery from "@material-ui/core/useMediaQuery";
 import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
 export default function Slideshow(props) {
-  const tutorialStepsMobile = props.mobileImages
-  const tutorialStepsDesktop = props.desktopImages
+  const tutorialStepsMobile = props.mobileImages;
+  const tutorialStepsDesktop = props.desktopImages;
 
   const useStyles = makeStyles({
-
     root: {
       flexGrow: 1
     },
@@ -67,40 +60,44 @@ export default function Slideshow(props) {
   const classes = useStyles();
 
   return (
-    <div >
-        <MuiDialogContent dividers style={{ padding: "0px" }}>
-          <div className={classes.root}>
-              <img
-                className={classes.img}
-                src={useMediaQuery('(min-width:1100px)') ? tutorialStepsDesktop[props.activeStep].imgPath : tutorialStepsMobile[props.activeStep].imgPath}
-                alt={tutorialStepsMobile[props.activeStep].label}
-              />
-            <MobileStepper
-              steps={props.maxSteps}
-              position="static"
-              variant="text"
-              activeStep={props.activeStep}
-              nextButton={
-                <Button
-                  size="small"
-                  onClick={props.handleNext}
-                  disabled={props.activeStep === props.maxSteps - 1}>
-                  Next
-                  <KeyboardArrowRight />
-                </Button>
-              }
-              backButton={
-                <Button
-                  size="small"
-                  onClick={props.handleBack}
-                  disabled={props.activeStep === 0}>
-                  <KeyboardArrowLeft />
-                  Back
-                </Button>
-              }
-            />
-          </div>
-        </MuiDialogContent>
+    <div>
+      <MuiDialogContent dividers style={{ padding: "0px" }}>
+        <div className={classes.root}>
+          <img
+            className={classes.img}
+            src={
+              useMediaQuery("(min-width:1100px)")
+                ? tutorialStepsDesktop[props.activeStep].imgPath
+                : tutorialStepsMobile[props.activeStep].imgPath
+            }
+            alt={tutorialStepsMobile[props.activeStep].label}
+          />
+          <MobileStepper
+            steps={props.maxSteps}
+            position="static"
+            variant="text"
+            activeStep={props.activeStep}
+            nextButton={
+              <Button
+                size="small"
+                onClick={props.handleNext}
+                disabled={props.activeStep === props.maxSteps - 1}>
+                Next
+                <KeyboardArrowRight />
+              </Button>
+            }
+            backButton={
+              <Button
+                size="small"
+                onClick={props.handleBack}
+                disabled={props.activeStep === 0}>
+                <KeyboardArrowLeft />
+                Back
+              </Button>
+            }
+          />
+        </div>
+      </MuiDialogContent>
     </div>
   );
 }
