@@ -1,100 +1,67 @@
 import React, { useState } from "react";
-import Card from "../../../Card/Card.js";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Slide1 from "./Slide1.js";
-import Slide2 from "./Slide2.js";
-import Slide3 from "./Slide3.js";
-import Slide4 from "./Slide4.js";
-import Slide5 from "./Slide5.js";
-import Slide6 from "./Slide6.js";
-import Slide7 from "./Slide7.js";
-import Slide8 from "./Slide8.js";
-import Carousel from "react-material-ui-carousel";
+import Slideshow from "../../../Slideshow";
 
-export default function Level1(props) {
-  const useStyles = makeStyles(theme => ({
-    root: {
-      textAlign: "center",
-      fontWeight: "300",
-      flexGrow: 1,
-      align: "center",
-      fontSize: "1.5em",
-      "& small": {
-        color: "skyblue"
-      }
+export default function Level8(props) {
+
+  const lessonNumber = "lesson-8"
+  const images = [
+    {
+      label: "Slide 1",
+      imgPath: `images/lessons/${lessonNumber}-01.png`
     },
-    button: {
-      background: "#00A8E0",
-      color: "white",
-      "&:hover": {
-        backgroundColor: "skyBlue",
-        color: "#FFF"
-      },
-      fontWeight: 300,
-      fontSize: "1em",
-      padding: "0.8em 1.2em"
+    {
+      label: "Slide 2",
+      imgPath: `images/lessons/${lessonNumber}-02.png`
     },
-    card: {
-      backgroundColor: "rgb(235,240,235, 0)",
-      boxShadow: "none"
+    {
+      label: "Slide 3",
+      imgPath: `images/lessons/${lessonNumber}-03.png`
     },
-    image: {  
-      height: "45vh",
-      width: "auto",
-      margin: "auto",
-      display: "block",
-      backgroundPosition: "50% 50%",
-      backgroundSize: "cover"
+    {
+      label: "Slide 4",
+      imgPath: `images/lessons/${lessonNumber}-04.png`
+    },
+    {
+      label: "Slide 5",
+      imgPath: `images/lessons/${lessonNumber}-05.png`
+    },
+    {
+      label: "Slide 6",
+      imgPath: `images/lessons/${lessonNumber}-06.png`
+    },
+    {
+      label: "Slide 7",
+      imgPath: `images/lessons/${lessonNumber}-07.png`
+    },
+    {
+      label: "Slide 8",
+      imgPath: `images/lessons/${lessonNumber}-08.png`
     }
-  }));
-  const classes = useStyles();
+  ];
+
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = images.length;
+
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
   return (
     <section>
-      <br />
       <div>
-      <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>
-      <img
-        src="images/lessons/lesson-8-01.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-02.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-03.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-04.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-05.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-06.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-07.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-08.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-09.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-8-10.png"
-        className={classes.image}
-      />
-          </Carousel>
+      <Slideshow
+      mobileImages={images}
+      desktopImages={images}
+      level={props.level}
+      activeStep={activeStep}
+      handleNext={handleNext}
+      handleBack={handleBack}
+      maxSteps={maxSteps}
+    />
       </div>
       <br />{" "}
       <div>
