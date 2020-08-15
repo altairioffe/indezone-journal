@@ -3,38 +3,39 @@ import Slideshow from "../../../Slideshow";
 
 export default function Level1(props) {
 
+  const lessonNumber = "brainsley"
   const images = [
     {
       label: "Slide 1",
-      imgPath: "images/lessons/brainsley-01.png"
+      imgPath: `images/lessons/${lessonNumber}-01.png`
     },
     {
       label: "Slide 2",
-      imgPath: "images/lessons/brainsley-02.png"
+      imgPath: `images/lessons/${lessonNumber}-02.png`
     },
     {
       label: "Slide 3",
-      imgPath: "images/lessons/brainsley-03.png"
+      imgPath: `images/lessons/${lessonNumber}-03.png`
     },
     {
       label: "Slide 4",
-      imgPath: "images/lessons/brainsley-04.png"
+      imgPath: `images/lessons/${lessonNumber}-04.png`
     },
     {
       label: "Slide 5",
-      imgPath: "images/lessons/brainsley-05.png"
+      imgPath: `images/lessons/${lessonNumber}-05.png`
     },
     {
       label: "Slide 6",
-      imgPath: "images/lessons/brainsley-06.png"
+      imgPath: `images/lessons/${lessonNumber}-06.png`
     },
     {
       label: "Slide 7",
-      imgPath: "images/lessons/brainsley-07.png"
+      imgPath: `images/lessons/${lessonNumber}-07.png`
     },
     {
       label: "Slide 8",
-      imgPath: "images/lessons/brainsley-08.png"
+      imgPath: `images/lessons/${lessonNumber}-08.png`
     }
   ];
 

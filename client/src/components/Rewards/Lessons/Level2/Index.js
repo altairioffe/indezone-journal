@@ -1,83 +1,69 @@
 import React, { useState } from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Carousel from "react-material-ui-carousel";
+import Slideshow from "../../../Slideshow";
 
-export default function Level1(props) {
-  const useStyles = makeStyles(theme => ({
-    root: {
-      textAlign: "center",
-      fontWeight: "300",
-      flexGrow: 1,
-      align: "center",
-      fontSize: "1.5em",
-      "& small": {
-        color: "skyblue"
-      }
+export default function Level2(props) {
+
+  const lessonNumber = "lesson-2"
+  const images = [
+    {
+      label: "Slide 1",
+      imgPath: `images/lessons/${lessonNumber}-01.png`
     },
-    button: {
-      background: "#00A8E0",
-      color: "white",
-      "&:hover": {
-        backgroundColor: "skyBlue",
-        color: "#FFF"
-      },
-      fontWeight: 300,
-      fontSize: "1em",
-      padding: "0.8em 1.2em"
+    {
+      label: "Slide 2",
+      imgPath: `images/lessons/${lessonNumber}-02.png`
     },
-    card: {
-      backgroundColor: "rgb(235,240,235, 0)",
-      boxShadow: "none"
+    {
+      label: "Slide 3",
+      imgPath: `images/lessons/${lessonNumber}-03.png`
     },
-    image: {  
-      height: "45vh",
-      width: "auto",
-      margin: "auto",
-      display: "block",
-      backgroundPosition: "50% 50%",
-      backgroundSize: "cover"
+    {
+      label: "Slide 4",
+      imgPath: `images/lessons/${lessonNumber}-04.png`
+    },
+    {
+      label: "Slide 5",
+      imgPath: `images/lessons/${lessonNumber}-05.png`
+    },
+    {
+      label: "Slide 6",
+      imgPath: `images/lessons/${lessonNumber}-06.png`
+    },
+    {
+      label: "Slide 7",
+      imgPath: `images/lessons/${lessonNumber}-07.png`
+    },
+    {
+      label: "Slide 8",
+      imgPath: `images/lessons/${lessonNumber}-08.png`
     }
-  }));
-  const classes = useStyles();
+  ];
+
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = images.length;
+
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
   return (
     <section>
-      <br />
       <div>
-      <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>
-      <img
-        src="images/lessons/lesson-2-01.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-2-02.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-2-03.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-2-04.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-2-05.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-2-06.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-2-07.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-2-08.png"
-        className={classes.image}
-      />
-          </Carousel>
+      <Slideshow
+      mobileImages={images}
+      desktopImages={images}
+      level={props.level}
+      closeMessage="Skip Tutorial"
+      finalSlideMessage="Go To Dashboard"
+      activeStep={activeStep}
+      handleNext={handleNext}
+      handleBack={handleBack}
+      maxSteps={maxSteps}
+    />
       </div>
       <br />{" "}
       <div>
