@@ -13,75 +13,9 @@ import MobileStepper from "@material-ui/core/MobileStepper";
 import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
 import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
 
-export default function Tutorial(props) {
-  const tutorialStepsMobile = [
-    {
-      label: "Slide 1",
-      imgPath: "images/tutorial/tutorial-01.png"
-    },
-    {
-      label: "Slide 2",
-      imgPath: "images/tutorial/tutorial-02.png"
-    },
-    {
-      label: "Slide 3",
-      imgPath: "images/tutorial/tutorial-03.png"
-    },
-    {
-      label: "Slide 4",
-      imgPath: "images/tutorial/tutorial-04.png"
-    },
-    {
-      label: "Slide 5",
-      imgPath: "images/tutorial/tutorial-05.png"
-    },
-    {
-      label: "Slide 6",
-      imgPath: "images/tutorial/tutorial-06.png"
-    },
-    {
-      label: "Slide 7",
-      imgPath: "images/tutorial/tutorial-07.png"
-    },
-    {
-      label: "Slide 8",
-      imgPath: "images/tutorial/tutorial-08.png"
-    }
-  ];
-  const tutorialStepsDesktop = [
-    {
-      label: "Slide 1",
-      imgPath: "images/tutorial/tutorial-01-desktop.png"
-    },
-    {
-      label: "Slide 2",
-      imgPath: "images/tutorial/tutorial-02-desktop.png"
-    },
-    {
-      label: "Slide 3",
-      imgPath: "images/tutorial/tutorial-03-desktop.png"
-    },
-    {
-      label: "Slide 4",
-      imgPath: "images/tutorial/tutorial-04-desktop.png"
-    },
-    {
-      label: "Slide 5",
-      imgPath: "images/tutorial/tutorial-05-desktop.png"
-    },
-    {
-      label: "Slide 6",
-      imgPath: "images/tutorial/tutorial-06-desktop.png"
-    },
-    {
-      label: "Slide 7",
-      imgPath: "images/tutorial/tutorial-07-desktop.png"
-    },
-    {
-      label: "Slide 8",
-      imgPath: "images/tutorial/tutorial-08-desktop.png"
-    }
-  ];
+export default function Slideshow(props) {
+  const tutorialStepsMobile = props.mobileImages
+  const tutorialStepsDesktop = props.desktopImages
 
   const useStyles = makeStyles({
 
@@ -207,7 +141,7 @@ export default function Tutorial(props) {
         </MuiDialogContent>
         <MuiDialogActions>
           <Button onClick={handleClose} color="primary">
-            {activeStep !== maxSteps -1 ? "Skip Tutorial" : "Go To Dashboard"}
+            {activeStep !== maxSteps -1 ? props.closeMessage : props.finalSlideMessage}
           </Button>
         </MuiDialogActions>
       </Dialog>
