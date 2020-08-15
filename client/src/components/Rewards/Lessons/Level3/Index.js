@@ -61,8 +61,6 @@ export default function Level3(props) {
       mobileImages={images}
       desktopImages={images}
       level={props.level}
-      closeMessage="Skip Tutorial"
-      finalSlideMessage="Go To Dashboard"
       activeStep={activeStep}
       handleNext={handleNext}
       handleBack={handleBack}
