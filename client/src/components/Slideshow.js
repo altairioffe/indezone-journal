@@ -30,10 +30,12 @@ export default function Slideshow(props) {
       backgroundColor: "white"
     },
     img: {
-      height: "60vh",
+      maxHeight: "60vh",
+      maxWidth: "100%",
       width: "auto",
       overflow: "hidden",
-      display: "block"
+      display: "block",
+      margin: "auto"
     },
     button: {
       background: "#00A8E0",
