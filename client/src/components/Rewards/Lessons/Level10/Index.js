@@ -1,64 +1,47 @@
 import React, { useState } from "react";
-import Card from "../../../Card/Card.js";
-import { makeStyles } from "@material-ui/core/styles";
-import Typography from "@material-ui/core/Typography";
-import Carousel from "react-material-ui-carousel";
+import Slideshow from "../../../Slideshow";
 
-export default function Level1(props) {
-  const useStyles = makeStyles(theme => ({
-    root: {
-      textAlign: "center",
-      fontWeight: "300",
-      flexGrow: 1,
-      align: "center",
-      fontSize: "1.5em",
-      "& small": {
-        color: "skyblue"
-      }
+export default function Level10(props) {
+
+  const lessonNumber = "lesson-10"
+  const images = [
+    {
+      label: "Slide 1",
+      imgPath: `images/lessons/${lessonNumber}-01.png`
     },
-    button: {
-      background: "#00A8E0",
-      color: "white",
-      "&:hover": {
-        backgroundColor: "skyBlue",
-        color: "#FFF"
-      },
-      fontWeight: 300,
-      fontSize: "1em",
-      padding: "0.8em 1.2em"
+    {
+      label: "Slide 2",
+      imgPath: `images/lessons/${lessonNumber}-02.png`
     },
-    card: {
-      backgroundColor: "rgb(235,240,235, 0)",
-      boxShadow: "none"
-    },
-    image: {  
-      height: "45vh",
-      width: "auto",
-      margin: "auto",
-      display: "block",
-      backgroundPosition: "50% 50%",
-      backgroundSize: "cover"
+    {
+      label: "Slide 3",
+      imgPath: `images/lessons/${lessonNumber}-03.png`
     }
-  }));
-  const classes = useStyles();
+  ];
+
+  const [activeStep, setActiveStep] = React.useState(0);
+  const maxSteps = images.length;
+
+  const handleNext = () => {
+    setActiveStep(prevActiveStep => prevActiveStep + 1);
+  };
+
+  const handleBack = () => {
+    setActiveStep(prevActiveStep => prevActiveStep - 1);
+  };
+
   return (
     <section>
-      <br />
       <div>
-      <Carousel autoPlay={false} navButtonsAlwaysVisible={true} timeout={100}>
-      <img
-        src="images/lessons/lesson-10-01.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-10-02.png"
-        className={classes.image}
-      />
-      <img
-        src="images/lessons/lesson-10-03.png"
-        className={classes.image}
-      />
-          </Carousel>
+      <Slideshow
+      mobileImages={images}
+      desktopImages={images}
+      level={props.level}
+      activeStep={activeStep}
+      handleNext={handleNext}
+      handleBack={handleBack}
+      maxSteps={maxSteps}
+    />
       </div>
       <br />{" "}
       <div>
