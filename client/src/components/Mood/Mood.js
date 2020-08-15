@@ -76,12 +76,7 @@ export default function Login(props) {
   const setUserMood = mood => {
     setMoodSelection(mood);
     props.setUserMood(mood)
-    setTimeout(() => props.renderMainPage(), 5000)
-    // set mood
-    //  disable other button
-    // replace clicked button with confirmation text
-    // set timeout
-    // render main page
+    setTimeout(() => props.renderMainPage(), 500)
   };
 
   return (

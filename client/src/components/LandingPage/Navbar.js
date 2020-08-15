@@ -18,7 +18,7 @@ import {
 import { makeStyles } from "@material-ui/core/styles";
 import Register from "./Register.js";
 import Login from "./Login.js";
-import Tutorial from "../Tutorial/Index.js";
+import Tutorial from "../Tutorial.js";
 
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
@@ -136,9 +136,6 @@ export default function Navbar(props) {
                       {props.renderMainPage && (
                       <Tutorial
                         level={props.level}
-                        timeOfDay={props.timeOfDay}
-                        mood={props.mood}
-                        renderMainPage={props.renderMainPage}
                       />
                       )}
                       <Grow in={loginState === 2} timeout={500} unmountOnExit>

@@ -64,65 +64,25 @@ export default function Slideshow(props) {
   });
   const classes = useStyles();
 
-  const [open, setOpen] = React.useState(props.level === 1);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const [activeStep, setActiveStep] = React.useState(0);
-  const maxSteps = tutorialStepsMobile.length;
-
-  const handleNext = () => {
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
-  };
-
-  const handleBack = () => {
-    setActiveStep(prevActiveStep => prevActiveStep - 1);
-  };
-
   return (
     <div >
-      <IconButton className={classes.icon} onClick={handleClickOpen}>
-        <InfoOutlinedIcon />
-      </IconButton>
-      <Dialog
-      maxWidth={false}
-        onClose={handleClose}
-        aria-labelledby="customized-dialog-title"
-        open={open}>
-        <MuiDialogTitle
-          style={{ padding: "0px 0px 0px 20px", margin: "0px" }}
-          id="customized-dialog-title"
-          onClose={handleClose}>
-          Tutorial
-          <IconButton
-            aria-label="close"
-            className={classes.closeButton}
-            onClick={handleClose}>
-            <CloseIcon />
-          </IconButton>
-        </MuiDialogTitle>
         <MuiDialogContent dividers style={{ padding: "0px" }}>
           <div className={classes.root}>
               <img
                 className={classes.img}
-                src={useMediaQuery('(min-width:1100px)') ? tutorialStepsDesktop[activeStep].imgPath : tutorialStepsMobile[activeStep].imgPath}
-                alt={tutorialStepsMobile[activeStep].label}
+                src={useMediaQuery('(min-width:1100px)') ? tutorialStepsDesktop[props.activeStep].imgPath : tutorialStepsMobile[props.activeStep].imgPath}
+                alt={tutorialStepsMobile[props.activeStep].label}
               />
             <MobileStepper
-              steps={maxSteps}
+              steps={props.maxSteps}
               position="static"
               variant="text"
-              activeStep={activeStep}
+              activeStep={props.activeStep}
               nextButton={
                 <Button
                   size="small"
-                  onClick={handleNext}
-                  disabled={activeStep === maxSteps - 1}>
+                  onClick={props.handleNext}
+                  disabled={props.activeStep === props.maxSteps - 1}>
                   Next
                   <KeyboardArrowRight />
                 </Button>
@@ -130,8 +90,8 @@ export default function Slideshow(props) {
               backButton={
                 <Button
                   size="small"
-                  onClick={handleBack}
-                  disabled={activeStep === 0}>
+                  onClick={props.handleBack}
+                  disabled={props.activeStep === 0}>
                   <KeyboardArrowLeft />
                   Back
                 </Button>
@@ -139,12 +99,6 @@ export default function Slideshow(props) {
             />
           </div>
         </MuiDialogContent>
-        <MuiDialogActions>
-          <Button onClick={handleClose} color="primary">
-            {activeStep !== maxSteps -1 ? props.closeMessage : props.finalSlideMessage}
-          </Button>
-        </MuiDialogActions>
-      </Dialog>
     </div>
   );
 }
