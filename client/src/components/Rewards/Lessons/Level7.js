@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Slideshow from "../../../Slideshow";
+import Slideshow from "../../Slideshow";
 
-export default function Level3(props) {
+export default function Level7(props) {
 
-  const lessonNumber = "lesson-3"
+  const lessonNumber = "lesson-7"
   const images = [
     {
       label: "Slide 1",
@@ -24,22 +24,6 @@ export default function Level3(props) {
     {
       label: "Slide 5",
       imgPath: `images/lessons/${lessonNumber}-05.png`
-    },
-    {
-      label: "Slide 6",
-      imgPath: `images/lessons/${lessonNumber}-06.png`
-    },
-    {
-      label: "Slide 7",
-      imgPath: `images/lessons/${lessonNumber}-07.png`
-    },
-    {
-      label: "Slide 8",
-      imgPath: `images/lessons/${lessonNumber}-08.png`
-    },
-    {
-      label: "Slide 9",
-      imgPath: `images/lessons/${lessonNumber}-09.png`
     }
   ];
 

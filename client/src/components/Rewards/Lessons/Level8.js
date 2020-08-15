@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import Slideshow from "../../../Slideshow";
+import Slideshow from "../../Slideshow";
 
-export default function Level1(props) {
+export default function Level8(props) {
 
-  const lessonNumber = "brainsley"
+  const lessonNumber = "lesson-8"
   const images = [
     {
       label: "Slide 1",
@@ -57,8 +57,6 @@ export default function Level1(props) {
       mobileImages={images}
       desktopImages={images}
       level={props.level}
-      closeMessage="Skip Tutorial"
-      finalSlideMessage="Go To Dashboard"
       activeStep={activeStep}
       handleNext={handleNext}
       handleBack={handleBack}

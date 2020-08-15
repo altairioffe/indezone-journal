@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Slideshow from "../../../Slideshow";
+import Slideshow from "../../Slideshow";
 
 export default function Level6(props) {
 
