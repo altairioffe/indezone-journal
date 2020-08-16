@@ -2,7 +2,6 @@ import React from "react";
 import Greeting from "./Greeting";
 import Wall from "./Wall";
 import Rewards from "./Rewards/Index";
-import Tutorial from "./Tutorial/Index";
 import Insight from "./Rewards/Insight/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";

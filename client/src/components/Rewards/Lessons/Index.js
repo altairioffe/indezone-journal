@@ -19,7 +19,6 @@ import Level8 from "./Level8.js";
 import Level9 from "./Level9.js";
 import Level10 from "./Level10.js";
 
-import useVisualMode from "../../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";
 
 export default function Resource(props) {
@@ -73,13 +72,6 @@ export default function Resource(props) {
             {props.level === 8 && <Level8 />}
             {props.level === 9 && <Level9 />}
             {props.level === 10 && <Level10 />}
-
-            {/* <Button
-            className={classes.button}
-            onClick={() => setRenderResource(false)}
-            disabled={props.disabled}>
-            HIDE BrainFood
-          </Button> */}
           </section>
         )}
       </div>
