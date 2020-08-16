@@ -51,35 +51,35 @@ export default function Tutorial(props) {
   const tutorialStepsDesktop = [
     {
       label: "Slide 1",
-      imgPath: "images/tutorial/tutorial-01-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-01.png"
     },
     {
       label: "Slide 2",
-      imgPath: "images/tutorial/tutorial-02-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-02.png"
     },
     {
       label: "Slide 3",
-      imgPath: "images/tutorial/tutorial-03-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-03.png"
     },
     {
       label: "Slide 4",
-      imgPath: "images/tutorial/tutorial-04-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-04.png"
     },
     {
       label: "Slide 5",
-      imgPath: "images/tutorial/tutorial-05-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-05.png"
     },
     {
       label: "Slide 6",
-      imgPath: "images/tutorial/tutorial-06-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-06.png"
     },
     {
       label: "Slide 7",
-      imgPath: "images/tutorial/tutorial-07-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-07.png"
     },
     {
       label: "Slide 8",
-      imgPath: "images/tutorial/tutorial-08-desktop.png"
+      imgPath: "images/tutorial/tutorial-desktop-08.png"
     }
   ];
 

@@ -24,6 +24,10 @@ export default function Level7(props) {
     {
       label: "Slide 5",
       imgPath: `images/lessons/${lessonNumber}-05.png`
+    },
+    {
+      label: "Slide 6",
+      imgPath: `images/lessons/${lessonNumber}-06.png`
     }
   ];
 
