@@ -1,12 +1,9 @@
 import React, { useState } from "react";
 import Insight from "./Insight/Index";
-import Resource from "./Lessons/Index";
+import Lesson from "./Lessons/Index";
 import { Button } from "@material-ui/core";
 import Card from "@material-ui/core/Card";
 import { makeStyles } from "@material-ui/core/styles";
-import PollIcon from "@material-ui/icons/Poll";
-import LockIcon from "@material-ui/icons/Lock";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
 import IconButton from "@material-ui/core/IconButton";
 import Typography from "@material-ui/core/Typography";
 
@@ -14,12 +11,9 @@ import Dialog from "@material-ui/core/Dialog";
 import MuiDialogTitle from "@material-ui/core/DialogTitle";
 import MuiDialogContent from "@material-ui/core/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions";
-import CloseIcon from "@material-ui/icons/Close";
 import GridContainer from "../Grid/GridContainer.js";
 import GridItem from "../Grid/GridItem.js";
 import FlashOnIcon from "@material-ui/icons/FlashOn";
-
-import useVisualMode from "../../hooks/useVisualMode";
 
 export default function Rewards(props) {
   const [levelOneNotification, setLevelOneNotification] = useState(
@@ -43,8 +37,9 @@ export default function Rewards(props) {
       padding: "0px"
     },
     mainCard: {
-      backgroundColor: "rgb(235,240,235, 0.5)",
-      boxShadow: "none"
+      backgroundColor: "white",
+      boxShadow: "none",
+      margin: "0px"
     },
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
@@ -72,7 +67,7 @@ export default function Rewards(props) {
         transform: "scale(0.95)"
       },
 
-      "70%": {
+      "80%": {
         transform: "scale(1.2)"
       },
 
@@ -87,7 +82,6 @@ export default function Rewards(props) {
 
   const handleClick = () => {
     setOpenDialog(true);
-    console.log(props.dismissNewChallengeNotification);
     props.dismissNewChallengeNotification();
     setLevelOneNotification(false);
   };
@@ -103,7 +97,7 @@ export default function Rewards(props) {
               simple="true"
               size="large">
               <img
-                src={"../images/indezone-icon.png"}
+                src={levelOneNotification || props.newChallengeNotification ? "../images/indezone-icon-alert.png" : "../images/indezone-icon.png"}
                 className={classes.image}
               />
             </IconButton>
@@ -127,11 +121,11 @@ export default function Rewards(props) {
                     xs={6}
                     sm={6}
                     md={6}
-                    style={{ textAlign: "right" }}
+                    style={{ textAlign: "right"}}
                     direction="column">
-                    <h2>Level {props.level} </h2>
+                    <h2 style={{margin: "0px"}}>Level {props.level} </h2>
                     <div>
-                      <h6>
+                      <h6 style={{margin: "0px"}}>
                         {" "}
                         <FlashOnIcon
                           style={{
@@ -144,66 +138,10 @@ export default function Rewards(props) {
                   </GridItem>
                   <GridItem xs={6} sm={6} md={6}>
                     <div style={{ textAlign: "left" }}>
-                      {props.level === 1 && (
                         <img
-                          src="images/happy-brain.svg"
+                          src={`images/brain-hats/brain-hats-${props.level}.png`}
                           className={classes.avatar}
                         />
-                      )}
-                      {props.level === 2 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 3 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 4 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 5 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 6 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 7 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 8 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 9 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
-                      {props.level === 10 && (
-                        <img
-                          src="images/happy-brain.svg"
-                          className={classes.avatar}
-                        />
-                      )}
                     </div>
                   </GridItem>
                 </GridContainer>
@@ -213,7 +151,7 @@ export default function Rewards(props) {
 
             <MuiDialogContent dividers style={{ padding: "0px" }}>
               <Card className={classes.mainCard}>
-                <Resource level={props.level} user={props.user} />
+                <Lesson level={props.level} user={props.user} />
 
                 <hr />
                 <Insight

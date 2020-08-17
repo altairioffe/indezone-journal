@@ -42,9 +42,10 @@ export default function Login(props) {
     card: {
       height: "80vh",
       width: "80vw",
+      maxWidth: "70vw",
       flexGrow: 1,
-      backgroundColor: `rgb(235,240,235, 0.6)`,
-      padding: "5vh",
+      backgroundColor: "white",
+      padding: "0vh 5vh",
       marginTop: "-10vh"
     },
     button: {
@@ -52,8 +53,9 @@ export default function Login(props) {
       // width: "50%"
     },
     image: {
-      height: "300px",
-      width: "300px"
+      height: "25vh",
+      width: "auto",
+      padding: "0px"
     },
     innerCard: {
       backgroundColor: `rgb(235,240,235, 0)`,
@@ -61,7 +63,7 @@ export default function Login(props) {
     },
     typography: {
       fontSize: "2em",
-      padding: "1em"
+      paddingBottom: "5vw"
     },
     innerText: {
       fontSize: "1em",
@@ -75,11 +77,6 @@ export default function Login(props) {
     setMoodSelection(mood);
     props.setUserMood(mood)
     setTimeout(() => props.renderMainPage(), 500)
-    // set mood
-    //  disable other button
-    // replace clicked button with confirmation text
-    // set timeout
-    // render main page
   };
 
   return (
@@ -119,8 +116,7 @@ export default function Login(props) {
                 <Fade in={moodSelection === "happy"} timeout={1000}>
                   <Card className={classes.innerCard}>
                     <Typography className={classes.innerText}>
-                      Great! We'll serve up some questions to help you focus
-                      that energy
+                      Great! Let's harness that motivation with some questions to build your focus.
                     </Typography>
                   </Card>
                 </Fade>
@@ -146,8 +142,7 @@ export default function Login(props) {
                 <Fade in={moodSelection === "sad"} timeout={1000}>
                   <Card className={classes.innerCard}>
                     <Typography className={classes.innerText}>
-                      It's okay if you're not feeling 100% right now. Research shows that you can change how you feel by changing your thoughts. The more your practice, the easier it
-                      gets.
+                      It's okay if you're not feeling 100% right now. Research shows that, with practice, you can change how you feel by changing your thoughts.
                     </Typography>
                   </Card>
                 </Fade>

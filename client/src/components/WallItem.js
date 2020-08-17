@@ -16,7 +16,7 @@ export default function WallItem(props) {
         props.answer.split(" ").length > 40 ? (
           <FlashOnIcon style={{ color: "00A8E0" }}></FlashOnIcon>
         ) : (
-          <FormatQuote style={{ color: "lavender" }}></FormatQuote>
+          <FormatQuote style={{ color: "#02a8e04d" }}></FormatQuote>
         )
       }>
       <p>{props.answer}</p>

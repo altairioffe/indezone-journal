@@ -15,10 +15,10 @@ import {
   AppBar,
   Typography
 } from "@material-ui/core";
-// @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
 import Register from "./Register.js";
 import Login from "./Login.js";
+import Tutorial from "../Tutorial.js";
 
 // import styles from "assets/jss/material-kit-react/views/loginPage.js";
 
@@ -80,8 +80,7 @@ export default function Navbar(props) {
         className="navBar"
         position="sticky"
         color="transparent"
-        elevation={0}
-      >
+        elevation={0}>
         <Grid
           container
           direction="row"
@@ -107,23 +106,6 @@ export default function Navbar(props) {
                   p={0}
                   m={0}
                   style={{ padding: "0", margin: "0" }}>
-                  <Grid item justify="flex-end" mr="0">
-                    <Box
-                      display="flex"
-                      p={0}
-                      m={0}
-                      bgcolor="none"
-                      justifyContent="flex-end">
-                      <Grow in={loginState === 2} timeout={500} unmountOnExit>
-                        <Button
-                          onClick={() => logout()}
-                          size="medium"
-                          style={{ textTransform: "none", padding: "0" }}>
-                          Logout
-                        </Button>
-                      </Grow>
-                    </Box>
-                  </Grid>
 
                   <Grid item justify="flex-end" mr="0">
                     <Grow in={loginState === 2} timeout={500} unmountOnExit>
@@ -142,6 +124,29 @@ export default function Navbar(props) {
                         </strong>
                       </Typography>
                     </Grow>
+                  </Grid>
+
+                  <Grid item justify="flex-end" mr="0">
+                    <Box
+                      display="flex"
+                      p={0}
+                      m={0}
+                      bgcolor="none"
+                      justifyContent="flex-end">
+                      {props.renderMainPage && (
+                      <Tutorial
+                        level={props.level}
+                      />
+                      )}
+                      <Grow in={loginState === 2} timeout={500} unmountOnExit>
+                        <Button
+                          onClick={() => logout()}
+                          size="medium"
+                          style={{ textTransform: "none", padding: "0" }}>
+                          Logout
+                        </Button>
+                      </Grow>
+                    </Box>
                   </Grid>
                 </Container>
               </Grid>

@@ -1,11 +1,11 @@
 import React from "react";
+import Greeting from "./Greeting";
 import Wall from "./Wall";
 import Rewards from "./Rewards/Index";
-import Heading from "./Heading/Index";
 import Insight from "./Rewards/Insight/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
-import QuestionList from "./QuestionList";
+import QuestionList from "./QuestionList/Index";
 import Mood from "./Mood/Mood";
 import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
@@ -52,9 +52,9 @@ export default function Application() {
     <div>
       <Parallax
         className={parallaxStyle}
-        blur={10}
-        bgImage={require("./LandingPage/LandingImage/bg-pink-sky.jpg")}
-        bgImageAlt="the cat"
+        blur={! state.currentUser? 2 : 100}
+        bgImage={require("./LandingPage/LandingImage/road-sky.jpg")}
+        bgImageAlt="background"
         strength={800}
         bgStyle={{ backgroundAttachment: "fixed" }}
         backgroundRepeat="no-repeat">
@@ -69,7 +69,10 @@ export default function Application() {
             logInUser={data => console.log(data)}
             logoutUser={logOutUser}
             user={state.currentUser}
+            mood={state.userMood}
+            renderMainPage={state.renderMainPage}
             level={state.level}
+            timeOfDay={state.timeOfDay}
             registrationHandler={registrationHandler}
             loginHandler={loginHandler}
             loginError={state.loginError}
@@ -86,8 +89,8 @@ export default function Application() {
 
           {state.currentUser && state.renderMainPage && (
             <section className="feed">
-              <Heading 
-              level={state.level}/>
+              <Greeting 
+              timeOfDay={state.timeOfDay}/>
               <br />
               <Rewards
                 bio={getBio(state.biodatas, state.currentUser)}

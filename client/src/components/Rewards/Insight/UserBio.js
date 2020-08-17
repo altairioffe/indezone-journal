@@ -35,7 +35,6 @@ export default function UserBio(props) {
 
   return (
     <article className="">
-      <p>{props.bio || ""}</p>
       <Button
         className={classes.button}
         onClick={props.onClick}

@@ -1,9 +1,9 @@
-import "./QuestionAnswer/styles.scss";
+import "./QuestionList/styles.scss";
 
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Typography } from "@material-ui/core";
-import AnswerQuestionPanel from "./QuestionAnswer/AnswerQuestionPanel";
+import QuestionPanel from "./QuestionList/QuestionPanel";
 
 import Slide from "@material-ui/core/Slide";
 
@@ -39,7 +39,7 @@ export default function QuestionFeed(props) {
     return (
       <div>
         <Slide direction="up" in={false}>
-          <AnswerQuestionPanel
+          <QuestionPanel
             style={{ background: "rgb(255,255,255, 0)" }}
             key={i}
             question={goal.question}
@@ -60,7 +60,7 @@ export default function QuestionFeed(props) {
       <br />
       {questionsFilteredList}
       <Slide direction="up" in={false}>
-        <AnswerQuestionPanel
+        <QuestionPanel
           finalQuestion={true}
           key={questionsFilteredList.length}
           question={`BONUS: ${finalQuestion.question}`}

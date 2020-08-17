@@ -58,7 +58,8 @@ export default function Bio(props) {
     card: {
       backgroundColor: "rgb(235,240,235, 0)",
       boxShadow: "none",
-      textAlign: "center"
+      textAlign: "center",
+      margin: "0px"
     }
   }));
   const classes = useStyles();

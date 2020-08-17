@@ -6,7 +6,7 @@ export default function LoadingImage(props){
     props.mood === "happy" &&
       "Loading qestions to help you focus that positive energy" ||
     props.mood === "sad" &&
-      "Loading questions to build mindfulness & self-compassion"
+      "Loading questions to build gratitude & self-compassion"
   
   return (
     <main  id="loading">

@@ -64,7 +64,7 @@ export default function Error(props) {
         Entries before you request my insight...
       </h4>
       <br />
-      <h4>You have {props.powerEntries} Power Entries</h4>
+      <h4>You have {props.powerEntries} Power {props.powerEntries !== 1 ? "Entries" : "Entry"}</h4>
       <p> Earn Power Entries by writing answers at least 40 words long</p>
       <Button className={classes.button} onClick={props.onCancel}>
         BACK
