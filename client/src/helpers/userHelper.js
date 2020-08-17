@@ -31,7 +31,6 @@ export function checkIfFirstPostToday(userGoals) {
     userGoals.length > 1 &&
     moment(userGoals[1].createdAt).isBefore(moment().startOf("day"))
   ) {
-    console.log("FROM HELPER CHECKER: ", userGoals[1].createdAt);
     return true;
   } else if (userGoals.length <= 1) {
     return true;

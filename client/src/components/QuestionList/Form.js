@@ -15,7 +15,6 @@ export default function Form(props) {
  
   const useStyles = makeStyles({
     root: {
-      background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
       border: "none !important",
       borderRadius: 3,
       boxShadow: "0 3px 5px 2px rgba(0, 240, 230, .3)",
@@ -60,14 +59,15 @@ export default function Form(props) {
             { style: { color: "#00A8E0" } }
           ])
           }}
-          style={{background: "rgb(255,255,255, .2)"}}
+          style={{backgroundColor: "white"}}
           inputProps={{
             value: ans,
             type: "email",
+            backgroundColor: "white",
             onChange: function(e) {
               setAns(e.target.value);
               setLabelText([
-                ans.split(" ").length > 40 ? "Power Entry Achieved! Keep going!": "Nice! Keep it up!",
+                ans.split(" ").length > 40 ? "Power Entry Achieved! Keep going!": "Keep it up!",
                 { style: { color: "#00A8E0" } }
               ])
             }
@@ -75,7 +75,6 @@ export default function Form(props) {
         />
          <Tooltip title={ans.length > 0 && ans.length < 100 ? "Spend 1-2 minutes on detailed answers for best results" : ""} arrow>
         <Button
-          // className={classes.root}
           variant="outlined"
           color="primary"
           style={{ color: "#00A8E0", marginTop: "20px" }}
