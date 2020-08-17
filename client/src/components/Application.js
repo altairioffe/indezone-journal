@@ -5,7 +5,7 @@ import Rewards from "./Rewards/Index";
 import Insight from "./Rewards/Insight/Index";
 import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
-import QuestionList from "./QuestionList";
+import QuestionList from "./QuestionList/Index";
 import Mood from "./Mood/Mood";
 import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";

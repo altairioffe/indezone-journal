@@ -139,7 +139,7 @@ export default function Rewards(props) {
                   <GridItem xs={6} sm={6} md={6}>
                     <div style={{ textAlign: "left" }}>
                         <img
-                          src={`images/brain-hats/brain-hats-0${props.level}.png`}
+                          src={`images/brain-hats/brain-hats-${props.level}.png`}
                           className={classes.avatar}
                         />
                     </div>

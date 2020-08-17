@@ -1,9 +1,9 @@
-import "./QuestionList/styles.scss";
+import "./styles.scss";
 
 import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Typography } from "@material-ui/core";
-import QuestionPanel from "./QuestionList/QuestionPanel";
+import QuestionPanel from "./QuestionPanel";
 
 import Slide from "@material-ui/core/Slide";
 
