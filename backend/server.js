@@ -6,7 +6,7 @@ var logger = require('morgan');
 var cors = require('cors')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var goalsRouter = require('./routes/goals');
+var questionsRouter = require('./routes/questions');
 var biodatasRouter = require('./routes/biodatas');
 var userGoalsRouter = require('./routes/userGoals');
 var userInsightRouter = require('./routes/userInsight');
@@ -25,7 +25,7 @@ app.use(cookieParser());
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);
-app.use('/api/goals', goalsRouter);
+app.use('/api/questions', questionsRouter);
 app.use('/api/biodatas', biodatasRouter);
 app.use('/api/userGoals', userGoalsRouter);
 app.use('/api/userInsight', userInsightRouter);

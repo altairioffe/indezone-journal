@@ -5,11 +5,13 @@ import moment from "moment";
 import {
   checkCompliance,
   checkIfFirstPostToday,
-  randomizeQuestions,
   getBio,
-  getUserWordCount,
-  organizeQuestionsByTime
+  getUserWordCount
 } from "../helpers/userHelper";
+import {
+  randomizeQuestions,
+  organizeQuestionsByTime
+} from "../helpers/questionHelper";
 
 import { setTimeOfDay} from "../helpers/questionHelper";
 
@@ -40,7 +42,7 @@ export default function useApplicationData() {
 
   useEffect(() => {
     console.log("GETTTTING QUESTIONS")
-    Promise.all([axios.get("/api/goals"), axios.get("/api/biodatas")])
+    Promise.all([axios.get("/api/questions"), axios.get("/api/biodatas")])
       .then(all => {
         let organizedQuestions = organizeQuestionsByTime(all[0].data)
         let randomizedQuestions = randomizeQuestions(all[0].data)
