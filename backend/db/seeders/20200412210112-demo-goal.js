@@ -16,21 +16,21 @@ module.exports = {
     {
       id:2,
       question: 'What is one small thing you can do to brighten someone else\'s day today?',
-      suggestion: 'You have the power to make the world a brighter place',
+      suggestion: 'You can make the world a brighter place',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:3,
       question: 'If the best version of you were here right now, which of your thoughts or attitudes would they challenge?',
-      suggestion: 'This might be some perspective on your priorities or negative beliefs',
+      suggestion: 'Maybe some perspective on your priorities or negative beliefs',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:4,
       question: 'What is one thing that you need to say "no" to more often?',
-      suggestion: 'This might be requests from others, or a habit',
+      suggestion: 'Are you draining time and energy where you don\'t need to?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -50,8 +50,8 @@ module.exports = {
     },
     {
       id:7,
-      question: 'Identify one personal value that\'s important to you. What does it look like, and how will you embody that value today?',
-      suggestion: 'What are some things that might be holding you back?',
+      question: 'Identify one personal value that\'s important to you. How will you embody that value today?',
+      suggestion: 'What will that look like?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -64,22 +64,22 @@ module.exports = {
     },
     {
       id:9,
-      question: 'When are you most likely to let yourself down today?',
+      question: 'When do you expect your willpower or motivation will be at its lowest today?',
       suggestion: 'Give some words of encouragement or advice for future you...',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:10,
-      question: 'What do you want to be proud of at the end of the day?',
-      suggestion: 'A potential mentor, or just friend/family ',
+      question: 'What do you want to be proud of at the end of today?',
+      suggestion: 'Set a goal, big or small',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:11,
       question: 'What have you been avoiding or putting off?',
-      suggestion: 'Use this space for ideas, plans, or anything else you\'d like',
+      suggestion: 'Does it need to get done?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -93,7 +93,7 @@ module.exports = {
     {
       id:13,
       question: 'What can you look forward to today?',
-      suggestion: 'What are some lessons you can apply?',
+      suggestion: 'Cultivate gratitude',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -106,36 +106,36 @@ module.exports = {
     },
     {
       id:15,
-      question: 'What do you want?',
-      suggestion: 'Is everything else in your day more important than doing this?',
+      question: 'What will you do to recharge today?',
+      suggestion: 'Schedule a nap, mindful walk, or whatever works best for you',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:16,
       question: 'When do you feel the most in control of your emotions?',
-      suggestion: 'What\'s it like when you notice you can control how you feel?',
+      suggestion: 'What changes when you notice you can control how you feel?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:17,
-      question: 'If the best version of you were here right now, which of your thoughts or attitudes would they challenge?',
+      question: 'If the best version of you were here right now, what would they tell you?',
       suggestion: 'This might be some perspective on your priorities or negative beliefs',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:18,
-      question: 'What negative thoughts (self-talk) are flowing through your mind about the day ahead?',
-      suggestion: 'Self-talk can be changed with practice. First, identify it.',
+      question: 'What negative thoughts (self-talk) are going through your mind about the day ahead?',
+      suggestion: 'Self-talk can be changed with practice. First, identify it as it happens.',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:19,
       question: 'How can you be kinder to yourself today?',
-      suggestion: 'Who might be counting on you to be at your best? What can you do to support them?',
+      suggestion: 'Take a moment for self-compassion and gratitude',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -148,21 +148,21 @@ module.exports = {
     },
     {
       id:21,
-      question: 'Identify one personal value that\'s important to you. Define what it look like. How can you embody that value today?',
-      suggestion: 'What are some things that might be holding you back?',
+      question: 'Identify one personal value that\'s important to you. How will you embody that value today?',
+      suggestion: 'What will that look like?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:22,
       question: 'When you have a negative thought, what is the first thing you do?',
-      suggestion: 'As soon as you catch a negative thought, challenge it',
+      suggestion: 'Think of an example',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:23,
-      question: 'What would be different if you suddenly got a bit of extra motivation today?',
+      question: 'How can you apply a growth mindset today?',
       suggestion: 'What would change in your thoughts and behaviour?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -176,8 +176,8 @@ module.exports = {
     },
     {
       id:25,
-      question: 'How do you feel about your day today?',
-      suggestion: 'What thoughts and actions helped to that?',
+      question: 'How did your day go?',
+      suggestion: 'Discuss some highlights and things you want to improve',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -190,8 +190,8 @@ module.exports = {
     },
     {
       id:27,
-      question: 'Looking back on today, what went really well?',
-      suggestion: 'What thoughts and actions contributed to that?',
+      question: 'What choices are you proud of today?',
+      suggestion: 'What was the result?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -239,15 +239,15 @@ module.exports = {
     },
     {
       id:34,
-      question: 'If the best version of you were here right now, which of your thoughts or attitudes would they challenge?',
-      suggestion: 'This might be some perspective on your priorities or negative beliefs',
+      question: 'When did you feel the most motivated and productive today?',
+      suggestion: 'What was it like?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:35,
-      question: 'What negative thoughts (self-talk) are flowing through your mind about today?',
-      suggestion: 'Self-talk can be changed with practice. First, identify it.',
+      question: 'What positive thoughts (self-talk) helped you push forward today?',
+      suggestion: 'Reinforce that mindset.',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -260,22 +260,22 @@ module.exports = {
     },
     {
       id:37,
-      question: 'Looking back on your day, what are you grateful for?',
+      question: 'What are you grateful for?',
       suggestion: 'What would be the best way to handle it?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:38,
-      question: 'Identify one personal value that\'s important to you. What does it look like when you fully embody that value?',
-      suggestion: 'What are some things that might be holding you back?',
+      question: 'What can you do differently tomorrow?',
+      suggestion: 'Think about the moments when you\'ll have to make a1 choices',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:39,
       question: 'What negative or unhelpful moods did you experience today?',
-      suggestion: 'Talk about the sitiation and your thoughts at the time',
+      suggestion: 'Talk about the situation and your thoughts at the time',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -288,7 +288,7 @@ module.exports = {
     },
     {
       id:41,
-      question: 'Which actions move you toward what you want?',
+      question: 'Which actions or choices move you towards what you want?',
       suggestion: 'just putting on your running shoes can be a step in the right direction',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -309,14 +309,14 @@ module.exports = {
     },
     {
       id:44,
-      question: 'What thoughts or beliefs about yourself?',
+      question: 'What negative thoughts or behavior patterns did you notice today?',
       suggestion: 'What would be the best way to handle it?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:45,
-      question: 'Identify one personal value that\'s important to you. What does it look like, and how can you embody that value today?',
+      question: 'What activities recharge you?',
       suggestion: 'What are some things that might be holding you back?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -330,8 +330,8 @@ module.exports = {
     },
     {
       id:47,
-      question: 'How would you feel about today if you had no expectations from yourself or from others?',
-      suggestion: 'Are you setting the bar too high for yourself?',
+      question: 'What would be different if you started today with no expectations from yourself or from others?',
+      suggestion: 'Are your standards motivating or discouraging you?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },

@@ -26,7 +26,7 @@ export default function Bio(props) {
 
   const loadInsight = () => {
     props
-      .requestInsight(props.currentUserGoals)
+      .requestInsight(props.userEntries)
       .then(() => {
         transition(INSIGHTS);
       })

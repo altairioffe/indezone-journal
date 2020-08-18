@@ -95,11 +95,11 @@ export default function Application() {
                 level={state.level}
                 user={state.currentUser.handle}
                 requestInsight={requestInsight}
-                currentUserGoals={state.currentUserGoals}
+                userEntries={state.userEntries}
                 userInsight={state.currentUserInsight}
                 dismissNewChallengeNotification={dismissNewChallengeNotification}
                 newChallengeNotification={state.newChallengeNotification}
-                powerEntries={countPowerEntries(state.currentUserGoals)}
+                powerEntries={countPowerEntries(state.userEntries)}
               />
               <div>
                 <br/>
@@ -111,7 +111,7 @@ export default function Application() {
                   state.timeOfDay,
                   state.userMood
                 )}
-                currentUserGoals={state.currentUserGoals}
+                userEntries={state.userEntries}
                 setAnswer={setAnswer}
                 answer={state.answer}
                 addUserGoal={addUserGoal}
@@ -119,16 +119,16 @@ export default function Application() {
                 currentUserId={state.currentUser}
                 randomizedQuestions={state.randomizedQuestions}
                 answeredGoals={answeredGoals(
-                  state.currentUserGoals,
+                  state.userEntries,
                   state.currentUser
                 )}
               />
               <br />
 
-                {state.currentUserGoals &&
-                  state.currentUserGoals.length >= 1 && (
+                {state.userEntries &&
+                  state.userEntries.length >= 1 && (
                     <Wall
-                      userGoals={state.currentUserGoals}
+                      userEntries={state.userEntries}
                       questions={state.randomizedQuestions}
                     />
                   )}

@@ -27,7 +27,7 @@ export default function useApplicationData() {
     randomizedQuestions: [],
     organizedQuestionsByTime: {},
     biodatas: [],
-    currentUserGoals: [],
+    userEntries: [],
     currentUser: null,
     answer: "",
     currentUserInsight: "",
@@ -116,10 +116,10 @@ export default function useApplicationData() {
       axios
         .get(`/api/userGoals/${state.currentUser.id}`)
         .then(userGoals => {
-          setState(state => ({ ...state, currentUserGoals: userGoals.data }));
+          setState(state => ({ ...state, userEntries: userGoals.data }));
           setState(state => ({
             ...state,
-            currentUserWordCount: getUserWordCount(state.currentUserGoals)
+            currentUserWordCount: getUserWordCount(state.userEntries)
           }));
         })
         .catch(err => console.log("USERGOALS ERROR: ", err));
@@ -130,7 +130,7 @@ export default function useApplicationData() {
   const setUserWordCount = () => {
     setState(state => ({
       ...state,
-      currentUserWordCount: getUserWordCount(state.currentUserGoals)
+      currentUserWordCount: getUserWordCount(state.userEntries)
     }));
   };
 
@@ -165,10 +165,10 @@ export default function useApplicationData() {
     axios
       .post(`/api/userGoals`, goal)
       .then(result => {
-        const newUserGoals = [...state.currentUserGoals, result.data];
+        const newUserGoals = [...state.userEntries, result.data];
         setState(state => ({
           ...state,
-          currentUserGoals: newUserGoals,
+          userEntries: newUserGoals,
           currentUserWordCount: getUserWordCount(newUserGoals)
         }));
         updateUserLevelOnEntry(newUserGoals);
@@ -189,7 +189,7 @@ export default function useApplicationData() {
       .then(() => {
         setState({
           ...state,
-          currentUserGoals: [{ ...data }, ...state.currentUserGoals]
+          userEntries: [{ ...data }, ...state.userEntries]
         });
         return goal_id;
       })
@@ -224,7 +224,7 @@ export default function useApplicationData() {
           })
           .then(() => setTime())
           .then(() => loginCallback())
-          .then(() => updateUserLevelOnLogin(state.currentUserGoals))
+          .then(() => updateUserLevelOnLogin(state.userEntries))
           .then(x =>
             console.log(
               "----------------JUST LOGGED IN STATE------------------ ",
@@ -293,7 +293,7 @@ export default function useApplicationData() {
       currentUser: null,
       level: null,
       answer: null,
-      currentUserGoals: null,
+      userEntries: null,
       currentUserWordCount: 0,
       currentUserInsight: "",
       level: 1,
@@ -308,11 +308,11 @@ export default function useApplicationData() {
   const setInsight = currentUserInsight =>
     setState({ ...state, currentUserInsight });
 
-  const requestInsight = currentUserGoals => {
+  const requestInsight = userEntries => {
     return Promise.resolve(
       axios
         .post("/api/userInsight", {
-          body: currentUserGoals
+          body: userEntries
         })
         .then(response => {
           setInsight(response.data);
