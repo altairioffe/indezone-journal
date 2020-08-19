@@ -197,35 +197,35 @@ module.exports = {
     },
     {
       id:28,
-      question: 'Imagine you are being too hard on yourself. What negative self-talk was going on?',
-      suggestion: 'Negative self-talk often comes from believing that you cannot change',
+      question: 'Where did you apply a growth mindset today?',
+      suggestion: 'Did you take on a challenge or try something new?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:29,
-      question: 'What do you want?',
-      suggestion: 'Is everything else in your day more important than doing this?',
+      question: 'What could you have done better today?',
+      suggestion: 'Where can you improve?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:30,
-      question: 'What would you do differently if today didn\'t feel as hard?',
-      suggestion: 'What kind of impression to do you want to make? How can you make it?',
+      question: 'What are you grateful for?',
+      suggestion: 'Cultivate some gratitude...',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:31,
-      question: 'If you could change one choice from today, what would it be, and what might be the result?',
+      question: 'If you could change one choice from today, what would it be?',
       suggestion: 'Negative self-talk often comes from believing that you cannot change',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:32,
-      question: 'What do you want?',
+      question: 'What goals do you need to keep in mind?',
       suggestion: 'Is everything else in your day more important than doing this?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -246,7 +246,7 @@ module.exports = {
     },
     {
       id:35,
-      question: 'What positive thoughts (self-talk) helped you push forward today?',
+      question: 'What thoughts and actions helped you push forward today?',
       suggestion: 'Reinforce that mindset.',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -261,14 +261,14 @@ module.exports = {
     {
       id:37,
       question: 'What are you grateful for?',
-      suggestion: 'What would be the best way to handle it?',
+      suggestion: 'Even the little things are important...',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:38,
       question: 'What can you do differently tomorrow?',
-      suggestion: 'Think about the moments when you\'ll have to make a1 choices',
+      suggestion: 'Think about the moments when you\'ll have to make a choices',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
