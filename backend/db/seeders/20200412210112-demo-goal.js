@@ -44,7 +44,7 @@ module.exports = {
     {
       id:6,
       question: 'What new belief or attitude could most improve your life right now?',
-      suggestion: 'What would be the best way to handle it?',
+      suggestion: 'Reframe a situation that you\'re struggling with',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -225,7 +225,7 @@ module.exports = {
     },
     {
       id:32,
-      question: 'What goals do you need to keep in mind?',
+      question: 'What are the long-term goals you need to keep in mind?',
       suggestion: 'Is everything else in your day more important than doing this?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -268,70 +268,70 @@ module.exports = {
     {
       id:38,
       question: 'What can you do differently tomorrow?',
-      suggestion: 'Think about the moments when you\'ll have to make a choices',
+      suggestion: 'Think about the choices that will impact your day',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:39,
-      question: 'What negative or unhelpful moods did you experience today?',
-      suggestion: 'Talk about the situation and your thoughts at the time',
+      question: 'Talk about your mood today. How did it impact your thoughts?',
+      suggestion: 'How you feel impacts how you think, but the opposite is also true',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:40,
-      question: 'What will you need to hear when you are most likely to let yourself down today?',
-      suggestion: 'Some words of encouragement or advice for future you...',
+      question: 'Looking back on today, what advice would have been helpful?',
+      suggestion: 'This advice might help you in the future, too',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:41,
-      question: 'Which actions or choices move you towards what you want?',
-      suggestion: 'just putting on your running shoes can be a step in the right direction',
+      question: 'Which actions or choices today moved you toward your bigger goals?',
+      suggestion: 'It can be as simple as putting on your shoes.',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:42,
-      question: 'What negative thoughts (self-talk) are flowing through your mind about today?',
-      suggestion: 'Self-talk can be changed with practice. First, identify it.',
+      question: 'What are some positive things that happened today?',
+      suggestion: 'Re-frame your day.',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:43,
       question: 'How could you have been kinder to yourself today?',
-      suggestion: 'Who might be counting on you to be at your best? What can you do to support them?',
+      suggestion: 'Cultivate self-compassion',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:44,
-      question: 'What negative thoughts or behavior patterns did you notice today?',
-      suggestion: 'What would be the best way to handle it?',
+      question: 'What negative thoughts or behavior patterns came up today?',
+      suggestion: 'Noticing when it happens is the first step to changing it',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:45,
-      question: 'What activities recharge you?',
-      suggestion: 'What are some things that might be holding you back?',
+      question: 'What did you today to recharge?',
+      suggestion: 'Self-care is an important habit for peak performance',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:46,
-      question: 'When you have a negative thought, what is the first thing you do?',
-      suggestion: 'Why are you unable to fit that into your schedule?',
+      question: 'When you had a negative or unproductive thought today, what was the first thing you did?',
+      suggestion: 'With practice, you can interrupt and change these thoughts as they happen',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:47,
-      question: 'What would be different if you started today with no expectations from yourself or from others?',
-      suggestion: 'Are your standards motivating or discouraging you?',
+      question: 'Did you achieve your goals today?',
+      suggestion: 'Set expectations that are realistic and move you forward',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -342,7 +342,6 @@ module.exports = {
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     }
-
     ]);
   },
   down: (queryInterface, Sequelize) => {
