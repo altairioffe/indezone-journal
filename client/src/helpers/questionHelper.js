@@ -38,7 +38,7 @@ export function countPowerEntries(answers) {
   return count;
 }
 
-export function organizeQuestionsByTime(questions, timeOfDay) {
+export function organizeQuestionsByTime(questions) {
   let dividedQuestions = {
     morning: {
       happy: [],

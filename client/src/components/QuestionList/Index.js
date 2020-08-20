@@ -31,7 +31,6 @@ export default function QuestionFeed(props) {
     };
   });
   let finalQuestion = props.questions[props.questions.length - 1];
-  //questionsArr.push({id: finalQuestion.id, question: finalQuestion.question, suggestion: finalQuestion.suggestion})
 
   const questionsFilteredList = questionsArr.map((goal, i) => {
     return (

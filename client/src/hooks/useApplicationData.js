@@ -9,7 +9,6 @@ import {
   getUserWordCount
 } from "../helpers/userHelper";
 import {
-  randomizeQuestions,
   organizeQuestionsByTime,
   questions
 } from "../helpers/questionHelper";

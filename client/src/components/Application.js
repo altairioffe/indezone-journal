@@ -2,7 +2,6 @@ import React from "react";
 import Greeting from "./Greeting";
 import Wall from "./Wall";
 import Rewards from "./Rewards/Index";
-import Insight from "./Rewards/Insight/Index";
 import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList/Index";
 import Mood from "./Mood/Mood";
@@ -37,9 +36,7 @@ export default function Application() {
     width: "100vw",
     height: "100vh",
     maxHeight: "100vh",
-    //backgroundSize: "cover",
     maxWidth: "100%",
-    //position: "fixed",
     backgroundRepeat: "no-repeat"
   };
   const containerStyle = {
@@ -133,11 +130,6 @@ export default function Application() {
               </div>
             </section>
           )}
-          {/* {state.currentUser === null && (
-        <div>
-          <HeroImage />
-        </div>
-      )} */}
         </Container>
       </Parallax>
     </div>
