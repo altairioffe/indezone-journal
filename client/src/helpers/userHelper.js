@@ -37,46 +37,6 @@ export function checkIfFirstPostToday(userGoals) {
   } else return false;
 }
 
-export function organizeQuestionsByTime(questions) {
-  let dividedQuestions = {
-    morning: {
-      happy: [],
-      sad: []
-    },
-    evening: {
-      happy: [],
-      sad: []
-    }
-  };
-
-  dividedQuestions.morning.happy.push(randomizeQuestions(questions.slice(0, 12)));
-  dividedQuestions.morning.sad.push(randomizeQuestions(questions.slice(12, 24)));
-
-  dividedQuestions.evening.happy.push(randomizeQuestions(questions.slice(24, 36)));
-  dividedQuestions.evening.sad.push(randomizeQuestions(questions.slice(36, 48)));
-
-  return dividedQuestions;
-}
-
-function shuffleArray(array) {
-  for (let i = array.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-}
-
-export function randomizeQuestions(questions) {
-  const firstGoal = questions[0];
-  const lastGoal = questions[questions.length - 1];
-  let shufflingQuestions = questions.slice(1, questions.length - 1);
-  shuffleArray(shufflingQuestions);
-
-  shufflingQuestions.unshift(firstGoal);
-  shufflingQuestions.push(lastGoal);
-  console.log("RANDOMIZED LIST: ", shufflingQuestions);
-  return shufflingQuestions;
-}
-
 //GET User wordcount
 export function getUserWordCount(currentUserGoals) {
   let wordCount = 0;

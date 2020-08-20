@@ -5,14 +5,14 @@ import { Timeline } from "react-event-timeline";
 import { styles } from "./WallStyles";
 import "../styles/Wall.scss";
 export default function Wall(props) {
-  let userGoals = [];
+  let userEntries = [];
 
-  userGoals.push(props.userGoals);
-  userGoals[0].sort((a, b) => b.id - a.id);
+  userEntries.push(props.userEntries);
+  userEntries[0].sort((a, b) => b.id - a.id);
 
   let questions = props.questions;
   
-  let userGoalsView = userGoals[0].map(userGoal => {
+  let userEntriesView = userEntries[0].map(userGoal => {
     let linkedQuestion = questions.filter(
       question => question.id === userGoal.goal_id
     );
@@ -29,7 +29,7 @@ export default function Wall(props) {
 
   return (
     <div className="timeline">
-      <Timeline lineStyle={styles.lineStyle}>{userGoalsView}</Timeline>
+      <Timeline lineStyle={styles.lineStyle}>{userEntriesView}</Timeline>
     </div>
   );
 }

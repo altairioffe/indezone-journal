@@ -31,7 +31,7 @@ export default function Insights(props) {
     },
     text: {
       fontWeight: 200,
-      padding: "1em"
+      padding: "2em"
     }
   });
   const classes = useStyles();
@@ -51,11 +51,10 @@ export default function Insights(props) {
 
   return (
     <article className={classes.text}>
-      <h2> From your answers, I see it is likely that: </h2>
+      <h2> From your answers, it is likely that: </h2>
       <p style={{ margin: "1em" }}>{props.insights}</p>
       <h6>
-        From this feedback, is there anything that you agree with and would like
-        to work on changing?
+        Do you agree? Does this seem to align with your goals, or would some changes help you achieve them?
       </h6>
 
       {/* <div>

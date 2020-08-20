@@ -22,8 +22,6 @@ export default function QuestionFeed(props) {
   }));
   const classes = useStyles();
 
-  // console.log('questions answered today', props.answeredGoals)
-
   let selectedQuestions = props.questions.slice(0, props.level);
   let questionsArr = selectedQuestions.map(goal => {
     return {
@@ -33,7 +31,6 @@ export default function QuestionFeed(props) {
     };
   });
   let finalQuestion = props.questions[props.questions.length - 1];
-  //questionsArr.push({id: finalQuestion.id, question: finalQuestion.question, suggestion: finalQuestion.suggestion})
 
   const questionsFilteredList = questionsArr.map((goal, i) => {
     return (

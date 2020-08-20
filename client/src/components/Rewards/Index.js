@@ -158,7 +158,7 @@ export default function Rewards(props) {
                   bio={props.bio}
                   level={props.level}
                   requestInsight={props.requestInsight}
-                  currentUserGoals={props.currentUserGoals}
+                  userEntries={props.userEntries}
                   userInsight={props.userInsight}
                   powerEntries={props.powerEntries}
                 />

@@ -2,12 +2,9 @@ import React from "react";
 import Greeting from "./Greeting";
 import Wall from "./Wall";
 import Rewards from "./Rewards/Index";
-import Insight from "./Rewards/Insight/Index";
-import HeroImage from "./HeroImage";
 import Navbar from "./LandingPage/Navbar";
 import QuestionList from "./QuestionList/Index";
 import Mood from "./Mood/Mood";
-import "./HeroImage.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import { Container } from "@material-ui/core";
@@ -39,9 +36,7 @@ export default function Application() {
     width: "100vw",
     height: "100vh",
     maxHeight: "100vh",
-    //backgroundSize: "cover",
     maxWidth: "100%",
-    //position: "fixed",
     backgroundRepeat: "no-repeat"
   };
   const containerStyle = {
@@ -97,11 +92,11 @@ export default function Application() {
                 level={state.level}
                 user={state.currentUser.handle}
                 requestInsight={requestInsight}
-                currentUserGoals={state.currentUserGoals}
+                userEntries={state.userEntries}
                 userInsight={state.currentUserInsight}
                 dismissNewChallengeNotification={dismissNewChallengeNotification}
                 newChallengeNotification={state.newChallengeNotification}
-                powerEntries={countPowerEntries(state.currentUserGoals)}
+                powerEntries={countPowerEntries(state.userEntries)}
               />
               <div>
                 <br/>
@@ -113,35 +108,28 @@ export default function Application() {
                   state.timeOfDay,
                   state.userMood
                 )}
-                currentUserGoals={state.currentUserGoals}
+                userEntries={state.userEntries}
                 setAnswer={setAnswer}
                 answer={state.answer}
                 addUserGoal={addUserGoal}
-                goals={state.randomizedQuestions}
                 currentUserId={state.currentUser}
-                randomizedQuestions={state.randomizedQuestions}
                 answeredGoals={answeredGoals(
-                  state.currentUserGoals,
+                  state.userEntries,
                   state.currentUser
                 )}
               />
               <br />
 
-                {state.currentUserGoals &&
-                  state.currentUserGoals.length >= 1 && (
+                {state.userEntries &&
+                  state.userEntries.length >= 1 && (
                     <Wall
-                      userGoals={state.currentUserGoals}
-                      questions={state.randomizedQuestions}
+                      userEntries={state.userEntries}
+                      questions={state.questionsArray}
                     />
                   )}
               </div>
             </section>
           )}
-          {/* {state.currentUser === null && (
-        <div>
-          <HeroImage />
-        </div>
-      )} */}
         </Container>
       </Parallax>
     </div>
