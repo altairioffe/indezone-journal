@@ -22,28 +22,28 @@ module.exports = {
     },
     {
       id:3,
-      question: 'If the best version of you were here right now, which of your thoughts or attitudes would they challenge?',
-      suggestion: 'Maybe some perspective on your priorities or negative beliefs',
+      question: 'Fast-forward to your retirement. What advice would "future you" give you today?',
+      suggestion: 'Maybe some perspective on your current priorities or negative beliefs',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:4,
       question: 'What is one thing that you need to say "no" to more often?',
-      suggestion: 'Are you draining time and energy where you don\'t need to?',
+      suggestion: 'Avoid draining time and energy where you don\'t need to',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:5,
-      question: 'How would your day be different if you felt that you could push yourself harder today?',
-      suggestion: 'Who might be counting on you to be at your best? What can you do to support them?',
+      question: 'What would you do differently with a bit of extra motivation?',
+      suggestion: 'The world is your oyster',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:6,
-      question: 'What new belief or attitude could most improve your life right now?',
+      question: 'What attitude could most improve your life right now?',
       suggestion: 'Reframe a situation that you\'re struggling with',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -58,21 +58,21 @@ module.exports = {
     {
       id:8,
       question: 'If you had an extra 30 minutes today, how would you spend it?',
-      suggestion: 'Why are you unable to fit that into your schedule?',
+      suggestion: 'Reflect on your schedule and priorities',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:9,
-      question: 'When do you expect your willpower or motivation will be at its lowest today?',
-      suggestion: 'Give some words of encouragement or advice for future you...',
+      question: 'What would you do differently if today was your last day?',
+      suggestion: 'Get the most out of your day',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:10,
       question: 'What do you want to be proud of at the end of today?',
-      suggestion: 'Set a goal, big or small',
+      suggestion: 'Set a goal, big or small that you can achieve today',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -106,21 +106,21 @@ module.exports = {
     },
     {
       id:15,
-      question: 'What will you do to recharge today?',
-      suggestion: 'Schedule a nap, mindful walk, or whatever works best for you',
+      question: 'What\'s one thing that you can accomplish in the next 30 minutes?',
+      suggestion: 'It might feel good to cross something off your list',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:16,
-      question: 'When do you feel the most in control of your emotions?',
-      suggestion: 'What changes when you notice you can control how you feel?',
+      question: 'What would a great day look like?',
+      suggestion: 'What actions can bring you closer to that?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:17,
-      question: 'If the best version of you were here right now, what would they tell you?',
+      question: 'Fast-forward to the future when you\'re retired. What advice would you give yourself today?',
       suggestion: 'This might be some perspective on your priorities or negative beliefs',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -128,7 +128,7 @@ module.exports = {
     {
       id:18,
       question: 'What negative thoughts (self-talk) are going through your mind about the day ahead?',
-      suggestion: 'Self-talk can be changed with practice. First, identify it as it happens.',
+      suggestion: 'Identify, then reframe these thoughts into something positive',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -141,8 +141,8 @@ module.exports = {
     },
     {
       id:20,
-      question: 'What new belief or attitude could most improve your life today?',
-      suggestion: 'What would be the best way to handle it?',
+      question: 'What might stress you out today?',
+      suggestion: 'What would be a good way to handle that situation?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -212,7 +212,7 @@ module.exports = {
     {
       id:30,
       question: 'What are you grateful for?',
-      suggestion: 'Cultivate some gratitude...',
+      suggestion: 'Cultivate some gratitude',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -232,7 +232,7 @@ module.exports = {
     },
     {
       id:33,
-      question: 'When do you feel the most in control of your emotions?',
+      question: 'When did you feel the most in control of your emotions?',
       suggestion: 'What\'s it like when you notice you can control how you feel?',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
@@ -296,7 +296,7 @@ module.exports = {
     {
       id:42,
       question: 'What are some positive things that happened today?',
-      suggestion: 'Re-frame your day.',
+      suggestion: 'Reframe your day to focus on the positive',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
@@ -323,15 +323,15 @@ module.exports = {
     },
     {
       id:46,
-      question: 'When you had a negative or unproductive thought today, what was the first thing you did?',
-      suggestion: 'With practice, you can interrupt and change these thoughts as they happen',
+      question: 'When you had a negative or unproductive thought today, what did you do?',
+      suggestion: 'Thoughts can impact how you feel and act',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },
     {
       id:47,
-      question: 'Did you achieve your goals today?',
-      suggestion: 'Set expectations that are realistic and move you forward',
+      question: 'What did you accomplish today?',
+      suggestion: 'Accomplishments can be big or small',
       createdAt: new Date().toISOString(),
       updatedAt: new Date().toISOString()
     },

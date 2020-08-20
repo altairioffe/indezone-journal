@@ -115,9 +115,7 @@ export default function Application() {
                 setAnswer={setAnswer}
                 answer={state.answer}
                 addUserGoal={addUserGoal}
-                goals={state.randomizedQuestions}
                 currentUserId={state.currentUser}
-                randomizedQuestions={state.randomizedQuestions}
                 answeredGoals={answeredGoals(
                   state.userEntries,
                   state.currentUser
@@ -129,7 +127,7 @@ export default function Application() {
                   state.userEntries.length >= 1 && (
                     <Wall
                       userEntries={state.userEntries}
-                      questions={state.randomizedQuestions}
+                      questions={state.questionsArray}
                     />
                   )}
               </div>

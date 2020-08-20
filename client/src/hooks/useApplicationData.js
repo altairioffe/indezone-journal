@@ -10,7 +10,8 @@ import {
 } from "../helpers/userHelper";
 import {
   randomizeQuestions,
-  organizeQuestionsByTime
+  organizeQuestionsByTime,
+  questions
 } from "../helpers/questionHelper";
 
 import { setTimeOfDay} from "../helpers/questionHelper";
@@ -24,7 +25,7 @@ import { setTimeOfDay} from "../helpers/questionHelper";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
-    randomizedQuestions: [],
+    questionsArray: questions,
     organizedQuestionsByTime: {},
     biodatas: [],
     userEntries: [],
@@ -41,20 +42,11 @@ export default function useApplicationData() {
   });
 
   useEffect(() => {
-    console.log("GETTTTING QUESTIONS")
-    Promise.all([axios.get("/api/questions"), axios.get("/api/biodatas")])
-      .then(all => {
-        let organizedQuestions = organizeQuestionsByTime(all[0].data)
-        let randomizedQuestions = randomizeQuestions(all[0].data)
-        console.log("DIVIDED: ", organizedQuestions)
+        let organizedQuestions = organizeQuestionsByTime(questions)
         setState(state => ({
           ...state,
-          randomizedQuestions: randomizedQuestions,
           organizedQuestionsByTime: organizedQuestions,
-          biodatas: all[1].data
         }));
-      })
-      .catch(err => err.message);
   }, []);
 
   // Axios PUT to update db Level

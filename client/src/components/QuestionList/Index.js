@@ -22,8 +22,6 @@ export default function QuestionFeed(props) {
   }));
   const classes = useStyles();
 
-  // console.log('questions answered today', props.answeredGoals)
-
   let selectedQuestions = props.questions.slice(0, props.level);
   let questionsArr = selectedQuestions.map(goal => {
     return {
