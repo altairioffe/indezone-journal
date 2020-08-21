@@ -277,25 +277,12 @@ export default function useApplicationData() {
 
   // log out & reset user state
   const logOutUser = () => {
-    setState({
-      ...state,
-      currentUser: null,
-      level: null,
-      answer: null,
-      userEntries: null,
-      currentUserWordCount: 0,
-      currentUserInsight: "",
-      level: 1,
-      loginError: false,
-      userMood: "",
-      timeOfDay: "",
-      renderMainPage: false
-    });
-
+console.log("LOGGING OUT")
+    let data = state.currentUser
     return Promise.resolve(
       axios
         .post("api/logout", {
-          
+          data
         })
         .then(x =>
           console.log(
@@ -303,6 +290,22 @@ export default function useApplicationData() {
             state
           )
         )
+        .then(x => {
+          setState({
+            ...state,
+            currentUser: null,
+            level: null,
+            answer: null,
+            userEntries: null,
+            currentUserWordCount: 0,
+            currentUserInsight: "",
+            level: 1,
+            loginError: false,
+            userMood: "",
+            timeOfDay: "",
+            renderMainPage: false
+          });
+        })
         .catch(err => {
           console.log("LOG ERROR: ", err);
           setState(state => ({
