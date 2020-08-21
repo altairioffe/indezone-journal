@@ -2,6 +2,7 @@ const express = require("express");
 let router = express.Router();
 let db = require("../db/models/index");
 let bcrypt = require ('bcryptjs');
+let session = require('express-session');
 
 const { doesEmailExist } = require("./routeHelpers/userHelpers");
 
@@ -22,7 +23,7 @@ router.post("/", (req, res) => {
     .findAll()
     .then(users => {
       console.log("FROM DB.User")
-      let retrievedUsers = users.map(user => user.dataValues);
+      let retrievedUsers = users.map(user => user.dataValues); 
       //res.send(users)
       if (!doesEmailExist(email, retrievedUsers)) {
         console.log("email does not exist")
@@ -38,8 +39,9 @@ router.post("/", (req, res) => {
         return res.status(400).send({error: "email does not exist"})
       }
       if (bcrypt.compareSync(password, foundUser.password)) {
-        console.log( "Found USER SFTER BCRYPT COMPARE: ", bcrypt.compareSync(password, foundUser.password) )
+        console.log( "***********Found USER", foundUser )
         let userData = foundUser;
+        req.session.user = userData
         res.status(200).send(userData);
       } 
     })

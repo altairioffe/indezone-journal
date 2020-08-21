@@ -8,12 +8,9 @@ import {
   getBio,
   getUserWordCount
 } from "../helpers/userHelper";
-import {
-  organizeQuestionsByTime,
-  questions
-} from "../helpers/questionHelper";
+import { organizeQuestionsByTime, questions } from "../helpers/questionHelper";
 
-import { setTimeOfDay} from "../helpers/questionHelper";
+import { setTimeOfDay } from "../helpers/questionHelper";
 
 /*
   - on login: if no post yesterday & no post today, reduce level by 1, update state & db
@@ -41,11 +38,11 @@ export default function useApplicationData() {
   });
 
   useEffect(() => {
-        let organizedQuestions = organizeQuestionsByTime(questions)
-        setState(state => ({
-          ...state,
-          organizedQuestionsByTime: organizedQuestions,
-        }));
+    let organizedQuestions = organizeQuestionsByTime(questions);
+    setState(state => ({
+      ...state,
+      organizedQuestionsByTime: organizedQuestions
+    }));
   }, []);
 
   // Axios PUT to update db Level
@@ -96,8 +93,8 @@ export default function useApplicationData() {
   };
 
   const dismissNewChallengeNotification = () => {
-     setState(state => ({...state, newChallengeNotification: false}));
-  }
+    setState(state => ({ ...state, newChallengeNotification: false }));
+  };
 
   //Set current user goals on login
   useEffect(() => {
@@ -126,16 +123,16 @@ export default function useApplicationData() {
   };
 
   const renderMainPage = () => {
-    setState(state => ({...state, renderMainPage: true}))
-  }
+    setState(state => ({ ...state, renderMainPage: true }));
+  };
 
-  const setUserMood = (mood) => {
-    setState(state => ({...state, userMood: mood}))
-  }
+  const setUserMood = mood => {
+    setState(state => ({ ...state, userMood: mood }));
+  };
 
   const setTime = () => {
-    setState(state => ({...state, timeOfDay: setTimeOfDay(moment())}))
-  }
+    setState(state => ({ ...state, timeOfDay: setTimeOfDay(moment()) }));
+  };
 
   // set Answer
   const setAnswer = function(ans) {
@@ -199,6 +196,7 @@ export default function useApplicationData() {
     });
   };
 
+  // Authenticate user, then callback to render d1ashboard
   const loginHandler = (email, password, loginCallback) => {
     if (email && password) {
       let data = {
@@ -234,7 +232,7 @@ export default function useApplicationData() {
   };
 
   const registrationHandler = (handle, email, password, loginCallback) => {
-    console.log("R> ", handle, email, password, loginCallback)
+    console.log("R> ", handle, email, password, loginCallback);
     if (handle && email && password) {
       let data = {
         handle: handle,
@@ -257,7 +255,7 @@ export default function useApplicationData() {
                 loginError: res.data.error
               }));
             } else {
-              console.log("HIT LOGIN HANDLER")
+              console.log("HIT LOGIN HANDLER");
               loginHandler(email, password, x =>
                 console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
               ).then(() => loginCallback());
@@ -275,7 +273,7 @@ export default function useApplicationData() {
       ...state,
       loginError: false
     }));
-  }
+  };
 
   // log out & reset user state
   const logOutUser = () => {
@@ -293,6 +291,30 @@ export default function useApplicationData() {
       timeOfDay: "",
       renderMainPage: false
     });
+
+    return Promise.resolve(
+      axios
+        .post("api/logout", {
+          
+        })
+        .then(x =>
+          console.log(
+            "----------------JUST LOGGED OOUUUUUTTTTT STATE------------------ ",
+            state
+          )
+        )
+        .catch(err => {
+          console.log("LOG ERROR: ", err);
+          setState(state => ({
+            ...state,
+            loginError: true
+          }));
+        })
+    );
+
+
+
+
     return state.currentUser;
   };
 
