@@ -34,8 +34,29 @@ export default function useApplicationData() {
     loginError: false,
     userMood: "",
     timeOfDay: "",
-    renderMainPage: false
+    renderMainPage: false,
+    token: ""
   });
+
+  useEffect(() => {
+    if (!state.token) {
+      return (
+        Promise.resolve(axios.get(`api/cookies/`))
+          //Set State using response from DB
+          .then(credentials => {
+            console.log("&&&&& CREDENTIALS &&&&&", credentials)
+            if (credentials.email && credentials.password) {
+              return loginHandler(
+                credentials.email,
+                credentials.password,
+                console.log("***?***!*!* LOGGING IN WITH COOOOOKKIEEESS*!*!*!")
+              );
+            }
+          })
+          .catch(err => console.log(err))
+      );
+    }
+  }, []);
 
   useEffect(() => {
     let organizedQuestions = organizeQuestionsByTime(questions);
@@ -277,8 +298,8 @@ export default function useApplicationData() {
 
   // log out & reset user state
   const logOutUser = () => {
-console.log("LOGGING OUT")
-    let data = state.currentUser
+    console.log("LOGGING OUT");
+    let data = state.currentUser;
     return Promise.resolve(
       axios
         .post("api/logout", {
@@ -314,9 +335,6 @@ console.log("LOGGING OUT")
           }));
         })
     );
-
-
-
 
     return state.currentUser;
   };
