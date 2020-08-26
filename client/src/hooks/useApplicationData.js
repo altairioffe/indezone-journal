@@ -40,12 +40,10 @@ export default function useApplicationData() {
 
   useEffect(() => {
     if (!state.token) {
-      console.log("1!!!!!")
       return (
         Promise.resolve(axios.get(`api/cookies/`))
           //Set State using response from DB
           .then(credentials => {
-            console.log("&&&&& CREDENTIALS &&&&&", credentials.data)
             if (credentials.data.email && credentials.data.password) {
               
               return loginHandler(
@@ -121,8 +119,6 @@ export default function useApplicationData() {
 
   //Set current user goals on login
   useEffect(() => {
-    console.log("--------USEEFFECT---STATE--------------", state);
-
     if (state.currentUser != null) {
       axios
         .get(`/api/userGoals/${state.currentUser.id}`)
@@ -184,7 +180,6 @@ export default function useApplicationData() {
         }));
         updateUserLevelOnEntry(newUserGoals);
       })
-      .then(() => console.log("STATE AFTER LEVEL UPDATE: ", state))
       .catch(err => console.log("error: ", err));
   };
 
@@ -247,12 +242,6 @@ export default function useApplicationData() {
             token: true
           })))
           .then(() => updateUserLevelOnLogin(state.userEntries))
-          .then(x =>
-            console.log(
-              "----------------JUST LOGGED IN STATE------------------ ",
-              state
-            )
-          )
           .catch(err => {
             setState(state => ({
               ...state,
@@ -279,13 +268,11 @@ export default function useApplicationData() {
           })
           .then(res => {
             if (res.data.error) {
-              console.log("ERROR RESPONSE: ", res.data.error);
               return setState(state => ({
                 ...state,
                 loginError: res.data.error
               }));
             } else {
-              console.log("HIT LOGIN HANDLER");
               loginHandler(email, password, x =>
                 console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
               ).then(() => loginCallback());
@@ -307,19 +294,12 @@ export default function useApplicationData() {
 
   // log out & reset user state
   const logOutUser = () => {
-    console.log("LOGGING OUT");
     let data = state.currentUser;
     return Promise.resolve(
       axios
         .post("api/logout", {
           data
         })
-        .then(x =>
-          console.log(
-            "----------------JUST LOGGED OOUUUUUTTTTT STATE------------------ ",
-            state
-          )
-        )
         .then(x => {
           setState({
             ...state,
