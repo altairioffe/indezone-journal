@@ -2,22 +2,23 @@ import React from "react";
 import moment from "moment";
 
 export function setTimeOfDay(currentTime) {
-  console.log("CURRENT TIME::, ", currentTime);
+  // console.log("CURRENT TIME::, ", currentTime);
 
-  console.log("MOMENT: ", moment({ hour: 5, minute: 59 }));
+  // console.log("MOMENT: ", moment({ hour: 5, minute: 59 }));
   if (
     moment(currentTime).isBetween(
       moment({ hour: 5 }),
       moment({ hour: 16, minute: 59 })
     )
   ) {
-    console.log("MOOOOMMMEENTT: ", "morning");
     return "morning";
   } else return "evening";
 }
 
-export function pickUserQuestions(organizedQuestions, timeOfDay, mood) {
+export function pickUserQuestions(timeOfDay, mood) {
   let time = timeOfDay;
+  const organizedQuestions = organizeQuestionsByTime(questions)
+  console.log("ORGOOOOO, ", organizedQuestions)
   switch (time) {
     case "morning":
       if (mood === "happy") {
@@ -49,7 +50,7 @@ export function organizeQuestionsByTime(questions) {
       sad: []
     }
   };
-
+console.log("WUESTIONS>>>>>>>", questions)
   dividedQuestions.morning.happy.push(
     randomizeQuestions(questions.slice(0, 12))
   );
@@ -82,7 +83,7 @@ export function randomizeQuestions(questions) {
 
   shufflingQuestions.unshift(firstGoal);
   shufflingQuestions.push(lastGoal);
-  console.log("RANDOMIZED LIST: ", shufflingQuestions);
+  // console.log("RANDOMIZED LIST: ", shufflingQuestions);
   return shufflingQuestions;
 }
 

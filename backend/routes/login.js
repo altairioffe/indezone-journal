@@ -11,7 +11,7 @@ const { doesEmailExist } = require("./routeHelpers/userHelpers");
 //get all users
 router.post("/", (req, res) => {
   console.log("REQ: ", req.body);
-  console.log("REQ: ", req.body.data.email);
+  console.log("REQ EMAIL: ", req.body.data.email);
   // console.log("HIT POST ROUTE LOGIN: ", req.body,data.email);
 
   const email = req.body.data.email;
@@ -38,10 +38,10 @@ router.post("/", (req, res) => {
         console.log( "NOT FOUND USER AFTER BCRYPT COMPARE" )
         return res.status(400).send({error: "email does not exist"})
       }
-      if (bcrypt.compareSync(password, foundUser.password)) {
-        console.log( "***********Found USER", foundUser )
+      if (bcrypt.compareSync(password, foundUser.password) || req.session.user.password === foundUser.password) {
+        console.log( "***********Found USER, LOGGING IN", req.session.user)
         let userData = foundUser;
-        req.session.user = userData
+        !req.session.user ? req.session.user = userData : ""
         res.status(200).send(userData);
       } 
     })

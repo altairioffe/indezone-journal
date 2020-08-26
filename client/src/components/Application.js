@@ -104,7 +104,6 @@ export default function Application() {
                 ansQuestion={ansQuestion}
                 level={state.level}
                 questions={pickUserQuestions(
-                  state.organizedQuestionsByTime,
                   state.timeOfDay,
                   state.userMood
                 )}

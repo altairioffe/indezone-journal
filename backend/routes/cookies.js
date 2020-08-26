@@ -8,9 +8,10 @@ let session = require('express-session');
 
 //get all users
 router.get("/", (req, res) => {
-  console.log("COOOKIEES ROUTE: ", req.session);
-  console.log("REQ: ", req.body.data.email);
-  const credentials = req.session.user
+  console.log("***COOOKIEES ROUTE: ", req.session);
+  //console.log("REQ: ", req.body.data.email);
+  const credentials = {email: req.session.user.email, password: req.session.user.password}
+  res.send(credentials)
 });
 
 module.exports = router;

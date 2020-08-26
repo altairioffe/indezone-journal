@@ -35,31 +35,34 @@ export default function useApplicationData() {
     userMood: "",
     timeOfDay: "",
     renderMainPage: false,
-    token: ""
+    token: false
   });
 
   useEffect(() => {
     if (!state.token) {
+      console.log("1!!!!!")
       return (
         Promise.resolve(axios.get(`api/cookies/`))
           //Set State using response from DB
           .then(credentials => {
-            console.log("&&&&& CREDENTIALS &&&&&", credentials)
-            if (credentials.email && credentials.password) {
+            console.log("&&&&& CREDENTIALS &&&&&", credentials.data)
+            if (credentials.data.email && credentials.data.password) {
+              
               return loginHandler(
-                credentials.email,
-                credentials.password,
-                console.log("***?***!*!* LOGGING IN WITH COOOOOKKIEEESS*!*!*!")
+                credentials.data.email,
+                credentials.data.password,
+                x => console.log("FROM USEEFFECTUPTOP")
               );
             }
           })
-          .catch(err => console.log(err))
+          .catch(err => console.log("COOKIES LOGIN ERROR: ", err))
       );
     }
   }, []);
 
   useEffect(() => {
     let organizedQuestions = organizeQuestionsByTime(questions);
+    console.log("%%%%%%%% ORG", organizedQuestions)
     setState(state => ({
       ...state,
       organizedQuestionsByTime: organizedQuestions
@@ -210,11 +213,13 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
+    console.log("#########", user_data)
     setState({
       ...state,
       currentUser: user_data,
       level: user_data.points || 1
     });
+    console.log("@@@@@@@@@@@@STATE@@@@", state)
   };
 
   // Authenticate user, then callback to render d1ashboard
@@ -230,10 +235,16 @@ export default function useApplicationData() {
             data
           })
           .then(response => {
+            console.log("$$$$$$$RESPONSE", response.data)
             return setCurrentUser(response.data);
           })
           .then(() => setTime())
+          .then(() => console.log("***********&&&&&&&^^^^^"))
           .then(() => loginCallback())
+          .then(() => setState(state => ({
+            ...state,
+            token: true
+          })))
           .then(() => updateUserLevelOnLogin(state.userEntries))
           .then(x =>
             console.log(

@@ -55,7 +55,7 @@ export default function Navbar(props) {
   });
   const classes = useStyles();
   // Here are the states to keep track of login process
-  const [loginState, setLoginState] = useState(1);
+  const [loginState, setLoginState] = useState(props.user && 2 || 1);
   const [loginEmail, setLoginEmail] = useState(null);
   const [loginPassword, setLoginPassword] = useState(null);
   const [user, setUser] = useState(props.user);
@@ -108,7 +108,6 @@ export default function Navbar(props) {
                   style={{ padding: "0", margin: "0" }}>
 
                   <Grid item justify="flex-end" mr="0">
-                    <Grow in={loginState === 2} timeout={500} unmountOnExit>
                       <Typography
                         variant="body2"
                         style={{ color: "gray" }}
@@ -123,7 +122,6 @@ export default function Navbar(props) {
                           {props.level}
                         </strong>
                       </Typography>
-                    </Grow>
                   </Grid>
 
                   <Grid item justify="flex-end" mr="0">
@@ -138,14 +136,12 @@ export default function Navbar(props) {
                         level={props.level}
                       />
                       )}
-                      <Grow in={loginState === 2} timeout={500} unmountOnExit>
                         <Button
                           onClick={() => logout()}
                           size="medium"
                           style={{ textTransform: "none", padding: "0" }}>
                           Logout
                         </Button>
-                      </Grow>
                     </Box>
                   </Grid>
                 </Container>
