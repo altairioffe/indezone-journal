@@ -65,7 +65,7 @@ export default function Rewards(props) {
       },
 
       "80%": {
-        transform: "scale(1.2)"
+        transform: "scale(1.05)"
       },
 
       "100%": {
