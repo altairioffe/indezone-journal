@@ -148,7 +148,7 @@ export const questions = [
   {
     id: 12,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, plans, or anything else you'd like"
+    suggestion: "Use this space for ideas, insights, or anything else you'd like"
   },
   {
     id: 13,
@@ -157,9 +157,9 @@ export const questions = [
   },
   {
     id: 14,
-    question: "Imagine you are being too hard on yourself. What do you notice?",
+    question: "Consider how you're being too hard on yourself. What do you notice?",
     suggestion:
-      "Negative self-talk often comes from believing that you cannot change"
+      "High expectations can de-motivate you if they don't feel attainable"
   },
   {
     id: 15,
@@ -209,13 +209,13 @@ export const questions = [
   },
   {
     id: 23,
-    question: "How can you apply a growth mindset today?",
-    suggestion: "What would change in your thoughts and behaviour?"
+    question: "What's a situation where you can apply a growth mindset today?",
+    suggestion: "Describe your thoughts and actions in that mindset"
   },
   {
     id: 24,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, plans, or anything else you'd like"
+    suggestion: "Use this space for ideas, insights, or anything else you'd like"
   },
   {
     id: 25,
@@ -277,7 +277,7 @@ export const questions = [
   {
     id: 36,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, plans, or anything else you'd like"
+    suggestion: "Use this space for ideas, insights, or anything else you'd like"
   },
   {
     id: 37,
@@ -340,6 +340,6 @@ export const questions = [
   {
     id: 48,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, plans, or anything else you'd like"
+    suggestion: "Use this space for ideas, insights, or anything else you'd like"
   }
 ];

@@ -218,7 +218,7 @@ export default function useApplicationData() {
   const loginHandler = (email, password, loginCallback) => {
     if (email && password) {
       let data = {
-        email: email,
+        email: email.toLowerCase(),
         password: password
       };
       return Promise.resolve(
@@ -256,7 +256,7 @@ export default function useApplicationData() {
     if (handle && email && password) {
       let data = {
         handle: handle,
-        email: email,
+        email: email.toLowerCase(),
         password: password,
         points: 1
       };
@@ -304,7 +304,6 @@ export default function useApplicationData() {
           setState({
             ...state,
             currentUser: null,
-            level: null,
             answer: null,
             userEntries: null,
             currentUserWordCount: 0,
@@ -324,8 +323,6 @@ export default function useApplicationData() {
           }));
         })
     );
-
-    return state.currentUser;
   };
 
   const setInsight = currentUserInsight =>
