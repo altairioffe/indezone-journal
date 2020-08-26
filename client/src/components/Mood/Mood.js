@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 // core components
 import GridContainer from "../Grid/GridContainer.js";
@@ -14,8 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Fade from "@material-ui/core/Fade";
 import Typography from "@material-ui/core/Typography";
 import LoadingImage from "./Loading";
-
-import { Button } from "@material-ui/core";
 
 export default function Login(props) {
   const [moodSelection, setMoodSelection] = useState("");

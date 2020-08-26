@@ -33,13 +33,12 @@ export default function QuestionList(props) {
   let finalQuestion = props.questions[props.questions.length - 1];
 
   const questionsFilteredList = questionsArr.map((goal) => {
-    let i = 0
     return (
       <div>
         <Slide direction="up" in={false}>
           <QuestionPanel
             style={{ background: "rgb(255,255,255, 0)" }}
-            key={i += 1}
+            key={goal.id}
             question={goal.question}
             suggestion={goal.suggestion}
             ansQuestion={props.ansQuestion}
@@ -60,7 +59,7 @@ export default function QuestionList(props) {
       <Slide direction="up" in={false}>
         <QuestionPanel
           finalQuestion={true}
-          //key={questionsFilteredList.length}
+          key={finalQuestion.id}
           question={`BONUS: ${finalQuestion.question}`}
           suggestion={finalQuestion.suggestion}
           ansQuestion={props.ansQuestion}

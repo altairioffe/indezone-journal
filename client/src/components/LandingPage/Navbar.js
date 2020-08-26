@@ -3,15 +3,10 @@ import "../../ComponentStyles/Navbar.scss";
 import React, { useState } from "react";
 import {
   Button,
-  TextField,
-  Grow,
   Box,
   Container,
-  Slide,
   Collapse,
   Grid,
-  Card,
-  CardMedia,
   AppBar,
   Typography
 } from "@material-ui/core";
