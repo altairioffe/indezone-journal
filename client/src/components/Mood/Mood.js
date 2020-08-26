@@ -106,7 +106,7 @@ export default function Login(props) {
                     simple="true"
                     onClick={() => setUserMood("happy")}
                     color="primary"
-                    size="large">
+                    >
                     <img src={"../images/happy-brain.svg"} className={classes.image}/>
                   </IconButton>
                 </Fade>
@@ -131,8 +131,7 @@ export default function Login(props) {
                     simple="true"
                     onClick={() => setUserMood("sad")}
                     color="primary"
-                    fullWidth="true"
-                    size="large">
+                    >
                     <img src={"../images/sad-brain.svg"} className={classes.image}/>
                   </IconButton>
                 </Fade>

@@ -55,7 +55,7 @@ export default function Navbar(props) {
   });
   const classes = useStyles();
   // Here are the states to keep track of login process
-  const [loginState, setLoginState] = useState(props.user && 2 || 1);
+  const [loginState, setLoginState] = useState((props.user && 2) || 1);
   const [loginEmail, setLoginEmail] = useState(null);
   const [loginPassword, setLoginPassword] = useState(null);
   const [user, setUser] = useState(props.user);
@@ -85,13 +85,11 @@ export default function Navbar(props) {
           container
           direction="row"
           justify="space-between"
-          alignItems="flex-start"
-          flexGrow={1}>
+          alignItems="flex-start">
           <Grid item xs={6}>
             <Box
               pt={0}
               m={0}
-              flexGrow={1}
               bgcolor="none"
               style={{ height: "100%", width: "100%", maxWidth: "20vh" }}>
               <img src="images/indezone.png" height="100%" width="100%" />
@@ -106,42 +104,37 @@ export default function Navbar(props) {
                   p={0}
                   m={0}
                   style={{ padding: "0", margin: "0" }}>
-
-                  <Grid item justify="flex-end" mr="0">
-                      <Typography
-                        variant="body2"
-                        style={{ color: "gray" }}
-                        className={classes.title}
-                        align="right">
-                        Welcome,{" "}
-                        <strong>
-                          {props.user ? props.user.handle : "error"}.
-                        </strong>{" "}
-                        Level:{" "}
-                        <strong style={{ color: "#00A8E0" }}>
-                          {props.level}
-                        </strong>
-                      </Typography>
+                  <Grid item mr="0">
+                    <Typography
+                      variant="body2"
+                      style={{ color: "gray" }}
+                      className={classes.title}
+                      align="right">
+                      Welcome,{" "}
+                      <strong>
+                        {props.user ? props.user.handle : "error"}.
+                      </strong>{" "}
+                      Level:{" "}
+                      <strong style={{ color: "#00A8E0" }}>
+                        {props.level}
+                      </strong>
+                    </Typography>
                   </Grid>
 
-                  <Grid item justify="flex-end" mr="0">
+                  <Grid item mr="0">
                     <Box
                       display="flex"
                       p={0}
                       m={0}
                       bgcolor="none"
                       justifyContent="flex-end">
-                      {props.renderMainPage && (
-                      <Tutorial
-                        level={props.level}
-                      />
-                      )}
-                        <Button
-                          onClick={() => logout()}
-                          size="medium"
-                          style={{ textTransform: "none", padding: "0" }}>
-                          Logout
-                        </Button>
+                      {props.renderMainPage && <Tutorial level={props.level} />}
+                      <Button
+                        onClick={() => logout()}
+                        size="medium"
+                        style={{ textTransform: "none", padding: "0" }}>
+                        Logout
+                      </Button>
                     </Box>
                   </Grid>
                 </Container>

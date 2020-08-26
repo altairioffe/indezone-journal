@@ -40,13 +40,13 @@ export default function useApplicationData() {
 
   useEffect(() => {
     if (!state.token) {
-      return (
+
         Promise.resolve(axios.get(`api/cookies/`))
           //Set State using response from DB
           .then(credentials => {
             if (credentials.data.email && credentials.data.password) {
               
-              return loginHandler(
+               loginHandler(
                 credentials.data.email,
                 credentials.data.password,
                 x => console.log("FROM USEEFFECTUPTOP")
@@ -54,7 +54,7 @@ export default function useApplicationData() {
             }
           })
           .catch(err => console.log("COOKIES LOGIN ERROR: ", err))
-      );
+      
     }
   }, []);
 
