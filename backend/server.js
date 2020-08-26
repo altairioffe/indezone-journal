@@ -13,14 +13,11 @@ var logoutRouter = require('./routes/logout');
 var cookiesRouter = require('./routes/cookies');
 require("dotenv").config();
 
-
 var app = express();
 
 // view engine setup
-
 app.use(cors())
 app.use(logger('dev'));
-//app.use(cookieParser());
 app.enable('trust proxy');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -34,7 +31,6 @@ app.use(session({
       maxAge: 950400000
   }
 }));
-
 
 app.use('/', indexRouter);
 app.use('/api/users', usersRouter);

@@ -1,8 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-//Reset cookies
-
+//Clear cookies
 router.post("/", (req, res) => {
 
   res.clearCookie("user_sid");

@@ -50,4 +50,3 @@ export function getBio(bioData, currentUser) {
     return bio[0].text;
   }
 }
-

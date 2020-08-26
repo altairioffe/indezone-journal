@@ -40,21 +40,16 @@ export default function useApplicationData() {
 
   useEffect(() => {
     if (!state.token) {
-
-        Promise.resolve(axios.get(`api/cookies/`))
-          //Set State using response from DB
-          .then(credentials => {
-            if (credentials.data.email && credentials.data.password) {
-              
-               loginHandler(
-                credentials.data.email,
-                credentials.data.password,
-                x => console.log("FROM USEEFFECTUPTOP")
-              );
-            }
-          })
-          .catch(err => console.log("COOKIES LOGIN ERROR: ", err))
-      
+      Promise.resolve(axios.get(`api/cookies/`))
+        //Set State using response from DB
+        .then(credentials => {
+          if (credentials.data.email && credentials.data.password) {
+            loginHandler(credentials.data.email, credentials.data.password, x =>
+              console.log("FROM USEEFFECTUPTOP")
+            );
+          }
+        })
+        .catch(err => console.log("COOKIES LOGIN ERROR: ", err));
     }
   }, []);
 
@@ -99,7 +94,6 @@ export default function useApplicationData() {
 
   // increase user Level when submitting first post of the day
   const updateUserLevelOnEntry = userGoals => {
-
     let currentLevel = state.level;
     if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
       setState(state => ({
@@ -229,16 +223,18 @@ export default function useApplicationData() {
               id: response.data.id,
               handle: response.data.handle,
               email: response.data.email,
-              points: response.data.points,
-            }
+              points: response.data.points
+            };
             return setCurrentUser(currentUser);
           })
           .then(() => setTime())
           .then(() => loginCallback())
-          .then(() => setState(state => ({
-            ...state,
-            token: true
-          })))
+          .then(() =>
+            setState(state => ({
+              ...state,
+              token: true
+            }))
+          )
           .then(() => updateUserLevelOnLogin(state.userEntries))
           .catch(err => {
             setState(state => ({
