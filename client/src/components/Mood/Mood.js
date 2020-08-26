@@ -149,7 +149,7 @@ export default function Login(props) {
             </GridItem>
           </GridContainer>
           {moodSelection && (
-            <Fade in={moodSelection} timeout={3000}>
+            <Fade in={moodSelection === true} timeout={3000}>
               <Card className={classes.innerCard}>
               <LoadingImage
                 mood={moodSelection}

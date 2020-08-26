@@ -95,7 +95,7 @@ export default function Rewards(props) {
               className={classes.button}
               onClick={() => handleClick()}
               simple="true"
-              size="large">
+              size="medium">
               <img
                 src={levelOneNotification || props.newChallengeNotification ? "../images/indezone-icon-alert.png" : "../images/indezone-icon.png"}
                 className={classes.image}
@@ -105,7 +105,7 @@ export default function Rewards(props) {
         )}
 
         <Dialog
-          maxWidth="false"
+          maxWidth={false}
           onClose={() => setOpenDialog(false)}
           aria-labelledby="customized-dialog-title"
           open={openDialog}>

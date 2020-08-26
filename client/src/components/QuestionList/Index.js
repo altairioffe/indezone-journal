@@ -7,7 +7,7 @@ import QuestionPanel from "./QuestionPanel";
 
 import Slide from "@material-ui/core/Slide";
 
-export default function QuestionFeed(props) {
+export default function QuestionList(props) {
   const useStyles = makeStyles(theme => ({
     root: {
       textAlign: "center",
@@ -32,13 +32,14 @@ export default function QuestionFeed(props) {
   });
   let finalQuestion = props.questions[props.questions.length - 1];
 
-  const questionsFilteredList = questionsArr.map((goal, i) => {
+  const questionsFilteredList = questionsArr.map((goal) => {
+    let i = 0
     return (
       <div>
         <Slide direction="up" in={false}>
           <QuestionPanel
             style={{ background: "rgb(255,255,255, 0)" }}
-            key={i}
+            key={i += 1}
             question={goal.question}
             suggestion={goal.suggestion}
             ansQuestion={props.ansQuestion}
@@ -59,7 +60,7 @@ export default function QuestionFeed(props) {
       <Slide direction="up" in={false}>
         <QuestionPanel
           finalQuestion={true}
-          key={questionsFilteredList.length}
+          //key={questionsFilteredList.length}
           question={`BONUS: ${finalQuestion.question}`}
           suggestion={finalQuestion.suggestion}
           ansQuestion={props.ansQuestion}

@@ -37,7 +37,6 @@ export default function SimpleExpansionPanel(props) {
 
   return (
     <ExpansionPanel
-      smUp="hide"
       className={props.finalQuestion && classes.finalQuestion || classes.root}
       TransitionProps={{ unmountOnExit: true }}
       >
@@ -60,7 +59,6 @@ export default function SimpleExpansionPanel(props) {
             ansQuestion={props.ansQuestion}
             suggestion={props.suggestion}
             currentUserId={props.currentUserId}
-            goalId={props.goalId}
           />
         </div>
       </ExpansionPanelDetails>
