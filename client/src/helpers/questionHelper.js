@@ -132,7 +132,7 @@ export const questions = [
   },
   {
     id: 9,
-    question: "What would you do differently if today was your last day?",
+    question: "If today was your last day, how would you spend it?",
     suggestion: "Get the most out of your day"
   },
   {
