@@ -1,7 +1,5 @@
 var createError = require('http-errors');
 var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
 let session = require('express-session');
 var logger = require('morgan');
 var cors = require('cors')
@@ -14,6 +12,8 @@ var userInsightRouter = require('./routes/userInsight');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var cookiesRouter = require('./routes/cookies');
+require("dotenv").config();
+
 
 var app = express();
 
@@ -28,11 +28,11 @@ app.use(express.urlencoded({ extended: false }));
 
 app.use(session({
   key: 'user_sid',
-  secret: 'somerandonstuffs',
+  secret: process.env.session_secret,
   resave: false,
   saveUninitialized: false,
   cookie: {
-      expires: 600000
+      maxAge: 950400000
   }
 }));
 
