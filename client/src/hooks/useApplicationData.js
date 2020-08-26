@@ -233,6 +233,7 @@ export default function useApplicationData() {
           })
           .then(response => {
             const currentUser = {
+              id: response.data.id,
               handle: response.data.handle,
               email: response.data.email,
               points: response.data.points,

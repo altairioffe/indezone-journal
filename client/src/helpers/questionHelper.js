@@ -18,7 +18,6 @@ export function setTimeOfDay(currentTime) {
 export function pickUserQuestions(timeOfDay, mood) {
   let time = timeOfDay;
   const organizedQuestions = organizeQuestionsByTime(questions)
-  console.log("ORGOOOOO, ", organizedQuestions)
   switch (time) {
     case "morning":
       if (mood === "happy") {
@@ -50,7 +49,6 @@ export function organizeQuestionsByTime(questions) {
       sad: []
     }
   };
-console.log("WUESTIONS>>>>>>>", questions)
   dividedQuestions.morning.happy.push(
     randomizeQuestions(questions.slice(0, 12))
   );
@@ -83,7 +81,6 @@ export function randomizeQuestions(questions) {
 
   shufflingQuestions.unshift(firstGoal);
   shufflingQuestions.push(lastGoal);
-  // console.log("RANDOMIZED LIST: ", shufflingQuestions);
   return shufflingQuestions;
 }
 
