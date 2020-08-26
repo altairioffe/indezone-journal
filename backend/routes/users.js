@@ -36,16 +36,12 @@ router.post("/", (req, res) => {
   db.user
     .findAll()
     .then(users => {
-      console.log("FROM DB.User");
       let retrievedUsers = users.map(user => user.dataValues);
       //res.send(users)
       if (doesEmailExist(req.body.data.email, retrievedUsers)) {
-        console.log("email already exists");
         return res.send({ error: "email already exists" });
       } else {
-        console.log("FROM BACKEND: ", req.body.data);
         let hashedPass = bcrypt.hashSync(req.body.data.password, 12);
-        console.log("hashedPass: ", hashedPass);
 
         db.user.create({
           handle: req.body.data.handle,
@@ -65,12 +61,7 @@ router.post("/", (req, res) => {
 
 //Update user level
 router.put("/:id", (req, res) => {
-  console.log(
-    "HIT PUT ROUTE params: ",
-    req.params,
-    "HIT PUT ROUTE body: ",
-    req.body
-  );
+
   db.user
     .update({ points: req.body.points }, { where: { id: req.params.id } })
     .then(response => {

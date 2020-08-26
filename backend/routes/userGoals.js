@@ -14,7 +14,6 @@ router.get("/", (req, res) => {
 
 //Get specific user's goals
 router.get("/:id", (req, res) => {
-  // console.log("HIT SPECIFIC USER ROUTE: ", req.params.id)
   db.user_goal.findAll({
     where: { user_id: req.params.id }
   }).then(userGoals => {
@@ -27,7 +26,6 @@ router.get("/:id", (req, res) => {
 
 // Post specific goal
 router.post("/", (req, res) => {
-  // console.log("BACKEND POST REQ: ", req.body)
   db.user_goal.create({goal_id:req.body.goal_id,user_id:req.body.user_id,answer:req.body.answer,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()

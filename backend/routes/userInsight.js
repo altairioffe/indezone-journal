@@ -33,7 +33,6 @@ let params = {
 // Execute API call using formatted user goal parameters, return paragraph response
 getInsights(params)
   .then(insight => {
-    console.log("Response From backend POST ROUTE: ", insight)
     res.send(insight)
   })
   .catch(err => console.log("ERROR: ", err))

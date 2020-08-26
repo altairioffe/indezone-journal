@@ -99,7 +99,6 @@ export default function useApplicationData() {
 
   // increase user Level when submitting first post of the day
   const updateUserLevelOnEntry = userGoals => {
-    console.log("FIRST POST?: ", checkIfFirstPostToday(userGoals));
 
     let currentLevel = state.level;
     if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
@@ -200,7 +199,6 @@ export default function useApplicationData() {
         return goal_id;
       })
       .catch(() => {
-        console.log("ERROR");
         return "error";
       });
   };

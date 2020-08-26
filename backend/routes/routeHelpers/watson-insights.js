@@ -24,7 +24,6 @@ const personalityInsights = new PersonalityInsightsV3({
 const getTextSummary = personalityProfile => {
   let textSummary = v3EnglishTextSummaries.getSummary(personalityProfile);
   if (typeof (textSummary) !== 'string') {
-    console.log("Could not get summary.");
   } else {
     return textSummary;
   }
@@ -35,7 +34,6 @@ const getInsights = inputData => {
   return new Promise(resolve => {
     personalityInsights.profile(inputData, function(error, response) {
     if (error) {
-       console.log('Error:', error);
     } else {
        resolve(getTextSummary(response.result))
       }

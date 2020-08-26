@@ -1,10 +1,7 @@
-import React from "react";
 import moment from "moment";
 
 export function setTimeOfDay(currentTime) {
-  // console.log("CURRENT TIME::, ", currentTime);
 
-  // console.log("MOMENT: ", moment({ hour: 5, minute: 59 }));
   if (
     moment(currentTime).isBetween(
       moment({ hour: 5 }),
@@ -17,7 +14,8 @@ export function setTimeOfDay(currentTime) {
 
 export function pickUserQuestions(timeOfDay, mood) {
   let time = timeOfDay;
-  const organizedQuestions = organizeQuestionsByTime(questions)
+  const organizedQuestions = organizeQuestionsByTime(questions);
+
   switch (time) {
     case "morning":
       if (mood === "happy") {
@@ -27,6 +25,8 @@ export function pickUserQuestions(timeOfDay, mood) {
       if (mood === "happy") {
         return organizedQuestions.evening.happy[0];
       } else return organizedQuestions.evening.sad[0];
+    default:
+      return organizedQuestions.morning.happy[0];
   }
 }
 
@@ -148,7 +148,8 @@ export const questions = [
   {
     id: 12,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, insights, or anything else you'd like"
+    suggestion:
+      "Use this space for ideas, insights, or anything else you'd like"
   },
   {
     id: 13,
@@ -157,7 +158,8 @@ export const questions = [
   },
   {
     id: 14,
-    question: "Consider how you're being too hard on yourself. What do you notice?",
+    question:
+      "Consider how you're being too hard on yourself. What do you notice?",
     suggestion:
       "High expectations can de-motivate you if they don't feel attainable"
   },
@@ -215,7 +217,8 @@ export const questions = [
   {
     id: 24,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, insights, or anything else you'd like"
+    suggestion:
+      "Use this space for ideas, insights, or anything else you'd like"
   },
   {
     id: 25,
@@ -277,7 +280,8 @@ export const questions = [
   {
     id: 36,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, insights, or anything else you'd like"
+    suggestion:
+      "Use this space for ideas, insights, or anything else you'd like"
   },
   {
     id: 37,
@@ -340,6 +344,7 @@ export const questions = [
   {
     id: 48,
     question: "What's on your mind?",
-    suggestion: "Use this space for ideas, insights, or anything else you'd like"
+    suggestion:
+      "Use this space for ideas, insights, or anything else you'd like"
   }
 ];

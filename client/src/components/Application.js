@@ -30,7 +30,6 @@ export default function Application() {
     setUserMood,
     dismissNewChallengeNotification
   } = useApplicationData();
-  console.log("------APPLICATION.JS state ------\n", state);
 
   const parallaxStyle = {
     width: "100vw",
@@ -38,9 +37,6 @@ export default function Application() {
     maxHeight: "100vh",
     maxWidth: "100%",
     backgroundRepeat: "no-repeat"
-  };
-  const containerStyle = {
-    height: "100vh"
   };
 
   return (
