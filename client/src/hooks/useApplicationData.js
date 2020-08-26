@@ -62,7 +62,6 @@ export default function useApplicationData() {
 
   useEffect(() => {
     let organizedQuestions = organizeQuestionsByTime(questions);
-    console.log("%%%%%%%% ORG", organizedQuestions)
     setState(state => ({
       ...state,
       organizedQuestionsByTime: organizedQuestions
@@ -213,13 +212,11 @@ export default function useApplicationData() {
 
   // set user state
   const setCurrentUser = user_data => {
-    console.log("#########", user_data)
     setState({
       ...state,
       currentUser: user_data,
       level: user_data.points || 1
     });
-    console.log("@@@@@@@@@@@@STATE@@@@", state)
   };
 
   // Authenticate user, then callback to render d1ashboard
@@ -235,11 +232,14 @@ export default function useApplicationData() {
             data
           })
           .then(response => {
-            console.log("$$$$$$$RESPONSE", response.data)
-            return setCurrentUser(response.data);
+            const currentUser = {
+              handle: response.data.handle,
+              email: response.data.email,
+              points: response.data.points,
+            }
+            return setCurrentUser(currentUser);
           })
           .then(() => setTime())
-          .then(() => console.log("***********&&&&&&&^^^^^"))
           .then(() => loginCallback())
           .then(() => setState(state => ({
             ...state,
@@ -253,7 +253,6 @@ export default function useApplicationData() {
             )
           )
           .catch(err => {
-            console.log("LOGINNN ERROR: ", err);
             setState(state => ({
               ...state,
               loginError: true
@@ -264,7 +263,6 @@ export default function useApplicationData() {
   };
 
   const registrationHandler = (handle, email, password, loginCallback) => {
-    console.log("R> ", handle, email, password, loginCallback);
     if (handle && email && password) {
       let data = {
         handle: handle,
@@ -279,7 +277,6 @@ export default function useApplicationData() {
             data
           })
           .then(res => {
-            console.log("RESPONSE FROM HANDLER: ", res.data.error);
             if (res.data.error) {
               console.log("ERROR RESPONSE: ", res.data.error);
               return setState(state => ({
