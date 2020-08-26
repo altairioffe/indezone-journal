@@ -2,22 +2,22 @@ import React from "react";
 import moment from "moment";
 
 export function setTimeOfDay(currentTime) {
-  console.log("CURRENT TIME::, ", currentTime);
+  // console.log("CURRENT TIME::, ", currentTime);
 
-  console.log("MOMENT: ", moment({ hour: 5, minute: 59 }));
+  // console.log("MOMENT: ", moment({ hour: 5, minute: 59 }));
   if (
     moment(currentTime).isBetween(
       moment({ hour: 5 }),
       moment({ hour: 16, minute: 59 })
     )
   ) {
-    console.log("MOOOOMMMEENTT: ", "morning");
     return "morning";
   } else return "evening";
 }
 
-export function pickUserQuestions(organizedQuestions, timeOfDay, mood) {
+export function pickUserQuestions(timeOfDay, mood) {
   let time = timeOfDay;
+  const organizedQuestions = organizeQuestionsByTime(questions)
   switch (time) {
     case "morning":
       if (mood === "happy") {
@@ -49,7 +49,6 @@ export function organizeQuestionsByTime(questions) {
       sad: []
     }
   };
-
   dividedQuestions.morning.happy.push(
     randomizeQuestions(questions.slice(0, 12))
   );
@@ -82,7 +81,6 @@ export function randomizeQuestions(questions) {
 
   shufflingQuestions.unshift(firstGoal);
   shufflingQuestions.push(lastGoal);
-  console.log("RANDOMIZED LIST: ", shufflingQuestions);
   return shufflingQuestions;
 }
 
@@ -134,7 +132,7 @@ export const questions = [
   },
   {
     id: 9,
-    question: "What would you do differently if today was your last day?",
+    question: "If today was your last day, how would you spend it?",
     suggestion: "Get the most out of your day"
   },
   {

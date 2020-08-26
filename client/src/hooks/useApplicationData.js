@@ -8,12 +8,9 @@ import {
   getBio,
   getUserWordCount
 } from "../helpers/userHelper";
-import {
-  organizeQuestionsByTime,
-  questions
-} from "../helpers/questionHelper";
+import { organizeQuestionsByTime, questions } from "../helpers/questionHelper";
 
-import { setTimeOfDay} from "../helpers/questionHelper";
+import { setTimeOfDay } from "../helpers/questionHelper";
 
 /*
   - on login: if no post yesterday & no post today, reduce level by 1, update state & db
@@ -37,15 +34,36 @@ export default function useApplicationData() {
     loginError: false,
     userMood: "",
     timeOfDay: "",
-    renderMainPage: false
+    renderMainPage: false,
+    token: false
   });
 
   useEffect(() => {
-        let organizedQuestions = organizeQuestionsByTime(questions)
-        setState(state => ({
-          ...state,
-          organizedQuestionsByTime: organizedQuestions,
-        }));
+    if (!state.token) {
+
+        Promise.resolve(axios.get(`api/cookies/`))
+          //Set State using response from DB
+          .then(credentials => {
+            if (credentials.data.email && credentials.data.password) {
+              
+               loginHandler(
+                credentials.data.email,
+                credentials.data.password,
+                x => console.log("FROM USEEFFECTUPTOP")
+              );
+            }
+          })
+          .catch(err => console.log("COOKIES LOGIN ERROR: ", err))
+      
+    }
+  }, []);
+
+  useEffect(() => {
+    let organizedQuestions = organizeQuestionsByTime(questions);
+    setState(state => ({
+      ...state,
+      organizedQuestionsByTime: organizedQuestions
+    }));
   }, []);
 
   // Axios PUT to update db Level
@@ -96,13 +114,11 @@ export default function useApplicationData() {
   };
 
   const dismissNewChallengeNotification = () => {
-     setState(state => ({...state, newChallengeNotification: false}));
-  }
+    setState(state => ({ ...state, newChallengeNotification: false }));
+  };
 
   //Set current user goals on login
   useEffect(() => {
-    console.log("--------USEEFFECT---STATE--------------", state);
-
     if (state.currentUser != null) {
       axios
         .get(`/api/userGoals/${state.currentUser.id}`)
@@ -126,16 +142,16 @@ export default function useApplicationData() {
   };
 
   const renderMainPage = () => {
-    setState(state => ({...state, renderMainPage: true}))
-  }
+    setState(state => ({ ...state, renderMainPage: true }));
+  };
 
-  const setUserMood = (mood) => {
-    setState(state => ({...state, userMood: mood}))
-  }
+  const setUserMood = mood => {
+    setState(state => ({ ...state, userMood: mood }));
+  };
 
   const setTime = () => {
-    setState(state => ({...state, timeOfDay: setTimeOfDay(moment())}))
-  }
+    setState(state => ({ ...state, timeOfDay: setTimeOfDay(moment()) }));
+  };
 
   // set Answer
   const setAnswer = function(ans) {
@@ -164,7 +180,6 @@ export default function useApplicationData() {
         }));
         updateUserLevelOnEntry(newUserGoals);
       })
-      .then(() => console.log("STATE AFTER LEVEL UPDATE: ", state))
       .catch(err => console.log("error: ", err));
   };
 
@@ -199,6 +214,7 @@ export default function useApplicationData() {
     });
   };
 
+  // Authenticate user, then callback to render d1ashboard
   const loginHandler = (email, password, loginCallback) => {
     if (email && password) {
       let data = {
@@ -211,19 +227,22 @@ export default function useApplicationData() {
             data
           })
           .then(response => {
-            return setCurrentUser(response.data);
+            const currentUser = {
+              id: response.data.id,
+              handle: response.data.handle,
+              email: response.data.email,
+              points: response.data.points,
+            }
+            return setCurrentUser(currentUser);
           })
           .then(() => setTime())
           .then(() => loginCallback())
+          .then(() => setState(state => ({
+            ...state,
+            token: true
+          })))
           .then(() => updateUserLevelOnLogin(state.userEntries))
-          .then(x =>
-            console.log(
-              "----------------JUST LOGGED IN STATE------------------ ",
-              state
-            )
-          )
           .catch(err => {
-            console.log("LOGINNN ERROR: ", err);
             setState(state => ({
               ...state,
               loginError: true
@@ -234,7 +253,6 @@ export default function useApplicationData() {
   };
 
   const registrationHandler = (handle, email, password, loginCallback) => {
-    console.log("R> ", handle, email, password, loginCallback)
     if (handle && email && password) {
       let data = {
         handle: handle,
@@ -249,15 +267,12 @@ export default function useApplicationData() {
             data
           })
           .then(res => {
-            console.log("RESPONSE FROM HANDLER: ", res.data.error);
             if (res.data.error) {
-              console.log("ERROR RESPONSE: ", res.data.error);
               return setState(state => ({
                 ...state,
                 loginError: res.data.error
               }));
             } else {
-              console.log("HIT LOGIN HANDLER")
               loginHandler(email, password, x =>
                 console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
               ).then(() => loginCallback());
@@ -275,24 +290,41 @@ export default function useApplicationData() {
       ...state,
       loginError: false
     }));
-  }
+  };
 
   // log out & reset user state
   const logOutUser = () => {
-    setState({
-      ...state,
-      currentUser: null,
-      level: null,
-      answer: null,
-      userEntries: null,
-      currentUserWordCount: 0,
-      currentUserInsight: "",
-      level: 1,
-      loginError: false,
-      userMood: "",
-      timeOfDay: "",
-      renderMainPage: false
-    });
+    let data = state.currentUser;
+    return Promise.resolve(
+      axios
+        .post("api/logout", {
+          data
+        })
+        .then(x => {
+          setState({
+            ...state,
+            currentUser: null,
+            level: null,
+            answer: null,
+            userEntries: null,
+            currentUserWordCount: 0,
+            currentUserInsight: "",
+            level: 1,
+            loginError: false,
+            userMood: "",
+            timeOfDay: "",
+            renderMainPage: false
+          });
+        })
+        .catch(err => {
+          console.log("LOG ERROR: ", err);
+          setState(state => ({
+            ...state,
+            loginError: true
+          }));
+        })
+    );
+
     return state.currentUser;
   };
 

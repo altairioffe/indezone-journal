@@ -37,10 +37,9 @@ export default function SimpleExpansionPanel(props) {
 
   return (
     <ExpansionPanel
-      smUp="hide"
       className={props.finalQuestion && classes.finalQuestion || classes.root}
       TransitionProps={{ unmountOnExit: true }}
-      iconButtonProps={{ color: "#00A8E0" }}>
+      >
       <ExpansionPanelSummary style={{backgroundColor: "rgb(240,240,240, 0.0)"}}
         expandIcon={<ExpandMoreIcon style={{ color: "#00A8E0", height: "3em", backgroundColor: "rgb(240,240,240, 0.0)" }} />}
         aria-controls="panel1a-content"
@@ -50,7 +49,7 @@ export default function SimpleExpansionPanel(props) {
         </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
-        <Typography className={classes.root}>
+        <div className={classes.root}>
           <Form
             className={(classes.heading, classes.root)}
             setAnswer={props.setAnswer}
@@ -60,9 +59,8 @@ export default function SimpleExpansionPanel(props) {
             ansQuestion={props.ansQuestion}
             suggestion={props.suggestion}
             currentUserId={props.currentUserId}
-            goalId={props.goalId}
           />
-        </Typography>
+        </div>
       </ExpansionPanelDetails>
     </ExpansionPanel>
   );

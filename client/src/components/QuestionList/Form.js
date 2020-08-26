@@ -63,7 +63,6 @@ export default function Form(props) {
           inputProps={{
             value: ans,
             type: "email",
-            backgroundColor: "white",
             onChange: function(e) {
               setAns(e.target.value);
               setLabelText([

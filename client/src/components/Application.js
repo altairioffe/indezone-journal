@@ -55,9 +55,6 @@ export default function Application() {
         backgroundRepeat="no-repeat">
         <Container
           className=""
-          //style={{position: "absolute"}}
-          // style={{width: '100vw',
-          // height: '100vh',backgroundImage: `url("/images/bg-pink-sky.jpg")`, backgroundSize: 'cover', maxWidth: "100%"}}
           style={{ minHeight: "100vh" }}>
           <Navbar
             users={state.users}
@@ -104,7 +101,6 @@ export default function Application() {
                 ansQuestion={ansQuestion}
                 level={state.level}
                 questions={pickUserQuestions(
-                  state.organizedQuestionsByTime,
                   state.timeOfDay,
                   state.userMood
                 )}

@@ -1,8 +1,6 @@
 import React, { useState } from "react";
 // @material-ui/core components
 import { makeStyles } from "@material-ui/core/styles";
-import InputAdornment from "@material-ui/core/InputAdornment";
-import Icon from "@material-ui/core/Icon";
 // @material-ui/icons
 // core components
 import GridContainer from "../Grid/GridContainer.js";
@@ -14,8 +12,6 @@ import IconButton from "@material-ui/core/IconButton";
 import Fade from "@material-ui/core/Fade";
 import Typography from "@material-ui/core/Typography";
 import LoadingImage from "./Loading";
-
-import { Button } from "@material-ui/core";
 
 export default function Login(props) {
   const [moodSelection, setMoodSelection] = useState("");
@@ -106,7 +102,7 @@ export default function Login(props) {
                     simple="true"
                     onClick={() => setUserMood("happy")}
                     color="primary"
-                    size="large">
+                    >
                     <img src={"../images/happy-brain.svg"} className={classes.image}/>
                   </IconButton>
                 </Fade>
@@ -131,8 +127,7 @@ export default function Login(props) {
                     simple="true"
                     onClick={() => setUserMood("sad")}
                     color="primary"
-                    fullWidth="true"
-                    size="large">
+                    >
                     <img src={"../images/sad-brain.svg"} className={classes.image}/>
                   </IconButton>
                 </Fade>
@@ -150,7 +145,7 @@ export default function Login(props) {
             </GridItem>
           </GridContainer>
           {moodSelection && (
-            <Fade in={moodSelection} timeout={3000}>
+            <Fade in={moodSelection === true} timeout={3000}>
               <Card className={classes.innerCard}>
               <LoadingImage
                 mood={moodSelection}

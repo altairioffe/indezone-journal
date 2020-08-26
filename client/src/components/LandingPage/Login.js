@@ -110,7 +110,7 @@ export default function Login(props) {
       setErrorMessage({ email: errorMessage.email, password: true });
     }
     if (validateEmail(email) && password) {
-      props.loginHandler(email, password, props.loginCallback)
+      props.loginHandler(email, password, props.loginCallback) 
     }
   };
 
