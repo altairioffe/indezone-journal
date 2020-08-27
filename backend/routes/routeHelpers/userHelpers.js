@@ -1,7 +1,4 @@
-const bcrypt = require("bcrypt");
-
 //Check if user email exists
-
 const doesEmailExist = function(email, users) {
   let foundUser;
 
