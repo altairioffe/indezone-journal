@@ -103,7 +103,7 @@ export default function Login(props) {
                     onClick={() => setUserMood("happy")}
                     color="primary"
                     >
-                    <img src={"../images/happy-brain.svg"} className={classes.image}/>
+                    <img src={"../images/happy-brain.svg"} alt="happy brain" className={classes.image}/>
                   </IconButton>
                 </Fade>
               )}
@@ -128,7 +128,7 @@ export default function Login(props) {
                     onClick={() => setUserMood("sad")}
                     color="primary"
                     >
-                    <img src={"../images/sad-brain.svg"} className={classes.image}/>
+                    <img src={"../images/sad-brain.svg"} alt="sad brain" className={classes.image}/>
                   </IconButton>
                 </Fade>
               )}

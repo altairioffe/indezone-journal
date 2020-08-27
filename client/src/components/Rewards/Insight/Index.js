@@ -1,15 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
-import Profile from "./Profile";
 import UserBio from "./UserBio";
 import Error from "./Error";
 import Insights from "./Insights";
 import Status from "./Loading";
-import PollIcon from "@material-ui/icons/Poll";
-import LockIcon from "@material-ui/icons/Lock";
-import InfoOutlinedIcon from "@material-ui/icons/InfoOutlined";
+
 import Card from "../../Card/Card.js";
-import { Button } from "@material-ui/core";
 import useVisualMode from "../../../hooks/useVisualMode";
 import { makeStyles } from "@material-ui/core/styles";
 

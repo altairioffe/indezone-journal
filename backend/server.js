@@ -11,17 +11,19 @@ var userInsightRouter = require('./routes/userInsight');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var cookiesRouter = require('./routes/cookies');
+const path = require('path');
 require("dotenv").config();
 
 var app = express();
 
 // view engine setup
 app.use(cors())
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../client/build')))
 app.use(logger('dev'));
 app.enable('trust proxy');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-
 app.use(session({
   key: 'user_sid',
   secret: process.env.session_secret,
@@ -41,6 +43,9 @@ app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
 app.use('/api/cookies', cookiesRouter);
 
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname + '/../client/build/index.html'))
+})
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));
