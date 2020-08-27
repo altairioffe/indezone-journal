@@ -94,7 +94,11 @@ export default function Rewards(props) {
               simple="true"
               size="medium">
               <img
-                src={levelOneNotification || props.newChallengeNotification ? "../images/indezone-icon-alert.png" : "../images/indezone-icon.png"}
+                src={
+                  levelOneNotification || props.newChallengeNotification
+                    ? "../images/indezone-icon-alert.png"
+                    : "../images/indezone-icon.png"
+                }
                 className={classes.image}
               />
             </IconButton>
@@ -118,11 +122,11 @@ export default function Rewards(props) {
                     xs={6}
                     sm={6}
                     md={6}
-                    style={{ textAlign: "right"}}
+                    style={{ textAlign: "right" }}
                     direction="column">
-                    <h2 style={{margin: "0px"}}>Level {props.level} </h2>
+                    <h2 style={{ margin: "0px" }}>Level {props.level} </h2>
                     <div>
-                      <h6 style={{margin: "0px"}}>
+                      <h6 style={{ margin: "0px" }}>
                         {" "}
                         <FlashOnIcon
                           style={{
@@ -135,10 +139,10 @@ export default function Rewards(props) {
                   </GridItem>
                   <GridItem xs={6} sm={6} md={6}>
                     <div style={{ textAlign: "left" }}>
-                        <img
-                          src={`images/brain-hats/brain-hats-${props.level}.png`}
-                          className={classes.avatar}
-                        />
+                      <img
+                        src={`images/brain-hats/brain-hats-${props.level}.png`}
+                        className={classes.avatar}
+                      />
                     </div>
                   </GridItem>
                 </GridContainer>
