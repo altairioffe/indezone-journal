@@ -8,13 +8,12 @@ import Mood from "./Mood/Mood";
 import useApplicationData from "../hooks/useApplicationData";
 import { answeredGoals } from "../helpers/filterbyToday";
 import { Container } from "@material-ui/core";
-import { Parallax, Background } from "react-parallax";
+import { Parallax } from "react-parallax";
 import { pickUserQuestions } from "../helpers/questionHelper";
 import { countPowerEntries } from "../helpers/questionHelper";
 
 export default function Application() {
   const {
-    logInUser,
     logOutUser,
     ansQuestion,
     state,
@@ -24,7 +23,6 @@ export default function Application() {
     registrationHandler,
     loginHandler,
     getBio,
-    setUserWordCount,
     resetLoginError,
     renderMainPage,
     setUserMood,
@@ -43,15 +41,13 @@ export default function Application() {
     <div>
       <Parallax
         className={parallaxStyle}
-        blur={! state.currentUser? 2 : 100}
+        blur={!state.currentUser ? 2 : 100}
         bgImage={require("./LandingPage/LandingImage/road-sky.jpg")}
         bgImageAlt="background"
         strength={800}
         bgStyle={{ backgroundAttachment: "fixed" }}
         backgroundRepeat="no-repeat">
-        <Container
-          className=""
-          style={{ minHeight: "100vh" }}>
+        <Container className="" style={{ minHeight: "100vh" }}>
           <Navbar
             users={state.users}
             logInUser={data => console.log(data)}
@@ -77,8 +73,7 @@ export default function Application() {
 
           {state.currentUser && state.renderMainPage && (
             <section className="feed">
-              <Greeting 
-              timeOfDay={state.timeOfDay}/>
+              <Greeting timeOfDay={state.timeOfDay} />
               <br />
               <Rewards
                 bio={getBio(state.biodatas, state.currentUser)}
@@ -87,38 +82,36 @@ export default function Application() {
                 requestInsight={requestInsight}
                 userEntries={state.userEntries}
                 userInsight={state.currentUserInsight}
-                dismissNewChallengeNotification={dismissNewChallengeNotification}
+                dismissNewChallengeNotification={
+                  dismissNewChallengeNotification
+                }
                 newChallengeNotification={state.newChallengeNotification}
                 powerEntries={countPowerEntries(state.userEntries)}
               />
               <div>
-                <br/>
-              <QuestionList
-                ansQuestion={ansQuestion}
-                level={state.level}
-                questions={pickUserQuestions(
-                  state.timeOfDay,
-                  state.userMood
-                )}
-                userEntries={state.userEntries}
-                setAnswer={setAnswer}
-                answer={state.answer}
-                addUserGoal={addUserGoal}
-                currentUserId={state.currentUser}
-                answeredGoals={answeredGoals(
-                  state.userEntries,
-                  state.currentUser
-                )}
-              />
-              <br />
-
-                {state.userEntries &&
-                  state.userEntries.length >= 1 && (
-                    <Wall
-                      userEntries={state.userEntries}
-                      questions={state.questionsArray}
-                    />
+                <br />
+                <QuestionList
+                  ansQuestion={ansQuestion}
+                  level={state.level}
+                  questions={pickUserQuestions(state.timeOfDay, state.userMood)}
+                  userEntries={state.userEntries}
+                  setAnswer={setAnswer}
+                  answer={state.answer}
+                  addUserGoal={addUserGoal}
+                  currentUserId={state.currentUser}
+                  answeredGoals={answeredGoals(
+                    state.userEntries,
+                    state.currentUser
                   )}
+                />
+                <br />
+
+                {state.userEntries && state.userEntries.length >= 1 && (
+                  <Wall
+                    userEntries={state.userEntries}
+                    questions={state.questionsArray}
+                  />
+                )}
               </div>
             </section>
           )}

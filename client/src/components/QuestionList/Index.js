@@ -1,6 +1,5 @@
 import "./styles.scss";
-
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { Card, CardContent, Typography } from "@material-ui/core";
 import QuestionPanel from "./QuestionPanel";
@@ -32,7 +31,7 @@ export default function QuestionList(props) {
   });
   let finalQuestion = props.questions[props.questions.length - 1];
 
-  const questionsFilteredList = questionsArr.map((goal) => {
+  const questionsFilteredList = questionsArr.map(goal => {
     return (
       <div>
         <Slide direction="up" in={false}>

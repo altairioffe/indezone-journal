@@ -37,7 +37,7 @@ export default function SimpleExpansionPanel(props) {
 
   return (
     <ExpansionPanel
-      className={props.finalQuestion && classes.finalQuestion || classes.root}
+      className={(props.finalQuestion && classes.finalQuestion) || classes.root}
       TransitionProps={{ unmountOnExit: true }}
       >
       <ExpansionPanelSummary style={{backgroundColor: "rgb(240,240,240, 0.0)"}}

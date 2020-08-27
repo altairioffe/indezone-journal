@@ -4,7 +4,7 @@ let db = require("../db/models/index");
 let bcrypt = require("bcryptjs");
 const { doesEmailExist } = require("./routeHelpers/userHelpers");
 
-//Get users
+//Get all users
 router.get("/", (req, res) => {
   db.user
     .findAll()
@@ -32,7 +32,7 @@ router.get("/:id", (req, res) => {
 
 //Create  user
 router.post("/", (req, res) => {
-//confirm email is not already in database
+  //confirm email is not already in database
   db.user
     .findAll()
     .then(users => {
@@ -61,7 +61,6 @@ router.post("/", (req, res) => {
 
 //Update user level
 router.put("/:id", (req, res) => {
-
   db.user
     .update({ points: req.body.points }, { where: { id: req.params.id } })
     .then(response => {
