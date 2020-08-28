@@ -32,6 +32,9 @@ router.get("/:id", (req, res) => {
 
 //Create  user
 router.post("/", (req, res) => {
+  console.log("REGISTERRRIN******")
+
+
   //confirm email is not already in database
   db.user
     .findAll()

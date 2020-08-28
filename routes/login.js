@@ -6,8 +6,6 @@ let session = require('express-session');
 
 const { doesEmailExist } = require("./routeHelpers/userHelpers");
 
-//Set cookies
-
 //get all users
 router.post("/", (req, res) => {
 
