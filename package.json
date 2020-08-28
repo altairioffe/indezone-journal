@@ -1,6 +1,0 @@
-{"scripts": {
-  "client": "cd client && npm start",
-  "backend": "cd backend && nodemon server.js",
-  "heroku-postbuild": "cd client && npm install --only=dev && npm install && npm run build"
-}
-}
