@@ -30,7 +30,7 @@
     "webpack": "4.28.3"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=8000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
@@ -48,5 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://indezone-journal-api.herokuapp.com/api"
+  "proxy": "http://localhost:3001"
 }

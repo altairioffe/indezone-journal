@@ -1,4 +1,5 @@
 var createError = require('http-errors');
+var http = require('http');
 var express = require('express');
 let session = require('express-session');
 var logger = require('morgan');
@@ -15,11 +16,14 @@ const path = require('path');
 require("dotenv").config();
 
 var app = express();
+// Serve static files from the React frontend app
+app.use(express.static(path.join(__dirname, '../client/build')))
+
+var port = process.env.PORT || '3001';
+app.set('port', port);
 
 // view engine setup
 app.use(cors())
-// Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, '../client/build')))
 app.use(logger('dev'));
 app.enable('trust proxy');
 app.use(express.json());
@@ -60,5 +64,8 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
  
 });
+
+const server = http.createServer(app);
+server.listen(port, () => console.log(`Running on localhost:${port}`));
 
 module.exports = app;
