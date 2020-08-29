@@ -48,5 +48,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://indezone-journal-api.herokuapp.com/"
+  "proxy": "https://indezone-journal-api.herokuapp.com/api"
 }
