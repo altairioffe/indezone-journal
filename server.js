@@ -17,7 +17,7 @@ require("dotenv").config();
 
 var app = express();
 // Serve static files from the React frontend app
-app.use(express.static(path.join(__dirname, '../client/build')))
+app.use(express.static(path.join(__dirname, 'client/build')))
 
 var port = process.env.PORT || '3001';
 app.set('port', port);
