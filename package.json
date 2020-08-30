@@ -1,4 +1,3 @@
-
 {
   "name": "backend",
   "version": "0.0.0",
@@ -7,7 +6,6 @@
     "start": "node server.js",
     "dev": "./node_modules/.bin/nodemon --ignore public/",
     "heroku-postbuild": "cd client && npm install && npm run build"
-
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",
@@ -20,6 +18,7 @@
     "express-session": "^1.17.1",
     "http-errors": "~1.6.3",
     "ibm-watson": "^5.4.0",
+    "memorystore": "^1.6.2",
     "morgan": "~1.9.1",
     "personality-text-summary": "^2.2.0",
     "pg": "^8.0.2",

@@ -1,7 +1,8 @@
 var createError = require('http-errors');
 var http = require('http');
 var express = require('express');
-let session = require('express-session');
+var session = require('express-session');
+var MemoryStore = require('memorystore')(session)
 var logger = require('morgan');
 var cors = require('cors')
 var indexRouter = require('./routes/index');
@@ -30,6 +31,9 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(session({
   key: 'user_sid',
+  store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
   secret: process.env.session_secret,
   resave: false,
   saveUninitialized: false,
