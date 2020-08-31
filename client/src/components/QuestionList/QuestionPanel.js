@@ -11,14 +11,14 @@ export default function SimpleExpansionPanel(props) {
   const useStyles = makeStyles(theme => ({
     root: {
       width: "100%",
-      backgroundColor: `rgb(240,240,240, 0.6)`,
+      backgroundColor: `rgb(240,245,250, 0.8)`,
       "& div": {
         backgroundColor: "inherit"
       }
     },
     finalQuestion: {
       width: "100%",
-      backgroundColor: `rgb(235,240,235, 0.6)`,
+      backgroundColor: `rgb(235,250,245, 0.8)`,
       "& div": {
         backgroundColor: "inherit"
       }

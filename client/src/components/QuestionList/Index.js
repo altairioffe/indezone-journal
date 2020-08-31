@@ -94,11 +94,3 @@ export default function QuestionList(props) {
     </section>
   );
 }
-
-/* let questionsArr = selectedQuestions.map( (goal) => {
-  return {
-    id:goal.id,
-    question:goal.question,
-    suggestion:goal.suggestion
-  }
-})  */
