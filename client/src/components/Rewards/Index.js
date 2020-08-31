@@ -23,6 +23,7 @@ export default function Rewards(props) {
       fontWeight: "300",
       flexGrow: 1,
       align: "center",
+      overflow: "visible",
       fontSize: "1.5em",
       "& small": {
         color: "skyblue"

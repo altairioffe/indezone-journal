@@ -27,9 +27,9 @@ export default function Insights(props) {
     <article className={classes.text}>
       <h2> From your answers, it is likely that: </h2>
       <p style={{ margin: "1em" }}>{props.insights}</p>
-      <h6>
-        Do you agree? Does this seem to align with your goals, or would some changes help you achieve them?
-      </h6>
+      <h5>
+        How does this tie into your goals? Are there changes that you'd like to make?
+      </h5>
 
       <Button
         className={classes.button}
