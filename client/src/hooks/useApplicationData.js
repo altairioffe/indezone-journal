@@ -30,7 +30,7 @@ export default function useApplicationData() {
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
-    newChallengeNotification: true,
+    newLessonNotification: true,
     loginError: false,
     userMood: "",
     timeOfDay: "",
@@ -98,7 +98,7 @@ export default function useApplicationData() {
     if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
       setState(state => ({
         ...state,
-        newChallengeNotification: true
+        newLessonNotification: true
       }));
       return levelHandler(state.currentUser.id, currentLevel + 1);
     } else {
@@ -106,8 +106,8 @@ export default function useApplicationData() {
     }
   };
 
-  const dismissNewChallengeNotification = () => {
-    setState(state => ({ ...state, newChallengeNotification: false }));
+  const dismissNewLessonNotification = () => {
+    setState(state => ({ ...state, newLessonNotification: false }));
   };
 
   //Set current user goals on login
@@ -351,6 +351,6 @@ export default function useApplicationData() {
     resetLoginError,
     renderMainPage,
     setUserMood,
-    dismissNewChallengeNotification
+    dismissNewLessonNotification
   };
 }

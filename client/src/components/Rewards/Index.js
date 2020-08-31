@@ -56,7 +56,7 @@ export default function Rewards(props) {
       width: "auto",
       margin: "-25px 0px -25px",
       animation:
-        ((levelOneNotification || props.newChallengeNotification) &&
+        ((levelOneNotification || props.newLessonNotification) &&
           `$pulse 2000ms infinite`) ||
         ""
     },
@@ -80,7 +80,7 @@ export default function Rewards(props) {
 
   const handleClick = () => {
     setOpenDialog(true);
-    props.dismissNewChallengeNotification();
+    props.dismissNewLessonNotification();
     setLevelOneNotification(false);
   };
 
@@ -89,26 +89,33 @@ export default function Rewards(props) {
       <Card className={classes.card}>
         {openDialog === false && (
           <>
-            <IconButton
-              className={classes.button}
-              onClick={() => handleClick()}
-              simple="true"
-              size="medium">
-              {(levelOneNotification || props.newChallengeNotification) && (
+            {(levelOneNotification || props.newLessonNotification) && (
+              <IconButton
+                className={classes.button}
+                onClick={() => handleClick()}
+                simple="true"
+                size="medium">
                 <img
                   src={"../images/indezone-icon-alert.png"}
                   className={classes.image}
                   alt="indezone notification"
                 />
-              )}
-              {!(levelOneNotification || props.newChallengeNotification) && (
+              </IconButton>
+            )}
+
+            {!(levelOneNotification || props.newLessonNotification) && (
+              <IconButton
+                className={classes.button}
+                onClick={() => handleClick()}
+                simple="true"
+                size="medium">
                 <img
                   src={"../images/indezone-icon.png"}
                   className={classes.image}
                   alt="indezone icon"
                 />
-              )}
-            </IconButton>
+              </IconButton>
+            )}
           </>
         )}
 

@@ -26,7 +26,7 @@ export default function Application() {
     resetLoginError,
     renderMainPage,
     setUserMood,
-    dismissNewChallengeNotification
+    dismissNewLessonNotification
   } = useApplicationData();
 
   const parallaxStyle = {
@@ -82,10 +82,10 @@ export default function Application() {
                 requestInsight={requestInsight}
                 userEntries={state.userEntries}
                 userInsight={state.currentUserInsight}
-                dismissNewChallengeNotification={
-                  dismissNewChallengeNotification
+                dismissNewLessonNotification={
+                  dismissNewLessonNotification
                 }
-                newChallengeNotification={state.newChallengeNotification}
+                newLessonNotification={state.newLessonNotification}
                 powerEntries={countPowerEntries(state.userEntries)}
               />
               <div>
