@@ -8,6 +8,7 @@ import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Form from "./Form";
 
 export default function SimpleExpansionPanel(props) {
+
   const useStyles = makeStyles(theme => ({
     root: {
       width: "100%",
@@ -24,7 +25,12 @@ export default function SimpleExpansionPanel(props) {
       }
     },
     heading: {
-      fontSize: theme.typography.pxToRem(15),
+      "@media (min-width:601px)": {
+        fontSize: "1.2rem"
+      },
+      "@media (max-width:600px)": {
+        fontSize: "1.1rem"
+      },
       fontWeight: theme.typography.fontWeightLight,
       flexGrow: 1,
       align: "center",
@@ -38,15 +44,23 @@ export default function SimpleExpansionPanel(props) {
   return (
     <ExpansionPanel
       className={(props.finalQuestion && classes.finalQuestion) || classes.root}
-      TransitionProps={{ unmountOnExit: true }}
-      >
-      <ExpansionPanelSummary style={{backgroundColor: "rgb(240,240,240, 0.0)"}}
-        expandIcon={<ExpandMoreIcon style={{ color: "#00A8E0", height: "3em", backgroundColor: "rgb(240,240,240, 0.0)" }} />}
+      TransitionProps={{ unmountOnExit: true }}>
+      <ExpansionPanelSummary
+        style={{ backgroundColor: "rgb(240,240,240, 0.0)" }}
+        expandIcon={
+          <ExpandMoreIcon
+            style={{
+              color: "#00A8E0",
+              height: "3em",
+              backgroundColor: "rgb(240,240,240, 0.0)"
+            }}
+          />
+        }
         aria-controls="panel1a-content"
         id="panel1a-header">
-        <Typography className={classes.heading} fontSize="h2.fontSize">
-          {props.question}{" "}
-        </Typography>
+          <Typography className={classes.heading} variant="h3">
+            {props.question}{" "}
+          </Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails>
         <div className={classes.root}>
