@@ -45,11 +45,11 @@ export default function useApplicationData() {
         .then(credentials => {
           if (credentials.data.email && credentials.data.password) {
             loginHandler(credentials.data.email, credentials.data.password, x =>
-              console.log("FROM USEEFFECTUPTOP")
+              ""
             );
           }
         })
-        .catch(err => console.log("COOKIES LOGIN ERROR: ", err));
+        .catch(err => console.log("LOGIN ERROR: ", err));
     }
   }, []);
 
@@ -122,7 +122,7 @@ export default function useApplicationData() {
             currentUserWordCount: getUserWordCount(state.userEntries)
           }));
         })
-        .catch(err => console.log("USERGOALS ERROR: ", err));
+        .catch(err => console.log("ERROR: ", err));
     }
   }, [state.currentUser]);
 
@@ -268,12 +268,12 @@ export default function useApplicationData() {
               }));
             } else {
               loginHandler(email, password, x =>
-                console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
+                ""
               ).then(() => loginCallback());
             }
           })
           .catch(err =>
-            console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err)
+            console.log("Registration Error :", err)
           )
       );
     }

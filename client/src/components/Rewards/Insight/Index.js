@@ -59,11 +59,9 @@ export default function Bio(props) {
     }
   }));
   const classes = useStyles();
-  
 
   return (
     <Card className={classes.card}>
-
       <section>
         {mode === USERBIO && (
           <UserBio
@@ -91,11 +89,7 @@ export default function Bio(props) {
           />
         )}
 
-        {mode === ERROR && (
-          <Error
-            onCancel={back}
-          />
-        )}
+        {mode === ERROR && <Error onCancel={back} />}
 
         {mode === LOADING && (
           <Status message={"Loading insights!"} onCancel={back} />

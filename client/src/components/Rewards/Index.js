@@ -94,14 +94,20 @@ export default function Rewards(props) {
               onClick={() => handleClick()}
               simple="true"
               size="medium">
-              <img
-                src={
-                  levelOneNotification || props.newChallengeNotification
-                    ? "../images/indezone-icon-alert.png"
-                    : "../images/indezone-icon.png"
-                }
-                className={classes.image}
-              />
+              {(levelOneNotification || props.newChallengeNotification) && (
+                <img
+                  src={"../images/indezone-icon-alert.png"}
+                  className={classes.image}
+                  alt="indezone notification"
+                />
+              )}
+              {!(levelOneNotification || props.newChallengeNotification) && (
+                <img
+                  src={"../images/indezone-icon.png"}
+                  className={classes.image}
+                  alt="indezone icon"
+                />
+              )}
             </IconButton>
           </>
         )}
@@ -143,6 +149,7 @@ export default function Rewards(props) {
                       <img
                         src={`images/brain-hats/brain-hats-${props.level}.png`}
                         className={classes.avatar}
+                        alt="avatar"
                       />
                     </div>
                   </GridItem>
