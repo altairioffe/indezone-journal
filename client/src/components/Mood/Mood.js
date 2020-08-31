@@ -15,9 +15,7 @@ import LoadingImage from "./Loading";
 
 export default function Login(props) {
   const [moodSelection, setMoodSelection] = useState("");
-  const [message, setMessage] = useState("");
 
-  const sadMessage = "loading questions to build mindfulness & self-compassion";
   //const hap
   const useStyles = makeStyles({
     root: {
@@ -45,8 +43,9 @@ export default function Login(props) {
       marginTop: "-10vh"
     },
     button: {
-      // height: "100%",
-      // width: "50%"
+      "@media (max-width:600px)": {
+        display: "none"
+      }
     },
     image: {
       height: "25vh",
@@ -97,7 +96,7 @@ export default function Login(props) {
               {moodSelection !== "happy" && (
                 <Fade in={moodSelection !== "happy"} timeout={1000}>
                   <IconButton
-                    className={classes.button}
+                    className={moodSelection === "sad" && classes.button}
                     disabled={moodSelection === "sad"}
                     simple="true"
                     onClick={() => setUserMood("happy")}
@@ -122,7 +121,7 @@ export default function Login(props) {
               {moodSelection !== "sad" && (
                 <Fade in={moodSelection !== "sad"} timeout={1000}>
                   <IconButton
-                    className={classes.button}
+                    className={moodSelection === "happy" && classes.button}
                     disabled={moodSelection === "happy"}
                     simple="true"
                     onClick={() => setUserMood("sad")}
