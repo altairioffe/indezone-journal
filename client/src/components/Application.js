@@ -49,7 +49,6 @@ export default function Application() {
         backgroundRepeat="no-repeat">
         <Container className="" style={{ minHeight: "100vh" }}>
           <Navbar
-            users={state.users}
             logInUser={data => console.log(data)}
             logoutUser={logOutUser}
             user={state.currentUser}
@@ -66,6 +65,7 @@ export default function Application() {
           {state.currentUser && !state.renderMainPage && (
             <Mood
               userIsMotivated={state.userIsMotivated}
+              user={state.currentUser.handle}
               renderMainPage={renderMainPage}
               setUserMood={setUserMood}
             />

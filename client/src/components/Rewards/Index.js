@@ -54,6 +54,11 @@ export default function Rewards(props) {
     image: {
       height: "15vh",
       width: "auto",
+      margin: "-25px 0px -25px"
+    },
+    notification: {
+      height: "15vh",
+      width: "auto",
       margin: "-25px 0px -25px",
       animation:
         ((levelOneNotification || props.newLessonNotification) &&
@@ -97,7 +102,7 @@ export default function Rewards(props) {
                 size="medium">
                 <img
                   src={"../images/indezone-icon-alert.png"}
-                  className={classes.image}
+                  className={classes.notification}
                   alt="indezone notification"
                 />
               </IconButton>

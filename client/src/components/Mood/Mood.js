@@ -84,7 +84,7 @@ export default function Login(props) {
         spacing={1}>
         <Card className={classes.card}>
           <Typography className={classes.typography}>
-            How are you feeling today?
+            How are you feeling today, {props.user}?
           </Typography>
           <GridContainer
             justify="center"
