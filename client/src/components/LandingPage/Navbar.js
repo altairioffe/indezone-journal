@@ -108,9 +108,9 @@ export default function Navbar(props) {
                       style={{ color: "gray" }}
                       className={classes.title}
                       align="right">
-                      Welcome,{" "}
+                      {" "}
                       <strong>
-                        {props.user ? props.user.handle : "error"}.
+                        {props.user ? props.user.handle : "error"} |
                       </strong>{" "}
                       Level:{" "}
                       <strong style={{ color: "#00A8E0" }}>
@@ -142,7 +142,7 @@ export default function Navbar(props) {
         </Grid>
       </AppBar>
       <Box mt="20vh">
-        
+
         {/* REGISTRATION */}
         {props.user === null && (
           <Collapse
