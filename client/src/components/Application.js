@@ -93,7 +93,7 @@ export default function Application() {
                 <QuestionList
                   ansQuestion={ansQuestion}
                   level={state.level}
-                  questions={pickUserQuestions(state.timeOfDay, state.userMood)}
+                  questions={state.organizedQuestionsByTime}
                   userEntries={state.userEntries}
                   setAnswer={setAnswer}
                   answer={state.answer}

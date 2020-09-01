@@ -8,7 +8,11 @@ import {
   getBio,
   getUserWordCount
 } from "../helpers/userHelper";
-import { organizeQuestionsByTime, questions } from "../helpers/questionHelper";
+import {
+  organizeQuestionsByTime,
+  pickUserQuestions,
+  questions
+} from "../helpers/questionHelper";
 
 import { setTimeOfDay } from "../helpers/questionHelper";
 
@@ -44,8 +48,10 @@ export default function useApplicationData() {
         //Set State using response from DB
         .then(credentials => {
           if (credentials.data.email && credentials.data.password) {
-            loginHandler(credentials.data.email, credentials.data.password, x =>
-              ""
+            loginHandler(
+              credentials.data.email,
+              credentials.data.password,
+              x => ""
             );
           }
         })
@@ -54,12 +60,15 @@ export default function useApplicationData() {
   }, []);
 
   useEffect(() => {
-    let organizedQuestions = organizeQuestionsByTime(questions);
+    const organizedQuestions = pickUserQuestions(
+      state.timeOfDay || "morning",
+      state.userMood || "happy"
+    );
     setState(state => ({
       ...state,
       organizedQuestionsByTime: organizedQuestions
     }));
-  }, []);
+  }, [state.userMood]);
 
   // Axios PUT to update db Level
   const levelHandler = (userId, newUserLevel) => {
@@ -267,14 +276,12 @@ export default function useApplicationData() {
                 loginError: res.data.error
               }));
             } else {
-              loginHandler(email, password, x =>
-                ""
-              ).then(() => loginCallback());
+              loginHandler(email, password, x => "").then(() =>
+                loginCallback()
+              );
             }
           })
-          .catch(err =>
-            console.log("Registration Error :", err)
-          )
+          .catch(err => console.log("Registration Error :", err))
       );
     }
   };

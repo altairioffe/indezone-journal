@@ -1,7 +1,6 @@
 import moment from "moment";
 
 export function setTimeOfDay(currentTime) {
-
   if (
     moment(currentTime).isBetween(
       moment({ hour: 5 }),

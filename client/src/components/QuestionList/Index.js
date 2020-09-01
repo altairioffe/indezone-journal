@@ -29,7 +29,7 @@ export default function QuestionList(props) {
       suggestion: goal.suggestion
     };
   });
-  let finalQuestion = props.questions[props.questions.length - 1];
+  const finalQuestion = props.questions[props.questions.length - 1];
 
   const questionsFilteredList = questionsArr.map(goal => {
     return (
