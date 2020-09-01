@@ -101,7 +101,7 @@ export default function Rewards(props) {
                 simple="true"
                 size="medium">
                 <img
-                  src={"../images/indezone-icon-alert.png"}
+                  src={require("./images/indezone-icon-alert.png")}
                   className={classes.notification}
                   alt="indezone notification"
                 />
@@ -115,7 +115,7 @@ export default function Rewards(props) {
                 simple="true"
                 size="medium">
                 <img
-                  src={"../images/indezone-icon.png"}
+                  src={require("./images/indezone-icon.png")}
                   className={classes.image}
                   alt="indezone icon"
                 />
