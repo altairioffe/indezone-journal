@@ -32,7 +32,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(session({
   key: 'user_sid',
   store: new MemoryStore({
-      checkPeriod: 86400000 // prune expired entries every 24h
+      checkPeriod: 950400000 // prune expired entries every 11 days
     }),
   secret: process.env.session_secret,
   resave: false,

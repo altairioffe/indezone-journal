@@ -42,7 +42,7 @@ export default function SimpleExpansionPanel(props) {
   const classes = useStyles();
 
   return (
-    <ExpansionPanel
+    <ExpansionPanel 
       className={(props.finalQuestion && classes.finalQuestion) || classes.root}
       TransitionProps={{ unmountOnExit: true }}>
       <ExpansionPanelSummary
