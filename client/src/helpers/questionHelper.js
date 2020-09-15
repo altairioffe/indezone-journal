@@ -131,7 +131,7 @@ export const questions = [
   },
   {
     id: 9,
-    question: "If today was your last day, how would you spend it?",
+    question: "If today was your last day, what would you do differently?",
     suggestion: "Get the most out of your day"
   },
   {
@@ -141,8 +141,8 @@ export const questions = [
   },
   {
     id: 11,
-    question: "What have you been avoiding or putting off?",
-    suggestion: "Does it need to get done?"
+    question: "What have you been procrastinating on or avoiding?",
+    suggestion: "Why does it matter?"
   },
   {
     id: 12,
@@ -326,7 +326,7 @@ export const questions = [
   },
   {
     id: 45,
-    question: "What did you today to recharge?",
+    question: "What did you do today to recharge?",
     suggestion: "Self-care is an important habit for peak performance"
   },
   {
