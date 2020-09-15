@@ -8,7 +8,11 @@ import {
   getBio,
   getUserWordCount
 } from "../helpers/userHelper";
-import { organizeQuestionsByTime, questions } from "../helpers/questionHelper";
+import {
+  organizeQuestionsByTime,
+  pickUserQuestions,
+  questions
+} from "../helpers/questionHelper";
 
 import { setTimeOfDay } from "../helpers/questionHelper";
 
@@ -30,7 +34,7 @@ export default function useApplicationData() {
     currentUserInsight: "",
     currentUserWordCount: 0,
     level: 1,
-    newChallengeNotification: true,
+    newLessonNotification: true,
     loginError: false,
     userMood: "",
     timeOfDay: "",
@@ -44,22 +48,27 @@ export default function useApplicationData() {
         //Set State using response from DB
         .then(credentials => {
           if (credentials.data.email && credentials.data.password) {
-            loginHandler(credentials.data.email, credentials.data.password, x =>
-              console.log("FROM USEEFFECTUPTOP")
+            loginHandler(
+              credentials.data.email,
+              credentials.data.password,
+              x => ""
             );
           }
         })
-        .catch(err => console.log("COOKIES LOGIN ERROR: ", err));
+        .catch(err => console.log("LOGIN ERROR: ", err));
     }
   }, []);
 
   useEffect(() => {
-    let organizedQuestions = organizeQuestionsByTime(questions);
+    const organizedQuestions = pickUserQuestions(
+      state.timeOfDay || "morning",
+      state.userMood || "happy"
+    );
     setState(state => ({
       ...state,
       organizedQuestionsByTime: organizedQuestions
     }));
-  }, []);
+  }, [state.userMood]);
 
   // Axios PUT to update db Level
   const levelHandler = (userId, newUserLevel) => {
@@ -98,7 +107,7 @@ export default function useApplicationData() {
     if (checkIfFirstPostToday(userGoals) && currentLevel < 10) {
       setState(state => ({
         ...state,
-        newChallengeNotification: true
+        newLessonNotification: true
       }));
       return levelHandler(state.currentUser.id, currentLevel + 1);
     } else {
@@ -106,8 +115,8 @@ export default function useApplicationData() {
     }
   };
 
-  const dismissNewChallengeNotification = () => {
-    setState(state => ({ ...state, newChallengeNotification: false }));
+  const dismissNewLessonNotification = () => {
+    setState(state => ({ ...state, newLessonNotification: false }));
   };
 
   //Set current user goals on login
@@ -122,7 +131,7 @@ export default function useApplicationData() {
             currentUserWordCount: getUserWordCount(state.userEntries)
           }));
         })
-        .catch(err => console.log("USERGOALS ERROR: ", err));
+        .catch(err => console.log("ERROR: ", err));
     }
   }, [state.currentUser]);
 
@@ -267,14 +276,12 @@ export default function useApplicationData() {
                 loginError: res.data.error
               }));
             } else {
-              loginHandler(email, password, x =>
-                console.log("LOGINHANDLER FROM REGISTRATION HANDLER: ", x)
-              ).then(() => loginCallback());
+              loginHandler(email, password, x => "").then(() =>
+                loginCallback()
+              );
             }
           })
-          .catch(err =>
-            console.log("ERROR FROM REGISTRATION HANDLER AXIOS, :", err)
-          )
+          .catch(err => console.log("Registration Error :", err))
       );
     }
   };
@@ -351,6 +358,6 @@ export default function useApplicationData() {
     resetLoginError,
     renderMainPage,
     setUserMood,
-    dismissNewChallengeNotification
+    dismissNewLessonNotification
   };
 }

@@ -23,6 +23,7 @@ export default function Rewards(props) {
       fontWeight: "300",
       flexGrow: 1,
       align: "center",
+      overflow: "visible",
       fontSize: "1.5em",
       "& small": {
         color: "skyblue"
@@ -53,9 +54,14 @@ export default function Rewards(props) {
     image: {
       height: "15vh",
       width: "auto",
+      margin: "-25px 0px -25px"
+    },
+    notification: {
+      height: "15vh",
+      width: "auto",
       margin: "-25px 0px -25px",
       animation:
-        ((levelOneNotification || props.newChallengeNotification) &&
+        ((levelOneNotification || props.newLessonNotification) &&
           `$pulse 2000ms infinite`) ||
         ""
     },
@@ -79,7 +85,7 @@ export default function Rewards(props) {
 
   const handleClick = () => {
     setOpenDialog(true);
-    props.dismissNewChallengeNotification();
+    props.dismissNewLessonNotification();
     setLevelOneNotification(false);
   };
 
@@ -88,20 +94,33 @@ export default function Rewards(props) {
       <Card className={classes.card}>
         {openDialog === false && (
           <>
-            <IconButton
-              className={classes.button}
-              onClick={() => handleClick()}
-              simple="true"
-              size="medium">
-              <img
-                src={
-                  levelOneNotification || props.newChallengeNotification
-                    ? "../images/indezone-icon-alert.png"
-                    : "../images/indezone-icon.png"
-                }
-                className={classes.image}
-              />
-            </IconButton>
+            {(levelOneNotification || props.newLessonNotification) && (
+              <IconButton
+                className={classes.button}
+                onClick={() => handleClick()}
+                simple="true"
+                size="medium">
+                <img
+                  src={require("./images/indezone-icon-alert.png")}
+                  className={classes.notification}
+                  alt="indezone notification"
+                />
+              </IconButton>
+            )}
+
+            {!(levelOneNotification || props.newLessonNotification) && (
+              <IconButton
+                className={classes.button}
+                onClick={() => handleClick()}
+                simple="true"
+                size="medium">
+                <img
+                  src={require("./images/indezone-icon.png")}
+                  className={classes.image}
+                  alt="indezone icon"
+                />
+              </IconButton>
+            )}
           </>
         )}
 
@@ -142,6 +161,7 @@ export default function Rewards(props) {
                       <img
                         src={`images/brain-hats/brain-hats-${props.level}.png`}
                         className={classes.avatar}
+                        alt="avatar"
                       />
                     </div>
                   </GridItem>

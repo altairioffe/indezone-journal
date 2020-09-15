@@ -15,10 +15,7 @@ import LoadingImage from "./Loading";
 
 export default function Login(props) {
   const [moodSelection, setMoodSelection] = useState("");
-  const [message, setMessage] = useState("");
 
-  const sadMessage = "loading questions to build mindfulness & self-compassion";
-  //const hap
   const useStyles = makeStyles({
     root: {
       background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
@@ -45,8 +42,9 @@ export default function Login(props) {
       marginTop: "-10vh"
     },
     button: {
-      // height: "100%",
-      // width: "50%"
+      "@media (max-width:600px)": {
+        display: "none"
+      }
     },
     image: {
       height: "25vh",
@@ -71,8 +69,8 @@ export default function Login(props) {
 
   const setUserMood = mood => {
     setMoodSelection(mood);
-    props.setUserMood(mood)
-    setTimeout(() => props.renderMainPage(), 500)
+    props.setUserMood(mood);
+    setTimeout(() => props.renderMainPage(), 5000);
   };
 
   return (
@@ -85,25 +83,27 @@ export default function Login(props) {
         spacing={1}>
         <Card className={classes.card}>
           <Typography className={classes.typography}>
-            How are you feeling today?
+            How are you feeling today, {props.user}?
           </Typography>
           <GridContainer
             justify="center"
             direction="row"
             alignItems="center"
             spacing={2}>
-
             <GridItem xs={12} sm={12} md={6}>
               {moodSelection !== "happy" && (
                 <Fade in={moodSelection !== "happy"} timeout={1000}>
                   <IconButton
-                    className={classes.button}
+                    className={moodSelection === "sad" && classes.button}
                     disabled={moodSelection === "sad"}
                     simple="true"
                     onClick={() => setUserMood("happy")}
-                    color="primary"
-                    >
-                    <img src={"../images/happy-brain.svg"} className={classes.image}/>
+                    color="primary">
+                    <img
+                      src={"../images/happy-brain.svg"}
+                      alt="happy brain"
+                      className={classes.image}
+                    />
                   </IconButton>
                 </Fade>
               )}
@@ -112,7 +112,8 @@ export default function Login(props) {
                 <Fade in={moodSelection === "happy"} timeout={1000}>
                   <Card className={classes.innerCard}>
                     <Typography className={classes.innerText}>
-                      Great! Let's harness that motivation with some questions to build your focus.
+                      Great! Let's harness that motivation with some questions
+                      to build your focus.
                     </Typography>
                   </Card>
                 </Fade>
@@ -122,13 +123,16 @@ export default function Login(props) {
               {moodSelection !== "sad" && (
                 <Fade in={moodSelection !== "sad"} timeout={1000}>
                   <IconButton
-                    className={classes.button}
+                    className={moodSelection === "happy" && classes.button}
                     disabled={moodSelection === "happy"}
                     simple="true"
                     onClick={() => setUserMood("sad")}
-                    color="primary"
-                    >
-                    <img src={"../images/sad-brain.svg"} className={classes.image}/>
+                    color="primary">
+                    <img
+                      src={"../images/sad-brain.svg"}
+                      alt="sad brain"
+                      className={classes.image}
+                    />
                   </IconButton>
                 </Fade>
               )}
@@ -137,7 +141,9 @@ export default function Login(props) {
                 <Fade in={moodSelection === "sad"} timeout={1000}>
                   <Card className={classes.innerCard}>
                     <Typography className={classes.innerText}>
-                      It's okay if you're not feeling 100% right now. Research shows that, with practice, you can change how you feel by changing your thoughts.
+                      It's okay if you're not feeling 100% right now. Research
+                      shows that, with practice, you can change how you feel by
+                      changing your thoughts.
                     </Typography>
                   </Card>
                 </Fade>
@@ -145,12 +151,12 @@ export default function Login(props) {
             </GridItem>
           </GridContainer>
           {moodSelection && (
-            <Fade in={moodSelection === true} timeout={3000}>
-              <Card className={classes.innerCard}>
-              <LoadingImage
-                mood={moodSelection}
-              />
-              </Card>
+            <Fade in={moodSelection === true} timeout={2000}>
+              <>
+                <Card className={classes.innerCard}>
+                  <LoadingImage mood={moodSelection} />
+                </Card>
+              </>
             </Fade>
           )}
         </Card>

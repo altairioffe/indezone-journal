@@ -26,7 +26,7 @@ export default function Application() {
     resetLoginError,
     renderMainPage,
     setUserMood,
-    dismissNewChallengeNotification
+    dismissNewLessonNotification
   } = useApplicationData();
 
   const parallaxStyle = {
@@ -49,7 +49,6 @@ export default function Application() {
         backgroundRepeat="no-repeat">
         <Container className="" style={{ minHeight: "100vh" }}>
           <Navbar
-            users={state.users}
             logInUser={data => console.log(data)}
             logoutUser={logOutUser}
             user={state.currentUser}
@@ -66,6 +65,7 @@ export default function Application() {
           {state.currentUser && !state.renderMainPage && (
             <Mood
               userIsMotivated={state.userIsMotivated}
+              user={state.currentUser.handle}
               renderMainPage={renderMainPage}
               setUserMood={setUserMood}
             />
@@ -82,10 +82,10 @@ export default function Application() {
                 requestInsight={requestInsight}
                 userEntries={state.userEntries}
                 userInsight={state.currentUserInsight}
-                dismissNewChallengeNotification={
-                  dismissNewChallengeNotification
+                dismissNewLessonNotification={
+                  dismissNewLessonNotification
                 }
-                newChallengeNotification={state.newChallengeNotification}
+                newLessonNotification={state.newLessonNotification}
                 powerEntries={countPowerEntries(state.userEntries)}
               />
               <div>
@@ -93,7 +93,7 @@ export default function Application() {
                 <QuestionList
                   ansQuestion={ansQuestion}
                   level={state.level}
-                  questions={pickUserQuestions(state.timeOfDay, state.userMood)}
+                  questions={state.organizedQuestionsByTime}
                   userEntries={state.userEntries}
                   setAnswer={setAnswer}
                   answer={state.answer}

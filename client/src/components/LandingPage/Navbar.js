@@ -49,12 +49,10 @@ export default function Navbar(props) {
     }
   });
   const classes = useStyles();
-  // Here are the states to keep track of login process
+
   const [loginState, setLoginState] = useState((props.user && 2) || 0);
-  const [loginEmail, setLoginEmail] = useState(null);
-  const [loginPassword, setLoginPassword] = useState(null);
-  const [user, setUser] = useState(props.user);
   /* 
+    Login states:
     State 0: Logged out, prompt to register
     State 1: Logged out, prompt to log in
     State 2: Welcome Logged in User
@@ -64,12 +62,12 @@ export default function Navbar(props) {
   const renderUserDashboard = () => setLoginState(2);
 
   const logout = () => {
-    setUser(null);
     setLoginState(1);
     props.logoutUser();
   };
 
   return (
+    // Navbar
     <div>
       <AppBar
         className="navBar"
@@ -87,7 +85,12 @@ export default function Navbar(props) {
               m={0}
               bgcolor="none"
               style={{ height: "100%", width: "100%", maxWidth: "20vh" }}>
-              <img src="images/indezone.png" height="100%" width="100%" />
+              <img
+                src="images/indezone.png"
+                height="100%"
+                width="100%"
+                alt="indezone"
+              />
             </Box>
           </Grid>
 
@@ -105,9 +108,9 @@ export default function Navbar(props) {
                       style={{ color: "gray" }}
                       className={classes.title}
                       align="right">
-                      Welcome,{" "}
+                      {" "}
                       <strong>
-                        {props.user ? props.user.handle : "error"}.
+                        {props.user ? props.user.handle : "error"} |
                       </strong>{" "}
                       Level:{" "}
                       <strong style={{ color: "#00A8E0" }}>
@@ -139,6 +142,7 @@ export default function Navbar(props) {
         </Grid>
       </AppBar>
       <Box mt="20vh">
+
         {/* REGISTRATION */}
         {props.user === null && (
           <Collapse

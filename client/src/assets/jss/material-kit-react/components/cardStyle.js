@@ -5,6 +5,7 @@ const cardStyle = {
     marginTop: "30px",
     borderRadius: "6px",
     color: "rgba(0, 0, 0, 0.87)",
+    overflow: "visible",
     background: "#fff",
     width: "100%",
     boxShadow:
