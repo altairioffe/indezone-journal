@@ -99,7 +99,7 @@ export const questions = [
   {
     id: 3,
     question:
-      'Fast-forward to your retirement. What advice would "future you" give you today?',
+      'What advice would "future you" give about your priorities today?',
     suggestion:
       "Maybe some perspective on your current priorities or negative beliefs"
   },
@@ -115,7 +115,7 @@ export const questions = [
   },
   {
     id: 6,
-    question: "What attitude could most improve your life right now?",
+    question: "What attitude would be most helpful right now?",
     suggestion: "Reframe a situation that you're struggling with"
   },
   {
@@ -131,7 +131,7 @@ export const questions = [
   },
   {
     id: 9,
-    question: "If today was your last day, how would you spend it?",
+    question: "If today was your last day, what would you do differently?",
     suggestion: "Get the most out of your day"
   },
   {
@@ -141,8 +141,8 @@ export const questions = [
   },
   {
     id: 11,
-    question: "What have you been avoiding or putting off?",
-    suggestion: "Does it need to get done?"
+    question: "What have you been procrastinating on or avoiding?",
+    suggestion: "Why does it matter?"
   },
   {
     id: 12,
@@ -176,9 +176,8 @@ export const questions = [
   {
     id: 17,
     question:
-      "Fast-forward to the future when you're retired. What advice would you give yourself today?",
-    suggestion:
-      "This might be some perspective on your priorities or negative beliefs"
+      "What advice would 'future you' give about your priorities or attitude today?",
+    suggestion: "Keep the big picture in mind"
   },
   {
     id: 18,
@@ -243,7 +242,7 @@ export const questions = [
   {
     id: 29,
     question: "What could you have done better today?",
-    suggestion: "Where can you improve?"
+    suggestion: "How can you improve?"
   },
   {
     id: 30,
@@ -259,7 +258,7 @@ export const questions = [
   {
     id: 32,
     question: "What are the long-term goals you need to keep in mind?",
-    suggestion: "Is everything else in your day more important than doing this?"
+    suggestion: "Keep the big picture in mind"
   },
   {
     id: 33,
@@ -326,7 +325,7 @@ export const questions = [
   },
   {
     id: 45,
-    question: "What did you today to recharge?",
+    question: "What did you do today to recharge?",
     suggestion: "Self-care is an important habit for peak performance"
   },
   {

@@ -36,6 +36,10 @@ export default function Level9(props) {
     {
       label: "Slide 8",
       imgPath: `images/lessons/${lessonNumber}-08.png`
+    },
+    {
+      label: "Slide 9",
+      imgPath: `images/lessons/${lessonNumber}-09.png`
     }
   ];
 
