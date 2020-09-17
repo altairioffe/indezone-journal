@@ -31,7 +31,7 @@ export default function Form(props) {
           onFocus={() => {
             setLabelText([
               "Write at least 40 words for a Power Entry!",
-              { style: { color: "#00A8E0" } }
+              { style: { color: "#00A8E0", backgroundColor: "white" } }
             ]);
           }}
           style={{ backgroundColor: "white" }}
