@@ -1,6 +1,10 @@
 {
   "name": "backend",
   "version": "0.0.0",
+  "engines": {
+    "node": "10.16.1",
+    "npm": "6.9.0"
+  },  
   "private": true,
   "scripts": {
     "start": "node server.js",
@@ -8,10 +12,6 @@
     "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "dependencies": {
-    "engines": {
-    "node": "10.16.1",
-    "npm": "6.9.0"
-    },  
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "cookie-parser": "~1.4.4",
